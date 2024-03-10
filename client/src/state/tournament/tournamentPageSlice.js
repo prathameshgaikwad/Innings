@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { format } from "date-fns";
 
+const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
+
 const initialState = {
   fixtures: [],
   teams: [],
@@ -63,7 +65,7 @@ export const fetchTournamentFixtures =
   async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/fixtures/${tournamentId}/all`,
+        `${TOURNAMENTS_API}/${tournamentId}/fixtures`,
         {
           method: "GET",
           headers: {
@@ -86,15 +88,12 @@ export const getTeams =
   ({ tournamentId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/tournaments/${tournamentId}/teams`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${TOURNAMENTS_API}/${tournamentId}/teams`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error("Fetching error");
       }
@@ -111,7 +110,7 @@ export const fetchPointsTable =
   async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/tournaments/${tournamentId}/points-table`,
+        `${TOURNAMENTS_API}/${tournamentId}/points-table`,
         {
           method: "GET",
           headers: {
@@ -134,7 +133,7 @@ export const getTournamentDetails =
   ({ id, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(`http://localhost:3000/tournaments/${id}`, {
+      const response = await fetch(`${TOURNAMENTS_API}/${id}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const MATCHES_API = import.meta.env.VITE_SERVER_MATCHES_API;
+
 const initialState = {
   _id: "",
   match_no: "",
@@ -71,7 +73,7 @@ export const getMatchInfo =
   ({ matchId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(`http://localhost:3000/matches/${matchId}`, {
+      const response = await fetch(`${MATCHES_API}/${matchId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

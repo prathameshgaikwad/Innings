@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const MATCHES_API = import.meta.env.VITE_SERVER_MATCHES_API;
+
 const initialState = {
   _id: "",
   match_no: "",
@@ -231,7 +233,7 @@ export const getMatchManagementInfo =
   ({ matchId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(`http://localhost:3000/matches/${matchId}`, {
+      const response = await fetch(`${MATCHES_API}/${matchId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -254,15 +256,12 @@ export const getTossResult =
   ({ matchId, token }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/matches/${matchId}/getToss`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${MATCHES_API}/${matchId}/getToss`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error("Fetching error");
       }
@@ -280,7 +279,7 @@ export const saveTossResultToDb =
   ({ matchId, toss, token }) =>
   async () => {
     try {
-      const response = await fetch(`http://localhost:3000/matches/setToss`, {
+      const response = await fetch(`${MATCHES_API}/setToss`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

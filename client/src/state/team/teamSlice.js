@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const TEAMS_API = import.meta.env.VITE_SERVER_TEAMS_API;
+
 const initialState = {
   name: "",
   color: "",
@@ -28,7 +30,7 @@ export const getTeamInfo =
   ({ teamId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(`http://localhost:3000/teams/${teamId}`, {
+      const response = await fetch(`${TEAMS_API}/${teamId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

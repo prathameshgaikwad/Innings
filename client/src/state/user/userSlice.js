@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const REGISTER_ENDPOINT = import.meta.env.VITE_SERVER_REGISTER_URL;
+const LOGIN_ENDPOINT = import.meta.env.VITE_SERVER_LOGIN_URL;
+const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
+
 const initialState = {
   user: null,
   token: null,
@@ -39,14 +43,13 @@ const userSlice = createSlice({
 
 export const signUpGoogle = async (access_token, navigate) => {
   try {
-    const response = await fetch("http://localhost:3000/auth/register", {
+    const response = await fetch(REGISTER_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ access_token }),
     });
-
     if (response.ok) {
       navigate("/");
     } else {
@@ -60,7 +63,7 @@ export const signUpGoogle = async (access_token, navigate) => {
 
 export const signInGoogle = async (access_token, navigate, dispatch) => {
   try {
-    const response = await fetch("http://localhost:3000/auth/login", {
+    const response = await fetch(LOGIN_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,15 +93,12 @@ export const getLiveMatchInfo =
   ({ tournamentId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/tournaments/${tournamentId}/live`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${TOURNAMENTS_API}/${tournamentId}/live`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error("Fetching error");
       }
@@ -121,7 +121,7 @@ export const getUpcomingMatches =
   async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/tournaments/${tournamentId}/upcoming-matches`,
+        `${TOURNAMENTS_API}/${tournamentId}/upcoming-matches`,
         {
           method: "GET",
           headers: {

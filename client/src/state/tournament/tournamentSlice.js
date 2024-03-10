@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const USER_API = import.meta.env.VITE_SERVER_USER_API;
+const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
+
 const initialState = {
   createdTournaments: [],
   joinedTournaments: [],
@@ -53,7 +56,7 @@ export const fetchCreatedTournaments =
   async (dispatch) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/user/${userId}/created-tournaments`,
+        `${USER_API}/${userId}/created-tournaments`,
         {
           method: "GET",
           headers: {
@@ -77,15 +80,12 @@ export const fetchJoinedTournaments =
   ({ userId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/user/${userId}/joined-tournaments`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${USER_API}/${userId}/joined-tournaments`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error("Fetching error");
       }
@@ -102,15 +102,12 @@ export const getLatestTournamentDetails =
   ({ userId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/user/${userId}/latest-tournament`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${USER_API}/${userId}/latest-tournament`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error("Fetching error");
       }
@@ -134,15 +131,12 @@ export const getFeaturedTournaments =
 
     if (!featuredTournaments.length) {
       try {
-        const response = await fetch(
-          `http://localhost:3000/tournaments/featured`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`${TOURNAMENTS_API}/featured`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!response.ok) {
           throw new Error("Fetching error");

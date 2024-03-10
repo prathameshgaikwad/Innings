@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const TEAMS_API = import.meta.env.VITE_SERVER_TEAMS_API;
+const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
+const FIXTURES_API = import.meta.env.VITE_SERVER_FIXTURES_API;
+
 const initialState = {
   tempTeam: [],
   teams: [],
@@ -70,7 +74,7 @@ export const saveTeamToDb =
   ({ data, token, setOpenToast, teamData }) =>
   async (dispatch) => {
     try {
-      const response = await fetch("http://localhost:3000/teams/create", {
+      const response = await fetch(`${TEAMS_API}/create`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -96,15 +100,12 @@ export const getCreatedTeams =
   ({ tournamentId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/tournaments/${tournamentId}/teams`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${TOURNAMENTS_API}/${tournamentId}/teams`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error("Fetching error");
       }
@@ -120,17 +121,14 @@ export const saveFixturesBatchToDb =
   ({ tournamentId, token, fixtures, setOpen, navigate }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(
-        "http://localhost:3000/fixtures/create-batch",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ fixtures, tournamentId }),
-        }
-      );
+      const response = await fetch(`${FIXTURES_API}/create-batch`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fixtures, tournamentId }),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to create fixtures");

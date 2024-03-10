@@ -89,58 +89,7 @@ const getFixtureDetails = async (req, res) => {
   }
 };
 
-const getAllFixtures = async (req, res) => {
-  try {
-    const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
-    const { fixture_id } = tournament;
-
-    const responseObject = [];
-
-    for (const element of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: element });
-      const { team1_id, team2_id, match_no, match_id, date, time, status } =
-        fixture;
-
-      const team1 = await Team.findOne({ _id: team1_id });
-      const team2 = await Team.findOne({ _id: team2_id });
-      const match = await Match.findOne({ _id: match_id });
-
-      const team1Details = {
-        name: team1.name,
-        nameShort: team1.nameShort,
-        color: team1.color,
-        logoURL: team1.logoURL,
-      };
-      const team2Details = {
-        name: team2.name,
-        nameShort: team2.nameShort,
-        color: team2.color,
-        logoURL: team2.logoURL,
-      };
-
-      responseObject.push({
-        team1Details,
-        team2Details,
-        match_no,
-        match_id,
-        date,
-        time,
-        status,
-        overs: match.overs,
-      });
-    }
-
-    res.status(StatusCodes.OK).json(responseObject);
-  } catch (error) {
-    res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: error.message });
-  }
-};
-
 module.exports = {
   createFixturesBatch,
-  getAllFixtures,
   getFixtureDetails,
 };
