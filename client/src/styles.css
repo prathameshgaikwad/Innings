@@ -1,0 +1,55 @@
+.swiper-slide {
+  width: 280px;
+}
+
+.swiper {
+  width: 100%;
+  padding: 30px;
+  padding-bottom: 40px;
+}
+.smallSwiper {
+  padding: 16px;
+}
+
+.tournamentStatisticsList {
+  padding-right: 80px;
+}
+
+.customSelect {
+  --Select-radius: var(--joy-radius-sm);
+  --Select-gap: 0.5rem;
+  --Select-placeholderOpacity: 0.64;
+  --Select-decoratorColor: var(--joy-palette-text-icon);
+  --Select-focusedThickness: var(--joy-focus-thickness);
+  --Select-focusedHighlight: var(--joy-palette-primary-500);
+  --Select-indicatorColor: var(--joy-palette-text-tertiary);
+  --Select-minHeight: 2.25rem;
+  --Select-paddingInline: 0.75rem;
+  --Select-decoratorChildHeight: min(1.75rem; var(--Select-minHeight));
+  --Icon-fontSize: var(--joy-fontSize-xl2);
+  box-shadow: var(--joy-shadowRing, 0 0 #000),
+    0px 1px 2px 0px
+      rgba(var(--joy-shadowChannel, 21 21 21) / var(--joy-shadowOpacity, 0.08));
+  min-height: var(--Select-minHeight);
+  cursor: pointer;
+  background-color: var(--joy-palette-background-surface);
+  font-size: var(--joy-fontSize-md, 1rem);
+  line-height: var(--joy-lineHeight-md, 1.5);
+  color: var(
+    --variant-outlinedColor,
+    var(
+      --joy-palette-neutral-outlinedColor,
+      var(--joy-palette-neutral-700, #32383e)
+    )
+  );
+  border-radius: var(--Select-radius);
+  padding-block: 3px;
+  padding-inline: var(--Select-paddingInline);
+  border-color: var(
+    --variant-outlinedBorder,
+    var(
+      --joy-palette-neutral-outlinedBorder,
+      var(--joy-palette-neutral-300, #cdd7e1)
+    )
+  );
+}
