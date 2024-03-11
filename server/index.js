@@ -13,6 +13,8 @@ const teamRoutes = require("./routes/teams");
 const fixtureRoutes = require("./routes/fixtures");
 const matchRoutes = require("./routes/matches");
 
+const matchSocketEvents = require("./events/matchSocketEvents");
+
 const { verifyToken } = require("./middleware/auth");
 
 dotenv.config();
@@ -30,13 +32,7 @@ const io = new Server(server, {
   },
 });
 
-io.on("connection", (socket) => {
-  console.log(`----------------- connected!`);
-
-  socket.on("disconnect", () => {
-    console.log("Disconnected :(");
-  });
-});
+matchSocketEvents(io);
 
 // ROUTES
 app.use("/auth", authRoutes);
