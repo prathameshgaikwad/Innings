@@ -7,6 +7,7 @@ const BallLogItem = ({ item, isSmall }) => {
 
   const isWicket = item === "W";
   const isExtra = ["WD", "B", "LB", "NB"].includes(item);
+  const isBoundary = [4, 6].includes(item);
 
   return (
     <Card
@@ -24,10 +25,12 @@ const BallLogItem = ({ item, isSmall }) => {
         border: "2px solid",
         borderColor:
           (isWicket && theme.palette.danger.softActiveBg) ||
+          (isBoundary && theme.palette.success.softActiveBg) ||
           (isExtra && theme.palette.warning.softActiveBg) ||
           theme.palette.neutral.outlinedBorder,
         backgroundColor:
           (isWicket && theme.palette.danger.outlinedBorder) ||
+          (isBoundary && theme.palette.success.outlinedBorder) ||
           (isExtra && theme.palette.warning.outlinedBorder),
         p: 1,
       }}>
