@@ -21,8 +21,7 @@ const Match = () => {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const token = useSelector((state) => state.user.token);
-  const { matchId } = useParams();
-  const { tournamentId } = useParams();
+  const { tournamentId, matchId } = useParams();
 
   const [socket, setSocket] = useState(null);
 
@@ -39,13 +38,17 @@ const Match = () => {
     if (socket) {
       socket.on("connect", () => {
         console.log("Connected to Socket.IO server");
+        socket.emit("subscribeToMatch", matchId);
+        socket.on("team1RunLog", (runLog) => {
+          console.log(runLog);
+        });
       });
 
       socket.on("disconnect", () => {
         console.log("Disconnected from Socket.IO server");
       });
     }
-  }, [socket]);
+  }, [socket, matchId]);
 
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
