@@ -78,8 +78,32 @@ const matchSchema = new mongoose.Schema(
       leg_byes: { type: Number },
       no_balls: { type: Number },
     },
-    team1_ball_log: [{ type: String }],
-    team2_ball_log: [{ type: String }],
+    team1_ball_log: [
+      {
+        bowler: {
+          type: mongoose.Types.ObjectId,
+          ref: "players",
+        },
+        runsConceded: { type: Number },
+        wicket: {
+          isWicket: { type: Boolean },
+          wicket_number: { type: Number },
+        },
+      },
+    ],
+    team2_ball_log: [
+      {
+        bowler: {
+          type: mongoose.Types.ObjectId,
+          ref: "players",
+        },
+        runsConceded: { type: Number },
+        wicket: {
+          isWicket: { type: Boolean },
+          wicket_number: { type: Number },
+        },
+      },
+    ],
     team1_wicket_log: [
       {
         wicket_taker: { type: String },
