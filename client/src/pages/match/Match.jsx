@@ -12,6 +12,7 @@ import Scorecard from "../../components/match/Scorecard";
 import TossDetails from "../../components/match/TossDetails";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { getMatchInfo } from "../../state/match/matchSlice";
+import { io } from "socket.io-client";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -22,6 +23,29 @@ const Match = () => {
   const token = useSelector((state) => state.user.token);
   const { matchId } = useParams();
   const { tournamentId } = useParams();
+
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = io("http://localhost:3000");
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("connect", () => {
+        console.log("Connected to Socket.IO server");
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from Socket.IO server");
+      });
+    }
+  }, [socket]);
 
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
