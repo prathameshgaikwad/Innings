@@ -8,10 +8,10 @@ import { Box, Card, Divider, Typography } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import BallLogItem from "../BallLogItem";
+import BallLogListSkeleton from "../skeletons/BallLogListSkeleton";
 import BallLogSeparator from "../BallLogSeparator";
 import { BiSolidCricketBall } from "react-icons/bi";
 import { Mousewheel } from "swiper/modules";
-import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SliderMask from "../SliderMask";
 
 const BallLogList = ({ data, isLoading }) => {
@@ -25,11 +25,11 @@ const BallLogList = ({ data, isLoading }) => {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        height: 72.8,
         py: 0,
-        px: isLoading && 0,
       }}>
       {isLoading ? (
-        <RectangularSkeleton height={60} borderRadius={"6px"} />
+        <BallLogListSkeleton />
       ) : (
         <>
           {data && data.length === 0 ? (
