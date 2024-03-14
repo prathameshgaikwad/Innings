@@ -123,12 +123,15 @@ const Match = () => {
             data={match}
           />
         </Box>
-        <Box width={isMobile ? "96%" : "72%"}>
-          {innings === "2" && <ChaseStatsCard isAdmin={false} />}
-          <BatsmenStats data={batsmenData} isSmall={false} />
-          <BallLogList data={ball_log} />
-        </Box>
-        {isMatchCompleted && <ManOfTheMatchCard />}
+        {isMatchCompleted ? (
+          <ManOfTheMatchCard />
+        ) : (
+          <Box width={isMobile ? "96%" : "72%"}>
+            {innings === "2" && <ChaseStatsCard isAdmin={false} />}
+            <BatsmenStats data={batsmenData} isSmall={false} />
+            <BallLogList data={ball_log} />
+          </Box>
+        )}
         <Scorecard />
       </Box>
       <Footer />
