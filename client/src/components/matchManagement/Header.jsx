@@ -1,22 +1,18 @@
+/* eslint-disable react/prop-types */
+
 import { Box, Button, Typography, useTheme } from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import TeamBadgeHorizontal from "./TeamBadgeHorizontal";
+import TeamBadgeHorizontal from "../cards/TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
-const Header = () => {
+const Header = ({ isLoading }) => {
   const { team1, team2, match_no } = useSelector(
     (state) => state.matchManagement
   );
   const matchNumber = match_no;
-  const team1name = team1.name;
-  const team1nameShort = team1.nameShort;
-  const team1Color = team1.color;
-  const team2name = team2.name;
-  const team2nameShort = team2.nameShort;
-  const team2Color = team2.color;
 
   const navigate = useNavigate();
   const theme = useTheme();
@@ -48,17 +44,17 @@ const Header = () => {
           # {matchNumber}
         </Typography>
         <TeamBadgeHorizontal
-          teamColor={team1Color}
-          name={team1name}
-          nameShort={team1nameShort}
+          team={team1}
+          isSmall={false}
+          isLoading={isLoading}
         />
         <Typography level={isMobile ? "h4" : "h3"} color="neutral">
           vs
         </Typography>
         <TeamBadgeHorizontal
-          teamColor={team2Color}
-          name={team2name}
-          nameShort={team2nameShort}
+          team={team2}
+          isSmall={false}
+          isLoading={isLoading}
         />
       </Box>
       <Button

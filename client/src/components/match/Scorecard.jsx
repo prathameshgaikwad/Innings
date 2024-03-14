@@ -12,7 +12,9 @@ import { BiSolidCricketBall } from "react-icons/bi";
 import FallOfWicketsList from "../lists/FallOfWicketsList";
 import { MdSportsCricket } from "react-icons/md";
 import TabsSegmentedControls from "../TabsSegmentedControls";
+import TeamBadgeHorizontal from "../cards/TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 function createBattingData(
@@ -233,8 +235,8 @@ const Scorecard = () => {
 
   const [index, setIndex] = useState(0);
 
-  const team1 = "Chennai Super Kings";
-  const team2 = "Royal Challengers Bangalore";
+  const team1 = useSelector((state) => state.match.team1);
+  const team2 = useSelector((state) => state.match.team2);
 
   const total1 = "226/6";
   const total2 = "218/8";
@@ -299,11 +301,10 @@ const Scorecard = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             width: "100%",
+            alignItems: "center",
             mt: 2,
           }}>
-          <Typography level="h4" color="primary">
-            {team}
-          </Typography>
+          <TeamBadgeHorizontal team={team} isSmall={true} />
           <Typography level="h4" color="primary">
             {total}
           </Typography>
