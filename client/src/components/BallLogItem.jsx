@@ -2,7 +2,7 @@
 
 import { Card, Typography, useTheme } from "@mui/joy";
 
-const BallLogItem = ({ item, isSmall }) => {
+const BallLogItem = ({ item }) => {
   const theme = useTheme();
 
   const isWicket = item === "W";
@@ -19,8 +19,8 @@ const BallLogItem = ({ item, isSmall }) => {
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        width: isSmall ? 15 : 25,
-        height: isSmall ? 15 : 25,
+        width: 20,
+        height: 20,
         borderRadius: "50%",
         border: "2px solid",
         borderColor:
@@ -34,7 +34,7 @@ const BallLogItem = ({ item, isSmall }) => {
           (isExtra && theme.palette.warning.outlinedBorder),
         p: 1,
       }}>
-      <Typography level={isSmall ? "body-xs" : "body-sm"}>{item}</Typography>
+      <Typography level={"body-xs"}>{item}</Typography>
     </Card>
   );
 };

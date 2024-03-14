@@ -4,7 +4,7 @@ import { Stack, useTheme } from "@mui/joy";
 
 import { RxBorderDashed } from "react-icons/rx";
 
-const BallLogSeparator = ({ isSmall }) => {
+const BallLogSeparator = () => {
   const theme = useTheme();
   return (
     <Stack
@@ -12,17 +12,17 @@ const BallLogSeparator = ({ isSmall }) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        height: isSmall ? 34.2 : 44.2,
+        height: 39.2,
       }}>
       <RxBorderDashed
-        fontSize={isSmall ? 18 : 21}
+        fontSize={18}
         style={{
           marginRight: 3,
           color: theme.palette.neutral.outlinedActiveBg,
         }}
       />
       <RxBorderDashed
-        fontSize={isSmall ? 18 : 21}
+        fontSize={18}
         style={{ color: theme.palette.neutral.outlinedActiveBg }}
       />
     </Stack>

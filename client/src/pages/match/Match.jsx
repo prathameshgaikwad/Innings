@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import BallLogList from "../../components/lists/BallLogList";
+import BatsmenStats from "../../components/match/BatsmenStats";
+import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import Footer from "../../components/common/Footer";
 import ManOfTheMatchCard from "../../components/cards/ManOfTheMatchCard";
 import ManageEventAlert from "../../components/ManageEventAlert";
@@ -63,6 +65,7 @@ const Match = () => {
 
   const match = useSelector((state) => state.match);
   const toss = match.toss;
+  const innings = match.innings;
 
   const tossConducted = toss && toss.decision && toss.decision.length > 0;
 
@@ -73,7 +76,19 @@ const Match = () => {
   const matchStatus = match && match.status;
   const isMatchCompleted = matchStatus === "completed";
 
-  const ball_log = [];
+  const ball_log = [1, 2, 3, 4, 1, 2, "-", 1, 2, 1, 3, 4];
+  const batsmenData = {
+    onStrikeBatsman: {
+      name: "Virat Kohli",
+      runs: "56",
+      ballsPlayed: "40",
+    },
+    offStrikeBatsman: {
+      name: "Shubhman Gill",
+      runs: "23",
+      ballsPlayed: "36",
+    },
+  };
 
   return (
     <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
@@ -92,6 +107,9 @@ const Match = () => {
           mb: 8,
         }}>
         {isAdmin && <ManageEventAlert eventType={"match"} />}
+        {tossConducted && (
+          <TossDetails tossWinner={tossWinner} choice={choice} />
+        )}
         <Box
           sx={{
             width: "100%",
@@ -106,10 +124,11 @@ const Match = () => {
             data={match}
           />
         </Box>
-        <BallLogList data={ball_log} isSmall={false} />
-        {tossConducted && (
-          <TossDetails tossWinner={tossWinner} choice={choice} />
-        )}
+        <Box width={isMobile ? "96%" : "72%"}>
+          {innings === "2" && <ChaseStatsCard isAdmin={false} />}
+          <BatsmenStats data={batsmenData} isSmall={false} />
+          <BallLogList data={ball_log} />
+        </Box>
         {isMatchCompleted && <ManOfTheMatchCard />}
         <Scorecard />
       </Box>
