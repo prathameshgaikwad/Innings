@@ -2,7 +2,7 @@
 
 import { Card, Divider, Typography } from "@mui/joy";
 
-import RectangularSkeleton from "../skeletons/RectangularSkeleton";
+import BatsmenStatsSkeleton from "../skeletons/BatsmenStatsSkeleton";
 
 const BatsmenStats = ({ isSmall, data, isLoading }) => {
   return (
@@ -18,10 +18,9 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
         height: 56,
         mb: 1,
         py: 0,
-        px: isLoading && 0,
       }}>
       {isLoading ? (
-        <RectangularSkeleton height={60} borderRadius={"6px"} />
+        <BatsmenStatsSkeleton isSmall={isSmall} />
       ) : (
         <>
           {(data && data.onStrikeBatsman.name.length === 0) ||

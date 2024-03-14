@@ -144,7 +144,11 @@ const Match = () => {
             ) : (
               <Box width={isMobile ? "96%" : "72%"}>
                 {innings === "2" && <ChaseStatsCard isAdmin={false} />}
-                <BatsmenStats data={batsmenData} isSmall={false} />
+                <BatsmenStats
+                  data={batsmenData}
+                  isSmall={false}
+                  isLoading={isLoading}
+                />
                 <BallLogList data={ball_log} />
               </Box>
             )}
