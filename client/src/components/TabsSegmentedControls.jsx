@@ -2,9 +2,7 @@
 
 import { Tab, TabList, Tabs, tabClasses } from "@mui/joy";
 
-const TabsSegmentedControls = ({ setIndex, index }) => {
-  const team1 = "CSK";
-  const team2 = "RCB";
+const TabsSegmentedControls = ({ setIndex, index, team1Name, team2Name }) => {
   return (
     <Tabs
       aria-label="tabs"
@@ -22,8 +20,8 @@ const TabsSegmentedControls = ({ setIndex, index }) => {
             bgcolor: "background.surface",
           },
         }}>
-        <Tab disableIndicator>{team1} Innings</Tab>
-        <Tab disableIndicator>{team2} Innings</Tab>
+        <Tab disableIndicator>{team1Name} Innings</Tab>
+        <Tab disableIndicator>{team2Name} Innings</Tab>
       </TabList>
     </Tabs>
   );

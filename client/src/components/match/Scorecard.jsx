@@ -286,7 +286,12 @@ const Scorecard = ({ isAdmin, isLoading }) => {
               </Typography>
             </Divider>
           </Box>
-          <TabsSegmentedControls setIndex={setIndex} index={index} />
+          <TabsSegmentedControls
+            setIndex={setIndex}
+            index={index}
+            team1Name={team1.nameShort}
+            team2Name={team2.nameShort}
+          />
           <Card
             variant="outlined"
             sx={{
