@@ -16,6 +16,8 @@ import { io } from "socket.io-client";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
 const Match = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const Match = () => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io(SERVER_URL);
     setSocket(newSocket);
 
     return () => {
@@ -39,8 +41,8 @@ const Match = () => {
       socket.on("connect", () => {
         console.log("Connected to Socket.IO server");
         socket.emit("subscribeToMatch", matchId);
-        socket.on("team1RunLog", (runLog) => {
-          console.log(runLog);
+        socket.on("getRuns", (runs) => {
+          console.log(runs);
         });
       });
 
