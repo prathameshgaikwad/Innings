@@ -65,6 +65,9 @@ const matchSlice = createSlice({
       state.innings = "1";
       state.status = status;
     },
+    setToss: (action, state) => {
+      state.toss = action.payload;
+    },
     clearMatchData: () => initialState,
   },
 });
@@ -91,5 +94,5 @@ export const getMatchInfo =
     }
   };
 
-export const { setMatch, clearMatchData } = matchSlice.actions;
+export const { setMatch, setToss, clearMatchData } = matchSlice.actions;
 export const matchReducer = matchSlice.reducer;

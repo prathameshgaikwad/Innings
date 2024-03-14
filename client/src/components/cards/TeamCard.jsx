@@ -27,6 +27,7 @@ const TeamCard = ({ team, isLoading }) => {
             textAlign: "center",
             alignItems: "center",
             "--icon-size": "90px",
+            width: 250,
           }}>
           <CardOverflow variant="soft" sx={{ backgroundColor: color }}>
             <AspectRatio
@@ -49,7 +50,9 @@ const TeamCard = ({ team, isLoading }) => {
           </CardOverflow>
           <Typography
             level="title-lg"
-            sx={{ mt: "calc(var(--icon-size) / 2)" }}>
+            maxWidth={200}
+            sx={{ mt: "calc(var(--icon-size) / 2)" }}
+            noWrap>
             {name}
           </Typography>
           <Box

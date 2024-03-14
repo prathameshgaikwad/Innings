@@ -17,6 +17,8 @@ import { format } from "date-fns";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
+const FIXTURES_API = import.meta.env.VITE_SERVER_FIXTURES_API;
+
 const formatTime = (timeString) => {
   const [hours, minutes] = timeString.split(":");
   const date = new Date();
@@ -43,7 +45,7 @@ const FixtureCard = ({ id }) => {
   useEffect(() => {
     try {
       const fetchData = async () => {
-        const response = await fetch(`http://localhost:3000/fixtures/${id}`, {
+        const response = await fetch(`${FIXTURES_API}/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

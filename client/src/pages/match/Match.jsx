@@ -1,4 +1,11 @@
-import { Box, CssBaseline, CssVarsProvider, useTheme } from "@mui/joy";
+import {
+  Box,
+  CssBaseline,
+  CssVarsProvider,
+  Typography,
+  useTheme,
+} from "@mui/joy";
+import { getMatchInfo, setToss } from "../../state/match/matchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -11,9 +18,10 @@ import ManageEventAlert from "../../components/ManageEventAlert";
 import MatchCard from "../../components/cards/MatchCard";
 import Navbar from "../../components/common/Navbar";
 import Scorecard from "../../components/match/Scorecard";
+import TeamCard from "../../components/cards/TeamCard";
 import TossDetails from "../../components/match/TossDetails";
+import TossNotConducted from "../../components/match/TossNotConducted";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
-import { getMatchInfo } from "../../state/match/matchSlice";
 import { io } from "socket.io-client";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -43,8 +51,8 @@ const Match = () => {
       socket.on("connect", () => {
         console.log("Connected to Socket.IO server");
         socket.emit("subscribeToMatch", matchId);
-        socket.on("getRuns", (runs) => {
-          console.log(runs);
+        socket.on("tossResult", (toss) => {
+          dispatch(setToss(toss));
         });
       });
 
@@ -63,6 +71,14 @@ const Match = () => {
     (state) => state.tournaments.createdTournaments
   );
   const isAdmin = createdTournaments.includes(tournamentId);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("tossResult", (toss) => {
+        dispatch(setToss(toss));
+      });
+    }
+  }, [socket, matchId]);
 
   const match = useSelector((state) => state.match);
   const toss = match.toss;
@@ -106,33 +122,52 @@ const Match = () => {
           mb: 8,
         }}>
         {isAdmin && <ManageEventAlert eventType={"match"} />}
-        {tossConducted && (
-          <TossDetails tossWinner={tossWinner} choice={choice} />
-        )}
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            mt: 6,
-            mb: 3,
-          }}>
-          <MatchCard
-            isLoading={isLoading}
-            tournamentId={tournamentId}
-            data={match}
-          />
-        </Box>
-        {isMatchCompleted ? (
-          <ManOfTheMatchCard />
+        {tossConducted ? (
+          <>
+            <TossDetails tossWinner={tossWinner} choice={choice} />
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                mt: 6,
+                mb: 3,
+              }}>
+              <MatchCard
+                isLoading={isLoading}
+                tournamentId={tournamentId}
+                data={match}
+              />
+            </Box>
+            {isMatchCompleted ? (
+              <ManOfTheMatchCard />
+            ) : (
+              <Box width={isMobile ? "96%" : "72%"}>
+                {innings === "2" && <ChaseStatsCard isAdmin={false} />}
+                <BatsmenStats data={batsmenData} isSmall={false} />
+                <BallLogList data={ball_log} />
+              </Box>
+            )}
+            <Scorecard isAdmin={false} isLoading={isLoading} />
+          </>
         ) : (
-          <Box width={isMobile ? "96%" : "72%"}>
-            {innings === "2" && <ChaseStatsCard isAdmin={false} />}
-            <BatsmenStats data={batsmenData} isSmall={false} />
-            <BallLogList data={ball_log} />
-          </Box>
+          <>
+            <TossNotConducted />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: 6,
+                width: "80%",
+                alignItems: "center",
+                justifyContent: "center",
+              }}>
+              <TeamCard team={match.team1} isLoading={isLoading} />
+              <Typography level="body-lg">vs</Typography>
+              <TeamCard team={match.team2} isLoading={isLoading} />
+            </Box>
+          </>
         )}
-        <Scorecard isAdmin={false} isLoading={isLoading} />
       </Box>
       <Footer />
     </CssVarsProvider>
