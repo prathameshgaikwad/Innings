@@ -27,7 +27,7 @@ const TossNotConducted = () => {
         }}
       />
       <Typography color="neutral" level={"body-md"} mt={4}>
-        Oops! Looks like the toss hasn&apos;t been conducted yet.
+        Oops! Looks like the match hasn&apos;t begun yet.
       </Typography>
     </Card>
   );
