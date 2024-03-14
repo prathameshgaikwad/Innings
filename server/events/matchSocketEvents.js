@@ -1,6 +1,6 @@
 const Match = require("../models/match");
 
-async function broadcastTeam1RunLog(io, matchId) {
+async function broadcastRuns(io, matchId) {
   try {
     const match = await Match.findById(matchId);
     if (!match) {
@@ -8,18 +8,21 @@ async function broadcastTeam1RunLog(io, matchId) {
       return;
     }
 
-    const team1RunLog = match.team1_run_log;
+    const { toss } = match;
+    const tossConducted = toss.decision.length > 0;
 
-    io.to(matchId).emit("team1RunLog", team1RunLog);
+    const runs = !tossConducted ? 0 : 1;
+
+    io.to(matchId).emit("getRuns", runs);
   } catch (error) {
-    console.error("Error broadcasting team1 run log:", error);
+    console.error("Error broadcasting runs:", error);
   }
 }
 
 // Function to start broadcasting team1 run log data every 5 seconds
-function startBroadcastingTeam1RunLog(io, matchId) {
+function startBroadcastingRuns(io, matchId) {
   setInterval(async () => {
-    await broadcastTeam1RunLog(io, matchId);
+    await broadcastRuns(io, matchId);
   }, 5000); // Broadcast every 5 seconds
 }
 
@@ -29,10 +32,10 @@ module.exports = (io) => {
 
     socket.on("subscribeToMatch", (matchId) => {
       socket.join(matchId);
-      console.log(`User joined room: ${matchId}`);
+      console.log(`User joined match: ${matchId}`);
 
-      // Start broadcasting team1 run log
-      startBroadcastingTeam1RunLog(io, matchId);
+      // Start broadcasting runs
+      // startBroadcastingRuns(io, matchId);
     });
 
     socket.on("unsubscribeFromMatch", (matchId) => {

@@ -178,6 +178,8 @@ const getUpcomingMatches = async (req, res) => {
       if (fixture.status === "pending") {
         upcomingMatches.push(id);
       }
+
+      if (upcomingMatches.length >= 10) break;
     }
 
     if (upcomingMatches.length === 0)
@@ -185,7 +187,6 @@ const getUpcomingMatches = async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ isEmpty: true, msg: "No upcoming matches." });
 
-    // upcomingMatches.sort((a, b) => a.match_no - b.match_no);
     upcomingMatches.shift();
 
     res.status(StatusCodes.OK).json({ isEmpty: false, upcomingMatches });
