@@ -141,6 +141,7 @@ const Match = () => {
                 isLoading={isLoading}
                 tournamentId={tournamentId}
                 data={match}
+                isMatchPage={true}
               />
             </Box>
             {isMatchCompleted ? (
