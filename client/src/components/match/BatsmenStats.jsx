@@ -24,7 +24,8 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
         <RectangularSkeleton height={60} borderRadius={"6px"} />
       ) : (
         <>
-          {data && data.length === 0 ? (
+          {(data && data.onStrikeBatsman.name.length === 0) ||
+          data.offStrikeBatsman.name.length === 0 ? (
             <Typography
               height={isSmall ? 61.2 : 114.2}
               level={isSmall ? "body-xs" : "body-sm"}

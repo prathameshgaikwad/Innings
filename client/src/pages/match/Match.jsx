@@ -91,7 +91,7 @@ const Match = () => {
   const matchStatus = match && match.status;
   const isMatchCompleted = matchStatus === "completed";
 
-  const ball_log = [1, 2, 3, 4, 1, 2, "-", 1, 2, 1, 3, 4];
+  const ball_log = [];
   const batsmenData = {
     onStrikeBatsman: {
       name: "Virat Kohli",
