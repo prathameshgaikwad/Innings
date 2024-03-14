@@ -23,21 +23,22 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
             alignItems: "center",
             gap: 2,
           }}>
-          <AspectRatio
-            ratio="1"
-            sx={{
-              borderRadius: "50%",
-              border: "4px solid",
-              borderColor: color,
-              width: isSmall ? 40 : 50,
-            }}>
-            {!logoURL ? (
-              <TbSteam style={{ padding: 10, color: "#222" }} />
-            ) : (
-              <img src={logoURL} style={{ backgroundSize: "cover" }} />
-            )}
-          </AspectRatio>
           <Link href={`/tournaments/${tournamentId}/teams/${_id}`}>
+            <AspectRatio
+              ratio="1"
+              sx={{
+                borderRadius: "50%",
+                border: "4px solid",
+                borderColor: color,
+                width: isSmall ? 40 : 50,
+                mr: 2,
+              }}>
+              {!logoURL ? (
+                <TbSteam style={{ padding: 10, color: "#222" }} />
+              ) : (
+                <img src={logoURL} style={{ backgroundSize: "cover" }} />
+              )}
+            </AspectRatio>
             <Typography level={isSmall ? "title-lg" : "h3"}>{name}</Typography>
           </Link>
         </Box>
