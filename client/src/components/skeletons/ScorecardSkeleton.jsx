@@ -11,6 +11,7 @@ import {
 import { BiSolidCricketBall } from "react-icons/bi";
 import { MdSportsCricket } from "react-icons/md";
 import RectangularSkeleton from "./RectangularSkeleton";
+import TeamBadgeHorizontalSkeleton from "./TeamBadgeHorizontalSkeleton";
 import { useMediaQuery } from "@mui/material";
 
 const ScorecardSkeleton = () => {
@@ -66,10 +67,11 @@ const ScorecardSkeleton = () => {
             display: "inline-flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            alignItems: "center",
             width: "100%",
             mt: 2,
           }}>
-          <Skeleton animation="wave" variant="text" level="h4" width="30%" />
+          <TeamBadgeHorizontalSkeleton isSmall={true} />
           <Skeleton animation="wave" variant="text" level="h4" width="10%" />
         </Card>
         <Sheet sx={{ width: "94%", overflow: "auto", my: 2 }}>

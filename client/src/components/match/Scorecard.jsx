@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import {
   Box,
   Card,
@@ -11,6 +13,7 @@ import {
 import { BiSolidCricketBall } from "react-icons/bi";
 import FallOfWicketsList from "../lists/FallOfWicketsList";
 import { MdSportsCricket } from "react-icons/md";
+import ScorecardSkeleton from "../skeletons/ScorecardSkeleton";
 import TabsSegmentedControls from "../TabsSegmentedControls";
 import TeamBadgeHorizontal from "../cards/TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
@@ -229,14 +232,18 @@ const fallOfWicketsData2 = [
   createFallOfWicketsData("Suyash S Prabhudessai", "8-218", "19.6"),
 ];
 
-const Scorecard = () => {
+const Scorecard = ({ isAdmin, isLoading }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const [index, setIndex] = useState(0);
 
-  const team1 = useSelector((state) => state.match.team1);
-  const team2 = useSelector((state) => state.match.team2);
+  const team1 = useSelector((state) =>
+    isAdmin ? state.matchManagement.team1 : state.match.team1
+  );
+  const team2 = useSelector((state) =>
+    isAdmin ? state.matchManagement.team2 : state.match.team2
+  );
 
   const total1 = "226/6";
   const total2 = "218/8";
@@ -258,190 +265,196 @@ const Scorecard = () => {
     index === 0 ? fallOfWicketsData1 : fallOfWicketsData2;
 
   return (
-    <Box
-      sx={{
-        mt: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}>
-      <Box sx={{ width: "100%", mb: isMobile ? 3 : 6 }}>
-        <Divider>
-          <Typography
-            level={isMobile ? "h4" : "h3"}
-            sx={{ mx: 2 }}
-            color="success">
-            Scorecard
-          </Typography>
-        </Divider>
-      </Box>
-      <TabsSegmentedControls setIndex={setIndex} index={index} />
-      <Card
-        variant="outlined"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          mt: 4,
-          py: 3,
-          px: 6,
-        }}>
-        <Typography
-          level="h3"
-          color="warning"
-          startDecorator={<MdSportsCricket />}>
-          Batting
-        </Typography>
-        <Card
-          variant="soft"
-          size="lg"
+    <>
+      {isLoading ? (
+        <ScorecardSkeleton />
+      ) : (
+        <Box
           sx={{
-            display: "inline-flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "100%",
+            mt: 8,
+            display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            mt: 2,
           }}>
-          <TeamBadgeHorizontal team={team} isSmall={true} />
-          <Typography level="h4" color="primary">
-            {total}
-          </Typography>
-        </Card>
-        <Sheet sx={{ width: "94%", overflow: "auto", my: 2 }}>
-          <Table
-            stickyHeader
-            variant="outlined"
-            sx={{
-              "& thead th:nth-of-type(1)": {
-                width: "6%",
-              },
-              "& thead th:nth-of-type(2)": {
-                width: "15%",
-              },
-              "& thead th:nth-of-type(3)": {
-                width: isMobile ? "20%" : "35%",
-              },
-              fontSize: isMobile ? "0.85rem" : "",
-            }}>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>NAME</th>
-                <th>WICKET</th>
-                <th>RUNS</th>
-                <th>BALLS</th>
-                <th>4s</th>
-                <th>6s</th>
-                <th>SR</th>
-              </tr>
-            </thead>
-            <tbody>
-              {battingData.map((row) => (
-                <tr key={row.sr_no}>
-                  <td>{row.sr_no}</td>
-                  {<td>{row.name}</td>}
-                  <td>{row.wicket}</td>
-                  <td>{row.runs}</td>
-                  <td>{row.balls}</td>
-                  <td>{row.fours}</td>
-                  <td>{row.sixes}</td>
-                  <td>{row.strikeRate}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Sheet>
-        <Card
-          variant="soft"
-          size="md"
-          sx={{
-            display: "inline-flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "100%",
-          }}>
-          <Typography level="title-md" color="danger">
-            EXTRAS: {extras}
-          </Typography>
-          <Typography level="title-md" color="neutral">
-            {extrasDetails}
-          </Typography>
-        </Card>
-        <Card
-          variant="outlined"
-          size="md"
-          sx={{
-            display: "inline-flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "100%",
-            mb: 2,
-          }}>
-          <Typography level="title-sm" color="neutral">
-            DID NOT BAT:
-          </Typography>
-          <Box sx={{ display: "inline-flex" }}>
-            {nonBattingData.map((item, i) => {
-              return (
-                <Typography
-                  key={i}
-                  level="body-sm"
-                  color="neutral"
-                  sx={{ mx: 1 }}>
-                  {item},
-                </Typography>
-              );
-            })}
+          <Box sx={{ width: "100%", mb: isMobile ? 3 : 6 }}>
+            <Divider>
+              <Typography
+                level={isMobile ? "h4" : "h3"}
+                sx={{ mx: 2 }}
+                color="success">
+                Scorecard
+              </Typography>
+            </Divider>
           </Box>
-        </Card>
-        <Divider sx={{ mt: 2 }}>
-          <Typography
-            level="h3"
-            color="warning"
-            startDecorator={<BiSolidCricketBall />}
-            sx={{ my: "auto", mx: 1 }}>
-            Bowling
-          </Typography>
-        </Divider>
-        <Sheet sx={{ width: "94%", overflow: "auto", my: 2 }}>
-          <Table
-            stickyHeader
+          <TabsSegmentedControls setIndex={setIndex} index={index} />
+          <Card
             variant="outlined"
             sx={{
-              "& thead th:nth-of-type(1)": {
-                width: "36%",
-              },
-              fontSize: isMobile ? "0.85rem" : "",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              mt: 4,
+              py: 3,
+              px: 6,
             }}>
-            <thead>
-              <tr>
-                <th>NAME</th>
-                <th>OVERS</th>
-                <th>RUNS</th>
-                <th>WICKETS</th>
-                <th>ECON</th>
-                <th>DOTS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bowlingData.map((row) => (
-                <tr key={row.name}>
-                  {<td>{row.name}</td>}
-                  <td>{row.overs}</td>
-                  <td>{row.runs}</td>
-                  <td>{row.wickets}</td>
-                  <td>{row.economy}</td>
-                  <td>{row.dots}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Sheet>
-        <FallOfWicketsList data={fallOfWicketsData} />
-      </Card>
-    </Box>
+            <Typography
+              level="h3"
+              color="warning"
+              startDecorator={<MdSportsCricket />}>
+              Batting
+            </Typography>
+            <Card
+              variant="soft"
+              size="lg"
+              sx={{
+                display: "inline-flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+                alignItems: "center",
+                mt: 2,
+              }}>
+              <TeamBadgeHorizontal team={team} isSmall={true} />
+              <Typography level="h4" color="primary">
+                {total}
+              </Typography>
+            </Card>
+            <Sheet sx={{ width: "94%", overflow: "auto", my: 2 }}>
+              <Table
+                stickyHeader
+                variant="outlined"
+                sx={{
+                  "& thead th:nth-of-type(1)": {
+                    width: "6%",
+                  },
+                  "& thead th:nth-of-type(2)": {
+                    width: "15%",
+                  },
+                  "& thead th:nth-of-type(3)": {
+                    width: isMobile ? "20%" : "35%",
+                  },
+                  fontSize: isMobile ? "0.85rem" : "",
+                }}>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>NAME</th>
+                    <th>WICKET</th>
+                    <th>RUNS</th>
+                    <th>BALLS</th>
+                    <th>4s</th>
+                    <th>6s</th>
+                    <th>SR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {battingData.map((row) => (
+                    <tr key={row.sr_no}>
+                      <td>{row.sr_no}</td>
+                      {<td>{row.name}</td>}
+                      <td>{row.wicket}</td>
+                      <td>{row.runs}</td>
+                      <td>{row.balls}</td>
+                      <td>{row.fours}</td>
+                      <td>{row.sixes}</td>
+                      <td>{row.strikeRate}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Sheet>
+            <Card
+              variant="soft"
+              size="md"
+              sx={{
+                display: "inline-flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+              }}>
+              <Typography level="title-md" color="danger">
+                EXTRAS: {extras}
+              </Typography>
+              <Typography level="title-md" color="neutral">
+                {extrasDetails}
+              </Typography>
+            </Card>
+            <Card
+              variant="outlined"
+              size="md"
+              sx={{
+                display: "inline-flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+                mb: 2,
+              }}>
+              <Typography level="title-sm" color="neutral">
+                DID NOT BAT:
+              </Typography>
+              <Box sx={{ display: "inline-flex" }}>
+                {nonBattingData.map((item, i) => {
+                  return (
+                    <Typography
+                      key={i}
+                      level="body-sm"
+                      color="neutral"
+                      sx={{ mx: 1 }}>
+                      {item},
+                    </Typography>
+                  );
+                })}
+              </Box>
+            </Card>
+            <Divider sx={{ mt: 2 }}>
+              <Typography
+                level="h3"
+                color="warning"
+                startDecorator={<BiSolidCricketBall />}
+                sx={{ my: "auto", mx: 1 }}>
+                Bowling
+              </Typography>
+            </Divider>
+            <Sheet sx={{ width: "94%", overflow: "auto", my: 2 }}>
+              <Table
+                stickyHeader
+                variant="outlined"
+                sx={{
+                  "& thead th:nth-of-type(1)": {
+                    width: "36%",
+                  },
+                  fontSize: isMobile ? "0.85rem" : "",
+                }}>
+                <thead>
+                  <tr>
+                    <th>NAME</th>
+                    <th>OVERS</th>
+                    <th>RUNS</th>
+                    <th>WICKETS</th>
+                    <th>ECON</th>
+                    <th>DOTS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bowlingData.map((row) => (
+                    <tr key={row.name}>
+                      {<td>{row.name}</td>}
+                      <td>{row.overs}</td>
+                      <td>{row.runs}</td>
+                      <td>{row.wickets}</td>
+                      <td>{row.economy}</td>
+                      <td>{row.dots}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Sheet>
+            <FallOfWicketsList data={fallOfWicketsData} />
+          </Card>
+        </Box>
+      )}
+    </>
   );
 };
 

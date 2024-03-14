@@ -13,7 +13,6 @@ import Header from "../../components/matchManagement/Header";
 import Navbar from "../../components/common/Navbar";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard";
-import ScorecardSkeleton from "../../components/skeletons/ScorecardSkeleton";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
 import { getMatchManagementInfo } from "../../state/match/matchManagement";
 import { useMediaQuery } from "@mui/material";
@@ -100,7 +99,7 @@ const MatchManagement = () => {
               </Card>
             </Box>
             <Box mb={8}>
-              {isLoading ? <ScorecardSkeleton /> : <Scorecard />}
+              <Scorecard isAdmin={true} isLoading={isLoading} />
             </Box>
           </>
         )}

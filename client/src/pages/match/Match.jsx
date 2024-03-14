@@ -132,7 +132,7 @@ const Match = () => {
             <BallLogList data={ball_log} />
           </Box>
         )}
-        <Scorecard />
+        <Scorecard isAdmin={false} isLoading={isLoading} />
       </Box>
       <Footer />
     </CssVarsProvider>
