@@ -62,17 +62,16 @@ const Match = () => {
   const createdTournaments = useSelector(
     (state) => state.tournaments.createdTournaments
   );
+  const isAdmin = createdTournaments.includes(tournamentId);
 
   const match = useSelector((state) => state.match);
   const toss = match.toss;
   const innings = match.innings;
 
   const tossConducted = toss && toss.decision && toss.decision.length > 0;
-
   const tossWinner = toss.winner;
   const choice = toss.decision;
 
-  const isAdmin = createdTournaments.includes(tournamentId);
   const matchStatus = match && match.status;
   const isMatchCompleted = matchStatus === "completed";
 
