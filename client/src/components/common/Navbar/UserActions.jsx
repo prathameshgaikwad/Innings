@@ -6,7 +6,7 @@ import Avatar from "@mui/joy/Avatar";
 import { Box } from "@mui/joy";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
-import ColorSchemeToggle from "../../ColorSchemeToggle";
+import ColorSchemeToggle from "../ColorSchemeToggle";
 import Dropdown from "@mui/joy/Dropdown";
 import ListDivider from "@mui/joy/ListDivider";
 import LogoutIcon from "@mui/icons-material/Logout";

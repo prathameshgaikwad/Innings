@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Link, Stack, Typography } from "@mui/joy";
 
 import BackgroundArt from "../../components/accounts/BackgroundArt";
-import ColorSchemeToggle from "../../components/ColorSchemeToggle";
+import ColorSchemeToggle from "../../components/common/ColorSchemeToggle";
 import CreateAccountForm from "../../components/accounts/CreateAccountForm";
 import CssBaseline from "@mui/joy/CssBaseline";
 import { CssVarsProvider } from "@mui/joy/styles";
