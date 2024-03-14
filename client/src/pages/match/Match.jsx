@@ -124,7 +124,11 @@ const Match = () => {
         {isAdmin && <ManageEventAlert eventType={"match"} />}
         {tossConducted ? (
           <>
-            <TossDetails tossWinner={tossWinner} choice={choice} />
+            <TossDetails
+              tossWinner={tossWinner}
+              choice={choice}
+              isLoading={isLoading}
+            />
             <Box
               sx={{
                 width: "100%",
