@@ -258,7 +258,7 @@ export const getTossResult =
   ({ matchId, token }) =>
   async (dispatch) => {
     try {
-      const response = await fetch(`${MATCHES_API}/${matchId}/getToss`, {
+      const response = await fetch(`${MATCHES_API}/${matchId}/toss`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -281,7 +281,7 @@ export const saveTossResultToDb =
   ({ matchId, toss, token }) =>
   async () => {
     try {
-      const response = await fetch(`${MATCHES_API}/setToss`, {
+      const response = await fetch(`${MATCHES_API}/toss`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
