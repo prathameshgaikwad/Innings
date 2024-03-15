@@ -1,6 +1,6 @@
 const Match = require("../models/match");
 
-async function broadcastRuns(io, matchId) {
+async function broadcastRunLog(io, matchId) {
   try {
     const match = await Match.findById(matchId);
     if (!match) {
@@ -8,22 +8,30 @@ async function broadcastRuns(io, matchId) {
       return;
     }
 
-    const { toss } = match;
-    const tossConducted = toss.decision.length > 0;
+    const { status, innings, team1_run_log, team2_run_log } = match;
+    const isOngoingMatch = status === "ongoing";
+    const isFirstInnings = innings === 1;
 
-    const runs = !tossConducted ? 0 : 1;
+    let runLog = {};
 
-    io.to(matchId).emit("getRuns", runs);
+    if (isOngoingMatch) {
+      if (isFirstInnings) {
+        runLog = team1_run_log[team1_run_log.length - 1];
+      } else runLog = team2_run_log[team2_run_log.length - 1];
+    }
+
+    io.to(matchId).emit("getRunLog", runLog);
   } catch (error) {
-    console.error("Error broadcasting runs:", error);
+    console.error("Error broadcasting runLog:", error);
   }
 }
 
 // Function to start broadcasting team1 run log data every 5 seconds
-function startBroadcastingRuns(io, matchId) {
-  setInterval(async () => {
-    await broadcastRuns(io, matchId);
-  }, 5000); // Broadcast every 5 seconds
+async function startBroadcastingRunLog(io, matchId) {
+  // setInterval(async () => {
+  //   await broadcastRunLog(io, matchId);
+  // }, 5000); // Broadcast every 5 seconds
+  await broadcastRunLog(io, matchId);
 }
 
 module.exports = (io) => {
@@ -35,7 +43,11 @@ module.exports = (io) => {
       console.log(`User joined match: ${matchId}`);
 
       // Start broadcasting runs
-      // startBroadcastingRuns(io, matchId);
+      startBroadcastingRunLog(io, matchId);
+    });
+
+    socket.on("setRunLog", ({ matchId, runLog }) => {
+      console.log(runLog);
     });
 
     socket.on("unsubscribeFromMatch", (matchId) => {
