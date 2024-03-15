@@ -12,7 +12,6 @@ import { Form, Formik } from "formik";
 import {
   getTossResult,
   saveTossResultToDb,
-  setTossResult,
 } from "../../state/match/matchManagement";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -37,15 +36,15 @@ const ConductToss = ({ matchId }) => {
 
   const initialValues = {
     decision: "",
-    winner: "",
+    winnerId: "",
   };
 
   const { team1, team2 } = useSelector((state) => state.matchManagement);
 
   const teamOptions = [
-    createOption("Select team", "default"),
-    createOption(team1.name, team1.nameShort),
-    createOption(team2.name, team2.nameShort),
+    createOption("Select team", ""),
+    createOption(team1.name, team1._id),
+    createOption(team2.name, team2._id),
   ];
   const decisionOptions = [
     createOption("Select choice", "default"),
@@ -54,14 +53,11 @@ const ConductToss = ({ matchId }) => {
   ];
 
   const onSubmit = async (values, { resetForm }) => {
-    const { decision, winner } = values;
-    const winnerId = winner === team1.nameShort ? team1._id : team2._id;
-    const loser =
-      winner === team1.nameShort ? team2.nameShort : team1.nameShort;
+    const { decision, winnerId } = values;
+    const winner = winnerId === team1._id ? team1.nameShort : team2.nameShort;
+    const loser = winnerId === team1._id ? team2.nameShort : team1.nameShort;
 
     const toss = { decision, winnerId, winner, loser };
-
-    dispatch(setTossResult(values));
 
     try {
       await dispatch(saveTossResultToDb({ matchId, toss, token }))
@@ -86,7 +82,7 @@ const ConductToss = ({ matchId }) => {
         initialValues={initialValues}
         validationSchema={tossSchema}
         onSubmit={onSubmit}>
-        {({ isSubmitting }) => (
+        {({ isSubmitting, isValid, touched }) => (
           <Form style={{ height: "100%" }}>
             <Stack
               sx={{
@@ -107,7 +103,7 @@ const ConductToss = ({ matchId }) => {
                   alignItems: "center",
                   gap: 2,
                 }}>
-                <CustomSelect name={"winner"} options={teamOptions} />
+                <CustomSelect name={"winnerId"} options={teamOptions} />
                 <Typography>won the toss and chose to</Typography>
                 <CustomSelect name={"decision"} options={decisionOptions} />
               </Stack>
@@ -134,7 +130,9 @@ const ConductToss = ({ matchId }) => {
                   variant="solid"
                   fullWidth
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={
+                    !isValid || isSubmitting || !Object.keys(touched).length
+                  }
                   endDecorator={<ArrowForwardIcon />}>
                   Start Scoring!
                 </Button>
