@@ -5,7 +5,11 @@ import {
   Typography,
   useTheme,
 } from "@mui/joy";
-import { getMatchInfo, setToss } from "../../state/match/matchSlice";
+import {
+  getMatchInfo,
+  setRunLogItem,
+  setToss,
+} from "../../state/match/matchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -51,8 +55,8 @@ const Match = () => {
       socket.on("connect", () => {
         console.log("Connected to Socket.IO server");
         socket.emit("subscribeToMatch", matchId);
-        socket.on("tossResult", (toss) => {
-          dispatch(setToss(toss));
+        socket.on("getRunLog", (runLogItem) => {
+          dispatch(setRunLogItem(runLogItem));
         });
       });
 
@@ -64,7 +68,6 @@ const Match = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    console.log("loading match...");
     dispatch(getMatchInfo({ matchId, token, setIsLoading }));
   }, [dispatch, matchId, token]);
 
@@ -87,24 +90,13 @@ const Match = () => {
 
   const tossConducted = toss && toss.decision && toss.decision.length > 0;
   const tossWinner = toss.winner;
-  const choice = toss.decision;
+  const tossDecision = toss.decision;
 
   const matchStatus = match && match.status;
   const isMatchCompleted = matchStatus === "completed";
 
-  const ball_log = [1, 2, "W", 1, "WD", 4, 6];
-  const batsmenData = {
-    onStrikeBatsman: {
-      name: "Virat Kohli",
-      runs: "56",
-      ballsPlayed: "40",
-    },
-    offStrikeBatsman: {
-      name: "Shubhman Gill",
-      runs: "23",
-      ballsPlayed: "36",
-    },
-  };
+  const ball_log = match.ball_log;
+  const batsmenData = match.batsmen;
 
   return (
     <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
@@ -127,7 +119,7 @@ const Match = () => {
           <>
             <TossDetails
               tossWinner={tossWinner}
-              choice={choice}
+              choice={tossDecision}
               isLoading={isLoading}
             />
             <Box
