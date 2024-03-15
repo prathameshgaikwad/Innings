@@ -22,7 +22,7 @@ const initialState = {
     name: "",
   },
   overs: "",
-  innings: "1",
+  innings: "",
   status: "",
   toss: {
     decision: "",
@@ -40,6 +40,7 @@ const matchManagementSlice = createSlice({
       const {
         _id,
         toss,
+        innings,
         overs,
         team1,
         team2,
@@ -56,6 +57,7 @@ const matchManagementSlice = createSlice({
       state._id = _id;
       state.match_no = match_no;
       state.toss = toss;
+      state.innings = innings;
       state.overs = overs;
       state.team1 = team1;
       state.team2 = team2;
