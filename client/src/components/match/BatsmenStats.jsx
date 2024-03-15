@@ -5,6 +5,10 @@ import { Card, Divider, Typography } from "@mui/joy";
 import BatsmenStatsSkeleton from "../skeletons/BatsmenStatsSkeleton";
 
 const BatsmenStats = ({ isSmall, data, isLoading }) => {
+  const { onStrikeBatsman, offStrikeBatsman } = data;
+  const isEmpty =
+    (data && onStrikeBatsman.name.length === 0) ||
+    offStrikeBatsman.name.length === 0;
   return (
     <Card
       variant="outlined"
@@ -23,8 +27,7 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
         <BatsmenStatsSkeleton isSmall={isSmall} />
       ) : (
         <>
-          {(data && data.onStrikeBatsman.name.length === 0) ||
-          data.offStrikeBatsman.name.length === 0 ? (
+          {isEmpty ? (
             <Typography
               height={isSmall ? 61.2 : 114.2}
               level={isSmall ? "body-xs" : "body-sm"}
@@ -39,13 +42,13 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
             data && (
               <>
                 <Typography level={isSmall ? "body-xs" : "body-sm"}>
-                  {data.onStrikeBatsman.name} - {data.onStrikeBatsman.runs} (
-                  {data.onStrikeBatsman.ballsPlayed})
+                  {onStrikeBatsman.name} - {onStrikeBatsman.runs} (
+                  {onStrikeBatsman.ballsPlayed})
                 </Typography>
                 <Divider orientation="vertical" />
                 <Typography level={isSmall ? "body-xs" : "body-sm"}>
-                  {data.offStrikeBatsman.name} - {data.offStrikeBatsman.runs} (
-                  {data.offStrikeBatsman.ballsPlayed})
+                  {offStrikeBatsman.name} - {offStrikeBatsman.runs} (
+                  {offStrikeBatsman.ballsPlayed})
                 </Typography>
               </>
             )
