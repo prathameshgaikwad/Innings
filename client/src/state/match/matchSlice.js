@@ -17,7 +17,7 @@ const initialState = {
   team1_wicket_log: [],
   team2_wicket_log: [],
   overs: "",
-  innings: "1",
+  innings: "",
   status: "",
   toss: {
     decision: "",
@@ -35,6 +35,7 @@ const matchSlice = createSlice({
       const {
         _id,
         toss,
+        innings,
         overs,
         team1,
         team2,
@@ -57,6 +58,7 @@ const matchSlice = createSlice({
       state.team2_wicket_log = team2_wicket_log;
       state.team2_run_log = team2_run_log;
       state.toss = toss;
+      state.innings = innings;
       state.overs = overs;
       state.venue = venue;
       state.team1 = team1;

@@ -64,6 +64,7 @@ const Match = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    console.log("loading match...");
     dispatch(getMatchInfo({ matchId, token, setIsLoading }));
   }, [dispatch, matchId, token]);
 
@@ -162,19 +163,21 @@ const Match = () => {
         ) : (
           <>
             <TossNotConducted />
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 6,
-                width: "80%",
-                alignItems: "center",
-                justifyContent: "center",
-              }}>
-              <TeamCard team={match.team1} isLoading={isLoading} />
-              <Typography level="body-lg">vs</Typography>
-              <TeamCard team={match.team2} isLoading={isLoading} />
-            </Box>
+            {!isLoading && (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 6,
+                  width: "80%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                <TeamCard team={match.team1} isLoading={isLoading} />
+                <Typography level="body-lg">vs</Typography>
+                <TeamCard team={match.team2} isLoading={isLoading} />
+              </Box>
+            )}
           </>
         )}
       </Box>
