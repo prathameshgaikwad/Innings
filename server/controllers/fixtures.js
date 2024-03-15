@@ -31,6 +31,7 @@ const createFixturesBatch = async (req, res) => {
         team2_id,
         overs,
         match_no,
+        innings: 1,
       });
 
       const savedMatch = await newMatch.save();

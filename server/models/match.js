@@ -48,6 +48,7 @@ const matchSchema = new mongoose.Schema(
     team2_sixes: { type: Number },
     team1_fours: { type: Number },
     team2_fours: { type: Number },
+    innings: { type: Number },
     team1_run_log: [
       {
         run_scorer: {

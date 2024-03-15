@@ -28,6 +28,7 @@ const getMatchDetails = async (req, res) => {
       team1_wicket_log,
       team2_wicket_log,
       toss,
+      innings,
       team1_id,
       team2_id,
     } = match;
@@ -48,6 +49,7 @@ const getMatchDetails = async (req, res) => {
       team1_wicket_log,
       team2_wicket_log,
       toss,
+      innings,
       team1,
       team2,
     };
