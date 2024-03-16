@@ -25,7 +25,7 @@ const ScorecardSkeleton = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        width: isMobile ? "85vw" : "78vw",
+        width: "100%",
       }}>
       <Box sx={{ width: "100%", mb: isMobile ? 3 : 6 }}>
         <Divider>

@@ -28,6 +28,7 @@ const TeamBadgeHorizontalSkeleton = ({ isSmall }) => {
         level={isSmall ? "title-lg" : "h3"}
         width={150}
       />
+      <Skeleton animation="wave" variant="text" level={"body-sm"} width={80} />
     </Box>
   );
 };
