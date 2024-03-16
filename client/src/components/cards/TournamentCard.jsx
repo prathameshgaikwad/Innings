@@ -27,7 +27,7 @@ const TournamentCard = ({ id }) => {
   const [venue, setVenue] = useState();
   const [startDate, setStartDate] = useState();
   const [overs, setOvers] = useState();
-  const [bannerURL, setBannerURL] = useState();
+  const [bannerURLS, setBannerURLS] = useState();
 
   useEffect(() => {
     const getTournamentDetails = async () => {
@@ -45,14 +45,14 @@ const TournamentCard = ({ id }) => {
           throw new Error("Could not retrieve tournament details");
         }
 
-        const { name, venue, start_date, overs, banner_url } =
+        const { name, venue, start_date, overs, banner_urls } =
           await response.json();
 
         setName(name);
         setStartDate(() => format(new Date(start_date), "do MMM yyyy"));
         setVenue(venue);
         setOvers(overs);
-        setBannerURL(banner_url);
+        setBannerURLS(banner_urls);
         setIsLoading(false);
       } catch (error) {
         console.log("error:", error);
@@ -84,7 +84,7 @@ const TournamentCard = ({ id }) => {
             <CardOverflow>
               <AspectRatio ratio="2.5">
                 <img
-                  src={bannerURL}
+                  src={bannerURLS.small}
                   loading="lazy"
                   alt={`Banner for ${name}`}
                 />
