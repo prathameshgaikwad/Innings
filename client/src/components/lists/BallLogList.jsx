@@ -7,10 +7,10 @@ import "../../styles.css";
 import { Box, Card, Divider, Typography } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import BallLogItem from "../BallLogItem";
 import BallLogListSkeleton from "../skeletons/BallLogListSkeleton";
 import BallLogSeparator from "../BallLogSeparator";
 import { BiSolidCricketBall } from "react-icons/bi";
+import LogItem from "../LogItem";
 import { Mousewheel } from "swiper/modules";
 import SliderMask from "../SliderMask";
 
@@ -66,6 +66,22 @@ const BallLogList = ({ data, isLoading }) => {
                   initialSlide={data.length - 1}
                   className={"smallSwiper"}>
                   {data.map((item, i) => {
+                    let type = "";
+                    switch (item) {
+                      case "W":
+                        type = "danger";
+                        break;
+                      case 4:
+                      case 6:
+                        type = "success";
+                        break;
+                      case "WD":
+                      case "B":
+                      case "LB":
+                      case "NB":
+                        type = "warning";
+                        break;
+                    }
                     return (
                       <SwiperSlide
                         key={i}
@@ -73,17 +89,12 @@ const BallLogList = ({ data, isLoading }) => {
                         {item === "-" ? (
                           <BallLogSeparator />
                         ) : (
-                          <BallLogItem item={item} />
+                          <LogItem item={item} type={type} />
                         )}
                       </SwiperSlide>
                     );
                   })}
-                  <SliderMask
-                    height={162.6}
-                    bg={"var(--joy-palette-background-surface)"}
-                    align={"left"}
-                    radius={"8px"}
-                  />
+                  <SliderMask height={162.6} align={"left"} radius={"8px"} />
                 </Swiper>
               </>
             )
