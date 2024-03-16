@@ -10,7 +10,9 @@ const TossDetails = ({ tossWinner, choice, isLoading }) => {
   return (
     <Divider
       sx={{
-        "--Divider-lineColor": isDarkTheme
+        "--Divider-lineColor": isLoading
+          ? theme.palette.neutral[500]
+          : isDarkTheme
           ? theme.palette.primary[800]
           : theme.palette.primary[100],
         "--Divider-thickness": "3px",
