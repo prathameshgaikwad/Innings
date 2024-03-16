@@ -76,7 +76,7 @@ const MatchManagement = () => {
                   minHeight: "85vh",
                 }}>
                 <ScoreInfo isLoading={isLoading} />
-                {secondInnings && <ChaseStatsCard />}
+                {secondInnings && <ChaseStatsCard isAdmin={true} />}
                 <ScoringButtonsPanel disabled={isLoading} />
               </Card>
               <Card
