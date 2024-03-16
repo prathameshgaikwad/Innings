@@ -18,9 +18,10 @@ const fetchRandomImage = async (query, isBanner) => {
     const data = await response.json();
     const large = `${data.urls.full}&w=2000&fit=max`;
     const small = data.urls.small;
+    const thumb = data.urls.thumb;
 
     if (isBanner) return { large, small };
-    return small;
+    return thumb;
   } catch (error) {
     console.error("Error fetching random image from Unsplash:", error);
     return null;
