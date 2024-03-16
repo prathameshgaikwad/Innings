@@ -5,9 +5,9 @@ import { Card, Stack, Typography } from "@mui/joy";
 import Box from "@mui/joy/Box";
 import { FiCheckCircle } from "react-icons/fi";
 import Footer from "../../components/common/Footer";
-import { LuHourglass } from "react-icons/lu";
 import Navbar from "../../components/common/Navbar";
 import NoPendingMatches from "../../components/cards/NoPendingMatches";
+import PendingMatches from "../../components/lists/PendingMatches";
 import PointsTable from "../../components/tables/PointsTable";
 import SimpleMatchCard from "../../components/cards/SimpleMatchCard";
 import TeamsList from "../../components/lists/TeamsList";
@@ -16,41 +16,6 @@ import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/joy/styles";
-
-const PendingMatches = ({ pendingMatchesList }) => {
-  const theme = useTheme();
-
-  return (
-    <Card variant="outlined" sx={{ borderWidth: 2, borderStyle: "solid" }}>
-      <Typography
-        level="h3"
-        sx={{ mx: "auto", mt: 2 }}
-        endDecorator={<LuHourglass color={theme.palette.warning[400]} />}>
-        Pending Matches
-      </Typography>
-      <Stack
-        sx={{
-          p: 1,
-          mt: 2,
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          maxHeight: 500,
-          overflowY: "auto",
-        }}>
-        {pendingMatchesList.map((fixture) => {
-          return (
-            <SimpleMatchCard
-              key={fixture.match_id}
-              matchData={fixture}
-              isTournamentManagementPage={true}
-            />
-          );
-        })}
-      </Stack>
-    </Card>
-  );
-};
 
 const NoCompletedMatches = () => {
   return (
