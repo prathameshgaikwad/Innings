@@ -50,6 +50,13 @@ module.exports = (io) => {
       console.log(runLog);
     });
 
+    socket.on("addRun", (runLogItem, matchId) => {
+      console.log(runLogItem, matchId);
+    });
+    socket.on("addExtra", (extraLogItem, matchId) => {
+      console.log(extraLogItem, matchId);
+    });
+
     socket.on("unsubscribeFromMatch", (matchId) => {
       socket.leave(matchId);
       console.log(`User left room: ${matchId}`);
