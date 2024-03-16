@@ -1,24 +1,41 @@
 /* eslint-disable react/prop-types */
 
-import { Alert, Skeleton, Typography } from "@mui/joy";
+import { Card, Divider, Skeleton, Typography, useTheme } from "@mui/joy";
 
 import { RiCopperCoinLine } from "react-icons/ri";
 
 const TossDetails = ({ tossWinner, choice, isLoading }) => {
+  const theme = useTheme();
+  const isDarkTheme = theme.palette.mode === "dark";
   return (
-    <Alert
-      variant="soft"
-      color={isLoading ? "neutral" : "primary"}
-      sx={{ mt: 4 }}>
-      <RiCopperCoinLine size={24} />
-      {isLoading ? (
-        <Skeleton animation="wave" variant="text" level="body-md" width={250} />
-      ) : (
-        <Typography level="body-md">
-          {tossWinner} won the toss and chose to {choice}
-        </Typography>
-      )}
-    </Alert>
+    <Divider
+      sx={{
+        "--Divider-lineColor": isDarkTheme
+          ? theme.palette.primary[800]
+          : theme.palette.primary[100],
+        "--Divider-thickness": "3px",
+        mt: 6,
+      }}>
+      <Card
+        size="sm"
+        variant="soft"
+        color={isLoading ? "neutral" : "primary"}
+        sx={{ display: "flex", flexDirection: "row" }}>
+        <RiCopperCoinLine size={24} />
+        {isLoading ? (
+          <Skeleton
+            animation="wave"
+            variant="text"
+            level="body-md"
+            width={250}
+          />
+        ) : (
+          <Typography level="body-md">
+            {tossWinner} won the toss and chose to {choice}
+          </Typography>
+        )}
+      </Card>
+    </Divider>
   );
 };
 
