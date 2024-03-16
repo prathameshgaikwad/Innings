@@ -56,7 +56,7 @@ const MatchManagement = () => {
           gap: 2,
           mt: 4,
         }}>
-        <Header />
+        <Header isLoading={isLoading} />
         {!tossCompleted ? (
           <ConductToss matchId={matchId} />
         ) : (
