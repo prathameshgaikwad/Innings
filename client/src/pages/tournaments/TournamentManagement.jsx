@@ -7,6 +7,7 @@ import { FiCheckCircle } from "react-icons/fi";
 import Footer from "../../components/common/Footer";
 import { LuHourglass } from "react-icons/lu";
 import Navbar from "../../components/common/Navbar";
+import NoPendingMatches from "../../components/cards/NoPendingMatches";
 import PointsTable from "../../components/tables/PointsTable";
 import SimpleMatchCard from "../../components/cards/SimpleMatchCard";
 import TeamsList from "../../components/lists/TeamsList";
@@ -15,16 +16,6 @@ import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/joy/styles";
-
-const NoPendingMatches = () => {
-  return (
-    <Card variant="outlined" sx={{ borderWidth: 2, borderStyle: "solid" }}>
-      <Typography level="body-lg" sx={{ m: "auto", p: 2 }}>
-        You&apos;ve completed scoring all the matches
-      </Typography>
-    </Card>
-  );
-};
 
 const PendingMatches = ({ pendingMatchesList }) => {
   const theme = useTheme();
