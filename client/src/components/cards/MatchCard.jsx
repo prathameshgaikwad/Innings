@@ -96,7 +96,12 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
             }}>
             <AspectRatio
               ratio="1"
-              sx={{ width: isMobile ? 66 : 90, borderRadius: "50%" }}>
+              sx={{
+                width: isMobile ? 66 : 90,
+                borderRadius: "50%",
+                outline: "4px solid",
+                outlineColor: data.team1.color,
+              }}>
               <img src={data.team1.logoURL} loading="lazy" alt="" />
             </AspectRatio>
             <Typography
@@ -147,7 +152,12 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
             }}>
             <AspectRatio
               ratio="1"
-              sx={{ width: isMobile ? 66 : 90, borderRadius: "50%" }}>
+              sx={{
+                width: isMobile ? 66 : 90,
+                borderRadius: "50%",
+                outline: "4px solid",
+                outlineColor: data.team2.color,
+              }}>
               <img src={data.team2.logoURL} loading="lazy" alt="" />
             </AspectRatio>
             <Typography
