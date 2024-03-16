@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 
 import { Card, Stack, Typography } from "@mui/joy";
-import { CssVarsProvider, useTheme } from "@mui/joy/styles";
 
 import Box from "@mui/joy/Box";
-import CssBaseline from "@mui/joy/CssBaseline";
 import { FiCheckCircle } from "react-icons/fi";
 import Footer from "../../components/common/Footer";
 import { LuHourglass } from "react-icons/lu";
@@ -16,6 +14,7 @@ import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTheme } from "@mui/joy/styles";
 
 const NoPendingMatches = () => {
   return (
@@ -132,8 +131,7 @@ const TournamentManagement = () => {
   );
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <TournamentHeader
         isAdmin={isAdmin}
@@ -171,7 +169,7 @@ const TournamentManagement = () => {
         <TeamsList />
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 

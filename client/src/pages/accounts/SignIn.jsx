@@ -2,8 +2,6 @@ import BackgroundArt from "../../components/accounts/BackgroundArt";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import ColorSchemeToggle from "../../components/common/ColorSchemeToggle";
-import CssBaseline from "@mui/joy/CssBaseline";
-import { CssVarsProvider } from "@mui/joy/styles";
 import Divider from "@mui/joy/Divider";
 import Footer from "../../components/common/Footer";
 import GlobalStyles from "@mui/joy/GlobalStyles";
@@ -37,8 +35,7 @@ export default function SignIn() {
   });
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <GlobalStyles
         styles={{
           ":root": {
@@ -152,6 +149,6 @@ export default function SignIn() {
         </Box>
       </Box>
       <BackgroundArt />
-    </CssVarsProvider>
+    </>
   );
 }

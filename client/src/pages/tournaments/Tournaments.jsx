@@ -1,9 +1,6 @@
-import { CssVarsProvider, useTheme } from "@mui/joy/styles";
-
 import Box from "@mui/joy/Box";
 import CreateTournamentCard from "../../components/cards/CreateTournamentCard";
 import CreatedTournaments from "../../components/tournament/CreatedTournaments";
-import CssBaseline from "@mui/joy/CssBaseline";
 import FeaturedTournaments from "../../components/tournament/FeaturedTournaments";
 import Footer from "../../components/common/Footer";
 import JoinATournament from "../../components/cards/JoinATournament";
@@ -11,6 +8,7 @@ import JoinedTournaments from "../../components/tournament/JoinedTournaments";
 import Navbar from "../../components/common/Navbar";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useTheme } from "@mui/joy/styles";
 
 const Tournaments = () => {
   const theme = useTheme();
@@ -25,8 +23,7 @@ const Tournaments = () => {
   );
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <Box
         sx={{
@@ -55,7 +52,7 @@ const Tournaments = () => {
         </Box>
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 

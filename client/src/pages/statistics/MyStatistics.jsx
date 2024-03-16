@@ -1,4 +1,4 @@
-import { Box, CssBaseline, CssVarsProvider, useTheme } from "@mui/joy";
+import { Box, useTheme } from "@mui/joy";
 
 import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar";
@@ -9,8 +9,7 @@ const MyStatistics = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <Box
         sx={{
@@ -27,7 +26,7 @@ const MyStatistics = () => {
         <UserStatistics />
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 

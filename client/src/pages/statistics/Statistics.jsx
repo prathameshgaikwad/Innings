@@ -1,7 +1,4 @@
-import { CssVarsProvider, useTheme } from "@mui/joy/styles";
-
 import Box from "@mui/joy/Box";
-import CssBaseline from "@mui/joy/CssBaseline";
 import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar";
 import NoTournamentsJoined from "../../components/cards/NoTournamentsJoined";
@@ -10,6 +7,7 @@ import TournamentStatisticsList from "../../components/lists/TournamentStatistic
 import UserStatistics from "../../components/UserStatistics";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useTheme } from "@mui/joy/styles";
 
 const Statistics = () => {
   const theme = useTheme();
@@ -28,8 +26,7 @@ const Statistics = () => {
   }
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <Box
         sx={{
@@ -55,7 +52,7 @@ const Statistics = () => {
         )}
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 

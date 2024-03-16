@@ -1,10 +1,4 @@
-import {
-  Box,
-  CssBaseline,
-  CssVarsProvider,
-  Typography,
-  useTheme,
-} from "@mui/joy";
+import { Box, Typography, useTheme } from "@mui/joy";
 import {
   getMatchInfo,
   setRunLogItem,
@@ -99,8 +93,7 @@ const Match = () => {
   const batsmenData = match.batsmen;
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <Box
@@ -174,7 +167,7 @@ const Match = () => {
         )}
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 

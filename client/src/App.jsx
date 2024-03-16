@@ -3,6 +3,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import CreateAccount from "./pages/accounts/CreateAccount";
+import CssBaseline from "@mui/joy/CssBaseline";
+import { CssVarsProvider } from "@mui/joy";
 import HomePage from "./pages/home/Home";
 import Match from "./pages/match/Match";
 import MatchManagement from "./pages/match/MatchManagement";
@@ -30,93 +32,96 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/">
-      <Routes>
-        {/* PUBLIC PATHS */}
-        <Route path="/accounts/sign-in" element={<SignIn />} />
-        <Route path="/accounts/create" element={<CreateAccount />} />
+      <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
+        <CssBaseline />
+        <Routes>
+          {/* PUBLIC PATHS */}
+          <Route path="/accounts/sign-in" element={<SignIn />} />
+          <Route path="/accounts/create" element={<CreateAccount />} />
 
-        {/* PRIVATE PATHS */}
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tournaments"
-          element={
-            <PrivateRoute>
-              <Tournaments />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tournaments/:tournamentId"
-          element={
-            <PrivateRoute>
-              <TournamentPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tournaments/:tournamentId/setup"
-          element={
-            <PrivateRoute>
-              <TournamentSetupPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tournaments/:tournamentId/manage"
-          element={
-            <PrivateRoute>
-              <TournamentManagement />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tournaments/:tournamentId/:matchId"
-          element={
-            <PrivateRoute>
-              <Match />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tournaments/:tournamentId/:matchId/manage"
-          element={
-            <PrivateRoute>
-              <MatchManagement />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tournaments/:tournamentId/teams/:teamId"
-          element={
-            <PrivateRoute>
-              <TeamPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/statistics"
-          element={
-            <PrivateRoute>
-              <Statistics />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/user/statistics"
-          element={
-            <PrivateRoute>
-              <MyStatistics />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+          {/* PRIVATE PATHS */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tournaments"
+            element={
+              <PrivateRoute>
+                <Tournaments />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tournaments/:tournamentId"
+            element={
+              <PrivateRoute>
+                <TournamentPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tournaments/:tournamentId/setup"
+            element={
+              <PrivateRoute>
+                <TournamentSetupPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tournaments/:tournamentId/manage"
+            element={
+              <PrivateRoute>
+                <TournamentManagement />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tournaments/:tournamentId/:matchId"
+            element={
+              <PrivateRoute>
+                <Match />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tournaments/:tournamentId/:matchId/manage"
+            element={
+              <PrivateRoute>
+                <MatchManagement />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tournaments/:tournamentId/teams/:teamId"
+            element={
+              <PrivateRoute>
+                <TeamPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/statistics"
+            element={
+              <PrivateRoute>
+                <Statistics />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/user/statistics"
+            element={
+              <PrivateRoute>
+                <MyStatistics />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </CssVarsProvider>
     </BrowserRouter>
   );
 };

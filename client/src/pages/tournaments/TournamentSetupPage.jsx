@@ -1,4 +1,4 @@
-import { Box, CssBaseline, CssVarsProvider, Grid, useTheme } from "@mui/joy";
+import { Box, Grid, useTheme } from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
 import AddPlayersForm from "../../components/createTournament/AddPlayersForm";
@@ -26,8 +26,7 @@ const TournamentSetupPage = () => {
   }
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <TournamentHeader
         isAdmin={true}
@@ -63,7 +62,7 @@ const TournamentSetupPage = () => {
         <FinishSetup />
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 export default TournamentSetupPage;

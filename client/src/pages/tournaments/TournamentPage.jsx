@@ -1,11 +1,4 @@
-import {
-  Alert,
-  Box,
-  CssBaseline,
-  CssVarsProvider,
-  Typography,
-  useTheme,
-} from "@mui/joy";
+import { Alert, Box, Typography, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -52,8 +45,7 @@ const TournamentPage = () => {
   }, [dispatch, tournamentId, token]);
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <Box
@@ -98,7 +90,7 @@ const TournamentPage = () => {
         {isAdmin && <ManageEventAlert eventType={"tournament"} />}
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 export default TournamentPage;

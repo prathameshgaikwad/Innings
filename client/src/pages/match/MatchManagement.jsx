@@ -1,4 +1,4 @@
-import { Box, Card, CssBaseline, CssVarsProvider, useTheme } from "@mui/joy";
+import { Box, Card, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -44,8 +44,7 @@ const MatchManagement = () => {
   const secondInnings = innings && innings === "2";
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <Box
         sx={{
@@ -105,7 +104,7 @@ const MatchManagement = () => {
         )}
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 

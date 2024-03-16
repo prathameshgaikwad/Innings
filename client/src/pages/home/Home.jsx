@@ -1,4 +1,3 @@
-import { CssVarsProvider, useTheme } from "@mui/joy/styles";
 import {
   fetchJoinedTournaments,
   getLatestTournamentDetails,
@@ -7,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import Box from "@mui/joy/Box";
-import CssBaseline from "@mui/joy/CssBaseline";
 import CustomToast from "../../components/cards/CustomToast";
 import Footer from "../../components/common/Footer";
 import LiveMatch from "../../components/match/LiveMatch";
@@ -16,6 +14,7 @@ import NoTournamentsJoined from "../../components/cards/NoTournamentsJoined";
 import { Skeleton } from "@mui/joy";
 import UpcomingMatches from "../../components/lists/UpcomingMatches";
 import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/joy/styles";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -49,8 +48,7 @@ const HomePage = () => {
   }
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <Box
         sx={{
@@ -96,7 +94,7 @@ const HomePage = () => {
         )}
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 

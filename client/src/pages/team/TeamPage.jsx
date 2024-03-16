@@ -3,8 +3,6 @@ import {
   Box,
   Button,
   Card,
-  CssBaseline,
-  CssVarsProvider,
   Divider,
   Sheet,
   Skeleton,
@@ -66,8 +64,7 @@ const TeamPage = () => {
   };
 
   return (
-    <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-      <CssBaseline />
+    <>
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <Box
@@ -198,7 +195,7 @@ const TeamPage = () => {
         </Card>
       </Box>
       <Footer />
-    </CssVarsProvider>
+    </>
   );
 };
 export default TeamPage;
