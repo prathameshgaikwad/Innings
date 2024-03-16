@@ -8,7 +8,7 @@ import { GrUndo } from "react-icons/gr";
 import ScoreButton from "../buttons/ScoreButton";
 import { useSelector } from "react-redux";
 
-const ScoringButtonsPanel = ({ disabled }) => {
+const ScoringButtonsPanel = ({ disabled, socket }) => {
   const [isValid, setIsValid] = useState(false);
   const [open, setOpen] = useState(false);
   const batsmen = useSelector((state) => state.matchManagement.batsmen);
@@ -37,26 +37,26 @@ const ScoringButtonsPanel = ({ disabled }) => {
         p: 0,
       }}>
       <ButtonGroup spacing="0.8rem" disabled={!isValid || disabled}>
-        <ScoreButton type={"dot"} />
-        <ScoreButton score={"1"} />
-        <ScoreButton score={"2"} />
+        <ScoreButton socket={socket} type={"dot"} />
+        <ScoreButton socket={socket} score={"1"} />
+        <ScoreButton socket={socket} score={"2"} />
       </ButtonGroup>
       <ButtonGroup spacing="0.8rem" disabled={!isValid || disabled}>
-        <ScoreButton score={"3"} />
-        <ScoreButton score={"4"} />
-        <ScoreButton score={"6"} />
+        <ScoreButton socket={socket} score={"3"} />
+        <ScoreButton socket={socket} score={"4"} />
+        <ScoreButton socket={socket} score={"6"} />
       </ButtonGroup>
       <ButtonGroup spacing="0.8rem" disabled={!isValid || disabled}>
         <Button sx={{ height: 50, flexGrow: 1 }} onClick={() => setOpen(true)}>
           <Typography level="title-md">CUSTOM</Typography>
         </Button>
         <CustomRunsModal open={open} setOpen={setOpen} />
-        <ScoreButton score={"WD"} />
-        <ScoreButton score={"NB"} />
+        <ScoreButton socket={socket} type={"extra"} score={"WD"} />
+        <ScoreButton socket={socket} type={"extra"} score={"NB"} />
       </ButtonGroup>
       <ButtonGroup spacing="0.8rem" disabled={!isValid || disabled}>
-        <ScoreButton score={"B"} />
-        <ScoreButton score={"LB"} />
+        <ScoreButton socket={socket} type={"extra"} score={"B"} />
+        <ScoreButton socket={socket} type={"extra"} score={"LB"} />
         <Button
           variant="solid"
           sx={{ height: 50, flexGrow: 1, backgroundColor: "darkslategray" }}>

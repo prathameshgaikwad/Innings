@@ -15,8 +15,11 @@ import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
 import { getMatchManagementInfo } from "../../state/match/matchManagement";
+import { io } from "socket.io-client";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
+
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const MatchManagement = () => {
   const theme = useTheme();
@@ -42,6 +45,29 @@ const MatchManagement = () => {
   }, [status]);
 
   const secondInnings = innings && innings === "2";
+
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = io(SERVER_URL);
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("connect", () => {
+        console.log("Connected to Socket.IO server");
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from Socket.IO server");
+      });
+    }
+  }, [socket, matchId]);
 
   return (
     <>
@@ -77,7 +103,7 @@ const MatchManagement = () => {
                 }}>
                 <ScoreInfo isLoading={isLoading} />
                 {secondInnings && <ChaseStatsCard isAdmin={true} />}
-                <ScoringButtonsPanel disabled={isLoading} />
+                <ScoringButtonsPanel socket={socket} disabled={isLoading} />
               </Card>
               <Card
                 sx={{
