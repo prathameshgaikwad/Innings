@@ -6,6 +6,7 @@
   width: 100%;
   padding: 30px;
   padding-bottom: 40px;
+  background-color: var(--joy-palette-background-surface);
 }
 .smallSwiper {
   padding: 16px;

@@ -16,6 +16,7 @@ import TournamentManagement from "./pages/tournaments/TournamentManagement";
 import TournamentPage from "./pages/tournaments/TournamentPage";
 import TournamentSetupPage from "./pages/tournaments/TournamentSetupPage";
 import Tournaments from "./pages/tournaments/Tournaments";
+import myTheme from "./theme";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -32,7 +33,11 @@ const App = () => {
 
   return (
     <BrowserRouter basename="/">
-      <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
+      <CssVarsProvider
+        defaultMode="dark"
+        disableTransitionOnChange
+        // theme={myTheme}  TODO: CREATE AND USE THEME
+      >
         <CssBaseline />
         <Routes>
           {/* PUBLIC PATHS */}

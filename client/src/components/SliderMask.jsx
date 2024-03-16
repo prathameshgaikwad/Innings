@@ -3,7 +3,7 @@ const SliderMask = ({ height = "100%", bg, radius, align }) => {
   return (
     <div
       style={{
-        backgroundColor: bg || "AppWorkspace",
+        backgroundColor: bg || "var(--joy-palette-background-surface)",
         width: 120,
         height: height,
         zIndex: 10000,
