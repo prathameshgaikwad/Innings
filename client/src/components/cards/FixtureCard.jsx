@@ -114,8 +114,13 @@ const FixtureCard = ({ id }) => {
               }}>
               <AspectRatio
                 ratio="1"
-                sx={{ width: isMobile ? 45 : 65, borderRadius: "50%" }}>
-                <img src={team1.logoURL} loading="lazy" alt="" />
+                sx={{
+                  width: isMobile ? 45 : 65,
+                  borderRadius: "50%",
+                  outline: "3px solid",
+                  outlineColor: team1.color,
+                }}>
+                <img src={team1.logoURL} loading="lazy" />
               </AspectRatio>
               <Typography
                 level={isMobile ? "title-sm" : "title-md"}
@@ -149,7 +154,12 @@ const FixtureCard = ({ id }) => {
               }}>
               <AspectRatio
                 ratio="1"
-                sx={{ width: isMobile ? 45 : 65, borderRadius: "50%" }}>
+                sx={{
+                  width: isMobile ? 45 : 65,
+                  borderRadius: "50%",
+                  outline: "3px solid",
+                  outlineColor: team2.color,
+                }}>
                 <img src={team2.logoURL} loading="lazy" alt="" />
               </AspectRatio>
               <Typography
