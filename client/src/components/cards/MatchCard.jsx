@@ -30,6 +30,12 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
   const isTab = useMediaQuery(theme.breakpoints.down(650));
 
   const matchURL = data ? `/tournaments/${tournamentId}/${data._id}` : "";
+  const team1URL = data
+    ? `/tournaments/${tournamentId}/teams/${data.team1._id}`
+    : "";
+  const team2URL = data
+    ? `/tournaments/${tournamentId}/teams/${data.team2._id}`
+    : "";
 
   const renderContent = () => {
     return (
@@ -52,17 +58,21 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
               # {data.match_no}
             </Typography>
             <Divider orientation="vertical" />
-            <Typography
-              level={isMobile ? "title-lg" : "h4"}
-              sx={{ color: "text.tertiary" }}>
-              {data.team1.name}
-            </Typography>
+            <Link href={team1URL}>
+              <Typography
+                level={isMobile ? "title-lg" : "h4"}
+                sx={{ color: "text.tertiary" }}>
+                {data.team1.name}
+              </Typography>
+            </Link>
             vs
-            <Typography
-              level={isMobile ? "title-lg" : "h4"}
-              sx={{ color: "text.tertiary" }}>
-              {data.team2.name}
-            </Typography>
+            <Link href={team2URL}>
+              <Typography
+                level={isMobile ? "title-lg" : "h4"}
+                sx={{ color: "text.tertiary" }}>
+                {data.team2.name}
+              </Typography>
+            </Link>
           </CardContent>
           <Divider inset="context" />
         </CardOverflow>
