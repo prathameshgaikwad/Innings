@@ -6,6 +6,7 @@ import Box from "@mui/joy/Box";
 import { FiCheckCircle } from "react-icons/fi";
 import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar";
+import NoCompletedMatches from "../../components/cards/NoCompletedMatches";
 import NoPendingMatches from "../../components/cards/NoPendingMatches";
 import PendingMatches from "../../components/lists/PendingMatches";
 import PointsTable from "../../components/tables/PointsTable";
@@ -16,21 +17,6 @@ import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/joy/styles";
-
-const NoCompletedMatches = () => {
-  return (
-    <Card
-      variant="outlined"
-      sx={{
-        borderWidth: 2,
-        borderStyle: "dashed",
-      }}>
-      <Typography level="body-lg" sx={{ m: "auto", p: 1 }}>
-        Click on &quot;Start Match&quot; to begin scoring a match
-      </Typography>
-    </Card>
-  );
-};
 
 const CompletedMatches = ({ completedMatchesList }) => {
   const theme = useTheme();
