@@ -149,9 +149,13 @@ const TeamPage = () => {
             <RectangularSkeleton />
           ) : (
             <Sheet sx={{ overflow: "auto", my: isMobile ? 2 : 4 }}>
-              <Card variant="soft" size="lg" sx={{ mb: 3 }}>
-                <RecentTeamPerformance recentPerformance={recentPerformance} />
-              </Card>
+              {recentPerformance && recentPerformance.length > 0 && (
+                <Card variant="soft" size="lg" sx={{ mb: 3 }}>
+                  <RecentTeamPerformance
+                    recentPerformance={recentPerformance}
+                  />
+                </Card>
+              )}
               <Table
                 stickyHeader
                 variant="outlined"
