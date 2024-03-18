@@ -4,7 +4,14 @@ import { Stack, Tooltip } from "@mui/joy";
 
 import LogItem from "../LogItem";
 
-const TeamPerformance = ({ performance }) => {
+const TeamPerformance = ({ performance, size }) => {
+  if (size) {
+    if (performance.length > size) {
+      const len = performance.length;
+      performance = performance.slice(len - size, len);
+    }
+  }
+
   return (
     <Tooltip variant="outlined" title={"Recent Performance"}>
       <Stack direction={"row"} gap={1}>

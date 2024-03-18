@@ -149,7 +149,7 @@ const TeamPage = () => {
             <Sheet sx={{ overflow: "auto", my: isMobile ? 2 : 4 }}>
               {performance && performance.length > 0 && (
                 <Card variant="soft" size="lg" sx={{ mb: 3 }}>
-                  <TeamPerformance performance={performance} />
+                  <TeamPerformance performance={performance} size={10} />
                 </Card>
               )}
               <Table

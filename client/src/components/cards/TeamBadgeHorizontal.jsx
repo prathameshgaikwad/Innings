@@ -10,9 +10,9 @@ import Typography from "@mui/joy/Typography";
 import { useParams } from "react-router-dom";
 
 const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
-  const { color, logoURL, name, _id } = team;
+  const { color, logoURL, name, _id, performance } = team;
   const { tournamentId } = useParams();
-  const recentPerformance = ["L", "W", "D", "W"];
+
   return (
     <>
       {isLoading ? (
@@ -43,7 +43,9 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
             </AspectRatio>
             <Typography level={isSmall ? "title-lg" : "h3"}>{name}</Typography>
           </Link>
-          <TeamPerformance performance={recentPerformance} />
+          {performance && performance.length > 0 && (
+            <TeamPerformance performance={performance} size={5} />
+          )}
         </Box>
       )}
     </>
