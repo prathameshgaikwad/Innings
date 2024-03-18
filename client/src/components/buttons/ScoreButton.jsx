@@ -4,24 +4,34 @@ import { Button, Typography } from "@mui/joy";
 
 import { GoDotFill } from "react-icons/go";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ScoreButton = ({ score, type, socket }) => {
   const { matchId } = useParams();
+
+  const { batsmen, bowler, battingTeam, bowlingTeam } = useSelector(
+    (state) => state.matchManagement
+  );
 
   const handleClick = () => {
     if (type === "extra") {
       const extraLogItem = {
         extraType: score,
         runs: 1,
+        bowler,
+        matchId,
+        bowlingTeamId: bowlingTeam._id,
       };
-      socket.emit("addExtra", extraLogItem, matchId);
+      socket.emit("addExtra", extraLogItem);
     } else {
-      const runLogItem = {
-        playerId: 1,
+      const runLogData = {
+        matchId,
+        battingTeamId: battingTeam._id,
+        batsman: batsmen.onStrikeBatsman,
+        bowler,
         score: type === "dot" ? 0 : parseInt(score),
-        bowlerId: 2,
       };
-      socket.emit("addRun", runLogItem, matchId);
+      socket.emit("addRun", runLogData);
     }
   };
   return (
