@@ -18,9 +18,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar";
-import RecentTeamPerformance from "../../components/lists/RecentTeamPerformance";
 import RectangularSkeleton from "../../components/skeletons/RectangularSkeleton";
 import { TbHexagonLetterC } from "react-icons/tb";
+import TeamPerformance from "../../components/lists/TeamPerformance";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { useMediaQuery } from "@mui/material";
 
@@ -40,7 +40,7 @@ const TeamPage = () => {
     dispatch(getTeamInfo({ teamId, token, setIsLoading }));
   }, [dispatch, teamId, token]);
 
-  const { name, color, players, captain, logoURL } = useSelector(
+  const { name, color, players, captain, logoURL, performance } = useSelector(
     (state) => state.team
   );
 
@@ -53,8 +53,6 @@ const TeamPage = () => {
     dispatch(clearTeamData());
     navigate(`/tournaments/${tournamentId}`);
   };
-
-  const recentPerformance = ["W", "W", "L", "L", "D", "W"];
 
   return (
     <>
@@ -149,11 +147,9 @@ const TeamPage = () => {
             <RectangularSkeleton />
           ) : (
             <Sheet sx={{ overflow: "auto", my: isMobile ? 2 : 4 }}>
-              {recentPerformance && recentPerformance.length > 0 && (
+              {performance && performance.length > 0 && (
                 <Card variant="soft" size="lg" sx={{ mb: 3 }}>
-                  <RecentTeamPerformance
-                    recentPerformance={recentPerformance}
-                  />
+                  <TeamPerformance performance={performance} />
                 </Card>
               )}
               <Table

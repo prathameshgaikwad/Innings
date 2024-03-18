@@ -4,11 +4,11 @@ import { Stack, Tooltip } from "@mui/joy";
 
 import LogItem from "../LogItem";
 
-const RecentTeamPerformance = ({ recentPerformance }) => {
+const TeamPerformance = ({ performance }) => {
   return (
     <Tooltip variant="outlined" title={"Recent Performance"}>
       <Stack direction={"row"} gap={1}>
-        {recentPerformance.map((item, i) => {
+        {performance.map((item, i) => {
           let type = "";
           switch (item) {
             case "W":
@@ -27,4 +27,4 @@ const RecentTeamPerformance = ({ recentPerformance }) => {
   );
 };
 
-export default RecentTeamPerformance;
+export default TeamPerformance;

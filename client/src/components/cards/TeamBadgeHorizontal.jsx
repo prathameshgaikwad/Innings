@@ -3,9 +3,9 @@
 import { Box, Link } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
-import RecentTeamPerformance from "../lists/RecentTeamPerformance";
 import { TbSteam } from "react-icons/tb";
 import TeamBadgeHorizontalSkeleton from "../skeletons/TeamBadgeHorizontalSkeleton";
+import TeamPerformance from "../lists/TeamPerformance";
 import Typography from "@mui/joy/Typography";
 import { useParams } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
             </AspectRatio>
             <Typography level={isSmall ? "title-lg" : "h3"}>{name}</Typography>
           </Link>
-          <RecentTeamPerformance recentPerformance={recentPerformance} />
+          <TeamPerformance performance={recentPerformance} />
         </Box>
       )}
     </>
