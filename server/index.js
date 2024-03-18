@@ -12,6 +12,7 @@ const userRoutes = require("./routes/user");
 const teamRoutes = require("./routes/teams");
 const fixtureRoutes = require("./routes/fixtures");
 const matchRoutes = require("./routes/matches");
+const playerRoutes = require("./routes/players");
 
 const matchSocketEvents = require("./events/matchSocketEvents");
 
@@ -41,6 +42,7 @@ app.use("/tournaments", verifyToken, tournamentRoutes);
 app.use("/teams", verifyToken, teamRoutes);
 app.use("/fixtures", verifyToken, fixtureRoutes);
 app.use("/matches", verifyToken, matchRoutes);
+app.use("/players", verifyToken, playerRoutes);
 
 const PORT = process.env.PORT || 5000;
 
