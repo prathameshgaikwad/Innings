@@ -1,6 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const Team = require("../models/team");
 const Tournament = require("../models/tournament");
+const Player = require("../models/player");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
 const { generateShortName } = require("../helpers/generateShortName");
 
@@ -43,10 +44,41 @@ const createTeam = async (req, res) => {
       name: teamName,
       nameShort,
       color: teamColor,
-      players,
+      players: [],
       captainName: indexOfCaptain === -1 ? assumedCaptain : givenCaptain,
       logoURL,
     });
+
+    const playerPromises = players.map(async (player) => {
+      const first_name = player.playerName.split(" ")[0];
+      const last_name = player.playerName.split(" ")[1] || "";
+
+      const newPlayer = new Player({
+        team_id: newTeam._id,
+        tournament_id: tournamentId,
+        first_name,
+        last_name,
+        debut: Date.now(),
+        picture_url: await fetchRandomImage("person", false),
+        statistics: {
+          matches: 0,
+          runs: 0,
+          strike_rate: 0,
+          average: 0,
+          highest_score: 0,
+          fifties: 0,
+          hundreds: 0,
+          fours: 0,
+          sixes: 0,
+          wickets: 0,
+          economy: 0,
+        },
+      });
+      await newPlayer.save();
+      return newPlayer._id;
+    });
+
+    newTeam.players = await Promise.all(playerPromises);
 
     if (!newTeam)
       return res
