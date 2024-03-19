@@ -7,12 +7,10 @@ const playerSchema = new mongoose.Schema({
   },
   team_id: {
     type: mongoose.Types.ObjectId,
-    required: [true, "Please provide the team id"],
     ref: "teams",
   },
   tournament_id: {
     type: mongoose.Types.ObjectId,
-    required: [true, "Please provide the tournament id"],
     ref: "tournaments",
   },
   first_name: {
