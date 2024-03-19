@@ -160,12 +160,31 @@ const TournamentBanner = ({
               position: "absolute",
               bottom: -45,
               right: 100,
+              overflow: "hidden",
               display: buttonDisplay,
               border: "2px solid",
               transition: "all 0.2s ease-in-out",
+              zIndex: 20,
               "&:hover": {
-                bottom: -43,
-                borderWidth: 8,
+                borderWidth: 4,
+                backgroundColor: "var(--joy-palette-primary-solidBg)",
+                "&:after ": {
+                  left: "130%",
+                  transition: " all 550ms cubic-bezier(0.19, 1, 0.22, 1)",
+                },
+              },
+              "&:after": {
+                background: "#fff",
+                content: '""',
+                height: "155px",
+                left: "-65px",
+                opacity: ".2",
+                position: "absolute",
+                top: "-40px",
+                transform: "rotate(35deg)",
+                transition: "all 550ms cubic-bezier(0.19, 1, 0.22, 1)",
+                width: "50px",
+                zIndex: -10,
               },
             }}
             endDecorator={<ArrowForwardIcon />}
