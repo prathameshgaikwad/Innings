@@ -14,7 +14,7 @@ const fixtureRoutes = require("./routes/fixtures");
 const matchRoutes = require("./routes/matches");
 const playerRoutes = require("./routes/players");
 
-const matchSocketEvents = require("./events/matchSocketEvents");
+const { socketEvents } = require("./socket/events/index");
 
 const { verifyToken } = require("./middleware/auth");
 
@@ -33,7 +33,7 @@ const io = new Server(server, {
   },
 });
 
-matchSocketEvents(io);
+socketEvents(io);
 
 // ROUTES
 app.use("/auth", authRoutes);
