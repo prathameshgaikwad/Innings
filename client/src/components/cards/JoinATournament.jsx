@@ -64,7 +64,7 @@ const JoinATournament = () => {
           initialValues={initialValues}
           validationSchema={joinTournamentSchema(joinedTournaments)}
           onSubmit={handleJoinTournament}>
-          {({ isSubmitting }) => (
+          {({ isSubmitting, isValid }) => (
             <Form>
               <Box
                 sx={{
@@ -83,7 +83,7 @@ const JoinATournament = () => {
                 <Button
                   size="lg"
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={!isValid || isSubmitting}
                   endDecorator={<ArrowForwardIcon />}>
                   Join
                 </Button>
