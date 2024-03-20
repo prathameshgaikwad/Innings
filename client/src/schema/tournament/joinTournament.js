@@ -2,7 +2,7 @@ import { object, string } from "yup";
 
 export const joinTournamentSchema = (existingJoinedTournaments) =>
   object({
-    tournamentIdentifier: string()
+    tournament_id: string()
       .required("Required")
       .test(
         "uniqueMatchNumber",

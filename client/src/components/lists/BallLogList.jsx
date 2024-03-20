@@ -68,17 +68,17 @@ const BallLogList = ({ data, isLoading }) => {
                   {data.map((item, i) => {
                     let type = "";
                     switch (item) {
-                      case "W":
+                      case item.isWicket:
                         type = "danger";
                         break;
-                      case 4:
-                      case 6:
+                      case item.runs_conceded === 4:
+                      case item.runs_conceded === 6:
                         type = "success";
                         break;
-                      case "WD":
-                      case "B":
-                      case "LB":
-                      case "NB":
+                      case item.runs_conceded === "WD":
+                      case item.runs_conceded === "B":
+                      case item.runs_conceded === "LB":
+                      case item.runs_conceded === "NB":
                         type = "warning";
                         break;
                     }

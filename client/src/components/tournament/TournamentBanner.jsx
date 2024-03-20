@@ -18,6 +18,7 @@ import CustomToast from "../cards/CustomToast";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdOutlineBuildCircle } from "react-icons/md";
 import { addJoinedTournament } from "../../state/tournament/tournamentSlice";
+import { joinTournament } from "../../state/tournament/tournamentPageSlice";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
@@ -52,27 +53,13 @@ const TournamentBanner = ({
 
   const handleJoinTournament = async () => {
     try {
-      const response = await fetch("http://localhost:3000/tournaments/join", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id,
-          tournament_id: id,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to join tournament!");
-      } else {
-        dispatch(addJoinedTournament({ tournament_id: id }));
-        setIsOpen(true);
+      dispatch(joinTournament({ user_id, token, tournament_id: id }));
+      dispatch(addJoinedTournament({ tournament_id: id }));
+      setIsOpen(true);
 
-        setTimeout(() => {
-          setIsOpen(false);
-        }, 3000);
-      }
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
     } catch (error) {
       console.log(error);
     }

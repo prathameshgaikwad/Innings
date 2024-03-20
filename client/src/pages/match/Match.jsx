@@ -49,9 +49,9 @@ const Match = () => {
       socket.on("connect", () => {
         console.log("Connected to Socket.IO server");
         socket.emit("subscribeToMatch", matchId);
-        socket.on("getRunLog", (runLogItem) => {
-          dispatch(setRunLogItem(runLogItem));
-        });
+        // socket.on("getRunLog", (runLogItem) => {
+        //   dispatch(setRunLogItem(runLogItem));
+        // });
       });
 
       socket.on("disconnect", () => {
@@ -140,7 +140,7 @@ const Match = () => {
                   isSmall={false}
                   isLoading={isLoading}
                 />
-                <BallLogList data={ball_log} isLoading={isLoading} />
+                {/* <BallLogList data={ball_log} isLoading={isLoading} /> */}
               </Box>
             )}
             <Scorecard isAdmin={false} isLoading={isLoading} />
