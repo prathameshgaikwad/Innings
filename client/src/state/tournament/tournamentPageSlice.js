@@ -34,6 +34,7 @@ const tournamentPageSlice = createSlice({
         banner_urls,
         adminName,
       } = action.payload;
+
       const details = {
         name,
         venue,
@@ -144,7 +145,6 @@ export const getTournamentDetails =
       }
 
       const details = await response.json();
-
       dispatch(setTournamentDetails(details));
       setIsLoading(false);
     } catch (error) {

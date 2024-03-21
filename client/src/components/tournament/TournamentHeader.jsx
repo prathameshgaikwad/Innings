@@ -38,7 +38,7 @@ const TournamentHeader = ({ id, isAdmin, isSetupComplete }) => {
     startDate = details.start_date;
     endDate = details.end_date;
     overs = details.overs;
-    bannerURL = details.banner_urls.large;
+    if (details.banner_urls) bannerURL = details.banner_urls.large;
   }
 
   useEffect(() => {

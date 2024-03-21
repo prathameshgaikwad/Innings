@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { CgDetailsMore } from "react-icons/cg";
 import CustomInput from "../formComponents/CustomInput";
 import { addCreatedTournament } from "../../state/tournament/tournamentSlice";
+import { createTournament } from "../../state/tournament/tournamentSetupSlice";
 import { tournamentSchema } from "../../schema/tournament/tournament";
 import { useNavigate } from "react-router-dom";
 
@@ -27,30 +28,41 @@ const CreateTournamentModal = ({ setOpen }) => {
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    try {
-      const response = await fetch("http://localhost:3000/tournaments/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(values),
-      });
+    dispatch(
+      createTournament({
+        values,
+        token,
+        setOpen,
+        resetForm,
+        addCreatedTournament,
+        navigate,
+      })
+    );
 
-      if (!response.ok) {
-        throw new Error("Fetching error");
-      }
+    // try {
+    //   const response = await fetch("http://localhost:3000/tournaments/create", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     body: JSON.stringify(values),
+    //   });
 
-      const responseData = await response.json();
+    //   if (!response.ok) {
+    //     throw new Error("Fetching error");
+    //   }
 
-      dispatch(addCreatedTournament(responseData._id));
+    //   const responseData = await response.json();
 
-      resetForm();
-      setOpen(false);
-      navigate(`/tournaments/${responseData._id}/setup`);
-    } catch (error) {
-      console.log("Error:", error);
-    }
+    //   dispatch(addCreatedTournament(responseData._id));
+
+    //   resetForm();
+    //   setOpen(false);
+    //   navigate(`/tournaments/${responseData._id}/setup`);
+    // } catch (error) {
+    //   console.log("Error:", error);
+    // }
   };
 
   return (

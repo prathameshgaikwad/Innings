@@ -17,30 +17,29 @@ import TournamentCardSkeleton from "../skeletons/TournamentCardSkeleton";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
 
+const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
+
 const TournamentCard = ({ id }) => {
   const token = useSelector((state) => state.user.token);
   const theme = useTheme();
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [name, setName] = useState();
-  const [venue, setVenue] = useState();
-  const [startDate, setStartDate] = useState();
-  const [overs, setOvers] = useState();
-  const [bannerURLS, setBannerURLS] = useState();
+  const [name, setName] = useState("");
+  const [venue, setVenue] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [overs, setOvers] = useState("");
+  const [bannerURLS, setBannerURLS] = useState({ large: "", small: "" });
 
   useEffect(() => {
     const getTournamentDetails = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/tournaments/${id}`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`${TOURNAMENTS_API}/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (!response.ok) {
           throw new Error("Could not retrieve tournament details");
         }
@@ -58,7 +57,6 @@ const TournamentCard = ({ id }) => {
         console.log("error:", error);
       }
     };
-
     getTournamentDetails();
   }, [id]);
 

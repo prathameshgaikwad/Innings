@@ -70,6 +70,34 @@ const tournamentSetupSlice = createSlice({
   },
 });
 
+export const createTournament =
+  ({ values, token, setOpen, resetForm, addCreatedTournament, navigate }) =>
+  async (dispatch) => {
+    try {
+      const response = await fetch(`${TOURNAMENTS_API}/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error("Fetching error");
+      }
+
+      const responseData = await response.json();
+
+      dispatch(addCreatedTournament(responseData._id));
+      resetForm();
+      setOpen(false);
+      navigate(`/tournaments/${responseData._id}/setup`);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
 export const saveTeamToDb =
   ({ data, token, setOpenToast, teamData }) =>
   async (dispatch) => {
