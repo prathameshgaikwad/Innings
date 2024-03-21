@@ -8,6 +8,8 @@ async function broadcastRunLog(io, matchId) {
       return;
     }
 
+    console.log("Trying to broadcast.......");
+
     // const { status, innings, team1_run_log, team2_run_log } = match;
     // const isOngoingMatch = status === "ongoing";
     // const isFirstInnings = innings === 1;

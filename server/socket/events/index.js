@@ -11,7 +11,7 @@ const socketEvents = (io) => {
       subscribeToMatch(socket, matchId)
     );
 
-    socket.on("addRun", (runLogData) => addRun(runLogData));
+    socket.on("addRun", (runLogData) => addRun(io, runLogData));
 
     socket.on("addExtra", (extraLogItem) => addExtra(extraLogItem));
 

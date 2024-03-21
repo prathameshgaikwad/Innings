@@ -9,7 +9,7 @@ const fetchRandomImage = require("../helpers/fetchRandomImage");
 const createTournament = async (req, res) => {
   try {
     const { admin_id, name, start_date, end_date, overs, venue } = req.body;
-    const { largeURL, smallURL } = await fetchRandomImage("abstract", true);
+    const { large, small } = await fetchRandomImage("abstract", true);
     const newTournament = new Tournament({
       admin_id,
       name,
@@ -17,7 +17,7 @@ const createTournament = async (req, res) => {
       end_date,
       overs,
       venue,
-      banner_urls: { largeURL, smallURL },
+      banner_urls: { large, small },
     });
 
     if (!newTournament)

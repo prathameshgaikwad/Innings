@@ -1,6 +1,7 @@
 const Match = require("../../models/match");
+const { broadcastRunLog } = require("../broadcasts/broadcastRunLog");
 
-const addRun = (runLogData) => {
+const addRun = (io, runLogData) => {
   const { matchId, battingTeamId, batsman, bowler, score } = runLogData;
   try {
     const updateMatchRunLog = async () => {
@@ -35,6 +36,8 @@ const addRun = (runLogData) => {
       }
 
       await match.save();
+
+      broadcastRunLog(io, matchId);
     };
     updateMatchRunLog();
   } catch (error) {
