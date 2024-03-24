@@ -112,15 +112,15 @@ export const saveTeamToDb =
       });
       if (!response.ok) {
         console.log("Something went wrong!");
+        return;
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
       setOpenToast(true);
       setTimeout(() => {
         setOpenToast(false);
         dispatch(saveTeam(teamData));
       }, 1200);
+    } catch (error) {
+      console.log(error);
     }
   };
 
