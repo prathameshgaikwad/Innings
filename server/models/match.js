@@ -98,7 +98,7 @@ const matchSchema = new mongoose.Schema(
           type: mongoose.Types.ObjectId,
           ref: "players",
         },
-        runsConceded: { type: Number },
+        runs_conceded: { type: Number },
         wicket: {
           isWicket: { type: Boolean },
           wicket_number: { type: Number },
