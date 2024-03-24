@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 import ActionsPane from "../../components/matchManagement/ActionsPane";
 import BallLogList from "../../components/lists/BallLogList";
+import BatsmenStats from "../../components/match/BatsmenStats";
 import BattingStats from "../../components/matchManagement/BattingStats";
 import BowlingStats from "../../components/matchManagement/BowlingStats";
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
@@ -40,6 +41,7 @@ const MatchManagement = () => {
 
   const ballLog = useSelector((state) => state.matchManagement.ball_log);
   const innings = useSelector((state) => state.matchManagement.innings);
+  const batsmenData = useSelector((state) => state.matchManagement.batsmen);
 
   const [tossCompleted, setTossCompleted] = useState(status);
 
@@ -122,6 +124,11 @@ const MatchManagement = () => {
                   justifyContent: "space-between",
                 }}>
                 <ActionsPane isLoading={isLoading} />
+                <BatsmenStats
+                  data={batsmenData}
+                  isSmall={true}
+                  isLoading={isLoading}
+                />
                 <BallLogList
                   isSmall={true}
                   data={ballLog}

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Card, Divider, Typography } from "@mui/joy";
+import { Card, Divider, Grid, Typography } from "@mui/joy";
 
 import BatsmenStatsSkeleton from "../skeletons/BatsmenStatsSkeleton";
 
@@ -19,8 +19,7 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
         alignItems: "center",
         justifyContent: "space-evenly",
         width: "100%",
-        height: 56,
-        mb: 1,
+        minHeight: 56,
         py: 0,
       }}>
       {isLoading ? (
@@ -40,17 +39,27 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
             </Typography>
           ) : (
             data && (
-              <>
-                <Typography level={isSmall ? "body-xs" : "body-sm"}>
-                  {onStrikeBatsman.name} - {onStrikeBatsman.runs} (
-                  {onStrikeBatsman.ballsPlayed})
-                </Typography>
-                <Divider orientation="vertical" />
-                <Typography level={isSmall ? "body-xs" : "body-sm"}>
-                  {offStrikeBatsman.name} - {offStrikeBatsman.runs} (
-                  {offStrikeBatsman.ballsPlayed})
-                </Typography>
-              </>
+              <Grid
+                container
+                columns={16}
+                sx={{
+                  width: "100%",
+                  alignItems: "center",
+                }}>
+                <Grid xs={9}>
+                  <Typography level={isSmall ? "title-sm" : "title-md"}>
+                    {onStrikeBatsman.name} - {onStrikeBatsman.runs || 0} (
+                    {onStrikeBatsman.ballsPlayed || 0})
+                  </Typography>
+                </Grid>
+                <Divider orientation="vertical" sx={{ marginRight: 2 }} />
+                <Grid xs={6}>
+                  <Typography level={isSmall ? "body-xs" : "body-sm"}>
+                    {offStrikeBatsman.name} - {offStrikeBatsman.runs || 0} (
+                    {offStrikeBatsman.ballsPlayed || 0})
+                  </Typography>
+                </Grid>
+              </Grid>
             )
           )}
         </>
