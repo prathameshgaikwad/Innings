@@ -14,13 +14,14 @@ import ScoreInfoSkeleton from "../skeletons/ScoreInfoSkeleton";
 import { useSelector } from "react-redux";
 
 const ScoreInfo = ({ isLoading }) => {
-  const totalOvers = useSelector((state) => state.matchManagement.overs);
-  const battingTeam = useSelector((state) => state.matchManagement.battingTeam);
+  const matchManagement = useSelector((state) => state.matchManagement);
+  const totalOvers = matchManagement.overs || 0;
+  const battingTeam = matchManagement.battingTeam || "ABC";
+  const runs = matchManagement.runs || 0;
+  const wickets = matchManagement.wickets || 0;
 
   const overs = "6.3";
   const crr = "11.08";
-  const runs = "91";
-  const wickets = "2";
   const extrasCount = "7";
   const extrasDetails = {
     wide: 4,

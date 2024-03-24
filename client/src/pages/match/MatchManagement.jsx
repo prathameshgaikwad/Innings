@@ -2,6 +2,7 @@ import { Box, Card, useTheme } from "@mui/joy";
 import {
   getMatchManagementInfo,
   setBallLog,
+  setRuns,
 } from "../../state/match/matchManagement";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -70,6 +71,7 @@ const MatchManagement = () => {
 
         socket.on("getBallLog", (ball_log) => {
           dispatch(setBallLog(ball_log));
+          dispatch(setRuns({ runs_scored: ball_log.runs_conceded }));
         });
       });
 

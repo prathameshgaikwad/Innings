@@ -9,6 +9,8 @@ const initialState = {
   bowlingTeam: "",
   team1: "",
   team2: "",
+  runs: 0,
+  wickets: 0,
   ball_log: [],
   run_log: [],
   wicket_log: [],
@@ -154,6 +156,10 @@ const matchManagementSlice = createSlice({
       state.onStrikeBatsman.runs = runs;
       state.onStrikeBatsman.ballsPlayed = balls_played;
     },
+    setRuns: (state, action) => {
+      const { runs_scored } = action.payload;
+      state.runs = state.runs + runs_scored;
+    },
     setBowler: (state, action) => {
       const { _id, name } = action.payload;
       state.bowler._id = _id;
@@ -269,6 +275,7 @@ export const {
   setOnStrikeBatsmanRuns,
   setOffStrikeBatsman,
   setBallLog,
+  setRuns,
   setBowler,
   setExtrasLog,
   setStrikeChange,
