@@ -67,7 +67,7 @@ const BallLogList = ({ data, isLoading }) => {
                   className={"smallSwiper"}>
                   {data.map((item, i) => {
                     let type = "";
-                    switch (item) {
+                    switch (true) {
                       case item.isWicket:
                         type = "danger";
                         break;
@@ -89,7 +89,7 @@ const BallLogList = ({ data, isLoading }) => {
                         {item === "-" ? (
                           <BallLogSeparator />
                         ) : (
-                          <LogItem item={item} type={type} />
+                          <LogItem item={item.runs_conceded} type={type} />
                         )}
                       </SwiperSlide>
                     );
