@@ -75,7 +75,11 @@ const createTeam = async (req, res) => {
         },
       });
       await newPlayer.save();
-      return newPlayer._id;
+      const savedPlayer = {
+        _id: newPlayer._id,
+        playerName: newPlayer.first_name + " " + newPlayer.last_name,
+      };
+      return savedPlayer;
     });
 
     newTeam.players = await Promise.all(playerPromises);
