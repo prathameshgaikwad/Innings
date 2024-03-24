@@ -14,8 +14,8 @@ const initialState = {
   wicket_log: [],
   extras_log: [],
   batsmen: {
-    onStrikeBatsman: { _id: "", name: "" },
-    offStrikeBatsman: { _id: "", name: "" },
+    onStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
+    offStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
   },
   bowler: {
     _id: "",
@@ -182,49 +182,6 @@ const matchManagementSlice = createSlice({
       };
       state.extras_log = [...state.extras_log, newExtra];
     },
-    getWides: (state) => {
-      let wides = 0;
-      state.extras_log.map((extra) => {
-        if (extra.extraType === "WD") {
-          wides += extra.runScored;
-        }
-      });
-      return wides;
-    },
-    getNoBalls: (state) => {
-      let noBalls = 0;
-      state.extras_log.map((extra) => {
-        if (extra.extraType === "NB") {
-          noBalls += extra.runScored;
-        }
-      });
-      return noBalls;
-    },
-    getByes: (state) => {
-      let byes = 0;
-      state.extras_log.map((extra) => {
-        if (extra.extraType === "B") {
-          byes += extra.runScored;
-        }
-      });
-      return byes;
-    },
-    getLegByes: (state) => {
-      let legByes = 0;
-      state.extras_log.map((extra) => {
-        if (extra.extraType === "LB") {
-          legByes += extra.runScored;
-        }
-      });
-      return legByes;
-    },
-    getExtrasTotal: (state) => {
-      let total = 0;
-      state.extras_log.map((extra) => {
-        total += extra.runScored;
-      });
-      return total;
-    },
     clearMatchManagementData: () => initialState,
   },
 });
@@ -310,11 +267,6 @@ export const {
   setExtrasLog,
   setStrikeChange,
   setWicketLog,
-  getByes,
-  getExtrasTotal,
-  getLegByes,
-  getNoBalls,
-  getWides,
   clearMatchManagementData,
 } = matchManagementSlice.actions;
 export const matchManagementReducer = matchManagementSlice.reducer;
