@@ -1,4 +1,8 @@
 import { Box, Card, useTheme } from "@mui/joy";
+import {
+  getMatchManagementInfo,
+  setBallLog,
+} from "../../state/match/matchManagement";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -14,7 +18,6 @@ import Navbar from "../../components/common/Navbar";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
-import { getMatchManagementInfo } from "../../state/match/matchManagement";
 import { io } from "socket.io-client";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -35,10 +38,10 @@ const MatchManagement = () => {
     dispatch(getMatchManagementInfo({ matchId, token, setIsLoading }));
   }, [dispatch, matchId, token]);
 
-  const ball_log = useSelector((state) => state.matchManagement.ball_log);
+  const ballLog = useSelector((state) => state.matchManagement.ball_log);
   const innings = useSelector((state) => state.matchManagement.innings);
 
-  const [tossCompleted, setTossCompleted] = useState(status === "pending");
+  const [tossCompleted, setTossCompleted] = useState(status);
 
   useEffect(() => {
     setTossCompleted(status === "ongoing");
@@ -61,6 +64,11 @@ const MatchManagement = () => {
     if (socket) {
       socket.on("connect", () => {
         console.log("Connected to Socket.IO server");
+        socket.emit("subscribeToMatch", matchId);
+
+        socket.on("getBallLog", (ball_log) => {
+          dispatch(setBallLog(ball_log));
+        });
       });
 
       socket.on("disconnect", () => {
@@ -116,7 +124,7 @@ const MatchManagement = () => {
                 <ActionsPane isLoading={isLoading} />
                 <BallLogList
                   isSmall={true}
-                  data={ball_log}
+                  data={ballLog}
                   isLoading={isLoading}
                 />
                 <BattingStats isLoading={isLoading} />

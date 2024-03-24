@@ -155,13 +155,11 @@ const matchManagementSlice = createSlice({
       state.bowler.name = name;
     },
     setBallLog: (state, action) => {
-      const { runScored, isExtra, batsman, overNumber } = action.payload;
+      const { runs_conceded, isWicket } = action.payload;
       const newBall = {
         bowler: state.bowler,
-        runScored,
-        isExtra,
-        batsman,
-        overNumber,
+        runs_conceded,
+        isWicket,
       };
       state.ball_log = [...state.ball_log, newBall];
     },
