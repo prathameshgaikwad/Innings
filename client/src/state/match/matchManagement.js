@@ -149,6 +149,11 @@ const matchManagementSlice = createSlice({
         state.offStrikeBatsman,
       ];
     },
+    setOnStrikeBatsmanRuns: (state, action) => {
+      const { runs, balls_played } = action.payload;
+      state.onStrikeBatsman.runs = runs;
+      state.onStrikeBatsman.ballsPlayed = balls_played;
+    },
     setBowler: (state, action) => {
       const { _id, name } = action.payload;
       state.bowler._id = _id;
@@ -261,6 +266,7 @@ export const {
   setBattingTeam,
   setMatchOngoing,
   setOnStrikeBatsman,
+  setOnStrikeBatsmanRuns,
   setOffStrikeBatsman,
   setBallLog,
   setBowler,
