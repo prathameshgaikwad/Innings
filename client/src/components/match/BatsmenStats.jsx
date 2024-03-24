@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Card, Divider, Grid, Typography } from "@mui/joy";
+import { Card, Divider, Grid, Typography, useTheme } from "@mui/joy";
 
 import BatsmenStatsSkeleton from "../skeletons/BatsmenStatsSkeleton";
 
@@ -9,6 +9,9 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
   const isEmpty =
     (data && onStrikeBatsman.name.length === 0) ||
     offStrikeBatsman.name.length === 0;
+
+  const theme = useTheme();
+  const isDarkTheme = theme.palette.mode === "dark";
   return (
     <Card
       variant="outlined"
@@ -46,7 +49,15 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
                   width: "100%",
                   alignItems: "center",
                 }}>
-                <Grid xs={9}>
+                <Grid
+                  xs={9}
+                  sx={{ display: "inline-flex", alignItems: "center", gap: 2 }}>
+                  <img
+                    width={21}
+                    src={`/assets/batsman_icon_${
+                      isDarkTheme ? "light" : "dark"
+                    }.svg`}
+                  />
                   <Typography level={isSmall ? "title-sm" : "title-md"}>
                     {onStrikeBatsman.name} - {onStrikeBatsman.runs || 0} (
                     {onStrikeBatsman.ballsPlayed || 0})
