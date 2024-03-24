@@ -42,12 +42,12 @@ const matchSchema = new mongoose.Schema(
       },
     },
     winner: { type: String },
-    team1_runs: { type: Number },
-    team2_runs: { type: Number },
-    team1_sixes: { type: Number },
-    team2_sixes: { type: Number },
-    team1_fours: { type: Number },
-    team2_fours: { type: Number },
+    team1_runs: { type: Number, default: 0 },
+    team2_runs: { type: Number, default: 0 },
+    team1_sixes: { type: Number, default: 0 },
+    team2_sixes: { type: Number, default: 0 },
+    team1_fours: { type: Number, default: 0 },
+    team2_fours: { type: Number, default: 0 },
     innings: { type: Number },
     team1_run_log: [
       {
@@ -68,16 +68,16 @@ const matchSchema = new mongoose.Schema(
       },
     ],
     team1_extras: {
-      wides: { type: Number },
-      byes: { type: Number },
-      leg_byes: { type: Number },
-      no_balls: { type: Number },
+      wides: { type: Number, default: 0 },
+      byes: { type: Number, default: 0 },
+      leg_byes: { type: Number, default: 0 },
+      no_balls: { type: Number, default: 0 },
     },
     team2_extras: {
-      wides: { type: Number },
-      byes: { type: Number },
-      leg_byes: { type: Number },
-      no_balls: { type: Number },
+      wides: { type: Number, default: 0 },
+      byes: { type: Number, default: 0 },
+      leg_byes: { type: Number, default: 0 },
+      no_balls: { type: Number, default: 0 },
     },
     team1_ball_log: [
       {
