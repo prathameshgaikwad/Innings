@@ -1,9 +1,5 @@
 import { Box, Typography, useTheme } from "@mui/joy";
-import {
-  getMatchInfo,
-  setRunLogItem,
-  setToss,
-} from "../../state/match/matchSlice";
+import { getMatchInfo, setToss } from "../../state/match/matchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -47,16 +43,10 @@ const Match = () => {
   useEffect(() => {
     if (socket) {
       socket.on("connect", () => {
-        console.log("Connected to Socket.IO server");
         socket.emit("subscribeToMatch", matchId);
-        // socket.on("getRunLog", (runLogItem) => {
-        //   dispatch(setRunLogItem(runLogItem));
-        // });
       });
 
-      socket.on("disconnect", () => {
-        console.log("Disconnected from Socket.IO server");
-      });
+      socket.on("disconnect", () => {});
     }
   }, [socket, matchId]);
 
@@ -140,7 +130,7 @@ const Match = () => {
                   isSmall={false}
                   isLoading={isLoading}
                 />
-                {/* <BallLogList data={ball_log} isLoading={isLoading} /> */}
+                <BallLogList data={ball_log} isLoading={isLoading} />
               </Box>
             )}
             <Scorecard isAdmin={false} isLoading={isLoading} />
