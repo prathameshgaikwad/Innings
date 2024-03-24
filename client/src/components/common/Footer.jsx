@@ -6,38 +6,45 @@ const Footer = () => {
   const theme = useTheme();
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          p: 4,
+          borderTop: "1px solid",
+          borderColor: "divider",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
         <Link
           href="/"
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
             gap: 1,
-            p: 4,
-            borderTop: "1px solid",
-            borderColor: "divider",
             "&:hover": {
               textDecoration: "none",
             },
           }}>
           <Typography
             level="body-sm"
-            sx={{ display: "inline-flex", color: theme.palette.text.secondary }}
+            sx={{
+              display: "inline-flex",
+              color: theme.palette.text.secondary,
+              "&:hover": {
+                color: theme.palette.text.primary,
+              },
+            }}
             startDecorator={<CopyrightIcon />}>
             {new Date().getFullYear()} Innings
           </Typography>
-          <Divider
-            orientation="vertical"
-            sx={{
-              "--Divider-thickness": "1px",
-              color: theme.palette.text.tertiary,
-            }}
-          />
+          <Divider orientation="vertical" />
           <Typography
             level="body-sm"
-            sx={{ color: theme.palette.text.tertiary }}>
+            sx={{
+              color: theme.palette.text.tertiary,
+              "&:hover": {
+                color: theme.palette.text.secondary,
+              },
+            }}>
             The Ultimate Cricket Tournament Platform
           </Typography>
         </Link>
