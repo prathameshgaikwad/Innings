@@ -90,6 +90,10 @@ const matchSchema = new mongoose.Schema(
           isWicket: { type: Boolean },
           wicket_number: { type: Number },
         },
+        extra: {
+          isExtra: { type: Boolean },
+          extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
+        },
       },
     ],
     team2_ball_log: [
