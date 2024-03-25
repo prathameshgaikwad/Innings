@@ -156,9 +156,14 @@ const matchManagementSlice = createSlice({
       state.onStrikeBatsman.runs = runs;
       state.onStrikeBatsman.ballsPlayed = balls_played;
     },
-    setRuns: (state, action) => {
-      const { runs_scored } = action.payload;
-      state.runs = state.runs + runs_scored;
+    setRuns: (state) => {
+      let totalRuns = 0;
+      state.run_log.forEach((log) => (totalRuns += log.score));
+      state.runs = totalRuns;
+    },
+    addRuns: (state, action) => {
+      const { score } = action.payload;
+      state.runs += score;
     },
     setBowler: (state, action) => {
       const { _id, name } = action.payload;
@@ -265,6 +270,7 @@ export const saveTossResultToDb =
   };
 
 export const {
+  addRuns,
   setMatch,
   completeFirstInnings,
   setTossResult,

@@ -1,5 +1,6 @@
 import { Box, Card, useTheme } from "@mui/joy";
 import {
+  addRuns,
   getMatchManagementInfo,
   setBallLog,
   setRuns,
@@ -38,6 +39,7 @@ const MatchManagement = () => {
 
   useEffect(() => {
     dispatch(getMatchManagementInfo({ matchId, token, setIsLoading }));
+    dispatch(setRuns());
   }, [dispatch, matchId, token]);
 
   const ballLog = useSelector((state) => state.matchManagement.ball_log);
@@ -71,7 +73,7 @@ const MatchManagement = () => {
 
         socket.on("getBallLog", (ball_log) => {
           dispatch(setBallLog(ball_log));
-          dispatch(setRuns({ runs_scored: ball_log.runs_conceded }));
+          dispatch(addRuns({ score: ball_log.runs_conceded }));
         });
       });
 
