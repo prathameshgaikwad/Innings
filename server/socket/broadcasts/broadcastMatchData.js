@@ -1,6 +1,6 @@
 const Match = require("../../models/match");
 
-async function broadcastBallLogItem(io, matchId) {
+async function broadcastMatchData(io, matchId) {
   try {
     const match = await Match.findById(matchId);
     if (!match) {
@@ -34,4 +34,4 @@ async function broadcastBallLogItem(io, matchId) {
   }
 }
 
-module.exports = { broadcastBallLogItem };
+module.exports = { broadcastMatchData };

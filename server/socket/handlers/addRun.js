@@ -1,5 +1,5 @@
 const Match = require("../../models/match");
-const { broadcastBallLogItem } = require("../broadcasts/broadcastBallLogItem");
+const { broadcastMatchData } = require("../broadcasts/broadcastMatchData");
 const { addPlayerRuns } = require("./addPlayerRuns");
 
 const addRun = (io, runLogData) => {
@@ -39,7 +39,7 @@ const addRun = (io, runLogData) => {
       await match.save();
 
       addPlayerRuns(batsman._id, score);
-      broadcastBallLogItem(io, matchId);
+      broadcastMatchData(io, matchId);
     };
     updateMatchRunLog();
   } catch (error) {
