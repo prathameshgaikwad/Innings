@@ -89,10 +89,7 @@ const BallLogList = ({ data, isLoading }) => {
                         {item === "-" ? (
                           <BallLogSeparator />
                         ) : (
-                          <LogItem
-                            item={item.runs_conceded || "NA"}
-                            type={type}
-                          />
+                          <LogItem item={item.runs_conceded} type={type} />
                         )}
                       </SwiperSlide>
                     );
