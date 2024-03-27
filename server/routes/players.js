@@ -3,6 +3,6 @@ const { getPlayerDetails } = require("../controllers/players");
 
 const router = express.Router();
 
-router.get("/:playerId", getPlayerDetails);
+router.get("/:player_id", getPlayerDetails);
 
 module.exports = router;

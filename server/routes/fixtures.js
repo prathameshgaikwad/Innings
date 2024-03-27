@@ -6,7 +6,7 @@ const {
 
 const router = express.Router();
 
-router.get("/:fixtureId", getFixtureDetails);
+router.get("/:fixture_id", getFixtureDetails);
 router.post("/create-batch", createFixturesBatch);
 
 module.exports = router;

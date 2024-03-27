@@ -15,13 +15,13 @@ const {
 const router = express.Router();
 
 router.get("/featured", getFeaturedTournaments);
-router.get("/:tournamentId", getTournamentDetails);
-router.get("/:tournamentId/live", getLiveMatchDetails);
-router.get("/:tournamentId/upcoming-matches", getUpcomingMatches);
-router.get("/:tournamentId/completed-matches", getCompletedMatches);
-router.get("/:tournamentId/teams", getAllTeams);
-router.get("/:tournamentId/fixtures", getAllFixtures);
-router.get("/:tournamentId/points-table", getPointsTable);
+router.get("/:tournament_id", getTournamentDetails);
+router.get("/:tournament_id/live", getLiveMatchDetails);
+router.get("/:tournament_id/upcoming-matches", getUpcomingMatches);
+router.get("/:tournament_id/completed-matches", getCompletedMatches);
+router.get("/:tournament_id/teams", getAllTeams);
+router.get("/:tournament_id/fixtures", getAllFixtures);
+router.get("/:tournament_id/points-table", getPointsTable);
 router.post("/create", createTournament);
 router.post("/join", joinTournament);
 

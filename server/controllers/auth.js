@@ -10,7 +10,7 @@ const fetchGoogleUserData = require("../helpers/fetchGoogleUserData.js");
 const register = async (req, res) => {
   try {
     let newUser;
-    let { access_token, firstName, lastName, email, password } = req.body;
+    let { access_token, first_name, last_name, email, password } = req.body;
 
     // USE GOOGLE OAUTH IF PROVIDED ACCESS TOKEN
     if (access_token) {
@@ -20,10 +20,10 @@ const register = async (req, res) => {
         throw new Error("Failed to fetch user data from Google.");
       }
       newUser = new User({
-        firstName: googleUserData.given_name,
-        lastName: googleUserData.family_name,
+        first_name: googleUserData.given_name,
+        last_name: googleUserData.family_name,
         email: googleUserData.email,
-        profileImageURL: googleUserData.picture,
+        profile_image_url: googleUserData.picture,
       });
 
       // const existingUser = await User.findOne({ email });
@@ -47,17 +47,17 @@ const register = async (req, res) => {
       password = hashedPassword;
 
       newUser = new User({
-        firstName,
-        lastName,
+        first_name,
+        last_name,
         email,
         password: hashedPassword,
-        profileImageURL: await fetchRandomImage("person", false),
+        profile_image_url: await fetchRandomImage("person", false),
       });
     }
 
     const player = new Player({
-      first_name: newUser.firstName,
-      last_name: newUser.lastName,
+      first_name: newUser.first_name,
+      last_name: newUser.last_name,
       debut: new Date(),
     });
 
@@ -87,10 +87,10 @@ const login = async (req, res) => {
       user = await User.findOne({ email: googleUserData.email });
       if (!user) {
         user = new User({
-          firstName: googleUserData.given_name,
-          lastName: googleUserData.family_name,
+          first_name: googleUserData.given_name,
+          last_name: googleUserData.family_name,
           email: googleUserData.email,
-          profileImageURL: googleUserData.picture,
+          profile_image_url: googleUserData.picture,
         });
         await user.save();
       }
@@ -102,7 +102,7 @@ const login = async (req, res) => {
           .status(StatusCodes.BAD_REQUEST)
           .json({ message: "User does not exist!" });
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = bcrypt.compare(password, user.password);
       if (!isMatch)
         return res
           .status(StatusCodes.BAD_REQUEST)

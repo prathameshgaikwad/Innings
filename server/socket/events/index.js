@@ -7,16 +7,16 @@ const socketEvents = (io) => {
   io.on("connection", (socket) => {
     console.log("Connected!");
 
-    socket.on("subscribeToMatch", (matchId) =>
-      subscribeToMatch(socket, matchId)
+    socket.on("subscribeToMatch", (match_id) =>
+      subscribeToMatch(socket, match_id)
     );
 
     socket.on("addRun", (runLogData) => addRun(io, runLogData));
 
     socket.on("addExtra", (extraLogItem) => addExtra(extraLogItem));
 
-    socket.on("unsubscribeFromMatch", (matchId) =>
-      unsubscribeFromMatch(socket, matchId)
+    socket.on("unsubscribeFromMatch", (match_id) =>
+      unsubscribeFromMatch(socket, match_id)
     );
 
     socket.on("disconnect", () => {

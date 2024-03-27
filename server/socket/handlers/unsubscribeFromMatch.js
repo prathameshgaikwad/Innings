@@ -1,6 +1,6 @@
-const unsubscribeFromMatch = (socket, matchId) => {
-  socket.leave(matchId);
-  console.log(`User left room: ${matchId}`);
+const unsubscribeFromMatch = (socket, match_id) => {
+  socket.leave(match_id);
+  console.log(`User left room: ${match_id}`);
 };
 
 module.exports = { unsubscribeFromMatch };

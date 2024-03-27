@@ -7,8 +7,8 @@ const {
 
 const router = express.Router();
 
-router.get("/:matchId", getMatchDetails);
-router.get("/:matchId/toss", getTossResult);
+router.get("/:match_id", getMatchDetails);
+router.get("/:match_id/toss", getTossResult);
 router.post("/toss", setTossResult);
 
 module.exports = router;

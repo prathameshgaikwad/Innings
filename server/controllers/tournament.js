@@ -27,7 +27,7 @@ const createTournament = async (req, res) => {
 
     const savedTournament = await newTournament.save();
 
-    const user = await User.findOne({ _id: admin_id });
+    const user = await User.findById({ _id: admin_id });
     user.createdTournaments.push(savedTournament._id);
     await user.save();
 
@@ -43,7 +43,7 @@ const joinTournament = async (req, res) => {
   try {
     const { user_id, tournament_id } = req.body;
 
-    const user = await User.findOne({ _id: user_id });
+    const user = await User.findById({ _id: user_id });
     user.joinedTournaments.push(tournament_id);
     await user.save();
     res
@@ -58,15 +58,15 @@ const joinTournament = async (req, res) => {
 
 const getTournamentDetails = async (req, res) => {
   try {
-    const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const { tournament_id } = req.params;
+    const tournament = await Tournament.findById({ _id: tournament_id });
 
     if (!tournament)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
 
-    const adminUser = await User.findOne({ _id: tournament.admin_id });
+    const adminUser = await User.findById({ _id: tournament.admin_id });
     const adminName = `${adminUser.firstName} ${adminUser.lastName}`;
 
     const tournamentData = {
@@ -84,8 +84,8 @@ const getTournamentDetails = async (req, res) => {
 
 const getLiveMatchDetails = async (req, res) => {
   try {
-    const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const { tournament_id } = req.params;
+    const tournament = await Tournament.findById({ _id: tournament_id });
 
     if (!tournament)
       return res
@@ -97,9 +97,9 @@ const getLiveMatchDetails = async (req, res) => {
     let ongoingMatchId = null;
 
     for (const id of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: id });
+      const fixture = await Fixture.findById({ _id: id });
       const { match_id } = fixture;
-      const match = await Match.findOne({ _id: match_id });
+      const match = await Match.findById({ _id: match_id });
 
       if (match.status === "ongoing") {
         ongoingMatchId = match_id;
@@ -112,38 +112,20 @@ const getLiveMatchDetails = async (req, res) => {
         .status(StatusCodes.OK)
         .json({ isEmpty: true, msg: "No ongoing matches." });
 
-    const liveMatch = await Match.findOne({ _id: ongoingMatchId });
-    const {
-      _id,
-      match_no,
-      overs,
-      status,
-      team1_ball_log,
-      team1_run_log,
-      team2_ball_log,
-      team2_run_log,
-      team1_wicket_log,
-      team2_wicket_log,
-      toss,
-      team1_id,
-      team2_id,
-    } = liveMatch;
+    const liveMatch = await Match.findById({ _id: ongoingMatchId });
+    const { _id, match_no, overs, status, data, toss, team1_id, team2_id } =
+      liveMatch;
 
-    const team1Details = await Team.findOne({ _id: team1_id });
-    const team2Details = await Team.findOne({ _id: team2_id });
+    const team1Details = await Team.findById({ _id: team1_id });
+    const team2Details = await Team.findById({ _id: team2_id });
 
-    const responseData = {
+    const liveMatchData = {
       _id,
       match_no,
       overs,
       status,
       venue: tournament.venue,
-      team1_ball_log,
-      team1_run_log,
-      team1_wicket_log,
-      team2_ball_log,
-      team2_run_log,
-      team2_wicket_log,
+      data,
       toss,
       team1: team1Details,
       team2: team2Details,
@@ -151,7 +133,7 @@ const getLiveMatchDetails = async (req, res) => {
 
     res
       .status(StatusCodes.OK)
-      .json({ isEmpty: false, liveMatch: responseData });
+      .json({ isEmpty: false, liveMatch: liveMatchData });
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -161,8 +143,8 @@ const getLiveMatchDetails = async (req, res) => {
 
 const getUpcomingMatches = async (req, res) => {
   try {
-    const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const { tournament_id } = req.params;
+    const tournament = await Tournament.findById({ _id: tournament_id });
 
     if (!tournament)
       return res
@@ -173,11 +155,11 @@ const getUpcomingMatches = async (req, res) => {
 
     const upcomingMatches = [];
 
-    for (const id of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: id });
+    for (const _id of fixture_id) {
+      const fixture = await Fixture.findById({ _id });
 
       if (fixture.status === "pending") {
-        upcomingMatches.push(id);
+        upcomingMatches.push(_id);
       }
 
       if (upcomingMatches.length >= 10) break;
@@ -200,8 +182,8 @@ const getUpcomingMatches = async (req, res) => {
 
 const getCompletedMatches = async (req, res) => {
   try {
-    const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const { tournament_id } = req.params;
+    const tournament = await Tournament.findById({ _id: tournament_id });
 
     if (!tournament)
       return res
@@ -213,14 +195,14 @@ const getCompletedMatches = async (req, res) => {
     const completedMatches = [];
 
     for (const id of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: id });
+      const fixture = await Fixture.findById({ _id: id });
 
       if (fixture.status === "completed") {
         const { match_id } = fixture;
         const { team1_id, team2_id } = fixture;
-        const match = await Match.findOne({ _id: match_id });
-        const team1 = await Team.findOne({ _id: team1_id });
-        const team2 = await Team.findOne({ _id: team2_id });
+        const match = await Match.findById({ _id: match_id });
+        const team1 = await Team.findById({ _id: team1_id });
+        const team2 = await Team.findById({ _id: team2_id });
 
         const { _id, match_no, winner } = match;
 
@@ -279,8 +261,8 @@ const getFeaturedTournaments = async (req, res) => {
 
 const getAllTeams = async (req, res) => {
   try {
-    const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const { tournament_id } = req.params;
+    const tournament = await Tournament.findById({ _id: tournament_id });
 
     if (!tournament)
       return res
@@ -305,14 +287,14 @@ const getAllTeams = async (req, res) => {
 
 const getPointsTable = async (req, res) => {
   try {
-    const { tournamentId } = req.params;
-    const response = await Tournament.findOne({ _id: tournamentId }).select(
+    const { tournament_id } = req.params;
+    const tournament = await Tournament.findById({ _id: tournament_id }).select(
       "teams"
     );
 
     const teamsData = await Promise.all(
-      response.teams.map(async (id) => {
-        return await Team.findOne({ _id: id });
+      tournament.teams.map(async (_id) => {
+        return await Team.findById({ _id });
       })
     );
 
@@ -341,8 +323,8 @@ const getPointsTable = async (req, res) => {
 
 const getAllFixtures = async (req, res) => {
   try {
-    const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const { tournament_id } = req.params;
+    const tournament = await Tournament.findById({ _id: tournament_id });
     const { fixture_id } = tournament;
 
     const responseObject = [];
@@ -356,22 +338,22 @@ const getAllFixtures = async (req, res) => {
       const team2 = await Team.findOne({ _id: team2_id });
       const match = await Match.findOne({ _id: match_id });
 
-      const team1Details = {
+      const team1_details = {
         name: team1.name,
-        nameShort: team1.nameShort,
+        name_short: team1.name_short,
         color: team1.color,
-        logoURL: team1.logoURL,
+        logo_url: team1.logo_url,
       };
-      const team2Details = {
+      const team2_details = {
         name: team2.name,
-        nameShort: team2.nameShort,
+        name_short: team2.name_short,
         color: team2.color,
-        logoURL: team2.logoURL,
+        logo_url: team2.logo_url,
       };
 
       responseObject.push({
-        team1Details,
-        team2Details,
+        team1_details,
+        team2_details,
         match_no,
         match_id,
         date,
