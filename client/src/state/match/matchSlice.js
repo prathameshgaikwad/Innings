@@ -27,7 +27,7 @@ const initialState = {
   toss: {
     decision: "",
     winner: "",
-    winnerId: "",
+    winner_id: "",
     loser: "",
   },
 };
@@ -106,9 +106,9 @@ const matchSlice = createSlice({
     },
     setBattingTeam: (state) => {
       const winningTeam =
-        state.toss.winnerId === state.team1._id ? state.team1 : state.team2;
+        state.toss.winner_id === state.team1._id ? state.team1 : state.team2;
       const losingTeam =
-        state.toss.winnerId === state.team1._id ? state.team2 : state.team1;
+        state.toss.winner_id === state.team1._id ? state.team2 : state.team1;
 
       if (state.innings === "1") {
         if (state.toss.decision === "bat") {

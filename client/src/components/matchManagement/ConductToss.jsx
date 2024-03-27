@@ -36,7 +36,7 @@ const ConductToss = ({ matchId }) => {
 
   const initialValues = {
     decision: "",
-    winnerId: "",
+    winner_id: "",
   };
 
   const { team1, team2 } = useSelector((state) => state.matchManagement);
@@ -53,11 +53,11 @@ const ConductToss = ({ matchId }) => {
   ];
 
   const onSubmit = async (values, { resetForm }) => {
-    const { decision, winnerId } = values;
-    const winner = winnerId === team1._id ? team1.nameShort : team2.nameShort;
-    const loser = winnerId === team1._id ? team2.nameShort : team1.nameShort;
+    const { decision, winner_id } = values;
+    const winner = winner_id === team1._id ? team1.nameShort : team2.nameShort;
+    const loser = winner_id === team1._id ? team2.nameShort : team1.nameShort;
 
-    const toss = { decision, winnerId, winner, loser };
+    const toss = { decision, winner_id, winner, loser };
 
     try {
       await dispatch(saveTossResultToDb({ matchId, toss, token }))
@@ -103,7 +103,7 @@ const ConductToss = ({ matchId }) => {
                   alignItems: "center",
                   gap: 2,
                 }}>
-                <CustomSelect name={"winnerId"} options={teamOptions} />
+                <CustomSelect name={"winner_id"} options={teamOptions} />
                 <Typography>won the toss and chose to</Typography>
                 <CustomSelect name={"decision"} options={decisionOptions} />
               </Stack>
