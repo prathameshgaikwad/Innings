@@ -51,7 +51,7 @@ const getCreatedTournaments = async (req, res) => {
 const getLatestTournamentDetails = async (req, res) => {
   try {
     const { userId } = req.params;
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findById({ _id: userId });
 
     if (!user)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such user" });
@@ -67,7 +67,7 @@ const getLatestTournamentDetails = async (req, res) => {
 
     // Iterate over joinedTournaments asynchronously
     for (const tournamentId of joinedTournaments) {
-      const tournament = await Tournament.findOne({ _id: tournamentId });
+      const tournament = await Tournament.findById({ _id: tournamentId });
       if (
         tournament &&
         tournament.start_date <= new Date() &&

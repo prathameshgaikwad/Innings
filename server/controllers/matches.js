@@ -7,13 +7,13 @@ const Tournament = require("../models/tournament");
 const getMatchDetails = async (req, res) => {
   try {
     const { matchId } = req.params;
-    const match = await Match.findOne({ _id: matchId });
+    const match = await Match.findById({ _id: matchId });
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
-    const fixture = await Fixture.findOne({ match_id: matchId });
-    const tournament = await Tournament.findOne({ fixture_id: fixture._id });
+    const fixture = await Fixture.findById({ match_id: matchId });
+    const tournament = await Tournament.findById({ fixture_id: fixture._id });
     const { venue } = tournament;
 
     const {
@@ -29,8 +29,8 @@ const getMatchDetails = async (req, res) => {
       team2_id,
     } = match;
 
-    const team1 = await Team.findOne({ _id: team1_id });
-    const team2 = await Team.findOne({ _id: team2_id });
+    const team1 = await Team.findById({ _id: team1_id });
+    const team2 = await Team.findById({ _id: team2_id });
 
     const matchData = {
       _id,
@@ -57,7 +57,7 @@ const getMatchDetails = async (req, res) => {
 const setTossResult = async (req, res) => {
   try {
     const { matchId, toss } = req.body;
-    const match = await Match.findOne({ _id: matchId });
+    const match = await Match.findById({ _id: matchId });
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
@@ -85,7 +85,7 @@ const setTossResult = async (req, res) => {
 const getTossResult = async (req, res) => {
   try {
     const { matchId } = req.params;
-    const match = await Match.findOne({ _id: matchId });
+    const match = await Match.findById({ _id: matchId });
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });

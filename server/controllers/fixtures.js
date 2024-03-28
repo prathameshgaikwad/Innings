@@ -22,7 +22,7 @@ const createFixturesBatch = async (req, res) => {
       });
 
       const savedFixture = await newFixture.save();
-      const tournament = await Tournament.findOne({ _id: tournamentId });
+      const tournament = await Tournament.findById({ _id: tournamentId });
       tournament.fixture_id.push(savedFixture._id);
       await tournament.save();
 
@@ -54,7 +54,7 @@ const createFixturesBatch = async (req, res) => {
 const getFixtureDetails = async (req, res) => {
   try {
     const { fixtureId } = req.params;
-    const fixture = await Fixture.findOne({ _id: fixtureId });
+    const fixture = await Fixture.findById({ _id: fixtureId });
 
     if (!fixture)
       return res
@@ -65,9 +65,9 @@ const getFixtureDetails = async (req, res) => {
     const { match_id } = fixture;
     const { team1_id, team2_id } = fixture;
 
-    const match = await Match.findOne({ _id: match_id });
-    const team1 = await Team.findOne({ _id: team1_id });
-    const team2 = await Team.findOne({ _id: team2_id });
+    const match = await Match.findById({ _id: match_id });
+    const team1 = await Team.findById({ _id: team1_id });
+    const team2 = await Team.findById({ _id: team2_id });
 
     const { _id, match_no, overs, toss } = match;
 

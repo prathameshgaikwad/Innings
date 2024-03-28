@@ -8,7 +8,7 @@ const { generateShortName } = require("../helpers/generateShortName");
 const getTeam = async (req, res) => {
   try {
     const { teamId } = req.params;
-    const team = await Team.findOne({ _id: teamId });
+    const team = await Team.findById({ _id: teamId });
 
     if (!team)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such team" });
@@ -90,7 +90,7 @@ const createTeam = async (req, res) => {
         .json({ error: "Did not create team object" });
 
     const savedTeam = await newTeam.save();
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findById({ _id: tournamentId });
     tournament.teams.push(savedTeam._id);
     await tournament.save();
 

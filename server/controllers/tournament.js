@@ -27,7 +27,7 @@ const createTournament = async (req, res) => {
 
     const savedTournament = await newTournament.save();
 
-    const user = await User.findOne({ _id: admin_id });
+    const user = await User.findById({ _id: admin_id });
     user.createdTournaments.push(savedTournament._id);
     await user.save();
 
@@ -43,7 +43,7 @@ const joinTournament = async (req, res) => {
   try {
     const { user_id, tournament_id } = req.body;
 
-    const user = await User.findOne({ _id: user_id });
+    const user = await User.findById({ _id: user_id });
     user.joinedTournaments.push(tournament_id);
     await user.save();
     res
@@ -59,14 +59,14 @@ const joinTournament = async (req, res) => {
 const getTournamentDetails = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findById({ _id: tournamentId });
 
     if (!tournament)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
 
-    const adminUser = await User.findOne({ _id: tournament.admin_id });
+    const adminUser = await User.findById({ _id: tournament.admin_id });
     const adminName = `${adminUser.firstName} ${adminUser.lastName}`;
 
     const tournamentData = {
@@ -85,7 +85,7 @@ const getTournamentDetails = async (req, res) => {
 const getLiveMatchDetails = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findById({ _id: tournamentId });
 
     if (!tournament)
       return res
@@ -97,9 +97,9 @@ const getLiveMatchDetails = async (req, res) => {
     let ongoingMatchId = null;
 
     for (const id of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: id });
+      const fixture = await Fixture.findById({ _id: id });
       const { match_id } = fixture;
-      const match = await Match.findOne({ _id: match_id });
+      const match = await Match.findById({ _id: match_id });
 
       if (match.status === "ongoing") {
         ongoingMatchId = match_id;
@@ -112,7 +112,7 @@ const getLiveMatchDetails = async (req, res) => {
         .status(StatusCodes.OK)
         .json({ isEmpty: true, msg: "No ongoing matches." });
 
-    const liveMatch = await Match.findOne({ _id: ongoingMatchId });
+    const liveMatch = await Match.findById({ _id: ongoingMatchId });
     const {
       _id,
       match_no,
@@ -129,8 +129,8 @@ const getLiveMatchDetails = async (req, res) => {
       team2_id,
     } = liveMatch;
 
-    const team1Details = await Team.findOne({ _id: team1_id });
-    const team2Details = await Team.findOne({ _id: team2_id });
+    const team1Details = await Team.findById({ _id: team1_id });
+    const team2Details = await Team.findById({ _id: team2_id });
 
     const responseData = {
       _id,
@@ -162,7 +162,7 @@ const getLiveMatchDetails = async (req, res) => {
 const getUpcomingMatches = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findById({ _id: tournamentId });
 
     if (!tournament)
       return res
@@ -174,7 +174,7 @@ const getUpcomingMatches = async (req, res) => {
     const upcomingMatches = [];
 
     for (const id of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: id });
+      const fixture = await Fixture.findById({ _id: id });
 
       if (fixture.status === "pending") {
         upcomingMatches.push(id);
@@ -201,7 +201,7 @@ const getUpcomingMatches = async (req, res) => {
 const getCompletedMatches = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findById({ _id: tournamentId });
 
     if (!tournament)
       return res
@@ -213,14 +213,14 @@ const getCompletedMatches = async (req, res) => {
     const completedMatches = [];
 
     for (const id of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: id });
+      const fixture = await Fixture.findById({ _id: id });
 
       if (fixture.status === "completed") {
         const { match_id } = fixture;
         const { team1_id, team2_id } = fixture;
-        const match = await Match.findOne({ _id: match_id });
-        const team1 = await Team.findOne({ _id: team1_id });
-        const team2 = await Team.findOne({ _id: team2_id });
+        const match = await Match.findById({ _id: match_id });
+        const team1 = await Team.findById({ _id: team1_id });
+        const team2 = await Team.findById({ _id: team2_id });
 
         const { _id, match_no, winner } = match;
 
@@ -280,7 +280,7 @@ const getFeaturedTournaments = async (req, res) => {
 const getAllTeams = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findById({ _id: tournamentId });
 
     if (!tournament)
       return res
@@ -306,13 +306,13 @@ const getAllTeams = async (req, res) => {
 const getPointsTable = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const response = await Tournament.findOne({ _id: tournamentId }).select(
+    const response = await Tournament.findById({ _id: tournamentId }).select(
       "teams"
     );
 
     const teamsData = await Promise.all(
       response.teams.map(async (id) => {
-        return await Team.findOne({ _id: id });
+        return await Team.findById({ _id: id });
       })
     );
 
@@ -342,19 +342,19 @@ const getPointsTable = async (req, res) => {
 const getAllFixtures = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findById({ _id: tournamentId });
     const { fixture_id } = tournament;
 
     const responseObject = [];
 
     for (const element of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: element });
+      const fixture = await Fixture.findById({ _id: element });
       const { team1_id, team2_id, match_no, match_id, date, time, status } =
         fixture;
 
-      const team1 = await Team.findOne({ _id: team1_id });
-      const team2 = await Team.findOne({ _id: team2_id });
-      const match = await Match.findOne({ _id: match_id });
+      const team1 = await Team.findById({ _id: team1_id });
+      const team2 = await Team.findById({ _id: team2_id });
+      const match = await Match.findById({ _id: match_id });
 
       const team1Details = {
         name: team1.name,
