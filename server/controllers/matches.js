@@ -12,8 +12,8 @@ const getMatchDetails = async (req, res) => {
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
-    const fixture = await Fixture.findById({ match_id: matchId });
-    const tournament = await Tournament.findById({ fixture_id: fixture._id });
+    const fixture = await Fixture.findOne({ match_id: matchId });
+    const tournament = await Tournament.findOne({ fixture_id: fixture._id });
     const { venue } = tournament;
 
     const {
