@@ -12,7 +12,7 @@ async function broadcastMatchData(io, matchId) {
       match;
     const isOngoingMatch = status === "ongoing";
     const isFirstInnings = innings === 1;
-    const isTeam1Winner = toss.winner_id === team1_id;
+    const isTeam1Winner = toss.winnerId === team1_id;
 
     let ball_Log = {};
 

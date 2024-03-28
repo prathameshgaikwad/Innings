@@ -70,13 +70,13 @@ const setTossResult = async (req, res) => {
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
-    const { decision, winner, winner_id, loser } = toss;
+    const { decision, winner, winnerId, loser } = toss;
     const { toss: tossFromDb } = match;
 
     tossFromDb.decision = decision;
     tossFromDb.winner = winner;
     tossFromDb.loser = loser;
-    tossFromDb.winner_id = winner_id;
+    tossFromDb.winnerId = winnerId;
 
     match.status = "ongoing";
 
