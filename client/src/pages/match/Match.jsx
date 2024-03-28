@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/joy";
+import { Box, Stack, Typography, useTheme } from "@mui/joy";
 import { getMatchInfo, setToss } from "../../state/match/matchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -123,7 +123,10 @@ const Match = () => {
             {isMatchCompleted ? (
               <ManOfTheMatchCard />
             ) : (
-              <Box width={isMobile ? "96%" : "72%"}>
+              <Stack
+                width={isMobile ? "96%" : "72%"}
+                direction={"column"}
+                gap={2}>
                 {innings === "2" && <ChaseStatsCard isAdmin={false} />}
                 <BatsmenStats
                   data={batsmenData}
@@ -131,7 +134,7 @@ const Match = () => {
                   isLoading={isLoading}
                 />
                 <BallLogList data={ball_log} isLoading={isLoading} />
-              </Box>
+              </Stack>
             )}
             <Scorecard isAdmin={false} isLoading={isLoading} />
           </>
