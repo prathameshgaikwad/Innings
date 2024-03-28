@@ -7,7 +7,7 @@ import Footer from "../../components/common/Footer";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import GoogleIcon from "../../../public/assets/GoogleIcon";
 import Link from "@mui/joy/Link";
-import LogoHeader from "../../components/accounts/LogoHeader";
+import LogoBox from "../../components/common/Navbar/LogoBox";
 import SignInForm from "../../components/accounts/SignInForm";
 import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
@@ -80,7 +80,7 @@ export default function SignIn() {
               alignItems: "left",
               justifyContent: "space-between",
             }}>
-            <LogoHeader />
+            <LogoBox />
             <ColorSchemeToggle />
           </Box>
           <Box

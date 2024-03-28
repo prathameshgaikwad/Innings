@@ -7,7 +7,7 @@ import CustomToast from "../../components/cards/CustomToast";
 import Footer from "../../components/common/Footer";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import GoogleIcon from "../../../public/assets/GoogleIcon";
-import LogoHeader from "../../components/accounts/LogoHeader";
+import LogoBox from "../../components/common/Navbar/LogoBox";
 import { formLabelClasses } from "@mui/joy/FormLabel";
 import { signUpGoogle } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";
@@ -96,7 +96,7 @@ export default function CreateAccount() {
               alignItems: "left",
               justifyContent: "space-between",
             }}>
-            <LogoHeader />
+            <LogoBox />
             <ColorSchemeToggle />
           </Box>
           <Box
