@@ -5,52 +5,34 @@ import { Form, Formik } from "formik";
 
 import CustomInput from "../formComponents/CustomInput";
 import { createAccountSchema } from "../../schema/accounts/createAccount";
+import { registerUser } from "../../state/user/userSlice";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const CreateAccountForm = ({
   setIsSuccessVisible,
   setIsFailedResponseVisible,
 }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const initialValues = {
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    try {
-      const response = await fetch("http://localhost:3000/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      if (response.ok) {
-        setIsSuccessVisible(true);
-        const responseData = await response.json();
-
-        if (responseData) {
-          setTimeout(() => {
-            resetForm();
-            navigate("/accounts/sign-in");
-          }, 2000);
-        }
-      } else {
-        if (response.status === 400) {
-          setIsFailedResponseVisible(true);
-          setTimeout(() => {
-            setIsFailedResponseVisible(false);
-            resetForm();
-          }, 2400);
-        }
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    dispatch(
+      registerUser(
+        values,
+        resetForm,
+        setIsFailedResponseVisible,
+        setIsSuccessVisible,
+        navigate
+      )
+    );
   };
 
   return (
@@ -64,7 +46,7 @@ const CreateAccountForm = ({
             <Grid container columns={25} justifyContent="space-between">
               <Grid xs={12}>
                 <CustomInput
-                  name="firstName"
+                  name="first_name"
                   type="text"
                   label="First Name"
                   placeholder="First Name"
@@ -72,7 +54,7 @@ const CreateAccountForm = ({
               </Grid>
               <Grid xs={12}>
                 <CustomInput
-                  name="lastName"
+                  name="last_name"
                   type="text"
                   label="Last Name"
                   placeholder="Last Name"

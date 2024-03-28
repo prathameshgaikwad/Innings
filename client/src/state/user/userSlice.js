@@ -89,6 +89,45 @@ export const signInGoogle = async (access_token, navigate, dispatch) => {
   }
 };
 
+export const registerUser = async (
+  values,
+  resetForm,
+  setIsFailedResponseVisible,
+  setIsSuccessVisible,
+  navigate
+) => {
+  try {
+    const response = await fetch(REGISTER_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    if (response.ok) {
+      setIsSuccessVisible(true);
+      const responseData = await response.json();
+
+      if (responseData) {
+        setTimeout(() => {
+          resetForm();
+          navigate("/accounts/sign-in");
+        }, 2000);
+      }
+    } else {
+      if (response.status === 400) {
+        setIsFailedResponseVisible(true);
+        setTimeout(() => {
+          setIsFailedResponseVisible(false);
+          resetForm();
+        }, 2400);
+      }
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 export const getLiveMatchInfo =
   ({ tournamentId, token, setIsLoading }) =>
   async (dispatch) => {
