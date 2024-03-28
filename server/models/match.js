@@ -41,88 +41,80 @@ const matchSchema = new mongoose.Schema(
         ref: "teams",
       },
     },
-    winner: { type: String },
-    team1_runs: { type: Number, default: 0 },
-    team2_runs: { type: Number, default: 0 },
-    team1_sixes: { type: Number, default: 0 },
-    team2_sixes: { type: Number, default: 0 },
-    team1_fours: { type: Number, default: 0 },
-    team2_fours: { type: Number, default: 0 },
     innings: { type: Number },
-    team1_run_log: [
-      {
-        run_scorer: {
-          type: mongoose.Types.ObjectId,
-          ref: "players",
-        },
-        score: { type: Number },
-      },
-    ],
-    team2_run_log: [
-      {
-        run_scorer: {
-          type: mongoose.Types.ObjectId,
-          ref: "players",
-        },
-        score: { type: Number },
-      },
-    ],
-    team1_extras: {
-      wides: { type: Number, default: 0 },
-      byes: { type: Number, default: 0 },
-      leg_byes: { type: Number, default: 0 },
-      no_balls: { type: Number, default: 0 },
+    result: {
+      winner: { type: String },
     },
-    team2_extras: {
-      wides: { type: Number, default: 0 },
-      byes: { type: Number, default: 0 },
-      leg_byes: { type: Number, default: 0 },
-      no_balls: { type: Number, default: 0 },
+    data: {
+      team1: {
+        runs: { type: Number, default: 0 },
+        sixes: { type: Number, default: 0 },
+        fours: { type: Number, default: 0 },
+        extras: {
+          wides: { type: Number, default: 0 },
+          byes: { type: Number, default: 0 },
+          leg_byes: { type: Number, default: 0 },
+          no_balls: { type: Number, default: 0 },
+        },
+        ball_log: [
+          {
+            bowler_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            batsman_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            runs_scored: { type: Number },
+            wicket: {
+              isWicket: { type: Boolean },
+              wicket_number: { type: Number },
+              runs_completed: { type: Number, default: 0 },
+            },
+            extra: {
+              isExtra: { type: Boolean },
+              extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
+              extra_runs: { type: Number, default: 0 },
+            },
+          },
+        ],
+      },
+      team2: {
+        runs: { type: Number, default: 0 },
+        sixes: { type: Number, default: 0 },
+        fours: { type: Number, default: 0 },
+        extras: {
+          wides: { type: Number, default: 0 },
+          byes: { type: Number, default: 0 },
+          leg_byes: { type: Number, default: 0 },
+          no_balls: { type: Number, default: 0 },
+        },
+        ball_log: [
+          {
+            bowler_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            batsman_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            runs_scored: { type: Number },
+            wicket: {
+              isWicket: { type: Boolean },
+              wicket_number: { type: Number },
+              runs_completed: { type: Number, default: 0 },
+            },
+            extra: {
+              isExtra: { type: Boolean },
+              extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
+              extra_runs: { type: Number, default: 0 },
+            },
+          },
+        ],
+      },
     },
-    team1_ball_log: [
-      {
-        bowler: {
-          type: mongoose.Types.ObjectId,
-          ref: "players",
-        },
-        runs_conceded: { type: Number },
-        wicket: {
-          isWicket: { type: Boolean },
-          wicket_number: { type: Number },
-        },
-        extra: {
-          isExtra: { type: Boolean },
-          extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
-        },
-      },
-    ],
-    team2_ball_log: [
-      {
-        bowler: {
-          type: mongoose.Types.ObjectId,
-          ref: "players",
-        },
-        runs_conceded: { type: Number },
-        wicket: {
-          isWicket: { type: Boolean },
-          wicket_number: { type: Number },
-        },
-      },
-    ],
-    team1_wicket_log: [
-      {
-        wicket_taker: { type: String },
-        how_out: { type: String },
-        fall_of_wicket_stamp: { type: String },
-      },
-    ],
-    team2_wicket_log: [
-      {
-        wicket_taker: { type: String },
-        how_out: { type: String },
-        fall_of_wicket_stamp: { type: String },
-      },
-    ],
   },
   { timestamps: true }
 );

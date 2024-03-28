@@ -21,12 +21,8 @@ const getMatchDetails = async (req, res) => {
       match_no,
       overs,
       status,
-      team1_ball_log,
-      team1_run_log,
-      team2_ball_log,
-      team2_run_log,
-      team1_wicket_log,
-      team2_wicket_log,
+      data,
+      result,
       toss,
       innings,
       team1_id,
@@ -36,25 +32,21 @@ const getMatchDetails = async (req, res) => {
     const team1 = await Team.findOne({ _id: team1_id });
     const team2 = await Team.findOne({ _id: team2_id });
 
-    const data = {
+    const matchData = {
       _id,
       match_no,
       overs,
       venue,
       status,
-      team1_ball_log,
-      team1_run_log,
-      team2_ball_log,
-      team2_run_log,
-      team1_wicket_log,
-      team2_wicket_log,
+      data,
+      result,
       toss,
       innings,
       team1,
       team2,
     };
 
-    res.status(StatusCodes.OK).json(data);
+    res.status(StatusCodes.OK).json(matchData);
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
