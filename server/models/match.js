@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const ballSchema = require("./schemas/ballLogSchema");
+const wicketSchema = require("./schemas/wicketSchema");
+const battingLogSchema = require("./schemas/battingLogSchema");
 
 const matchSchema = new mongoose.Schema(
   {
@@ -58,44 +61,9 @@ const matchSchema = new mongoose.Schema(
           leg_byes: { type: Number, default: 0 },
           no_balls: { type: Number, default: 0 },
         },
-        ball_log: [
-          {
-            bowler_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            batsman_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            runs_scored: { type: Number },
-            wicket: {
-              isWicket: { type: Boolean },
-              wicket_number: { type: Number },
-              runs_completed: { type: Number, default: 0 },
-            },
-            extra: {
-              isExtra: { type: Boolean },
-              extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
-              runs_completed: { type: Number, default: 0 },
-            },
-          },
-        ],
-        wicket_log: [
-          {
-            bowler_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            batsman_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            wicket_number: { type: Number },
-            runs_completed: { type: Number, default: 0 },
-            fall_of_wicket_stamp: { type: String },
-          },
-        ],
+        ball_log: [ballSchema],
+        wicket_log: [wicketSchema],
+        batting_log: [battingLogSchema],
       },
       team2: {
         runs: { type: Number, default: 0 },
@@ -109,44 +77,9 @@ const matchSchema = new mongoose.Schema(
           leg_byes: { type: Number, default: 0 },
           no_balls: { type: Number, default: 0 },
         },
-        ball_log: [
-          {
-            bowler_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            batsman_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            runs_scored: { type: Number },
-            wicket: {
-              isWicket: { type: Boolean },
-              wicket_number: { type: Number },
-              runs_completed: { type: Number, default: 0 },
-            },
-            extra: {
-              isExtra: { type: Boolean },
-              extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
-              runs_completed: { type: Number, default: 0 },
-            },
-          },
-        ],
-        wicket_log: [
-          {
-            bowler_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            batsman_id: {
-              type: mongoose.Types.ObjectId,
-              ref: "players",
-            },
-            wicket_number: { type: Number },
-            runs_completed: { type: Number, default: 0 },
-            fall_of_wicket_stamp: { type: String },
-          },
-        ],
+        ball_log: [ballSchema],
+        wicket_log: [wicketSchema],
+        batting_log: [battingLogSchema],
       },
     },
   },
