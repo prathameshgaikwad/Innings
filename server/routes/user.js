@@ -7,8 +7,8 @@ const {
 
 const router = express.Router();
 
-router.get("/:user_id/joined-tournaments", getJoinedTournaments);
-router.get("/:user_id/created-tournaments", getCreatedTournaments);
-router.get("/:user_id/latest-tournament", getLatestTournamentDetails);
+router.get("/:userId/joined-tournaments", getJoinedTournaments);
+router.get("/:userId/created-tournaments", getCreatedTournaments);
+router.get("/:userId/latest-tournament", getLatestTournamentDetails);
 
 module.exports = router;

@@ -3,7 +3,7 @@ const { getTeam, createTeam } = require("../controllers/teams");
 
 const router = express.Router();
 
-router.get("/:team_id", getTeam);
+router.get("/:teamId", getTeam);
 router.post("/create", createTeam);
 
 module.exports = router;

@@ -11,7 +11,7 @@ const teamSchema = new mongoose.Schema({
     min: 1,
     max: 50,
   },
-  name_short: {
+  nameShort: {
     type: String,
     required: true,
   },
@@ -26,20 +26,20 @@ const teamSchema = new mongoose.Schema({
         auto: true,
         ref: "players",
       },
-      player_name: {
+      playerName: {
         type: String,
         required: true,
       },
-      is_captain: {
+      isCaptain: {
         type: Boolean,
         default: false,
       },
     },
   ],
-  logo_url: {
+  logoURL: {
     type: String,
   },
-  captain_name: {
+  captainName: {
     type: String,
     required: true,
   },

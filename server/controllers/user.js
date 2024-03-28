@@ -4,15 +4,15 @@ const Tournament = require("../models/tournament");
 
 const getJoinedTournaments = async (req, res) => {
   try {
-    const { user_id } = req.params;
-    const user = await User.findById(user_id);
+    const { userId } = req.params;
+    const user = await User.findById(userId);
 
     if (!user)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ message: "User does not exist!" });
 
-    const joinedTournamentsIds = user.joined_tournaments;
+    const joinedTournamentsIds = user.joinedTournaments;
 
     res.status(StatusCodes.OK).json({
       length: joinedTournamentsIds.length,
@@ -27,15 +27,15 @@ const getJoinedTournaments = async (req, res) => {
 
 const getCreatedTournaments = async (req, res) => {
   try {
-    const { user_id } = req.params;
-    const user = await User.findById(user_id);
+    const { userId } = req.params;
+    const user = await User.findById(userId);
 
     if (!user)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ message: "User does not exist!" });
 
-    const createdTournamentIds = user.created_tournaments;
+    const createdTournamentIds = user.createdTournaments;
 
     res.status(StatusCodes.OK).json({
       length: createdTournamentIds.length,
@@ -50,24 +50,24 @@ const getCreatedTournaments = async (req, res) => {
 
 const getLatestTournamentDetails = async (req, res) => {
   try {
-    const { user_id } = req.params;
-    const user = await User.findById({ _id: user_id });
+    const { userId } = req.params;
+    const user = await User.findOne({ _id: userId });
 
     if (!user)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such user" });
 
-    const { joined_tournaments } = user;
+    const { joinedTournaments } = user;
 
-    if (!joined_tournaments || joined_tournaments.length === 0)
+    if (!joinedTournaments || joinedTournaments.length === 0)
       return res
         .status(StatusCodes.BAD_REQUEST)
         .json({ isEmpty: true, error: "No tournaments joined" });
 
     const ongoingTournaments = [];
 
-    // Iterate over joined_tournaments asynchronously
-    for (const tournament_id of joined_tournaments) {
-      const tournament = await Tournament.findOne({ _id: tournament_id });
+    // Iterate over joinedTournaments asynchronously
+    for (const tournamentId of joinedTournaments) {
+      const tournament = await Tournament.findOne({ _id: tournamentId });
       if (
         tournament &&
         tournament.start_date <= new Date() &&

@@ -6,25 +6,55 @@ const Tournament = require("../models/tournament");
 
 const getMatchDetails = async (req, res) => {
   try {
-    const { match_id } = req.params;
-    const match = await Match.findOne({ _id: match_id });
+    const { matchId } = req.params;
+    const match = await Match.findOne({ _id: matchId });
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
-    const { venue } = await Tournament.findById({ _id: match.tournament_id });
+    const fixture = await Fixture.findOne({ match_id: matchId });
+    const tournament = await Tournament.findOne({ fixture_id: fixture._id });
+    const { venue } = tournament;
+
+    const {
+      _id,
+      match_no,
+      overs,
+      status,
+      team1_ball_log,
+      team1_run_log,
+      team2_ball_log,
+      team2_run_log,
+      team1_wicket_log,
+      team2_wicket_log,
+      toss,
+      innings,
+      team1_id,
+      team2_id,
+    } = match;
 
     const team1 = await Team.findOne({ _id: team1_id });
     const team2 = await Team.findOne({ _id: team2_id });
 
-    const matchData = {
-      ...match.toObject(),
+    const data = {
+      _id,
+      match_no,
+      overs,
       venue,
+      status,
+      team1_ball_log,
+      team1_run_log,
+      team2_ball_log,
+      team2_run_log,
+      team1_wicket_log,
+      team2_wicket_log,
+      toss,
+      innings,
       team1,
       team2,
     };
 
-    res.status(StatusCodes.OK).json(matchData);
+    res.status(StatusCodes.OK).json(data);
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -34,25 +64,25 @@ const getMatchDetails = async (req, res) => {
 
 const setTossResult = async (req, res) => {
   try {
-    const { match_id, toss_result } = req.body;
-    const match = await Match.findOne({ _id: match_id });
+    const { matchId, toss } = req.body;
+    const match = await Match.findOne({ _id: matchId });
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
-    const { decision, winner, winner_id, loser } = toss_result;
-    const { toss } = match;
+    const { decision, winner, winner_id, loser } = toss;
+    const { toss: tossFromDb } = match;
 
-    toss.decision = decision;
-    toss.winner = winner;
-    toss.loser = loser;
-    toss.winner_id = winner_id;
+    tossFromDb.decision = decision;
+    tossFromDb.winner = winner;
+    tossFromDb.loser = loser;
+    tossFromDb.winner_id = winner_id;
 
     match.status = "ongoing";
 
     await match.save();
 
-    res.status(StatusCodes.OK).json(toss);
+    res.status(StatusCodes.OK).json({ toss: tossFromDb });
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -62,8 +92,8 @@ const setTossResult = async (req, res) => {
 
 const getTossResult = async (req, res) => {
   try {
-    const { match_id } = req.params;
-    const match = await Match.findOne({ _id: match_id });
+    const { matchId } = req.params;
+    const match = await Match.findOne({ _id: matchId });
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });

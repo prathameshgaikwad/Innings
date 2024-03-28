@@ -7,8 +7,8 @@ const { generateShortName } = require("../helpers/generateShortName");
 
 const getTeam = async (req, res) => {
   try {
-    const { team_id } = req.params;
-    const team = await Team.findOne({ _id: team_id });
+    const { teamId } = req.params;
+    const team = await Team.findOne({ _id: teamId });
 
     if (!team)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such team" });
@@ -23,9 +23,9 @@ const getTeam = async (req, res) => {
 
 const createTeam = async (req, res) => {
   try {
-    const { team_name, team_color, players, tournament_id } = req.body;
+    const { teamName, teamColor, players, tournamentId } = req.body;
 
-    let assumedCaptain = players[0].player_name;
+    let assumedCaptain = players[0].playerName;
     let givenCaptain = "";
 
     const indexOfCaptain = players.indexOf(
@@ -34,33 +34,28 @@ const createTeam = async (req, res) => {
 
     if (indexOfCaptain !== -1) {
       givenCaptain = players.find(
-        (player) => player.is_captain === true
-      ).player_name;
+        (player) => player.isCaptain === true
+      ).playerName;
     }
-    const name_short = generateShortName(team_name);
-    const logo_url = await fetchRandomImage("digital-art", false);
+    const nameShort = generateShortName(teamName);
+    const logoURL = await fetchRandomImage("digital-art", false);
 
     const newTeam = new Team({
-      name: team_name,
-      name_short,
-      color: team_color,
+      name: teamName,
+      nameShort,
+      color: teamColor,
       players: [],
-      captain_name: indexOfCaptain === -1 ? assumedCaptain : givenCaptain,
-      logo_url,
+      captainName: indexOfCaptain === -1 ? assumedCaptain : givenCaptain,
+      logoURL,
     });
 
-    if (!newTeam)
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({ error: "Did not create team object" });
-
     const playerPromises = players.map(async (player) => {
-      const first_name = player.player_name.split(" ")[0];
-      const last_name = player.player_name.split(" ")[1] || "";
+      const first_name = player.playerName.split(" ")[0];
+      const last_name = player.playerName.split(" ")[1] || "";
 
       const newPlayer = new Player({
         team_id: newTeam._id,
-        tournament_id,
+        tournament_id: tournamentId,
         first_name,
         last_name,
         debut: Date.now(),
@@ -82,15 +77,20 @@ const createTeam = async (req, res) => {
       await newPlayer.save();
       const savedPlayer = {
         _id: newPlayer._id,
-        player_name: newPlayer.first_name + " " + newPlayer.last_name,
+        playerName: newPlayer.first_name + " " + newPlayer.last_name,
       };
       return savedPlayer;
     });
 
     newTeam.players = await Promise.all(playerPromises);
 
+    if (!newTeam)
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: "Did not create team object" });
+
     const savedTeam = await newTeam.save();
-    const tournament = await Tournament.findOne({ _id: tournament_id });
+    const tournament = await Tournament.findOne({ _id: tournamentId });
     tournament.teams.push(savedTeam._id);
     await tournament.save();
 

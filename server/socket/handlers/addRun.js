@@ -3,12 +3,12 @@ const { broadcastMatchData } = require("../broadcasts/broadcastMatchData");
 const { addPlayerRuns } = require("./addPlayerRuns");
 
 const addRun = (io, runLogData) => {
-  const { match_id, batting_team_id, batsman, bowler, score } = runLogData;
+  const { matchId, battingTeamId, batsman, bowler, score } = runLogData;
   try {
     const updateMatchRunLog = async () => {
-      const match = await Match.findById(match_id);
+      const match = await Match.findById(matchId);
 
-      const isTeam1 = match.team1_id.toString() === batting_team_id;
+      const isTeam1 = match.team1_id.toString() === battingTeamId;
 
       const runLogItem = {
         run_scorer: batsman._id,
@@ -39,7 +39,7 @@ const addRun = (io, runLogData) => {
       await match.save();
 
       addPlayerRuns(batsman._id, score);
-      broadcastMatchData(io, match_id);
+      broadcastMatchData(io, matchId);
     };
     updateMatchRunLog();
   } catch (error) {
