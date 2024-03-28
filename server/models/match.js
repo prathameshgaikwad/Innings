@@ -48,6 +48,8 @@ const matchSchema = new mongoose.Schema(
     data: {
       team1: {
         runs: { type: Number, default: 0 },
+        wickets: { type: Number, default: 0 },
+        balls_completed: { type: Number, default: 0 },
         sixes: { type: Number, default: 0 },
         fours: { type: Number, default: 0 },
         extras: {
@@ -75,13 +77,30 @@ const matchSchema = new mongoose.Schema(
             extra: {
               isExtra: { type: Boolean },
               extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
-              extra_runs: { type: Number, default: 0 },
+              runs_completed: { type: Number, default: 0 },
             },
+          },
+        ],
+        wicket_log: [
+          {
+            bowler_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            batsman_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            wicket_number: { type: Number },
+            runs_completed: { type: Number, default: 0 },
+            fall_of_wicket_stamp: { type: String },
           },
         ],
       },
       team2: {
         runs: { type: Number, default: 0 },
+        wickets: { type: Number, default: 0 },
+        balls_completed: { type: Number, default: 0 },
         sixes: { type: Number, default: 0 },
         fours: { type: Number, default: 0 },
         extras: {
@@ -109,8 +128,23 @@ const matchSchema = new mongoose.Schema(
             extra: {
               isExtra: { type: Boolean },
               extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
-              extra_runs: { type: Number, default: 0 },
+              runs_completed: { type: Number, default: 0 },
             },
+          },
+        ],
+        wicket_log: [
+          {
+            bowler_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            batsman_id: {
+              type: mongoose.Types.ObjectId,
+              ref: "players",
+            },
+            wicket_number: { type: Number },
+            runs_completed: { type: Number, default: 0 },
+            fall_of_wicket_stamp: { type: String },
           },
         ],
       },
