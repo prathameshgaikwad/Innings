@@ -128,6 +128,35 @@ export const registerUser = async (
   }
 };
 
+export const signInUser = async (values, resetForm, dispatch, navigate) => {
+  try {
+    const response = await fetch(LOGIN_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+
+    if (response.ok) {
+      const responseData = await response.json();
+      resetForm();
+
+      if (responseData) {
+        dispatch(
+          setLogin({
+            user: responseData.user,
+            token: responseData.token,
+          })
+        );
+        navigate("/");
+      }
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 export const getLiveMatchInfo =
   ({ tournamentId, token, setIsLoading }) =>
   async (dispatch) => {

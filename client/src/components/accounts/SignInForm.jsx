@@ -2,8 +2,8 @@ import { Form, Formik } from "formik";
 
 import { Button } from "@mui/joy";
 import CustomInput from "../formComponents/CustomInput";
-import { setLogin } from "../../state/user/userSlice";
 import { signInSchema } from "../../schema/accounts/signIn";
+import { signInUser } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -16,32 +16,7 @@ const SignInForm = () => {
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    try {
-      const response = await fetch(`http://localhost:3000/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        resetForm();
-
-        if (responseData) {
-          dispatch(
-            setLogin({
-              user: responseData.user,
-              token: responseData.token,
-            })
-          );
-          navigate("/");
-        }
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    dispatch(signInUser(values, resetForm, navigate));
   };
 
   return (
