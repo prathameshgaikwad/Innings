@@ -78,7 +78,7 @@ const HomePage = () => {
                     color={"warning"}
                     title={"You've not joined any tournaments."}
                     content={"Please join a tournament to see the matches!"}
-                    duration={3000}
+                    duration={5000}
                   />
                 ) : (
                   <CustomToast
