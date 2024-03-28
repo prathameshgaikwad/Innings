@@ -1,4 +1,12 @@
-import { Box, Card, CardContent, Divider, Typography } from "@mui/joy";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Divider,
+  Link,
+  Typography,
+} from "@mui/joy";
 
 import CreateTournamentCard from "./CreateTournamentCard";
 import JoinATournament from "./JoinATournament";
@@ -26,6 +34,17 @@ const NoTournamentsJoined = () => {
             Sorry, no action around at the moment. You can either
           </Typography>
           <JoinATournament />
+          <Divider sx={{ my: 2 }}>or</Divider>
+          <Button size="lg" color="primary" sx={{ width: "100%" }}>
+            <Link
+              href="/tournaments"
+              sx={{
+                color: "white",
+                "&:hover": { textDecoration: "none" },
+              }}>
+              Go to Tournaments
+            </Link>
+          </Button>
           <Divider sx={{ my: 2 }}>or</Divider>
           <CreateTournamentCard />
         </CardContent>
