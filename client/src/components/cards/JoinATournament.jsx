@@ -7,8 +7,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomInput from "../formComponents/CustomInput";
 import CustomToast from "./CustomToast";
 import { addJoinedTournament } from "../../state/tournament/tournamentSlice";
-import { joinTournament } from "../../state/tournament/tournamentPageSlice";
 import { joinTournamentSchema } from "../../schema/tournament/joinTournament";
+import { tournamentPageApi } from "../../services/api";
 import { useState } from "react";
 
 const JoinATournament = () => {
@@ -28,7 +28,11 @@ const JoinATournament = () => {
   const handleJoinTournament = async (values, { resetForm }) => {
     try {
       dispatch(
-        joinTournament({ user_id, token, tournament_id: values.tournament_id })
+        tournamentPageApi.joinTournament({
+          user_id,
+          token,
+          tournament_id: values.tournament_id,
+        })
       );
       dispatch(addJoinedTournament({ tournament_id: values.tournament_id }));
       resetForm();

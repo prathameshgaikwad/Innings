@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { Box, Divider, Typography, useTheme } from "@mui/joy";
 import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { tournamentPageApi, tournamentSetupApi } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -14,8 +15,6 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import NoData from "../NoData";
 import SliderMask from "../SliderMask";
 import TeamCard from "../cards/TeamCard";
-import { getTeams } from "../../state/tournament/tournamentPageSlice";
-import { tournamentSetupApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -40,7 +39,9 @@ const TeamsList = ({ isSetupPage }) => {
             setIsLoading,
           })
         )
-      : dispatch(getTeams({ tournamentId, token, setIsLoading }));
+      : dispatch(
+          tournamentPageApi.getTeams({ tournamentId, token, setIsLoading })
+        );
   }, [dispatch, teams.length]);
 
   return (

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
-import { fetchPointsTable } from "../../state/tournament/tournamentPageSlice";
+import { tournamentPageApi } from "../../services/api";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -36,7 +36,9 @@ export const PointsTableSheet = () => {
   const pointsTable = useSelector((state) => state.tournamentPage.pointsTable);
 
   useEffect(() => {
-    dispatch(fetchPointsTable({ tournamentId, token, setIsLoading }));
+    dispatch(
+      tournamentPageApi.getPointsTable({ tournamentId, token, setIsLoading })
+    );
   }, [dispatch, tournamentId, token]);
 
   const sheetData = pointsTable.map((team, i) =>

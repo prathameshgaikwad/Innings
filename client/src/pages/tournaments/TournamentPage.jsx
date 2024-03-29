@@ -12,7 +12,7 @@ import ScheduleOfMatches from "../../components/tables/ScheduleOfMatches";
 import SimpleMatchCard from "../../components/cards/SimpleMatchCard";
 import TeamsList from "../../components/lists/TeamsList";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
-import { fetchTournamentFixtures } from "../../state/tournament/tournamentPageSlice";
+import { tournamentPageApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -41,7 +41,13 @@ const TournamentPage = () => {
       : {};
 
   useEffect(() => {
-    dispatch(fetchTournamentFixtures({ tournamentId, token, setIsLoading }));
+    dispatch(
+      tournamentPageApi.getTournamentFixtures({
+        tournamentId,
+        token,
+        setIsLoading,
+      })
+    );
   }, [dispatch, tournamentId, token]);
 
   return (

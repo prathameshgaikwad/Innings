@@ -18,7 +18,7 @@ import CustomToast from "../cards/CustomToast";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdOutlineBuildCircle } from "react-icons/md";
 import { addJoinedTournament } from "../../state/tournament/tournamentSlice";
-import { joinTournament } from "../../state/tournament/tournamentPageSlice";
+import { tournamentPageApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
@@ -53,7 +53,9 @@ const TournamentBanner = ({
 
   const handleJoinTournament = async () => {
     try {
-      dispatch(joinTournament({ user_id, token, tournament_id: id }));
+      dispatch(
+        tournamentPageApi.joinTournament({ user_id, token, tournament_id: id })
+      );
       dispatch(addJoinedTournament({ tournament_id: id }));
       setIsOpen(true);
 
