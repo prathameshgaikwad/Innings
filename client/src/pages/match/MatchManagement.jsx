@@ -1,7 +1,6 @@
 import { Box, Card, useTheme } from "@mui/joy";
 import {
   addRuns,
-  getMatchManagementInfo,
   setBallLog,
   setRuns,
 } from "../../state/match/matchManagement";
@@ -22,6 +21,7 @@ import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
 import { io } from "socket.io-client";
+import { matchManagementApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -38,7 +38,13 @@ const MatchManagement = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getMatchManagementInfo({ matchId, token, setIsLoading }));
+    dispatch(
+      matchManagementApi.getMatchManagementInfo({
+        matchId,
+        token,
+        setIsLoading,
+      })
+    );
     dispatch(setRuns());
   }, [dispatch, matchId, token]);
 

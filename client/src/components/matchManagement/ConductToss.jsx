@@ -9,15 +9,12 @@ import {
   useTheme,
 } from "@mui/joy";
 import { Form, Formik } from "formik";
-import {
-  getTossResult,
-  saveTossResultToDb,
-} from "../../state/match/matchManagement";
 import { useDispatch, useSelector } from "react-redux";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomSelect from "../formComponents/CustomSelect";
+import { matchManagementApi } from "../../services/api";
 import { tossSchema } from "../../schema/match/toss";
 import { useMediaQuery } from "@mui/material";
 
@@ -60,8 +57,12 @@ const ConductToss = ({ matchId }) => {
     const toss = { decision, winnerId, winner, loser };
 
     try {
-      await dispatch(saveTossResultToDb({ matchId, toss, token }))
-        .then(() => dispatch(getTossResult({ matchId, token })))
+      await dispatch(
+        matchManagementApi.saveTossResultToDb({ matchId, toss, token })
+      )
+        .then(() =>
+          dispatch(matchManagementApi.getTossResult({ matchId, token }))
+        )
         .then(() => resetForm());
     } catch (error) {
       console.error("Error saving data to the database:", error);
