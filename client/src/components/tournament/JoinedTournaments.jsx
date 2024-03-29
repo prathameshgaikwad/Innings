@@ -14,7 +14,7 @@ import JoinATournament from "../cards/JoinATournament";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SliderMask from "../SliderMask";
 import TournamentCard from "../cards/TournamentCard";
-import { fetchJoinedTournaments } from "../../state/tournament/tournamentSlice";
+import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 
 const JoinedTournaments = ({ userId }) => {
@@ -30,7 +30,9 @@ const JoinedTournaments = ({ userId }) => {
   );
 
   useEffect(() => {
-    dispatch(fetchJoinedTournaments({ userId, token, setIsLoading }));
+    dispatch(
+      tournamentsApi.getJoinedTournaments({ userId, token, setIsLoading })
+    );
   }, [dispatch, userId, token]);
 
   return (

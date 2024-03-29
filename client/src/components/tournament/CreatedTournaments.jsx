@@ -14,7 +14,7 @@ import CreateTournamentCard from "../cards/CreateTournamentCard";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SliderMask from "../SliderMask";
 import TournamentCard from "../cards/TournamentCard";
-import { fetchCreatedTournaments } from "../../state/tournament/tournamentSlice";
+import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 
 const CreatedTournaments = ({ userId }) => {
@@ -29,7 +29,9 @@ const CreatedTournaments = ({ userId }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchCreatedTournaments({ userId, token, setIsLoading }));
+    dispatch(
+      tournamentsApi.getCreatedTournaments({ userId, token, setIsLoading })
+    );
   }, [dispatch, userId, token]);
 
   return (

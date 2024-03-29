@@ -12,10 +12,10 @@ import SignInForm from "../../components/accounts/SignInForm";
 import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import { formLabelClasses } from "@mui/joy/FormLabel";
-import { signInGoogle } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
+import { userApi } from "../../services/api";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function SignIn() {
 
   const handleGoogleSignInSuccess = (tokenResponse) => {
     const { access_token } = tokenResponse;
-    dispatch(signInGoogle(access_token, navigate, dispatch));
+    dispatch(userApi.signInGoogle(access_token, navigate, dispatch));
   };
 
   const handleGoogleSignIn = useGoogleLogin({

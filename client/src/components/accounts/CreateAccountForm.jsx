@@ -5,9 +5,9 @@ import { Form, Formik } from "formik";
 
 import CustomInput from "../formComponents/CustomInput";
 import { createAccountSchema } from "../../schema/accounts/createAccount";
-import { registerUser } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userApi } from "../../services/api";
 
 const CreateAccountForm = ({
   setIsSuccessVisible,
@@ -25,7 +25,7 @@ const CreateAccountForm = ({
 
   const onSubmit = async (values, { resetForm }) => {
     dispatch(
-      registerUser(
+      userApi.registerUser(
         values,
         resetForm,
         setIsFailedResponseVisible,

@@ -5,16 +5,14 @@ import "../../styles.css";
 import { Box, Typography, useTheme } from "@mui/joy";
 import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  clearFeaturedTournaments,
-  getFeaturedTournaments,
-} from "../../state/tournament/tournamentSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SliderMask from "../SliderMask";
 import TournamentCard from "../../components/cards/TournamentCard";
+import { clearFeaturedTournaments } from "../../state/tournament/tournamentSlice";
+import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 
 const FeaturedTournaments = () => {
@@ -30,7 +28,7 @@ const FeaturedTournaments = () => {
   // Effect for fetching tournaments if not already fetched
   useEffect(() => {
     if (!featuredTournaments.length) {
-      dispatch(getFeaturedTournaments({ setIsLoading }));
+      dispatch(tournamentsApi.getFeaturedTournaments({ setIsLoading }));
     }
   }, [dispatch, featuredTournaments.length]);
 

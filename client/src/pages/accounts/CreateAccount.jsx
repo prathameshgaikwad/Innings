@@ -9,11 +9,11 @@ import GlobalStyles from "@mui/joy/GlobalStyles";
 import GoogleIcon from "../../../public/assets/GoogleIcon";
 import LogoBox from "../../components/common/Navbar/LogoBox";
 import { formLabelClasses } from "@mui/joy/FormLabel";
-import { signUpGoogle } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { userApi } from "../../services/api";
 
 export default function CreateAccount() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function CreateAccount() {
 
   const handleGoogleSignUpSuccess = (tokenResponse) => {
     const { access_token } = tokenResponse;
-    dispatch(signUpGoogle(access_token, navigate));
+    dispatch(userApi.signUpGoogle(access_token, navigate));
   };
 
   const handleGoogleSignUp = useGoogleLogin({

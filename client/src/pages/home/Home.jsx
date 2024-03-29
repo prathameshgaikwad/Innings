@@ -1,7 +1,3 @@
-import {
-  fetchJoinedTournaments,
-  getLatestTournamentDetails,
-} from "../../state/tournament/tournamentSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -13,6 +9,7 @@ import Navbar from "../../components/common/Navbar";
 import NoTournamentsJoined from "../../components/cards/NoTournamentsJoined";
 import { Skeleton } from "@mui/joy";
 import UpcomingMatches from "../../components/lists/UpcomingMatches";
+import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/joy/styles";
 
@@ -29,8 +26,12 @@ const HomePage = () => {
   const userId = user && user._id;
 
   useEffect(() => {
-    dispatch(getLatestTournamentDetails({ userId, token, setIsLoading }));
-    dispatch(fetchJoinedTournaments({ userId, token, setIsLoading }));
+    dispatch(
+      tournamentsApi.getLatestTournamentDetails({ userId, token, setIsLoading })
+    );
+    dispatch(
+      tournamentsApi.getJoinedTournaments({ userId, token, setIsLoading })
+    );
   }, [dispatch, userId, token]);
 
   const latestTournament = useSelector(

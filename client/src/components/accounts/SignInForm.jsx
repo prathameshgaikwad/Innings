@@ -3,9 +3,9 @@ import { Form, Formik } from "formik";
 import { Button } from "@mui/joy";
 import CustomInput from "../formComponents/CustomInput";
 import { signInSchema } from "../../schema/accounts/signIn";
-import { signInUser } from "../../state/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userApi } from "../../services/api";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const SignInForm = () => {
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    dispatch(signInUser(values, resetForm, navigate));
+    dispatch(userApi.signInUser(values, resetForm, navigate));
   };
 
   return (
