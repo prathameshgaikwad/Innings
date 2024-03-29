@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import FixtureCard from "../cards/FixtureCard";
 import SliderMask from "../SliderMask";
 import UpcomingMatchesSkeleton from "../skeletons/UpcomingMatchesSkeleton";
-import { getUpcomingMatches } from "../../state/user/userSlice";
+import { getUpcomingMatches } from "../../services/api/user";
 import { useMediaQuery } from "@mui/material";
 
 const UpcomingMatches = ({ tournamentId }) => {

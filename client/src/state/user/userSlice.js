@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const REGISTER_ENDPOINT = import.meta.env.VITE_SERVER_REGISTER_URL;
 const LOGIN_ENDPOINT = import.meta.env.VITE_SERVER_LOGIN_URL;
-const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
 
 const initialState = {
   user: null,
@@ -156,33 +155,6 @@ export const signInUser = async (values, resetForm, dispatch, navigate) => {
     console.error("Error:", error);
   }
 };
-
-export const getUpcomingMatches =
-  ({ tournamentId, token, setIsLoading }) =>
-  async (dispatch) => {
-    try {
-      const response = await fetch(
-        `${TOURNAMENTS_API}/${tournamentId}/upcoming-matches`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Fetching error");
-      }
-
-      const data = await response.json();
-      const { isEmpty, upcomingMatches } = data;
-
-      if (!isEmpty) dispatch(setUpcomingMatches(upcomingMatches));
-      setIsLoading(false);
-    } catch (error) {
-      console.log("error:", error);
-    }
-  };
 
 export const {
   setLogout,
