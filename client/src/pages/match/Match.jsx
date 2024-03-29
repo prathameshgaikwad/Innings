@@ -1,5 +1,4 @@
 import { Box, Stack, Typography, useTheme } from "@mui/joy";
-import { getMatchInfo, setToss } from "../../state/match/matchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -17,6 +16,8 @@ import TossDetails from "../../components/match/TossDetails";
 import TossNotConducted from "../../components/match/TossNotConducted";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { io } from "socket.io-client";
+import { matchApi } from "../../services/api";
+import { setToss } from "../../state/match/matchSlice";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -52,7 +53,7 @@ const Match = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    dispatch(getMatchInfo({ matchId, token, setIsLoading }));
+    dispatch(matchApi.getMatchInfo({ matchId, token, setIsLoading }));
   }, [dispatch, matchId, token]);
 
   const createdTournaments = useSelector(

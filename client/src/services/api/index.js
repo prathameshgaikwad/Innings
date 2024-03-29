@@ -1,3 +1,4 @@
+import * as matchApi from "./match";
 import * as teamApi from "./team";
 import * as tournamentPageApi from "./tournamentPage";
 import * as tournamentSetupApi from "./tournamentSetup";
@@ -10,4 +11,5 @@ export {
   tournamentSetupApi,
   tournamentPageApi,
   teamApi,
+  matchApi,
 };
