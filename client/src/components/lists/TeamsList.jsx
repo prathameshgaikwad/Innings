@@ -14,8 +14,8 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import NoData from "../NoData";
 import SliderMask from "../SliderMask";
 import TeamCard from "../cards/TeamCard";
-import { getCreatedTeams } from "../../state/tournament/tournamentSetupSlice";
 import { getTeams } from "../../state/tournament/tournamentPageSlice";
+import { tournamentSetupApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -33,7 +33,13 @@ const TeamsList = ({ isSetupPage }) => {
 
   useEffect(() => {
     isSetupPage
-      ? dispatch(getCreatedTeams({ tournamentId, token, setIsLoading }))
+      ? dispatch(
+          tournamentSetupApi.getCreatedTeams({
+            tournamentId,
+            token,
+            setIsLoading,
+          })
+        )
       : dispatch(getTeams({ tournamentId, token, setIsLoading }));
   }, [dispatch, teams.length]);
 

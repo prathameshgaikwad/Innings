@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "@mui/joy";
-import { saveFixturesBatchToDb } from "../../state/tournament/tournamentSetupSlice";
+import { tournamentSetupApi } from "../../services/api";
 
 const ConfirmFinishTournamentSetup = ({ setOpen }) => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const ConfirmFinishTournamentSetup = ({ setOpen }) => {
 
   const handleFinishSetup = async () => {
     dispatch(
-      saveFixturesBatchToDb({
+      tournamentSetupApi.saveFixturesBatchToDb({
         tournamentId,
         token,
         fixtures,

@@ -1,9 +1,5 @@
 import { Box, Button, Card, Stack, Typography, useTheme } from "@mui/joy";
 import { Form, Formik } from "formik";
-import {
-  addPlayerToTeam,
-  saveTeamToDb,
-} from "../../state/tournament/tournamentSetupSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import CustomInput from "../formComponents/CustomInput";
@@ -14,7 +10,9 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import { HiOutlineSaveAs } from "react-icons/hi";
 import { MdPersonAddAlt1 } from "react-icons/md";
 import PlayersList from "./PlayersList";
+import { addPlayerToTeam } from "../../state/tournament/tournamentSetupSlice";
 import { playerSchema } from "../../schema/tournament/player";
+import { tournamentSetupApi } from "../../services/api";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
@@ -56,7 +54,9 @@ const AddPlayersForm = () => {
 
   const handleSaveTeam = async () => {
     const data = { tournamentId, ...teamData };
-    dispatch(saveTeamToDb({ data, token, setOpenToast, teamData }));
+    dispatch(
+      tournamentSetupApi.saveTeamToDb({ data, token, setOpenToast, teamData })
+    );
   };
 
   const tempTeam = useSelector((state) => state.tournamentSetup.tempTeam);
