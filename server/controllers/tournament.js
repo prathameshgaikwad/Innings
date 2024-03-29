@@ -87,10 +87,11 @@ const getLiveMatchDetails = async (req, res) => {
     const { tournamentId } = req.params;
     const tournament = await Tournament.findById({ _id: tournamentId });
 
-    if (!tournament)
+    if (!tournament) {
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
+    }
 
     const { fixture_id } = tournament;
 
@@ -99,7 +100,7 @@ const getLiveMatchDetails = async (req, res) => {
     for (const id of fixture_id) {
       const fixture = await Fixture.findById({ _id: id });
       const { match_id } = fixture;
-      const match = await Match.findById({ _id: match_id });
+      const match = await Match.findOne(match_id);
 
       if (match.status === "ongoing") {
         ongoingMatchId = match_id;
