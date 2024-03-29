@@ -10,7 +10,6 @@ import {
   Typography,
   useTheme,
 } from "@mui/joy";
-import { clearTeamData, getTeamInfo } from "../../state/team/teamSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -22,6 +21,8 @@ import RectangularSkeleton from "../../components/skeletons/RectangularSkeleton"
 import { TbHexagonLetterC } from "react-icons/tb";
 import TeamPerformance from "../../components/lists/TeamPerformance";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
+import { clearTeamData } from "../../state/team/teamSlice";
+import { teamApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 
 const TeamPage = () => {
@@ -37,7 +38,7 @@ const TeamPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getTeamInfo({ teamId, token, setIsLoading }));
+    dispatch(teamApi.getTeamInfo({ teamId, token, setIsLoading }));
   }, [dispatch, teamId, token]);
 
   const { name, color, players, captain, logoURL, performance } = useSelector(
