@@ -8,7 +8,7 @@ import { LiveIcon } from "../LiveIcon";
 import MatchCard from "../cards/MatchCard";
 import NoLiveMatchPlaceholder from "../NoLiveMatchPlaceholder";
 import Typography from "@mui/joy/Typography";
-import { getLiveMatchInfo } from "../../state/user/userSlice";
+import { getLiveMatchInfo } from "../../services/api/user";
 import { useMediaQuery } from "@mui/material";
 
 const LiveMatch = ({ tournamentId }) => {
