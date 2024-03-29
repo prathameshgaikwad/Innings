@@ -11,10 +11,15 @@ const initialState = {
   team2: "",
   runs: 0,
   wickets: 0,
+  extras: {
+    wides: 0,
+    no_balls: 0,
+    byes: 0,
+    leg_byes: 0,
+  },
+  balls_completed: 0,
   ball_log: [],
-  run_log: [],
   wicket_log: [],
-  extras_log: [],
   batsmen: {
     onStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
     offStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
@@ -48,12 +53,7 @@ const matchManagementSlice = createSlice({
         team2,
         match_no,
         status,
-        team1_ball_log,
-        team1_run_log,
-        team2_ball_log,
-        team2_run_log,
-        team1_wicket_log,
-        team2_wicket_log,
+        data,
       } = action.payload;
 
       state._id = _id;
@@ -64,33 +64,44 @@ const matchManagementSlice = createSlice({
       state.team1 = team1;
       state.team2 = team2;
       state.status = status;
-      state.innings = "1";
 
-      const isFirstInnings = state.innings === "1";
+      const isFirstInnings = state.innings === 1;
 
       setBattingTeam();
 
-      const battingTeamId = state.battingTeam._id;
       const bowlingTeamId = state.bowlingTeam._id;
 
+      const updateStateForInnings = (inningData1, inningData2) => {
+        state.runs =
+          bowlingTeamId === state.team1._id
+            ? inningData2.runs
+            : inningData1.runs;
+        state.wickets =
+          bowlingTeamId === state.team1._id
+            ? inningData2.wickets
+            : inningData1.wickets;
+        state.extras =
+          bowlingTeamId === state.team1._id
+            ? inningData2.extras
+            : inningData1.extras;
+        state.balls_completed =
+          bowlingTeamId === state.team1._id
+            ? inningData2.balls_completed
+            : inningData1.balls_completed;
+        state.ball_log =
+          bowlingTeamId === state.team1._id
+            ? inningData2.ball_log
+            : inningData1.ball_log;
+        state.wicket_log =
+          bowlingTeamId === state.team1._id
+            ? inningData2.wicket_log
+            : inningData1.wicket_log;
+      };
+
       if (isFirstInnings) {
-        state.run_log =
-          battingTeamId === state.team1._id ? team1_run_log : team2_run_log;
-        state.ball_log =
-          bowlingTeamId === state.team1._id ? team1_ball_log : team2_ball_log;
-        state.wicket_log =
-          bowlingTeamId === state.team1._id
-            ? team1_wicket_log
-            : team2_wicket_log;
+        updateStateForInnings(data.team1, data.team2);
       } else {
-        state.run_log =
-          battingTeamId === state.team1._id ? team2_run_log : team1_run_log;
-        state.ball_log =
-          bowlingTeamId === state.team1._id ? team2_ball_log : team1_ball_log;
-        state.wicket_log =
-          bowlingTeamId === state.team1._id
-            ? team2_wicket_log
-            : team1_wicket_log;
+        updateStateForInnings(data.team2, data.team1);
       }
     },
     setTossResult: (state, action) => {
@@ -105,7 +116,7 @@ const matchManagementSlice = createSlice({
       state.status = action.payload;
     },
     completeFirstInnings: (state) => {
-      const newInnings = "2";
+      const newInnings = 2;
       state.innings = newInnings;
     },
     setBattingTeam: (state) => {
@@ -114,7 +125,7 @@ const matchManagementSlice = createSlice({
       const losingTeam =
         state.toss.winnerId === state.team1._id ? state.team2 : state.team1;
 
-      if (state.innings === "1") {
+      if (state.innings === 1) {
         if (state.toss.decision === "bat") {
           state.battingTeam = winningTeam;
           state.bowlingTeam = losingTeam;
@@ -145,20 +156,20 @@ const matchManagementSlice = createSlice({
       state.batsmen.offStrikeBatsman._id = _id;
       state.batsmen.offStrikeBatsman.name = name;
     },
+    setOnStrikeBatsmanRuns: (state, action) => {
+      const { runs, balls_played } = action.payload;
+      state.onStrikeBatsman.runs = runs;
+      state.onStrikeBatsman.ballsPlayed = balls_played;
+    },
     setStrikeChange: (state) => {
       [state.offStrikeBatsman, state.onStrikeBatsman] = [
         state.onStrikeBatsman,
         state.offStrikeBatsman,
       ];
     },
-    setOnStrikeBatsmanRuns: (state, action) => {
-      const { runs, balls_played } = action.payload;
-      state.onStrikeBatsman.runs = runs;
-      state.onStrikeBatsman.ballsPlayed = balls_played;
-    },
     setRuns: (state) => {
       let totalRuns = 0;
-      state.run_log.forEach((log) => (totalRuns += log.score));
+      state.ball_log.forEach((log) => (totalRuns += log.runs_scored));
       state.runs = totalRuns;
     },
     addRuns: (state, action) => {
@@ -171,29 +182,29 @@ const matchManagementSlice = createSlice({
       state.bowler.name = name;
     },
     setBallLog: (state, action) => {
-      const { runs_conceded, isWicket } = action.payload;
+      const { runs_scored, isWicket } = action.payload;
       const newBall = {
         bowler: state.bowler,
-        runs_conceded,
+        runs_scored,
         isWicket,
       };
       state.ball_log = [...state.ball_log, newBall];
     },
     setWicketLog: (state, action) => {
-      const { runScored, batsman, overNumber } = action.payload;
+      const { runs_completed, batsman, overNumber } = action.payload;
       const newWicket = {
         bowler: state.bowler,
-        runScored,
+        runs_completed,
         batsman,
         overNumber,
       };
       state.wicket_log = [...state.wicket_log, newWicket];
     },
     setExtrasLog: (state, action) => {
-      const { runScored, extraType } = action.payload;
+      const { runs_completed, extraType } = action.payload;
       const newExtra = {
         bowler: state.bowler,
-        runScored,
+        runs_completed,
         extraType,
       };
       state.extras_log = [...state.extras_log, newExtra];
@@ -218,7 +229,6 @@ export const getMatchManagementInfo =
 
       const data = await response.json();
       dispatch(setMatch(data));
-      dispatch(setBattingTeam());
       setIsLoading(false);
     } catch (error) {
       console.log("error:", error);
