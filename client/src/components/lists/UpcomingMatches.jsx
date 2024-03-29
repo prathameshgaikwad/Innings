@@ -13,8 +13,8 @@ import { useEffect, useState } from "react";
 import FixtureCard from "../cards/FixtureCard";
 import SliderMask from "../SliderMask";
 import UpcomingMatchesSkeleton from "../skeletons/UpcomingMatchesSkeleton";
-import { getUpcomingMatches } from "../../services/api/user";
 import { useMediaQuery } from "@mui/material";
+import { userApi } from "../../services/api";
 
 const UpcomingMatches = ({ tournamentId }) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const UpcomingMatches = ({ tournamentId }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getUpcomingMatches({ tournamentId, token, setIsLoading }));
+    dispatch(userApi.getUpcomingMatches({ tournamentId, token, setIsLoading }));
   }, [dispatch, tournamentId, token]);
 
   const upcomingMatches = useSelector((state) => state.user.upcomingMatches);

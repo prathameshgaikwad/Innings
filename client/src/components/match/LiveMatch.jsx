@@ -8,8 +8,8 @@ import { LiveIcon } from "../LiveIcon";
 import MatchCard from "../cards/MatchCard";
 import NoLiveMatchPlaceholder from "../NoLiveMatchPlaceholder";
 import Typography from "@mui/joy/Typography";
-import { getLiveMatchInfo } from "../../services/api/user";
 import { useMediaQuery } from "@mui/material";
+import { userApi } from "../../services/api";
 
 const LiveMatch = ({ tournamentId }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const LiveMatch = ({ tournamentId }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getLiveMatchInfo({ tournamentId, token, setIsLoading }));
+    dispatch(userApi.getLiveMatchInfo({ tournamentId, token, setIsLoading }));
   }, [dispatch, tournamentId, token]);
 
   const liveMatch = useSelector((state) => state.user.liveMatch);
