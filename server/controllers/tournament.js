@@ -92,7 +92,7 @@ const getLiveMatchDetails = async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
     }
-
+    //TODO: FIX UPCOMING MATCHES
     const { fixture_id } = tournament;
 
     let ongoingMatchId = null;
@@ -163,7 +163,7 @@ const getLiveMatchDetails = async (req, res) => {
 const getUpcomingMatches = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findById({ _id: tournamentId });
+    const tournament = await Tournament.findOne({ _id: tournamentId });
 
     if (!tournament)
       return res
@@ -175,9 +175,9 @@ const getUpcomingMatches = async (req, res) => {
     const upcomingMatches = [];
 
     for (const id of fixture_id) {
-      const fixture = await Fixture.findById({ _id: id });
+      const fixture = await Fixture.findOne({ _id: id });
 
-      if (fixture.status === "pending") {
+      if (fixture.toObject().status === "pending") {
         upcomingMatches.push(id);
       }
 
