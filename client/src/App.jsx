@@ -36,8 +36,7 @@ const App = () => {
       <CssVarsProvider
         defaultMode="dark"
         disableTransitionOnChange
-        // theme={myTheme}  TODO: CREATE AND USE THEME
-      >
+        theme={myTheme}>
         <CssBaseline />
         <Routes>
           {/* PUBLIC PATHS */}
