@@ -61,9 +61,9 @@ const getFixtureDetails = async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such fixture" });
 
-    const { date, time } = fixture;
-    const { match_id } = fixture;
-    const { team1_id, team2_id } = fixture;
+    const { date, time } = fixture.toObject();
+    const { match_id } = fixture.toObject();
+    const { team1_id, team2_id } = fixture.toObject();
 
     const match = await Match.findById({ _id: match_id });
     const team1 = await Team.findById({ _id: team1_id });
