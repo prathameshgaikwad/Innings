@@ -1,9 +1,9 @@
+import { Box, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Avatar from "@mui/joy/Avatar";
-import { Box } from "@mui/joy";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import ColorSchemeToggle from "../ColorSchemeToggle";
@@ -27,6 +27,7 @@ import { useNavigate } from "react-router-dom";
 const UserActions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const { firstName, profileImageURL } = useSelector(
     (state) => state.user.user
@@ -70,7 +71,7 @@ const UserActions = () => {
               alignItems: "center",
               p: 0.8,
               "&:hover": {
-                backgroundColor: (theme) => theme.palette.neutral.softHoverBg,
+                backgroundColor: theme.palette.neutral.softHoverBg,
               },
             }}>
             <Avatar size="md" src={profileImageURL}></Avatar>
@@ -84,7 +85,12 @@ const UserActions = () => {
             </Box>
           </Card>
         </MenuButton>
-        <Menu placement="bottom-end" sx={{ zIndex: 1001 }}>
+        <Menu
+          placement="bottom-end"
+          sx={{
+            zIndex: 1001,
+            backgroundColor: theme.palette.neutral[900],
+          }}>
           <MenuItem
             sx={{ fontSize: "sm" }}
             onClick={() => {
