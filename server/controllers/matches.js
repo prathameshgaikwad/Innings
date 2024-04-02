@@ -3,7 +3,6 @@ const Match = require("../models/match");
 const Team = require("../models/team");
 const Fixture = require("../models/fixture");
 const Tournament = require("../models/tournament");
-const { default: mongoose } = require("mongoose");
 
 const getMatchDetails = async (req, res) => {
   try {
