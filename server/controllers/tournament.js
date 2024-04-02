@@ -341,19 +341,19 @@ const getPointsTable = async (req, res) => {
 const getAllFixtures = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findById({ _id: tournamentId });
+    const tournament = await Tournament.findById(tournamentId);
     const { fixture_id } = tournament;
 
-    const responseObject = [];
+    const responseData = [];
 
     for (const element of fixture_id) {
-      const fixture = await Fixture.findById({ _id: element });
+      const fixture = await Fixture.findById(element);
       const { team1_id, team2_id, match_no, match_id, date, time, status } =
-        fixture;
+        fixture.toObject();
 
-      const team1 = await Team.findById({ _id: team1_id });
-      const team2 = await Team.findById({ _id: team2_id });
-      const match = await Match.findById({ _id: match_id });
+      const team1 = await Team.findById(team1_id);
+      const team2 = await Team.findById(team2_id);
+      const match = await Match.findById(match_id);
 
       const team1Details = {
         name: team1.name,
@@ -368,7 +368,7 @@ const getAllFixtures = async (req, res) => {
         logoURL: team2.logoURL,
       };
 
-      responseObject.push({
+      responseData.push({
         team1Details,
         team2Details,
         match_no,
@@ -379,8 +379,7 @@ const getAllFixtures = async (req, res) => {
         overs: match.overs,
       });
     }
-
-    res.status(StatusCodes.OK).json(responseObject);
+    res.status(StatusCodes.OK).json(responseData);
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
