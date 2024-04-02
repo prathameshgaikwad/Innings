@@ -3,16 +3,17 @@ const Match = require("../models/match");
 const Team = require("../models/team");
 const Fixture = require("../models/fixture");
 const Tournament = require("../models/tournament");
+const { default: mongoose } = require("mongoose");
 
 const getMatchDetails = async (req, res) => {
   try {
     const { matchId } = req.params;
-    const match = await Match.findById({ _id: matchId });
+    const match = await Match.findById(matchId);
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
-    const fixture = await Fixture.findOne({ match_id: matchId });
+    const fixture = await Fixture.findOne({ match_id: match._id });
     const tournament = await Tournament.findOne({ fixture_id: fixture._id });
     const { venue } = tournament;
 
