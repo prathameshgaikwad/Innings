@@ -8,7 +8,7 @@ const NoCompletedMatches = () => {
         borderWidth: 2,
         borderStyle: "dashed",
       }}>
-      <Typography level="body-lg" sx={{ m: "auto", p: 1 }}>
+      <Typography sx={{ m: "auto", p: 1 }}>
         Click on &quot;Start Match&quot; to begin scoring a match
       </Typography>
     </Card>
