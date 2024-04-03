@@ -1,33 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  _id: "",
-  match_no: "",
-  battingTeam: "",
-  bowlingTeam: "",
-  team1: "",
-  team2: "",
+  _id: null,
+  match_no: null,
+  battingTeam: {},
+  bowlingTeam: {},
+  team1: null,
+  team2: null,
   ball_log: [],
-  run_log: [],
   wicket_log: [],
-  extras_log: [],
+  batting_log: [],
+  data: {},
   batsmen: {
-    onStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
-    offStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
+    onStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
+    offStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
   },
   bowler: {
-    _id: "",
-    name: "",
+    _id: null,
+    name: null,
   },
-  overs: "",
-  innings: "",
-  venue: "",
-  status: "",
+  overs: null,
+  innings: null,
+  venue: null,
+  status: null,
   toss: {
-    decision: "",
-    winner: "",
-    winnerId: "",
-    loser: "",
+    decision: null,
+    winner: null,
+    winnerId: null,
+    loser: null,
   },
 };
 
@@ -46,12 +46,9 @@ const matchSlice = createSlice({
         team2,
         match_no,
         status,
-        team1_ball_log,
-        team1_run_log,
-        team2_ball_log,
-        team2_run_log,
-        team1_wicket_log,
-        team2_wicket_log,
+        data,
+        battingTeam,
+        bowlingTeam,
       } = action.payload;
 
       state._id = _id;
@@ -63,88 +60,29 @@ const matchSlice = createSlice({
       state.team1 = team1;
       state.team2 = team2;
       state.status = status;
-      state.batsmen = {
-        onStrikeBatsman: {
-          name: "",
-          runs: "",
-          ballsPlayed: "",
-          _id: "",
-        },
-        offStrikeBatsman: {
-          name: "",
-          runs: "",
-          ballsPlayed: "",
-          _id: "",
-        },
-      };
-
-      const isFirstInnings = state.innings === "1";
-
-      setBattingTeam();
-
-      const battingTeamId = state.battingTeam._id;
-      const bowlingTeamId = state.bowlingTeam._id;
-
-      if (isFirstInnings) {
-        state.run_log =
-          battingTeamId === state.team1._id ? team1_run_log : team2_run_log;
-        state.ball_log =
-          bowlingTeamId === state.team1._id ? team1_ball_log : team2_ball_log;
-        state.wicket_log =
-          bowlingTeamId === state.team1._id
-            ? team1_wicket_log
-            : team2_wicket_log;
-      } else {
-        state.run_log =
-          battingTeamId === state.team1._id ? team2_run_log : team1_run_log;
-        state.ball_log =
-          bowlingTeamId === state.team1._id ? team2_ball_log : team1_ball_log;
-        state.wicket_log =
-          bowlingTeamId === state.team1._id
-            ? team2_wicket_log
-            : team1_wicket_log;
-      }
+      state.battingTeam = battingTeam;
+      state.bowlingTeam = bowlingTeam;
+      state.data = data;
     },
-    setBattingTeam: (state) => {
-      const winningTeam =
-        state.toss.winnerId === state.team1._id ? state.team1 : state.team2;
-      const losingTeam =
-        state.toss.winnerId === state.team1._id ? state.team2 : state.team1;
-
-      if (state.innings === "1") {
-        if (state.toss.decision === "bat") {
-          state.battingTeam = winningTeam;
-          state.bowlingTeam = losingTeam;
-        } else {
-          state.battingTeam = losingTeam;
-          state.bowlingTeam = winningTeam;
-        }
-      } else {
-        if (state.toss.decision === "bat") {
-          state.battingTeam = losingTeam;
-          state.bowlingTeam = winningTeam;
-        } else {
-          state.battingTeam = winningTeam;
-          state.bowlingTeam = losingTeam;
-        }
-      }
-    },
-    setToss: (action, state) => {
+    setToss: (state, action) => {
       state.toss = action.payload;
     },
-    setRunLogItem: (state, action) => {
-      const newRunLog = [...state.run_log, action.payload];
-      state.run_log = newRunLog;
+    setLogs: (state, action) => {
+      const data = action.payload;
+      if (state.battingTeam._id === state.team1._id) {
+        state.ball_log = data.team1.ball_log;
+        state.wicket_log = data.team1.wicket_log;
+        state.batting_log = data.team1.batting_log;
+      } else {
+        state.ball_log = data.team2.ball_log;
+        state.wicket_log = data.team2.wicket_log;
+        state.batting_log = data.team2.batting_log;
+      }
     },
     clearMatchData: () => initialState,
   },
 });
 
-export const {
-  setMatch,
-  setBattingTeam,
-  setToss,
-  setRunLogItem,
-  clearMatchData,
-} = matchSlice.actions;
+export const { setMatch, setBattingTeam, setToss, setLogs, clearMatchData } =
+  matchSlice.actions;
 export const matchReducer = matchSlice.reducer;
