@@ -22,6 +22,7 @@ const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
 const TournamentCard = ({ id }) => {
   const token = useSelector((state) => state.user.token);
   const theme = useTheme();
+  const isDarkTheme = theme.palette.mode === "dark";
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -63,6 +64,16 @@ const TournamentCard = ({ id }) => {
   const tournamentID = id;
   const tournamentURL = `/tournaments/${tournamentID}`;
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -70,14 +81,19 @@ const TournamentCard = ({ id }) => {
       ) : (
         <Link
           overlay
-          sx={{ "&:hover": { textDecoration: "none" } }}
+          sx={{
+            "&:hover": {
+              textDecoration: "none",
+            },
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           href={tournamentURL}>
           <Card
             variant="soft"
             sx={{
               width: "300px",
-              boxShadow:
-                "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)",
+              boxShadow: `0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)`,
             }}>
             <CardOverflow>
               <AspectRatio ratio="2.5">
@@ -89,12 +105,28 @@ const TournamentCard = ({ id }) => {
               </AspectRatio>
             </CardOverflow>
             <CardContent>
-              <Typography level="title-lg">{name}</Typography>
+              <Typography
+                level="title-lg"
+                sx={{
+                  color: isHovered && theme.palette.primary[400],
+                  transition: "all 0.25s",
+                }}>
+                {name}
+              </Typography>
               <Typography level="body-sm" textColor="text.tertiary">
                 {venue}
               </Typography>
             </CardContent>
-            <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
+            <CardOverflow
+              variant="soft"
+              sx={{
+                bgcolor: isHovered
+                  ? isDarkTheme
+                    ? theme.palette.primary[700]
+                    : theme.palette.primary[200]
+                  : "background.level1",
+                transition: "all 0.25s",
+              }}>
               <Divider inset="context" />
               <CardContent orientation="horizontal">
                 <Typography
