@@ -7,7 +7,8 @@ import BatsmenStatsSkeleton from "../skeletons/BatsmenStatsSkeleton";
 const BatsmenStats = ({ isSmall, data, isLoading }) => {
   const { onStrikeBatsman, offStrikeBatsman } = data;
   const isEmpty =
-    (data && onStrikeBatsman.name.length === 0) ||
+    !data.onStrikeBatsman.name ||
+    onStrikeBatsman.name.length === 0 ||
     offStrikeBatsman.name.length === 0;
 
   const theme = useTheme();

@@ -7,10 +7,7 @@ const initialState = {
   bowlingTeam: {},
   team1: null,
   team2: null,
-  ball_log: [],
-  wicket_log: [],
-  batting_log: [],
-  data: {},
+  inningsData: {},
   batsmen: {
     onStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
     offStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
@@ -46,7 +43,7 @@ const matchSlice = createSlice({
         team2,
         match_no,
         status,
-        data,
+        inningsData,
         battingTeam,
         bowlingTeam,
       } = action.payload;
@@ -62,27 +59,15 @@ const matchSlice = createSlice({
       state.status = status;
       state.battingTeam = battingTeam;
       state.bowlingTeam = bowlingTeam;
-      state.data = data;
+      state.inningsData = inningsData;
     },
     setToss: (state, action) => {
       state.toss = action.payload;
-    },
-    setLogs: (state, action) => {
-      const data = action.payload;
-      if (state.battingTeam._id === state.team1._id) {
-        state.ball_log = data.team1.ball_log;
-        state.wicket_log = data.team1.wicket_log;
-        state.batting_log = data.team1.batting_log;
-      } else {
-        state.ball_log = data.team2.ball_log;
-        state.wicket_log = data.team2.wicket_log;
-        state.batting_log = data.team2.batting_log;
-      }
     },
     clearMatchData: () => initialState,
   },
 });
 
-export const { setMatch, setBattingTeam, setToss, setLogs, clearMatchData } =
+export const { setMatch, setBattingTeam, setToss, clearMatchData } =
   matchSlice.actions;
 export const matchReducer = matchSlice.reducer;
