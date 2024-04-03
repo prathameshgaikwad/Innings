@@ -3,6 +3,9 @@ const Match = require("../models/match");
 const Team = require("../models/team");
 const Fixture = require("../models/fixture");
 const Tournament = require("../models/tournament");
+const {
+  setBattingAndBowlingTeamData,
+} = require("../helpers/setBattingAndBowlingTeamData");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -32,6 +35,13 @@ const getMatchDetails = async (req, res) => {
     const team1 = await Team.findById(team1_id);
     const team2 = await Team.findById(team2_id);
 
+    const { battingTeam, bowlingTeam } = setBattingAndBowlingTeamData({
+      innings,
+      team1,
+      team2,
+      toss,
+    });
+
     const matchData = {
       _id,
       match_no,
@@ -44,6 +54,8 @@ const getMatchDetails = async (req, res) => {
       innings,
       team1,
       team2,
+      battingTeam,
+      bowlingTeam,
     };
 
     res.status(StatusCodes.OK).json(matchData);
