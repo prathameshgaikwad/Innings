@@ -5,8 +5,8 @@ import { Box, Divider, Sheet, Table, Typography, useTheme } from "@mui/joy";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
-import formatLongDate from "../../services/helpers/formatLongDate";
-import formatTime from "../../services/helpers/formatTime";
+import formatLongDate from "../../utilities/helpers/formatLongDate";
+import formatTime from "../../utilities/helpers/formatTime";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 

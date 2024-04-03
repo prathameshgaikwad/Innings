@@ -15,8 +15,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomModal from "../modals/CustomModal";
 import { MdAccessTime } from "react-icons/md";
 import SimpleMatchCardSkeleton from "../skeletons/SimpleMatchCardSkeleton";
-import formatTime from "../../services/helpers/formatTime";
-import setTimeFromString from "../../services/helpers/setTimeFromString";
+import formatTime from "../../utilities/helpers/formatTime";
+import setTimeFromString from "../../utilities/helpers/setTimeFromString";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 

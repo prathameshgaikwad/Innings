@@ -30,13 +30,6 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
   const isTab = useMediaQuery(theme.breakpoints.down(650));
 
   const matchURL = data ? `/tournaments/${tournamentId}/${data._id}` : "";
-  const team1URL = data
-    ? `/tournaments/${tournamentId}/teams/${data.team1._id}`
-    : "";
-  const team2URL = data
-    ? `/tournaments/${tournamentId}/teams/${data.team2._id}`
-    : "";
-
   const renderContent = () => {
     return (
       <Card
@@ -44,6 +37,13 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
         sx={{
           width: isTab ? "96%" : "72%",
           minWidth: "72%",
+          outline: `2px solid `,
+          transition: "all 0.3s ease-in-out",
+          outlineColor: "transparent",
+          "&:hover": {
+            outlineColor: ` ${theme.palette.primary.softHoverBg}`,
+            boxShadow: `rgba(180,166,91,0.2)  0px 6px 24px 0px, rgba(180,166,91,0.2) 0px 0px 0px 1px`,
+          },
         }}>
         {/* Top Bar */}
 
@@ -58,21 +58,17 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
               # {data.match_no}
             </Typography>
             <Divider orientation="vertical" />
-            <Link href={team1URL}>
-              <Typography
-                level={isMobile ? "title-lg" : "h4"}
-                sx={{ color: "text.tertiary" }}>
-                {data.team1.name}
-              </Typography>
-            </Link>
+            <Typography
+              level={isMobile ? "title-lg" : "h4"}
+              sx={{ color: "text.tertiary" }}>
+              {data.team1.name}
+            </Typography>
             vs
-            <Link href={team2URL}>
-              <Typography
-                level={isMobile ? "title-lg" : "h4"}
-                sx={{ color: "text.tertiary" }}>
-                {data.team2.name}
-              </Typography>
-            </Link>
+            <Typography
+              level={isMobile ? "title-lg" : "h4"}
+              sx={{ color: "text.tertiary" }}>
+              {data.team2.name}
+            </Typography>
           </CardContent>
           <Divider inset="context" />
         </CardOverflow>

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import formatDate from "../../services/helpers/formatDate";
+import formatDate from "../../utilities/helpers/formatDate";
 
 const initialState = {
   fixtures: [],

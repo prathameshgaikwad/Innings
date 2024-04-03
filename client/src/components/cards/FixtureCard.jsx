@@ -15,9 +15,9 @@ import { useEffect, useState } from "react";
 
 import FixtureCardSkeleton from "../skeletons/FixtureCardSkeleton";
 import { fixtureApi } from "../../services/api";
-import formatDate from "../../services/helpers/formatDate";
-import formatTime from "../../services/helpers/formatTime";
-import setTimeFromString from "../../services/helpers/setTimeFromString";
+import formatDate from "../../utilities/helpers/formatDate";
+import formatTime from "../../utilities/helpers/formatTime";
+import setTimeFromString from "../../utilities/helpers/setTimeFromString";
 import { useMediaQuery } from "@mui/material";
 
 const FixtureCard = ({ id }) => {

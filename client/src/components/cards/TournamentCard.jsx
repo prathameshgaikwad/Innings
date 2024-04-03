@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 import { BiSolidCricketBall } from "react-icons/bi";
 import TournamentCardSkeleton from "../skeletons/TournamentCardSkeleton";
-import formatDate from "../../services/helpers/formatDate";
+import formatDate from "../../utilities/helpers/formatDate";
 import { useSelector } from "react-redux";
 
 const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
