@@ -10,14 +10,13 @@ import {
   Typography,
   useTheme,
 } from "@mui/joy";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import FixtureCardSkeleton from "../skeletons/FixtureCardSkeleton";
+import { fixtureApi } from "../../services/api";
 import { format } from "date-fns";
 import { useMediaQuery } from "@mui/material";
-import { useSelector } from "react-redux";
-
-const FIXTURES_API = import.meta.env.VITE_SERVER_FIXTURES_API;
 
 const formatTime = (timeString) => {
   const [hours, minutes] = timeString.split(":");
@@ -30,6 +29,7 @@ const formatTime = (timeString) => {
 
 const FixtureCard = ({ id }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const token = useSelector((state) => state.user.token);
 
@@ -43,34 +43,16 @@ const FixtureCard = ({ id }) => {
   const [team2, setTeam2] = useState({});
 
   useEffect(() => {
-    try {
-      const fetchData = async () => {
-        const response = await fetch(`${FIXTURES_API}/${id}`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Fetching error");
-        }
-
-        const { fixture } = await response.json();
-        const { match_no, overs, date, time, team1, team2 } = fixture;
-
-        setMatchNo(match_no);
-        setDate(date);
-        setTime(time);
-        setOvers(overs);
-        setTeam1(team1);
-        setTeam2(team2);
-
-        setIsLoading(false);
-      };
-      fetchData();
-    } catch (error) {
-      console.log("error:", error);
-    }
+    const setterMethods = {
+      setMatchNo,
+      setDate,
+      setTime,
+      setOvers,
+      setTeam1,
+      setTeam2,
+      setIsLoading,
+    };
+    dispatch(fixtureApi.getFixtureInfo({ id, token, setterMethods }));
   }, []);
 
   return (

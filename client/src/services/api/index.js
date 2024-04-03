@@ -1,3 +1,4 @@
+import * as fixtureApi from "./fixture";
 import * as matchApi from "./match";
 import * as matchManagementApi from "./matchManagement";
 import * as teamApi from "./team";
@@ -14,4 +15,5 @@ export {
   teamApi,
   matchApi,
   matchManagementApi,
+  fixtureApi,
 };
