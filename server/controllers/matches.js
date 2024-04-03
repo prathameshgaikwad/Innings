@@ -6,6 +6,7 @@ const Tournament = require("../models/tournament");
 const {
   setBattingAndBowlingTeamData,
 } = require("../helpers/setBattingAndBowlingTeamData");
+const { setInningsData } = require("../helpers/setInningsData");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -42,13 +43,20 @@ const getMatchDetails = async (req, res) => {
       toss,
     });
 
+    const inningsData = setInningsData({
+      data,
+      battingTeam,
+      team1_id,
+      team2_id,
+    });
+
     const matchData = {
       _id,
       match_no,
       overs,
       venue,
       status,
-      data,
+      inningsData,
       result,
       toss,
       innings,
