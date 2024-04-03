@@ -7,7 +7,7 @@ import HomeRounded from "@mui/icons-material/HomeRounded";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import { useMediaQuery } from "@mui/material";
 
-const CustomListItem = ({ pageType, title, link }) => {
+const CustomListItem = ({ isSamePage, title, link }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   return (
@@ -17,7 +17,7 @@ const CustomListItem = ({ pageType, title, link }) => {
       sx={{
         textDecoration: "none",
         py: isMobile ? 1.5 : 3,
-        borderBottom: pageType
+        borderBottom: isSamePage
           ? `3px solid ${theme.palette.primary[400]}`
           : "3px solid transparent",
         transition: "border 0.2s ease-in-out",
@@ -27,7 +27,7 @@ const CustomListItem = ({ pageType, title, link }) => {
       }}>
       <Typography
         level="title-md"
-        color={pageType && "primary"}
+        color={isSamePage && "primary"}
         startDecorator={
           title === "Home" ? (
             <HomeRounded />

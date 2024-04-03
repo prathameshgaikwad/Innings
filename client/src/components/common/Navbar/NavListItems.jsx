@@ -9,16 +9,16 @@ const NavListItems = () => {
 
   return (
     <>
-      <CustomListItem title={"Home"} link={"/"} pageType={isHomePage} />
+      <CustomListItem title={"Home"} link={"/"} isSamePage={isHomePage} />
       <CustomListItem
         title={"Tournaments"}
         link={"/tournaments"}
-        pageType={isTournamentPage}
+        isSamePage={isTournamentPage}
       />
       <CustomListItem
         title={"Statistics"}
         link={"/statistics"}
-        pageType={isStatisticsPage}
+        isSamePage={isStatisticsPage}
       />
     </>
   );
