@@ -132,7 +132,7 @@ const TournamentCard = ({ id }) => {
                 <Typography
                   level="body-xs"
                   fontWeight="md"
-                  textColor="text.tertiary"
+                  textColor="text.secondary"
                   startDecorator={
                     <BiSolidCricketBall
                       fontSize={13}
@@ -145,7 +145,7 @@ const TournamentCard = ({ id }) => {
                 <Typography
                   level="body-xs"
                   fontWeight="md"
-                  textColor="text.tertiary">
+                  textColor="text.secondary">
                   {startDate}
                 </Typography>
               </CardContent>
