@@ -32,7 +32,7 @@ const BallLogList = ({ data, isLoading }) => {
         <BallLogListSkeleton />
       ) : (
         <>
-          {data && data.length === 0 ? (
+          {!data || (data && data.length === 0) ? (
             <Typography
               height={61.2}
               level={"body-xs"}
