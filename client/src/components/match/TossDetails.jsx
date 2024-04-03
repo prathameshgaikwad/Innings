@@ -32,7 +32,7 @@ const TossDetails = ({ tossWinner, choice, isLoading }) => {
             width={250}
           />
         ) : (
-          <Typography level="body-md">
+          <Typography level="body-sm">
             {tossWinner} won the toss and chose to {choice}
           </Typography>
         )}
