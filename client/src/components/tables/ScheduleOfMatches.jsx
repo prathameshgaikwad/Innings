@@ -5,7 +5,8 @@ import { Box, Divider, Sheet, Table, Typography, useTheme } from "@mui/joy";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
-import { format } from "date-fns";
+import formatLongDate from "../../services/helpers/formatLongDate";
+import formatTime from "../../services/helpers/formatTime";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
@@ -25,8 +26,8 @@ function createData(fixture) {
     vs: "vs",
     team2: fixture.team2Details.name,
     team2Short: fixture.team2Details.nameShort,
-    time: format(date, "h:mm a"),
-    date: format(fixture.date, "eee, d MMMM yyyy"),
+    time: formatTime(date),
+    date: formatLongDate(fixture.date),
   };
 }
 

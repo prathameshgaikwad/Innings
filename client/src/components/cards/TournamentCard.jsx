@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 import { BiSolidCricketBall } from "react-icons/bi";
 import TournamentCardSkeleton from "../skeletons/TournamentCardSkeleton";
-import { format } from "date-fns";
+import formatDate from "../../services/helpers/formatDate";
 import { useSelector } from "react-redux";
 
 const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
@@ -48,7 +48,7 @@ const TournamentCard = ({ id }) => {
           await response.json();
 
         setName(name);
-        setStartDate(() => format(new Date(start_date), "do MMM yyyy"));
+        setStartDate(() => formatDate(start_date));
         setVenue(venue);
         setOvers(overs);
         setBannerURLS(banner_urls);

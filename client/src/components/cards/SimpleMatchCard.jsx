@@ -15,18 +15,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import CustomModal from "../modals/CustomModal";
 import { MdAccessTime } from "react-icons/md";
 import SimpleMatchCardSkeleton from "../skeletons/SimpleMatchCardSkeleton";
-import { format } from "date-fns";
+import formatTime from "../../services/helpers/formatTime";
+import setTimeFromString from "../../services/helpers/setTimeFromString";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
-
-const formatTime = (timeString) => {
-  const [hours, minutes] = timeString.split(":");
-  const date = new Date();
-  date.setHours(parseInt(hours, 10));
-  date.setMinutes(parseInt(minutes, 10));
-
-  return format(date, "h:mm a");
-};
 
 const SimpleMatchCard = ({
   callToAction = "Start Match",
@@ -49,7 +41,7 @@ const SimpleMatchCard = ({
   const team1Color = matchData.team1Details.color;
   const team2Color = matchData.team2Details.color;
   const matchStatus = matchData.status;
-  const matchTime = formatTime(matchData.time);
+  const matchTime = formatTime(setTimeFromString(matchData.time));
   const matchId = matchData.match_id;
 
   const isMatchComplete = matchStatus === "completed";

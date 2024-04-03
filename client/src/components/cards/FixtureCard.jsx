@@ -17,6 +17,7 @@ import FixtureCardSkeleton from "../skeletons/FixtureCardSkeleton";
 import { fixtureApi } from "../../services/api";
 import formatDate from "../../services/helpers/formatDate";
 import formatTime from "../../services/helpers/formatTime";
+import setTimeFromString from "../../services/helpers/setTimeFromString";
 import { useMediaQuery } from "@mui/material";
 
 const FixtureCard = ({ id }) => {
@@ -160,7 +161,7 @@ const FixtureCard = ({ id }) => {
               </Typography>
               <Divider orientation="vertical" />
               <Typography level="body-xs" textColor="text.tertiary">
-                {formatTime(time)}
+                {formatTime(setTimeFromString(time))}
               </Typography>
             </CardContent>
           </CardOverflow>

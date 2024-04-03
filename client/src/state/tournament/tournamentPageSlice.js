@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { format } from "date-fns";
+import formatDate from "../../services/helpers/formatDate";
 
 const initialState = {
   fixtures: [],
@@ -37,8 +37,8 @@ const tournamentPageSlice = createSlice({
         name,
         venue,
         admin_id,
-        start_date: format(new Date(start_date), "do MMM yyyy"),
-        end_date: format(new Date(end_date), "do MMM yyyy"),
+        start_date: formatDate(start_date),
+        end_date: formatDate(end_date),
         overs,
         banner_urls,
         adminName,

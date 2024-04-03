@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 
-const formatDate = (dateString) => {
-  const formattedDate = format(new Date(dateString), "dd MMM yyyy");
+const formatDate = (date) => {
+  const formattedDate = format(new Date(date), "do MMM yyyy");
   return formattedDate;
 };
 
