@@ -26,6 +26,9 @@ const initialState = {
     winnerId: null,
     loser: null,
   },
+  result: {
+    winnerId: null,
+  },
 };
 
 const matchSlice = createSlice({
@@ -44,6 +47,7 @@ const matchSlice = createSlice({
         match_no,
         status,
         inningsData,
+        result,
         battingTeam,
         bowlingTeam,
       } = action.payload;
@@ -60,6 +64,8 @@ const matchSlice = createSlice({
       state.battingTeam = battingTeam;
       state.bowlingTeam = bowlingTeam;
       state.inningsData = inningsData;
+
+      state.result.winnerId = result.winnerId;
     },
     setToss: (state, action) => {
       state.toss = action.payload;
