@@ -5,6 +5,10 @@ const Team = require("../models/team");
 const Fixture = require("../models/fixture");
 const Match = require("../models/match");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
+const {
+  setBattingAndBowlingTeamData,
+} = require("../helpers/setBattingAndBowlingTeamData");
+const { setInningsData } = require("../helpers/setInningsData");
 
 const createTournament = async (req, res) => {
   try {
@@ -92,7 +96,7 @@ const getLiveMatchDetails = async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
     }
-    const { fixture_id } = tournament;
+    const { fixture_id, venue } = tournament;
 
     let ongoingMatchId = null;
 
@@ -111,41 +115,51 @@ const getLiveMatchDetails = async (req, res) => {
         .status(StatusCodes.OK)
         .json({ isEmpty: true, msg: "No ongoing matches." });
 
-    const liveMatch = await Match.findById({ _id: ongoingMatchId });
+    const liveMatch = await Match.findById(ongoingMatchId);
     const {
       _id,
       match_no,
       overs,
       status,
-      team1_ball_log,
-      team1_run_log,
-      team2_ball_log,
-      team2_run_log,
-      team1_wicket_log,
-      team2_wicket_log,
+      data,
+      result,
       toss,
+      innings,
       team1_id,
       team2_id,
     } = liveMatch;
 
-    const team1Details = await Team.findById({ _id: team1_id });
-    const team2Details = await Team.findById({ _id: team2_id });
+    const team1 = await Team.findById(team1_id);
+    const team2 = await Team.findById(team2_id);
+
+    const { battingTeam, bowlingTeam } = setBattingAndBowlingTeamData({
+      innings,
+      team1,
+      team2,
+      toss,
+    });
+
+    const inningsData = setInningsData({
+      data,
+      battingTeam,
+      team1_id,
+      team2_id,
+    });
 
     const responseData = {
       _id,
       match_no,
       overs,
+      venue,
       status,
-      venue: tournament.venue,
-      team1_ball_log,
-      team1_run_log,
-      team1_wicket_log,
-      team2_ball_log,
-      team2_run_log,
-      team2_wicket_log,
+      inningsData,
+      result,
       toss,
-      team1: team1Details,
-      team2: team2Details,
+      innings,
+      team1,
+      team2,
+      battingTeam,
+      bowlingTeam,
     };
 
     res
