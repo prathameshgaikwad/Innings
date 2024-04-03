@@ -29,8 +29,8 @@ const getMatchDetails = async (req, res) => {
       team2_id,
     } = match;
 
-    const team1 = await Team.findById({ _id: team1_id });
-    const team2 = await Team.findById({ _id: team2_id });
+    const team1 = await Team.findById(team1_id);
+    const team2 = await Team.findById(team2_id);
 
     const matchData = {
       _id,
