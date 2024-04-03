@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 import FixtureCardSkeleton from "../skeletons/FixtureCardSkeleton";
 import { fixtureApi } from "../../services/api";
-import { format } from "date-fns";
+import formatDate from "../../services/helpers/formatDate";
 import formatTime from "../../services/helpers/formatTime";
 import { useMediaQuery } from "@mui/material";
 
@@ -156,7 +156,7 @@ const FixtureCard = ({ id }) => {
               </Typography>
               <Divider orientation="vertical" />
               <Typography level="body-xs" textColor="text.tertiary">
-                {format(new Date(date), "dd MMM yyyy")}
+                {formatDate(date)}
               </Typography>
               <Divider orientation="vertical" />
               <Typography level="body-xs" textColor="text.tertiary">
