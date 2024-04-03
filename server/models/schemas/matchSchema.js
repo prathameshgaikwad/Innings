@@ -46,7 +46,7 @@ const matchSchema = new mongoose.Schema(
     },
     innings: { type: Number },
     result: {
-      winner: { type: String },
+      winnerId: { type: mongoose.Types.ObjectId, ref: "teams" },
     },
     data: {
       team1: {
