@@ -1,14 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import {
-  Alert,
-  Box,
-  Button,
-  IconButton,
-  Link,
-  Typography,
-  useTheme,
-} from "@mui/joy";
+import { Button, Link, Typography, useTheme } from "@mui/joy";
 
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useMediaQuery } from "@mui/material";
