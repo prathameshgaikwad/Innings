@@ -5,16 +5,19 @@ import {
   Box,
   LinearProgress,
   Link,
+  Stack,
   Typography,
   useTheme,
 } from "@mui/joy";
 
+import { BiSolidCricketBall } from "react-icons/bi";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import MatchCardSkeleton from "../skeletons/MatchCardSkeleton";
+import { MdSportsCricket } from "react-icons/md";
 import { useMediaQuery } from "@mui/material";
 
 const totalRuns = "91";
@@ -61,13 +64,13 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
             <Typography
               level={isMobile ? "title-lg" : "h4"}
               sx={{ color: "text.tertiary" }}>
-              {data.team1.name}
+              {data.battingTeam.name}
             </Typography>
             vs
             <Typography
               level={isMobile ? "title-lg" : "h4"}
               sx={{ color: "text.tertiary" }}>
-              {data.team2.name}
+              {data.bowlingTeam.name}
             </Typography>
           </CardContent>
           <Divider inset="context" />
@@ -96,14 +99,20 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
                 width: isMobile ? 66 : 90,
                 borderRadius: "50%",
                 outline: "4px solid",
-                outlineColor: data.team1.color,
+                outlineColor: data.battingTeam.color,
               }}>
-              <img src={data.team1.logoURL} loading="lazy" alt="" />
+              <img src={data.battingTeam.logoURL} loading="lazy" alt="" />
             </AspectRatio>
             <Typography
               level={isMobile ? "title-md" : "title-lg"}
-              sx={{ mt: isMobile ? 1 : 2 }}>
-              {data.team1.nameShort}
+              sx={{ mt: isMobile ? 1 : 2 }}
+              startDecorator={
+                <MdSportsCricket
+                  color={theme.palette.primary[400]}
+                  fontSize={21}
+                />
+              }>
+              {data.battingTeam.nameShort}
             </Typography>
           </Box>
 
@@ -115,11 +124,18 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
               flexDirection: "column",
               justifyContent: "center",
             }}>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Stack
+              direction="row"
+              gap={1}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}>
               <Typography level={isMobile ? "h3" : "h2"}>
                 {totalRuns} - {totalWickets}
               </Typography>
-            </Box>
+            </Stack>
             <Divider sx={{ my: isMobile ? 0.5 : 1 }} />
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Typography
@@ -152,14 +168,20 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
                 width: isMobile ? 66 : 90,
                 borderRadius: "50%",
                 outline: "4px solid",
-                outlineColor: data.team2.color,
+                outlineColor: data.bowlingTeam.color,
               }}>
-              <img src={data.team2.logoURL} loading="lazy" alt="" />
+              <img src={data.bowlingTeam.logoURL} loading="lazy" alt="" />
             </AspectRatio>
             <Typography
               level={isMobile ? "title-md" : "title-lg"}
-              sx={{ mt: isMobile ? 1 : 2 }}>
-              {data.team2.nameShort}
+              sx={{ mt: isMobile ? 1 : 2 }}
+              startDecorator={
+                <BiSolidCricketBall
+                  color={theme.palette.primary[400]}
+                  fontSize={16}
+                />
+              }>
+              {data.bowlingTeam.nameShort}
             </Typography>
           </Box>
         </CardContent>
