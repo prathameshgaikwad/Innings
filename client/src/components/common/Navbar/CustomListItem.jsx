@@ -27,7 +27,7 @@ const CustomListItem = ({ isSamePage, title, link }) => {
       }}>
       <Typography
         level="title-md"
-        color={isSamePage && "primary"}
+        color={isSamePage ? "primary" : "neutral"}
         startDecorator={
           title === "Home" ? (
             <HomeRounded />
