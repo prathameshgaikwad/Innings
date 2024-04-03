@@ -15,11 +15,11 @@ import TeamCard from "../../components/cards/TeamCard";
 import TossDetails from "../../components/match/TossDetails";
 import TossNotConducted from "../../components/match/TossNotConducted";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
-import { io } from "socket.io-client";
 import { matchApi } from "../../services/api";
 import { setToss } from "../../state/match/matchSlice";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
+import useSocket from "../../hooks/useSocket";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -30,16 +30,7 @@ const Match = () => {
   const token = useSelector((state) => state.user.token);
   const { tournamentId, matchId } = useParams();
 
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const newSocket = io(SERVER_URL);
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.disconnect();
-    };
-  }, []);
+  const socket = useSocket(SERVER_URL);
 
   useEffect(() => {
     if (socket) {

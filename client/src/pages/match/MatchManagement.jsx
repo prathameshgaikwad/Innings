@@ -20,10 +20,10 @@ import Navbar from "../../components/common/Navbar";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
-import { io } from "socket.io-client";
 import { matchManagementApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
+import useSocket from "../../hooks/useSocket";
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -60,16 +60,7 @@ const MatchManagement = () => {
 
   const secondInnings = innings && innings === "2";
 
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const newSocket = io(SERVER_URL);
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.disconnect();
-    };
-  }, []);
+  const socket = useSocket(SERVER_URL);
 
   useEffect(() => {
     if (socket) {
