@@ -65,7 +65,7 @@ const matchSlice = createSlice({
       state.bowlingTeam = bowlingTeam;
       state.inningsData = inningsData;
 
-      state.result.winnerId = result.winnerId;
+      if (result.winnerId) state.result.winnerId = result.winnerId;
     },
     setToss: (state, action) => {
       state.toss = action.payload;
