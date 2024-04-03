@@ -1,39 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  _id: "",
-  match_no: "",
-  battingTeam: "",
-  bowlingTeam: "",
-  team1: "",
-  team2: "",
-  runs: 0,
-  wickets: 0,
-  extras: {
-    wides: 0,
-    no_balls: 0,
-    byes: 0,
-    leg_byes: 0,
-  },
-  balls_completed: 0,
-  ball_log: [],
-  wicket_log: [],
+  _id: null,
+  match_no: null,
+  battingTeam: {},
+  bowlingTeam: {},
+  team1: null,
+  team2: null,
+  inningsData: {},
   batsmen: {
-    onStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
-    offStrikeBatsman: { _id: "", name: "", runs: "", ballsPlayed: "" },
+    onStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
+    offStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
   },
   bowler: {
-    _id: "",
-    name: "",
+    _id: null,
+    name: null,
   },
-  overs: "",
-  innings: "",
-  status: "",
+  overs: null,
+  innings: null,
+  venue: null,
+  status: null,
   toss: {
-    decision: "",
-    winner: "",
-    winnerId: "",
-    loser: "",
+    decision: null,
+    winner: null,
+    winnerId: null,
+    loser: null,
+  },
+  result: {
+    winnerId: null,
   },
 };
 
@@ -47,11 +41,15 @@ const matchManagementSlice = createSlice({
         toss,
         innings,
         overs,
+        venue,
         team1,
         team2,
         match_no,
         status,
-        data,
+        inningsData,
+        result,
+        battingTeam,
+        bowlingTeam,
       } = action.payload;
 
       state._id = _id;
@@ -59,48 +57,15 @@ const matchManagementSlice = createSlice({
       state.toss = toss;
       state.innings = innings;
       state.overs = overs;
+      state.venue = venue;
       state.team1 = team1;
       state.team2 = team2;
       state.status = status;
+      state.battingTeam = battingTeam;
+      state.bowlingTeam = bowlingTeam;
+      state.inningsData = inningsData;
 
-      const isFirstInnings = state.innings === 1;
-
-      setBattingTeam();
-
-      const bowlingTeamId = state.bowlingTeam._id;
-
-      const updateStateForInnings = (inningData1, inningData2) => {
-        state.runs =
-          bowlingTeamId === state.team1._id
-            ? inningData2.runs
-            : inningData1.runs;
-        state.wickets =
-          bowlingTeamId === state.team1._id
-            ? inningData2.wickets
-            : inningData1.wickets;
-        state.extras =
-          bowlingTeamId === state.team1._id
-            ? inningData2.extras
-            : inningData1.extras;
-        state.balls_completed =
-          bowlingTeamId === state.team1._id
-            ? inningData2.balls_completed
-            : inningData1.balls_completed;
-        state.ball_log =
-          bowlingTeamId === state.team1._id
-            ? inningData2.ball_log
-            : inningData1.ball_log;
-        state.wicket_log =
-          bowlingTeamId === state.team1._id
-            ? inningData2.wicket_log
-            : inningData1.wicket_log;
-      };
-
-      if (isFirstInnings) {
-        updateStateForInnings(data.team1, data.team2);
-      } else {
-        updateStateForInnings(data.team2, data.team1);
-      }
+      if (result.winnerId) state.result.winnerId = result.winnerId;
     },
     setTossResult: (state, action) => {
       const toss = action.payload;
