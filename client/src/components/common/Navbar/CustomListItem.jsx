@@ -12,21 +12,22 @@ const CustomListItem = ({ pageType, title, link }) => {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   return (
     <ListItem
-      role="menuitem"
       component="a"
       href={link}
       sx={{
         textDecoration: "none",
         py: isMobile ? 1.5 : 3,
-        borderBottom: pageType ? "3px solid" : "3px solid transparent",
-        borderColor: theme.palette.colorScheme,
+        borderBottom: pageType
+          ? `3px solid ${theme.palette.primary[400]}`
+          : "3px solid transparent",
         transition: "border 0.2s ease-in-out",
         "&:hover": {
-          borderBottom: "3px solid",
+          borderBottom: `3px solid ${theme.palette.primary[400]}`,
         },
       }}>
       <Typography
         level="title-md"
+        color={pageType && "primary"}
         startDecorator={
           title === "Home" ? (
             <HomeRounded />
