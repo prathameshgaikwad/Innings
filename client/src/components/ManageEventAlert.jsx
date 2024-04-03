@@ -1,6 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { Alert, Box, IconButton, Link, Typography, useTheme } from "@mui/joy";
+import {
+  Alert,
+  Box,
+  Button,
+  IconButton,
+  Link,
+  Typography,
+  useTheme,
+} from "@mui/joy";
 
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useMediaQuery } from "@mui/material";
@@ -17,42 +25,38 @@ const ManageEventAlert = ({ eventType }) => {
       : `/tournaments/${tournamentId}/manage`;
 
   return (
-    <Box
-      style={{
+    <Button
+      variant="solid"
+      color="primary"
+      size={isMobile ? "sm" : "lg"}
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
         position: "fixed",
         zIndex: 100,
         bottom: isMobile ? 15 : 30,
         left: isMobile ? 15 : 30,
+        p: 2,
       }}>
-      <Alert
-        variant="solid"
-        color="primary"
-        size={isMobile ? "sm" : "lg"}
+      <Link
+        overlay
+        href={pageLink}
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          zIndex: 101,
+          "&:hover": {
+            textDecoration: "none",
+          },
         }}>
-        <Link
-          overlay
-          href={pageLink}
-          sx={{
-            "&:hover": {
-              textDecoration: "none",
-            },
-          }}>
-          <IconButton size="sm" sx={{ mr: isMobile ? 0.5 : 1, color: "white" }}>
+        <Typography
+          sx={{ color: "white" }}
+          level={isMobile ? "title-sm" : "title-md"}
+          startDecorator={
             <MdOutlineAdminPanelSettings size={isMobile ? 24 : 32} />
-          </IconButton>
-          <Typography
-            sx={{ color: "white" }}
-            level={isMobile ? "title-sm" : "title-md"}>
-            Manage this {eventType}
-          </Typography>
-        </Link>
-      </Alert>
-    </Box>
+          }>
+          Manage this {eventType}
+        </Typography>
+      </Link>
+    </Button>
   );
 };
 
