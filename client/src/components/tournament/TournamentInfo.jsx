@@ -10,8 +10,9 @@ import {
 } from "@mui/joy";
 
 import { BiSolidCricketBall } from "react-icons/bi";
-import FlagIcon from "@mui/icons-material/Flag";
+import { FaRegCalendar } from "react-icons/fa6";
 import GroupsIcon from "@mui/icons-material/Groups";
+import { MdOutlineHorizontalRule } from "react-icons/md";
 import PlaceIcon from "@mui/icons-material/Place";
 import ShapeLineIcon from "@mui/icons-material/ShapeLine";
 import { useMediaQuery } from "@mui/material";
@@ -85,8 +86,11 @@ const TournamentInfo = ({
               level="body-xs"
               fontWeight="md"
               textColor="text.tertiary"
-              startDecorator={<FlagIcon color="primary" />}>
-              {startDate} - {endDate}
+              startDecorator={
+                <FaRegCalendar size={16} color={theme.palette.primary[400]} />
+              }>
+              {startDate}{" "}
+              <MdOutlineHorizontalRule style={{ margin: "0 6px" }} /> {endDate}
             </Typography>
           </Tooltip>
           <Tooltip title="Overs" variant="outlined">
