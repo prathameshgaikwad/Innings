@@ -16,16 +16,8 @@ import { useEffect, useState } from "react";
 import FixtureCardSkeleton from "../skeletons/FixtureCardSkeleton";
 import { fixtureApi } from "../../services/api";
 import { format } from "date-fns";
+import formatTime from "../../services/helpers/formatTime";
 import { useMediaQuery } from "@mui/material";
-
-const formatTime = (timeString) => {
-  const [hours, minutes] = timeString.split(":");
-  const date = new Date();
-  date.setHours(parseInt(hours, 10));
-  date.setMinutes(parseInt(minutes, 10));
-
-  return format(date, "h:mm a");
-};
 
 const FixtureCard = ({ id }) => {
   const theme = useTheme();
