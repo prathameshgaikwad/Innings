@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import { LiveIcon } from "../LiveIcon";
-import MatchCard from "../cards/MatchCard/index";
+import MatchCard from "../cards/MatchCard/MatchCard";
 import NoLiveMatchPlaceholder from "../NoLiveMatchPlaceholder";
 import Typography from "@mui/joy/Typography";
 import { useMediaQuery } from "@mui/material";

@@ -8,7 +8,7 @@ import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import Footer from "../../components/common/Footer";
 import ManOfTheMatchCard from "../../components/cards/ManOfTheMatchCard";
 import ManageEventAlert from "../../components/ManageEventAlert";
-import MatchCard from "../../components/cards/MatchCard/index";
+import MatchCard from "../../components/cards/MatchCard/MatchCard";
 import Navbar from "../../components/common/Navbar/index";
 import Scorecard from "../../components/match/Scorecard";
 import TeamCard from "../../components/cards/TeamCard";
