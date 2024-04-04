@@ -1,41 +1,18 @@
 /* eslint-disable react/prop-types */
 
 import { Alert, Box, LinearProgress, Typography, useTheme } from "@mui/joy";
-import { useEffect, useState } from "react";
 
 import { IoIosWarning } from "react-icons/io";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoMdInformationCircle } from "react-icons/io";
 import { useMediaQuery } from "@mui/material";
+import useToastAnimation from "../../hooks/useToastAnimation";
 
 const CustomToast = ({ content, title, color, duration }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [isVisible, setIsVisible] = useState(true);
-  const [progressValue, setProgressValue] = useState(100);
-  useEffect(() => {
-    let animationStart;
-    let requestId;
-
-    const startAnimation = (timestamp) => {
-      if (!animationStart) animationStart = timestamp;
-      const progress = Math.max(0, 1 - (timestamp - animationStart) / duration);
-      setProgressValue(progress);
-
-      if (progress > 0) {
-        requestId = requestAnimationFrame(startAnimation);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    requestId = requestAnimationFrame(startAnimation);
-
-    return () => {
-      cancelAnimationFrame(requestId);
-    };
-  }, [duration]);
+  const { isVisible, progressValue } = useToastAnimation(duration);
 
   const isSuccess = color === "success";
   const isWarning = color === "warning";
