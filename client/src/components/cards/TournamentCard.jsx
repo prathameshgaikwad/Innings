@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { BiSolidCricketBall } from "react-icons/bi";
 import TournamentCardSkeleton from "../skeletons/TournamentCardSkeleton";
 import formatDate from "../../utilities/helpers/formatDate";
+import useHover from "../../hooks/useHover";
 import { useSelector } from "react-redux";
 
 const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
@@ -64,15 +65,7 @@ const TournamentCard = ({ id }) => {
   const tournamentID = id;
   const tournamentURL = `/tournaments/${tournamentID}`;
 
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+  const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
 
   return (
     <>
