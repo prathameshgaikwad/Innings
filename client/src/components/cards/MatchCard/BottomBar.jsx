@@ -1,6 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { CardContent, Divider, LinearProgress, Typography } from "@mui/joy";
+import {
+  CardContent,
+  Divider,
+  LinearProgress,
+  Tooltip,
+  Typography,
+} from "@mui/joy";
 
 const BottomBar = ({ overs, venue, progress }) => {
   return (
@@ -22,12 +28,19 @@ const BottomBar = ({ overs, venue, progress }) => {
         <Typography level="body-xs" textColor="text.secondary">
           Match progress:
         </Typography>
-        <LinearProgress
-          variant="soft"
-          determinate
-          color="success"
-          value={progress}
-        />
+        <Tooltip
+          color="neutral"
+          variant="outlined"
+          placement="top"
+          arrow
+          title={`${progress}%`}>
+          <LinearProgress
+            variant="soft"
+            determinate
+            color="success"
+            value={progress}
+          />
+        </Tooltip>
       </CardContent>
     </>
   );
