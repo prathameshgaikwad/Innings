@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import FixtureCard from "../cards/FixtureCard";
+import FixtureCard from "../cards/FixtureCard/FixtureCard";
 import SliderMask from "../SliderMask";
 import UpcomingMatchesSkeleton from "../skeletons/UpcomingMatchesSkeleton";
 import { useMediaQuery } from "@mui/material";
