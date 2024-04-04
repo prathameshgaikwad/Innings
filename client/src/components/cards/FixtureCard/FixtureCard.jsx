@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 import BottomBar from "./BottomBar";
 import FixtureCardSkeleton from "../../skeletons/FixtureCardSkeleton";
-import TeamDetails from "./TeamDetails";
+import TeamBadgeVertical from "../../TeamBadgeVertical";
 import TopBar from "./TopBar";
 import { fixtureApi } from "../../../services/api";
 import { useMediaQuery } from "@mui/material";
@@ -68,10 +68,11 @@ const FixtureCard = ({ id }) => {
               flexDirection: "row",
               justifyContent: "space-around",
             }}>
-            <TeamDetails
+            <TeamBadgeVertical
               nameShort={team1.nameShort}
               color={team1.color}
               logoURL={team1.logoURL}
+              widths={[45, 60]}
             />
             <Box
               sx={{
@@ -87,10 +88,11 @@ const FixtureCard = ({ id }) => {
                 </Typography>
               </Box>
             </Box>
-            <TeamDetails
+            <TeamBadgeVertical
               nameShort={team2.nameShort}
               color={team2.color}
               logoURL={team2.logoURL}
+              widths={[45, 60]}
             />
           </CardContent>
           <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>

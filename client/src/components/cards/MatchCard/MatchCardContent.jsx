@@ -2,10 +2,9 @@
 
 import { Card, CardContent, CardOverflow, useTheme } from "@mui/joy";
 
-import BattingTeam from "./BattingTeam";
 import BottomBar from "./BottomBar";
-import BowlingTeam from "./BowlingTeam";
 import ScorePane from "./ScorePane";
+import TeamBadgeVertical from "../../TeamBadgeVertical";
 import TopBar from "./TopBar";
 import { useMediaQuery } from "@mui/material";
 
@@ -48,10 +47,11 @@ const MatchCardContent = ({ data }) => {
           flexDirection: "row",
           justifyContent: "space-around",
         }}>
-        <BattingTeam
+        <TeamBadgeVertical
           color={data.battingTeam.color}
           logoURL={data.battingTeam.logoURL}
           nameShort={data.battingTeam.nameShort}
+          widths={[65, 90]}
         />
         <ScorePane
           totalRuns={totalRuns}
@@ -60,10 +60,11 @@ const MatchCardContent = ({ data }) => {
           oversCompleted={oversCompleted}
           currentRunRate={currentRunRate}
         />
-        <BowlingTeam
+        <TeamBadgeVertical
           color={data.bowlingTeam.color}
           logoURL={data.bowlingTeam.logoURL}
           nameShort={data.bowlingTeam.nameShort}
+          widths={[65, 90]}
         />
       </CardContent>
 

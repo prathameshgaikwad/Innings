@@ -4,9 +4,15 @@ import { AspectRatio, Box, Typography, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const TeamDetails = ({ color, logoURL, nameShort }) => {
+const TeamBadgeVertical = ({
+  color,
+  logoURL,
+  nameShort,
+  widths = [45, 65],
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box
       sx={{
@@ -17,20 +23,20 @@ const TeamDetails = ({ color, logoURL, nameShort }) => {
       <AspectRatio
         ratio="1"
         sx={{
-          width: isMobile ? 45 : 65,
+          width: isMobile ? widths[0] : widths[1],
           borderRadius: "50%",
-          outline: "3px solid",
+          outline: "4px solid",
           outlineColor: color,
         }}>
-        <img src={logoURL} loading="lazy" />
+        <img src={logoURL} loading="lazy" alt="" />
       </AspectRatio>
       <Typography
-        level={isMobile ? "title-sm" : "title-md"}
-        sx={{ mt: isMobile ? 0.75 : 1 }}>
+        level={isMobile ? "title-md" : "title-lg"}
+        sx={{ mt: isMobile ? 1 : 2 }}>
         {nameShort}
       </Typography>
     </Box>
   );
 };
 
-export default TeamDetails;
+export default TeamBadgeVertical;
