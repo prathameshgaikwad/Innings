@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Divider } from "@mui/joy";
+import { Box, Divider, useTheme } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
 import Card from "@mui/joy/Card";
@@ -11,24 +11,38 @@ import { TbHexagonLetterC } from "react-icons/tb";
 import { TbSteam } from "react-icons/tb";
 import TeamCardSkeleton from "../skeletons/TeamCardSkeleton";
 import Typography from "@mui/joy/Typography";
+import useHover from "../../hooks/useHover";
 import { useParams } from "react-router-dom";
 
 const TeamCard = ({ team, isLoading }) => {
+  const theme = useTheme();
   const { color, logoURL, name, captainName, players, _id } = team;
   const size = players.length;
   const { tournamentId } = useParams();
   const teamURL = `/tournaments/${tournamentId}/teams/${_id}`;
+
+  const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
+
   return (
     <>
       {isLoading ? (
         <TeamCardSkeleton />
       ) : (
         <Card
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           sx={{
             textAlign: "center",
             alignItems: "center",
             "--icon-size": "90px",
             width: 250,
+            outline: `2px solid `,
+            transition: "all 0.3s ease-in-out",
+            outlineColor: "transparent",
+            "&:hover": {
+              outlineColor: ` ${theme.palette.primary.softHoverBg}`,
+              boxShadow: `rgba(180,166,91,0.2)  0px 6px 24px 0px, rgba(180,166,91,0.2) 0px 0px 0px 1px`,
+            },
           }}>
           <CardOverflow variant="soft" sx={{ backgroundColor: color }}>
             <AspectRatio
@@ -52,7 +66,11 @@ const TeamCard = ({ team, isLoading }) => {
           <Typography
             level="title-lg"
             maxWidth={200}
-            sx={{ mt: "calc(var(--icon-size) / 2)" }}
+            color={isHovered && "primary"}
+            sx={{
+              mt: "calc(var(--icon-size) / 2)",
+              transition: "color 0.3s ease-in-out",
+            }}
             noWrap>
             {name}
           </Typography>
