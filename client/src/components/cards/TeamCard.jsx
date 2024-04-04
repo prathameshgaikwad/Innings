@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Divider, Link } from "@mui/joy";
+import { Box, Divider } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
-import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
 import CardOverflow from "@mui/joy/CardOverflow";
+import LinkedButton from "../buttons/LinkedButton";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { TbHexagonLetterC } from "react-icons/tb";
 import { TbSteam } from "react-icons/tb";
@@ -77,25 +77,13 @@ const TeamCard = ({ team, isLoading }) => {
               {size} Players
             </Typography>
           </Box>
-          <Link
-            overlay
-            href={`/tournaments/${tournamentId}/teams/${_id}`}
-            sx={{
-              "&:hover": {
-                textDecoration: "none",
-              },
-            }}>
-            <Button
-              variant="solid"
-              color="primary"
-              size="sm"
-              sx={{
-                width: 200,
-                my: 1,
-              }}>
-              View Team
-            </Button>
-          </Link>
+          <LinkedButton
+            title={"View Team"}
+            size={"sm"}
+            link={`/tournaments/${tournamentId}/teams/${_id}`}
+            width={200}
+            my={1}
+          />
         </Card>
       )}
     </>

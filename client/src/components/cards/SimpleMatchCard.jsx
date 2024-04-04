@@ -12,7 +12,9 @@ import {
 } from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
+import ActionButton from "../buttons/ActionButton";
 import CustomModal from "../modals/CustomModal";
+import LinkedButton from "../buttons/LinkedButton";
 import { MdAccessTime } from "react-icons/md";
 import SimpleMatchCardSkeleton from "../skeletons/SimpleMatchCardSkeleton";
 import formatTime from "../../utilities/helpers/formatTime";
@@ -43,6 +45,7 @@ const SimpleMatchCard = ({
   const matchStatus = matchData.status;
   const matchTime = formatTime(setTimeFromString(matchData.time));
   const matchId = matchData.match_id;
+  const matchURL = `/tournaments/${tournamentId}/${matchId}`;
 
   const isMatchComplete = matchStatus === "completed";
 
@@ -50,7 +53,7 @@ const SimpleMatchCard = ({
     if (callToAction === "Start Match") {
       setOpen(true);
     } else {
-      navigate(`/tournaments/${tournamentId}/${matchId}`);
+      navigate(matchURL);
     }
   };
 
@@ -150,7 +153,7 @@ const SimpleMatchCard = ({
               }}>
               <Button color="success" size={"sm"}>
                 <Link
-                  href={`/tournaments/${tournamentId}/${matchId}`}
+                  href={matchURL}
                   overlay
                   sx={{
                     color: theme.palette.common.white,
@@ -172,17 +175,19 @@ const SimpleMatchCard = ({
                 justifyContent: "center",
                 alignItems: "center",
               }}>
-              <Button
-                color="primary"
-                size={"sm"}
-                onClick={() => handleCallToAction()}>
-                <Typography
-                  level="title-sm"
-                  noWrap
-                  color={theme.palette.common.white}>
-                  {callToAction}
-                </Typography>
-              </Button>
+              {callToAction === "Start Match" ? (
+                <ActionButton
+                  title={"Start Match"}
+                  size={"sm"}
+                  handleOnClick={handleCallToAction}
+                />
+              ) : (
+                <LinkedButton
+                  link={matchURL}
+                  title={"Go to Match"}
+                  size={"sm"}
+                />
+              )}
             </CardOverflow>
           )}
         </Card>
