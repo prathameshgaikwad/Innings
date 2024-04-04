@@ -17,6 +17,7 @@ const TeamCard = ({ team, isLoading }) => {
   const { color, logoURL, name, captainName, players, _id } = team;
   const size = players.length;
   const { tournamentId } = useParams();
+  const teamURL = `/tournaments/${tournamentId}/teams/${_id}`;
   return (
     <>
       {isLoading ? (
@@ -80,7 +81,7 @@ const TeamCard = ({ team, isLoading }) => {
           <LinkedButton
             title={"View Team"}
             size={"sm"}
-            link={`/tournaments/${tournamentId}/teams/${_id}`}
+            link={teamURL}
             width={200}
             my={1}
           />
