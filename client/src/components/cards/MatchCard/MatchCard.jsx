@@ -48,6 +48,4 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
   );
 };
 
-//TODO: Rename file to MatchCard.jsx
-
 export default MatchCard;
