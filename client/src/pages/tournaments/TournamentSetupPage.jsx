@@ -6,7 +6,7 @@ import AddTeamsForm from "../../components/createTournament/AddTeamsForm";
 import CreateFixturesForm from "../../components/createTournament/CreateFixturesForm";
 import FinishSetup from "../../components/createTournament/FinishSetup";
 import Footer from "../../components/common/Footer";
-import Navbar from "../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Navbar";
 import TeamsList from "../../components/lists/TeamsList";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { useMediaQuery } from "@mui/material";

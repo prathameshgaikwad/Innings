@@ -16,7 +16,7 @@ import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import ConductToss from "../../components/matchManagement/ConductToss";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/matchManagement/Header";
-import Navbar from "../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Navbar";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";

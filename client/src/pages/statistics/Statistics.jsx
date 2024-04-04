@@ -1,6 +1,6 @@
 import Box from "@mui/joy/Box";
 import Footer from "../../components/common/Footer";
-import Navbar from "../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Navbar";
 import NoTournamentsJoined from "../../components/cards/NoTournamentsJoined";
 import PlayerStatisticsList from "../../components/lists/PlayerStatisticsList";
 import TournamentStatisticsList from "../../components/lists/TournamentStatisticsList";

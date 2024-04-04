@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import Footer from "../../components/common/Footer";
 import ManageEventAlert from "../../components/ManageEventAlert";
-import Navbar from "../../components/common/Navbar/index";
+import Navbar from "../../components/common/Navbar/Navbar";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NextMatchSkeleton from "../../components/skeletons/NextMatchSkeleton";
 import PointsTable from "../../components/tables/PointsTable";
