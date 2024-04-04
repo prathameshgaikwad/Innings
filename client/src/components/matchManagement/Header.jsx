@@ -4,7 +4,7 @@ import { Box, Button, Typography, useTheme } from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import TeamBadgeHorizontal from "../cards/TeamBadgeHorizontal";
+import TeamBadgeHorizontal from "../TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 

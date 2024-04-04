@@ -15,7 +15,7 @@ import FallOfWicketsList from "../lists/FallOfWicketsList";
 import { MdSportsCricket } from "react-icons/md";
 import ScorecardSkeleton from "../skeletons/ScorecardSkeleton";
 import TabsSegmentedControls from "../TabsSegmentedControls";
-import TeamBadgeHorizontal from "../cards/TeamBadgeHorizontal";
+import TeamBadgeHorizontal from "../TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useState } from "react";
