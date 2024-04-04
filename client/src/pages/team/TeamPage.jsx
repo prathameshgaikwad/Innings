@@ -16,7 +16,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Footer from "../../components/common/Footer";
-import Navbar from "../../components/common/Navbar";
+import Navbar from "../../components/common/Navbar/index";
 import RectangularSkeleton from "../../components/skeletons/RectangularSkeleton";
 import { TbHexagonLetterC } from "react-icons/tb";
 import TeamPerformance from "../../components/lists/TeamPerformance";

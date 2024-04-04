@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/joy";
 
 import Footer from "../../components/common/Footer";
-import Navbar from "../../components/common/Navbar";
+import Navbar from "../../components/common/Navbar/index";
 import UserStatistics from "../../components/UserStatistics";
 import { useMediaQuery } from "@mui/material";
 

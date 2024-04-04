@@ -5,7 +5,7 @@ import Box from "@mui/joy/Box";
 import CustomToast from "../../components/cards/CustomToast";
 import Footer from "../../components/common/Footer";
 import LiveMatch from "../../components/match/LiveMatch";
-import Navbar from "../../components/common/Navbar";
+import Navbar from "../../components/common/Navbar/index";
 import NoTournamentsJoined from "../../components/cards/NoTournamentsJoined";
 import { Skeleton } from "@mui/joy";
 import UpcomingMatches from "../../components/lists/UpcomingMatches";

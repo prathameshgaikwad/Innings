@@ -1,6 +1,6 @@
 import Box from "@mui/joy/Box";
-import FullMenu from "./Navbar/FullMenu";
-import MobileMenu from "./Navbar/MobileMenu";
+import FullMenu from "./FullMenu";
+import MobileMenu from "./MobileMenu";
 import { useMediaQuery } from "@mui/material";
 
 const Navbar = () => {
