@@ -3,7 +3,7 @@
 import { Card, CardContent, CardOverflow, useTheme } from "@mui/joy";
 
 import BottomBar from "./BottomBar";
-import { CARD_BOX_SHADOW } from "../../../utilities/constants";
+import { CARD_BOX_SHADOW_GLOW_EFFECT } from "../../../utilities/constants";
 import ScorePane from "./ScorePane";
 import TeamBadgeVertical from "../../TeamBadgeVertical";
 import TopBar from "./TopBar";
@@ -30,7 +30,7 @@ const MatchCardContent = ({ data }) => {
         outlineColor: "transparent",
         "&:hover": {
           outlineColor: ` ${theme.palette.primary.softHoverBg}`,
-          boxShadow: CARD_BOX_SHADOW,
+          boxShadow: CARD_BOX_SHADOW_GLOW_EFFECT,
         },
       }}>
       <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
