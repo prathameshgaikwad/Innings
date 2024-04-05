@@ -44,7 +44,14 @@ const TeamCard = ({ team, isLoading }) => {
               boxShadow: `rgba(180,166,91,0.2)  0px 6px 24px 0px, rgba(180,166,91,0.2) 0px 0px 0px 1px`,
             },
           }}>
-          <CardOverflow variant="soft" sx={{ backgroundColor: color }}>
+          <CardOverflow
+            variant="soft"
+            sx={{
+              backgroundColor: isHovered
+                ? theme.palette.primary.softHoverBg
+                : color,
+              transition: "all 0.3s ease-in-out",
+            }}>
             <AspectRatio
               variant="outlined"
               ratio="1"
