@@ -3,6 +3,7 @@
 import { Box, Divider, useTheme } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
+import { CARD_BOX_SHADOW } from "../../utilities/constants";
 import Card from "@mui/joy/Card";
 import CardOverflow from "@mui/joy/CardOverflow";
 import LinkedButton from "../buttons/LinkedButton";
@@ -41,7 +42,7 @@ const TeamCard = ({ team, isLoading }) => {
             outlineColor: "transparent",
             "&:hover": {
               outlineColor: ` ${theme.palette.primary.softHoverBg}`,
-              boxShadow: `rgba(180,166,91,0.2)  0px 6px 24px 0px, rgba(180,166,91,0.2) 0px 0px 0px 1px`,
+              boxShadow: CARD_BOX_SHADOW,
             },
           }}>
           <CardOverflow
