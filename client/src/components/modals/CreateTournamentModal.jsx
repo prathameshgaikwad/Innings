@@ -38,31 +38,6 @@ const CreateTournamentModal = ({ setOpen }) => {
         navigate,
       })
     );
-
-    // try {
-    //   const response = await fetch("http://localhost:3000/tournaments/create", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify(values),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error("Fetching error");
-    //   }
-
-    //   const responseData = await response.json();
-
-    //   dispatch(addCreatedTournament(responseData._id));
-
-    //   resetForm();
-    //   setOpen(false);
-    //   navigate(`/tournaments/${responseData._id}/setup`);
-    // } catch (error) {
-    //   console.log("Error:", error);
-    // }
   };
 
   return (
