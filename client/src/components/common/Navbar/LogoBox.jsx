@@ -4,6 +4,8 @@ const LogoBox = () => {
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
 
+  const logoURL = `/assets/logo_${isDarkTheme ? "light" : "dark"}.svg`;
+
   return (
     <Box
       sx={{
@@ -26,7 +28,7 @@ const LogoBox = () => {
             alignItems: "center",
           }}>
           <IconButton size="lg">
-            <img src={`/assets/logo_${isDarkTheme ? "light" : "dark"}.svg`} />
+            <img src={logoURL} />
           </IconButton>
           <Typography
             level="title-lg"
