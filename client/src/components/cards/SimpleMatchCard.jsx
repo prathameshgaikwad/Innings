@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 
 import {
-  Button,
   Card,
   CardContent,
   CardOverflow,
-  Link,
   Stack,
   Typography,
   useTheme,
@@ -151,22 +149,12 @@ const SimpleMatchCard = ({
                 justifyContent: "center",
                 alignItems: "center",
               }}>
-              <Button color="success" size={"sm"}>
-                <Link
-                  href={matchURL}
-                  overlay
-                  sx={{
-                    color: theme.palette.common.white,
-                    "&:hover": { textDecoration: "none" },
-                  }}>
-                  <Typography
-                    color={theme.palette.common.white}
-                    level="title-sm"
-                    noWrap>
-                    See Details
-                  </Typography>
-                </Link>
-              </Button>
+              <LinkedButton
+                color="success"
+                size="sm"
+                title={"See Details"}
+                link={matchURL}
+              />
             </CardOverflow>
           ) : (
             <CardOverflow

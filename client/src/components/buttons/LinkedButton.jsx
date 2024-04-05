@@ -2,10 +2,10 @@
 
 import { Button, Link, Typography, useTheme } from "@mui/joy";
 
-const LinkedButton = ({ title, link, size, width, my }) => {
+const LinkedButton = ({ title, link, size, width, my, color = "primary" }) => {
   const theme = useTheme();
   return (
-    <Button color="primary" size={size} sx={{ width: width, my: my }}>
+    <Button color={color} size={size} sx={{ width: width, my: my }}>
       <Link
         href={link}
         overlay
