@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Button, Typography, useTheme } from "@mui/joy";
+import { Box, Button, Stack, Typography, useTheme } from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CustomModal from "../modals/CustomModal";
+import { FiCheckCircle } from "react-icons/fi";
 import TeamBadgeHorizontal from "../TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
+import { useState } from "react";
 
 const Header = ({ isLoading, team1, team2, match_no }) => {
   const matchNumber = match_no;
@@ -20,6 +23,9 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
   const handleGoBackRequest = () => {
     navigate(`/tournaments/${tournamentId}/${matchId}`);
   };
+
+  const [openCompleteScoringModal, setOpenCompleteScoringModal] =
+    useState(false);
 
   return (
     <Box
@@ -53,13 +59,34 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
           isLoading={isLoading}
         />
       </Box>
-      <Button
-        variant="outlined"
-        color="neutral"
-        startDecorator={<ArrowBackIcon />}
-        onClick={() => handleGoBackRequest()}>
-        Go Back
-      </Button>
+      <Stack direction={"row"} gap={2}>
+        <Button
+          variant="outlined"
+          color="neutral"
+          startDecorator={<ArrowBackIcon />}
+          onClick={() => handleGoBackRequest()}>
+          Go Back
+        </Button>
+        <Button
+          variant="solid"
+          color="success"
+          size={isMobile ? "sm" : "lg"}
+          sx={{ width: 300 }}
+          disabled={isLoading}
+          onClick={() => setOpenCompleteScoringModal(true)}
+          endDecorator={<FiCheckCircle size={isMobile ? 18 : 21} />}>
+          Complete Scoring
+        </Button>
+        <CustomModal
+          open={openCompleteScoringModal}
+          setOpen={setOpenCompleteScoringModal}
+          title={"Confirm Completion"}
+          content={
+            "Are you sure you have input all data and want to complete scoring for this match?"
+          }
+          useCase={"completeScoring"}
+        />
+      </Stack>
     </Box>
   );
 };

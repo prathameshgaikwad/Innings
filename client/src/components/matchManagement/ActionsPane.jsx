@@ -3,7 +3,8 @@
 import { Button, ButtonGroup, useTheme } from "@mui/joy";
 
 import CustomModal from "../modals/CustomModal";
-import { FiCheckCircle } from "react-icons/fi";
+import { IoPersonCircleSharp } from "react-icons/io5";
+import { TbArrowsExchange } from "react-icons/tb";
 import { TbSwitch3 } from "react-icons/tb";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -11,13 +12,15 @@ import { useState } from "react";
 
 const ActionsPane = ({ isLoading }) => {
   const [openSwitchModal, setOpenSwitchModal] = useState(false);
-  const [openCompleteScoringModal, setOpenCompleteScoringModal] =
-    useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const innings = useSelector((state) => state.matchManagement.innings);
   const isSecondInnings = innings === "2";
+
+  const handleStrikeChange = () => {
+    alert("Changing Strikes");
+  };
 
   return (
     <ButtonGroup
@@ -26,6 +29,25 @@ const ActionsPane = ({ isLoading }) => {
       <Button
         variant="solid"
         color="primary"
+        size={isMobile ? "sm" : "lg"}
+        fullWidth
+        disabled={isLoading}
+        onClick={() => handleStrikeChange()}
+        endDecorator={
+          <>
+            <IoPersonCircleSharp size={isMobile ? 18 : 21} />
+            <TbArrowsExchange
+              size={isMobile ? 18 : 21}
+              style={{ margin: "0 6px" }}
+            />
+            <IoPersonCircleSharp size={isMobile ? 18 : 21} />
+          </>
+        }>
+        Change Strike
+      </Button>
+      <Button
+        variant="solid"
+        color="danger"
         size={isMobile ? "sm" : "lg"}
         fullWidth
         disabled={isLoading || isSecondInnings}
@@ -41,25 +63,6 @@ const ActionsPane = ({ isLoading }) => {
           "Are you sure you want to switch sides and start scoring for the second innings?"
         }
         useCase={"switchSides"}
-      />
-      <Button
-        variant="solid"
-        color="success"
-        size={isMobile ? "sm" : "lg"}
-        fullWidth
-        disabled={isLoading}
-        onClick={() => setOpenCompleteScoringModal(true)}
-        endDecorator={<FiCheckCircle size={isMobile ? 18 : 21} />}>
-        Complete Scoring
-      </Button>
-      <CustomModal
-        open={openCompleteScoringModal}
-        setOpen={setOpenCompleteScoringModal}
-        title={"Confirm Completion"}
-        content={
-          "Are you sure you have input all data and want to complete scoring for this match?"
-        }
-        useCase={"completeScoring"}
       />
     </ButtonGroup>
   );
