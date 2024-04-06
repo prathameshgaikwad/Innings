@@ -74,7 +74,7 @@ const TeamCard = ({ team, isLoading }) => {
           <Typography
             level="title-lg"
             maxWidth={200}
-            color={isHovered && "primary"}
+            color={isHovered ? "primary" : "neutral"}
             sx={{
               mt: "calc(var(--icon-size) / 2)",
               transition: "color 0.3s ease-in-out",
