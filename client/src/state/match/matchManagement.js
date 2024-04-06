@@ -132,7 +132,8 @@ const matchManagementSlice = createSlice({
     },
     setRuns: (state) => {
       let totalRuns = 0;
-      state.ball_log.forEach((log) => (totalRuns += log.runs_scored));
+      if (state.ball_log)
+        state.ball_log.forEach((log) => (totalRuns += log.runs_scored));
       state.runs = totalRuns;
     },
     addRuns: (state, action) => {

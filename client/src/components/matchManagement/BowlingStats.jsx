@@ -35,7 +35,7 @@ const BowlingStats = ({ isLoading }) => {
     players.map((player) => createOption(player.playerName, player._id));
 
   const bowler = useSelector((state) => state.matchManagement.bowler);
-  const bowlerSelected = bowler && bowler._id.length !== 0;
+  const isBowlerSelected = bowler._id && bowler._id.length !== 0;
 
   const bowlingData = [
     createBowlingData("Mohammad Siraj", 4, 30, 1, "7.50", 10),
@@ -55,7 +55,7 @@ const BowlingStats = ({ isLoading }) => {
             startDecorator={<BiSolidCricketBall />}>
             BOWLING
           </Typography>
-          {rawPlayersData && !bowlerSelected && (
+          {rawPlayersData && !isBowlerSelected && (
             <SelectPlayer
               playerType={"Bowler"}
               rawPlayersData={rawPlayersData}

@@ -6,12 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TeamBadgeHorizontal from "../TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
-import { useSelector } from "react-redux";
 
-const Header = ({ isLoading }) => {
-  const { team1, team2, match_no } = useSelector(
-    (state) => state.matchManagement
-  );
+const Header = ({ isLoading, team1, team2, match_no }) => {
   const matchNumber = match_no;
 
   const navigate = useNavigate();

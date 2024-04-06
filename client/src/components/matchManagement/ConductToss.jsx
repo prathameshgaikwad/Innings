@@ -25,7 +25,7 @@ function createOption(name, _id) {
   };
 }
 
-const ConductToss = ({ matchId }) => {
+const ConductToss = ({ matchId, team1, team2 }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -35,8 +35,6 @@ const ConductToss = ({ matchId }) => {
     decision: "",
     winnerId: "",
   };
-
-  const { team1, team2 } = useSelector((state) => state.matchManagement);
 
   const teamOptions = [
     createOption("Select team", ""),

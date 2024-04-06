@@ -51,6 +51,11 @@ const MatchManagement = () => {
   const ballLog = useSelector((state) => state.matchManagement.ball_log);
   const innings = useSelector((state) => state.matchManagement.innings);
   const batsmenData = useSelector((state) => state.matchManagement.batsmen);
+  const { team1, team2, match_no } = useSelector(
+    (state) => state.matchManagement
+  );
+
+  const isHeaderDataAvailable = team1 && team2 && match_no;
 
   const [tossCompleted, setTossCompleted] = useState(status);
 
@@ -93,9 +98,17 @@ const MatchManagement = () => {
           gap: 2,
           mt: 4,
         }}>
-        <Header isLoading={isLoading} />
+        {isHeaderDataAvailable && (
+          <Header
+            isLoading={isLoading}
+            team1={team1}
+            team2={team2}
+            match_no={match_no}
+          />
+        )}
         {!tossCompleted ? (
-          <ConductToss matchId={matchId} />
+          team1 &&
+          team2 && <ConductToss matchId={matchId} team1={team1} team2={team2} />
         ) : (
           <>
             <Box
