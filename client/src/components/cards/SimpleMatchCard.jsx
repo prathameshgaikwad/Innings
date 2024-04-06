@@ -43,7 +43,7 @@ const SimpleMatchCard = ({
   const matchStatus = matchData.status;
   const matchTime = formatTime(setTimeFromString(matchData.time));
   const matchId = matchData.match_id;
-  const matchURL = `/tournaments/${tournamentId}/${matchId}`;
+  const matchURL = `/tournaments/${tournamentId}/match/${matchId}`;
 
   const isMatchComplete = matchStatus === "completed";
 

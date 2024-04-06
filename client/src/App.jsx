@@ -85,7 +85,7 @@ const App = () => {
             }
           />
           <Route
-            path="/tournaments/:tournamentId/:matchId"
+            path="/tournaments/:tournamentId/match/:matchId"
             element={
               <PrivateRoute>
                 <Match />
@@ -93,7 +93,7 @@ const App = () => {
             }
           />
           <Route
-            path="/tournaments/:tournamentId/:matchId/manage"
+            path="/tournaments/:tournamentId/match/:matchId/manage"
             element={
               <PrivateRoute>
                 <MatchManagement />

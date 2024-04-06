@@ -13,7 +13,7 @@ const ManageEventAlert = ({ eventType }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const pageLink =
     eventType === "match"
-      ? `/tournaments/${tournamentId}/${matchId}/manage`
+      ? `/tournaments/${tournamentId}/match/${matchId}/manage`
       : `/tournaments/${tournamentId}/manage`;
 
   return (

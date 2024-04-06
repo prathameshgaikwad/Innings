@@ -6,7 +6,7 @@ import MatchCardContent from "./MatchCardContent";
 import MatchCardSkeleton from "../../skeletons/MatchCardSkeleton";
 
 const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
-  const matchURL = data ? `/tournaments/${tournamentId}/${data._id}` : "";
+  const matchURL = data ? `/tournaments/${tournamentId}/match/${data._id}` : "";
 
   return (
     <>
