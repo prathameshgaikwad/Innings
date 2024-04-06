@@ -21,8 +21,6 @@ import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
-
 const Match = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -30,7 +28,7 @@ const Match = () => {
   const token = useSelector((state) => state.user.token);
   const { tournamentId, matchId } = useParams();
 
-  const socket = useSocket(SERVER_URL);
+  const socket = useSocket();
 
   useEffect(() => {
     if (socket) {

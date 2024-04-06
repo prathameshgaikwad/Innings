@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 
 import { io } from "socket.io-client";
 
-const useSocket = (serverURL) => {
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+
+const useSocket = () => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(serverURL);
+    const newSocket = io(SERVER_URL);
     setSocket(newSocket);
-  }, [serverURL]);
+  }, [SERVER_URL]);
 
   return socket;
 };
