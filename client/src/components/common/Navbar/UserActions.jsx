@@ -28,6 +28,7 @@ const UserActions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
+  const isDarkTheme = theme.palette.mode === "dark";
 
   const { firstName, profileImageURL } = useSelector(
     (state) => state.user.user
@@ -89,7 +90,9 @@ const UserActions = () => {
           placement="bottom-end"
           sx={{
             zIndex: 1001,
-            backgroundColor: theme.palette.neutral[900],
+            backgroundColor: isDarkTheme
+              ? theme.palette.neutral[900]
+              : theme.palette.neutral[100],
           }}>
           <MenuItem
             sx={{ fontSize: "sm" }}
