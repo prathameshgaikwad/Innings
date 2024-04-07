@@ -1,7 +1,7 @@
 import { Box, Grid, useTheme } from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
-import AddPlayersForm from "../../components/createTournament/AddPlayersForm";
+import AddPlayers from "../../components/cards/AddPlayersCard/AddPlayers";
 import AddTeamsForm from "../../components/createTournament/AddTeamsForm";
 import CreateFixturesForm from "../../components/createTournament/CreateFixturesForm";
 import FinishSetup from "../../components/createTournament/FinishSetup";
@@ -54,7 +54,7 @@ const TournamentSetupPage = () => {
             <AddTeamsForm />
           </Grid>
           <Grid xs={15}>
-            <AddPlayersForm />
+            <AddPlayers />
           </Grid>
         </Grid>
         <TeamsList isSetupPage={true} />
