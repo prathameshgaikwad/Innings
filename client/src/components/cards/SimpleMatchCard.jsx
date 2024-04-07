@@ -139,7 +139,7 @@ const SimpleMatchCard = ({
                 "This will start a session where you will be able to score this match. Do you wish to proceed?"
               }
               useCase={"startMatch"}
-              redirectLink={`/tournaments/${tournamentId}/${matchId}/manage`}
+              redirectLink={`${matchURL}/manage`}
             />
           </CardContent>
           {isMatchComplete ? (
