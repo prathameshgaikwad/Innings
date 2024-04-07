@@ -1,25 +1,27 @@
 /* eslint-disable react/prop-types */
 
-import { Button, ButtonGroup, useTheme } from "@mui/joy";
+import { Button, ButtonGroup, Typography, useTheme } from "@mui/joy";
+import { useDispatch, useSelector } from "react-redux";
 
 import CustomModal from "../modals/CustomModal";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { TbArrowsExchange } from "react-icons/tb";
 import { TbSwitch3 } from "react-icons/tb";
+import { setStrikeChange } from "../../state/match/matchManagement";
 import { useMediaQuery } from "@mui/material";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const ActionsPane = ({ isLoading }) => {
   const [openSwitchModal, setOpenSwitchModal] = useState(false);
 
   const theme = useTheme();
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const innings = useSelector((state) => state.matchManagement.innings);
   const isSecondInnings = innings === "2";
 
   const handleStrikeChange = () => {
-    alert("Changing Strikes");
+    dispatch(setStrikeChange());
   };
 
   return (
@@ -43,7 +45,7 @@ const ActionsPane = ({ isLoading }) => {
             <IoPersonCircleSharp size={isMobile ? 18 : 21} />
           </>
         }>
-        Change Strike
+        <Typography noWrap>Change Strike</Typography>
       </Button>
       <Button
         variant="solid"
