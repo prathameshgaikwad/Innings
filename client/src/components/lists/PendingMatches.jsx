@@ -3,7 +3,7 @@
 import { Card, Stack, Typography, useTheme } from "@mui/joy";
 
 import { LuHourglass } from "react-icons/lu";
-import SimpleMatchCard from "../cards/SimpleMatchCard";
+import SimpleMatchCard from "../cards/SimpleMatchCard/SimpleMatchCard";
 
 const PendingMatches = ({ pendingMatchesList }) => {
   const theme = useTheme();

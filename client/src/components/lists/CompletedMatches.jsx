@@ -3,7 +3,7 @@
 import { Card, Stack, Typography, useTheme } from "@mui/joy";
 
 import { FiCheckCircle } from "react-icons/fi";
-import SimpleMatchCard from "../cards/SimpleMatchCard";
+import SimpleMatchCard from "../cards/SimpleMatchCard/SimpleMatchCard";
 
 const CompletedMatches = ({ completedMatchesList }) => {
   const theme = useTheme();

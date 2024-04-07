@@ -9,7 +9,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NextMatchSkeleton from "../../components/skeletons/NextMatchSkeleton";
 import PointsTable from "../../components/tables/PointsTable";
 import ScheduleOfMatches from "../../components/tables/ScheduleOfMatches";
-import SimpleMatchCard from "../../components/cards/SimpleMatchCard";
+import SimpleMatchCard from "../../components/cards/SimpleMatchCard/SimpleMatchCard";
 import TeamsList from "../../components/lists/TeamsList";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { tournamentPageApi } from "../../services/api";
