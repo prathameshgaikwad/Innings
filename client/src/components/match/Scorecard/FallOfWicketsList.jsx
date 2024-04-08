@@ -2,14 +2,14 @@
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../styles.css";
+import "../../../styles.css";
 
 import { Box, Card, Typography } from "@mui/joy";
 import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import FallOfWicketCard from "../cards/FallOfWicketCard";
-import SliderMask from "../SliderMask";
+import FallOfWicketCard from "../../cards/FallOfWicketCard";
+import SliderMask from "../../SliderMask";
 
 const FallOfWicketsList = ({ data }) => {
   return (
