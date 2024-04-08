@@ -10,7 +10,7 @@ import ManOfTheMatchCard from "../../components/cards/ManOfTheMatchCard";
 import ManageEventAlert from "../../components/ManageEventAlert";
 import MatchCard from "../../components/cards/MatchCard/MatchCard";
 import Navbar from "../../components/common/Navbar/Navbar";
-import Scorecard from "../../components/match/Scorecard";
+import Scorecard from "../../components/match/Scorecard/Scorecard";
 import TeamCard from "../../components/cards/TeamCard";
 import TossDetails from "../../components/match/TossDetails";
 import TossNotConducted from "../../components/match/TossNotConducted";
