@@ -8,12 +8,12 @@ import { Box, Link, Typography, useTheme } from "@mui/joy";
 import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 import FixtureCard from "../cards/FixtureCard/FixtureCard";
 import SliderMask from "../SliderMask";
 import UpcomingMatchesSkeleton from "../skeletons/UpcomingMatchesSkeleton";
 import { useMediaQuery } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import { userApi } from "../../services/api";
 
 const UpcomingMatches = ({ tournamentId }) => {
@@ -27,11 +27,11 @@ const UpcomingMatches = ({ tournamentId }) => {
 
   const tournamentURL = `/tournaments/${tournamentId}`;
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    dispatch(userApi.getUpcomingMatches({ tournamentId, token, setIsLoading }));
-  }, [dispatch, tournamentId, token]);
+  const { isLoading } = useQuery({
+    queryKey: ["upcomingMatches"],
+    queryFn: () =>
+      userApi.getUpcomingMatches({ tournamentId, token, dispatch }),
+  });
 
   const upcomingMatches = useSelector((state) => state.user.upcomingMatches);
 
