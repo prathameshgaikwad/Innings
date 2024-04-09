@@ -7,9 +7,12 @@ import { Provider } from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+const GOOGLE_OAUTH_CLIENT_ID = import.meta.env
+  .VITE_SERVER_GOOGLE_OAUTH_CLIENT_ID;
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="602398596216-q2tam15id5a3e0835kpmavpp8bcj9un5.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={GOOGLE_OAUTH_CLIENT_ID}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
