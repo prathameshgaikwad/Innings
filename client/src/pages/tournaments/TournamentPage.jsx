@@ -29,16 +29,6 @@ const TournamentPage = () => {
     (state) => state.tournaments.createdTournaments
   );
   const isAdmin = createdTournaments.includes(tournamentId);
-  const fixturesData = useSelector((state) => state.tournamentPage.fixtures);
-
-  const matchData = fixturesData[0];
-  const nextMatch =
-    fixturesData.length > 1
-      ? {
-          team1: fixturesData[1].team1Details.nameShort,
-          team2: fixturesData[1].team2Details.nameShort,
-        }
-      : {};
 
   useEffect(() => {
     dispatch(
@@ -49,6 +39,17 @@ const TournamentPage = () => {
       })
     );
   }, [dispatch, tournamentId, token]);
+
+  const fixturesData = useSelector((state) => state.tournamentPage.fixtures);
+
+  const matchData = fixturesData[0];
+  const nextMatch =
+    fixturesData.length > 1
+      ? {
+          team1: fixturesData[1].team1Details.nameShort,
+          team2: fixturesData[1].team2Details.nameShort,
+        }
+      : {};
 
   return (
     <>
