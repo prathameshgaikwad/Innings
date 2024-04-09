@@ -8,7 +8,6 @@ import { Box, Typography, useTheme } from "@mui/joy";
 import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 import CreateTournamentCard from "../cards/CreateTournamentCard";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
@@ -16,24 +15,23 @@ import SliderMask from "../SliderMask";
 import TournamentCard from "../cards/TournamentCard";
 import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 
 const CreatedTournaments = ({ userId }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const token = useSelector((state) => state.user.token);
+
+  const { isLoading } = useQuery({
+    queryKey: ["joinedTournaments"],
+    queryFn: () =>
+      tournamentsApi.getCreatedTournaments({ userId, token, dispatch }),
+  });
+
   const createdTournaments = useSelector(
     (state) => state.tournaments.createdTournaments
   );
-  const token = useSelector((state) => state.user.token);
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    dispatch(
-      tournamentsApi.getCreatedTournaments({ userId, token, setIsLoading })
-    );
-  }, [dispatch, userId, token]);
-
   return (
     <>
       <Typography level="h2" sx={{ mt: 4, mr: "auto" }}>
