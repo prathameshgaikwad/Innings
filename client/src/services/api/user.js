@@ -10,7 +10,7 @@ const REGISTER_ENDPOINT = import.meta.env.VITE_SERVER_REGISTER_URL;
 const LOGIN_ENDPOINT = import.meta.env.VITE_SERVER_LOGIN_URL;
 
 export const getLiveMatchInfo =
-  ({ tournamentId, token, setIsLoading }) =>
+  ({ tournamentId, token }) =>
   async (dispatch) => {
     try {
       const response = await fetch(`${TOURNAMENTS_API}/${tournamentId}/live`, {
@@ -30,14 +30,13 @@ export const getLiveMatchInfo =
       const { isEmpty, liveMatch } = data;
 
       if (!isEmpty) dispatch(setLiveMatch(liveMatch));
-      setIsLoading(false);
     } catch (error) {
       console.log("error:", error);
     }
   };
 
 export const getUpcomingMatches =
-  ({ tournamentId, token, setIsLoading }) =>
+  ({ tournamentId, token }) =>
   async (dispatch) => {
     try {
       const response = await fetch(
@@ -57,7 +56,6 @@ export const getUpcomingMatches =
       const { isEmpty, upcomingMatches } = data;
 
       if (!isEmpty) dispatch(setUpcomingMatches(upcomingMatches));
-      setIsLoading(false);
     } catch (error) {
       console.log("error:", error);
     }
