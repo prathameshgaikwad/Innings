@@ -10,6 +10,8 @@ const {
 } = require("../helpers/setBattingAndBowlingTeamData");
 const { generateCleanString } = require("../helpers/generateCleanString");
 
+const UPCOMING_MATCHES_OBJECT_COUNT = 10;
+
 const createTournament = async (req, res) => {
   try {
     const { admin_id, name, start_date, end_date, overs, venue } = req.body;
@@ -166,25 +168,25 @@ const getLiveMatchDetails = async (req, res) => {
 const getUpcomingMatches = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne({ _id: tournamentId });
+    const tournament = await Tournament.findOne(tournamentId);
 
     if (!tournament)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
 
-    const { fixture_id } = tournament;
+    const { fixtures } = tournament;
 
     const upcomingMatches = [];
 
-    for (const id of fixture_id) {
-      const fixture = await Fixture.findOne({ _id: id });
+    for (const id of fixtures) {
+      const fixture = await Fixture.findOne(id);
 
       if (fixture.toObject().status === "pending") {
         upcomingMatches.push(id);
       }
 
-      if (upcomingMatches.length >= 10) break;
+      if (upcomingMatches.length >= UPCOMING_MATCHES_OBJECT_COUNT) break;
     }
 
     if (upcomingMatches.length === 0)
