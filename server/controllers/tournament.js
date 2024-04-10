@@ -89,19 +89,19 @@ const getTournamentDetails = async (req, res) => {
 const getLiveMatchDetails = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findById({ _id: tournamentId });
+    const tournament = await Tournament.findById(tournamentId);
 
     if (!tournament) {
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
     }
-    const { fixture_id, venue } = tournament;
+    const { fixtures, venue } = tournament;
 
     let ongoingMatchId = null;
 
-    for (const id of fixture_id) {
-      const fixture = await Fixture.findById({ _id: id });
+    for (const id of fixtures) {
+      const fixture = await Fixture.findById(id);
       const { match_id } = fixture.toObject();
       const match = await Match.findOne(match_id);
 
@@ -119,9 +119,8 @@ const getLiveMatchDetails = async (req, res) => {
     const {
       _id,
       match_no,
-      overs,
+      total_overs,
       status,
-      data,
       result,
       toss,
       innings,
@@ -142,14 +141,14 @@ const getLiveMatchDetails = async (req, res) => {
     const responseData = {
       _id,
       match_no,
-      overs,
+      total_overs,
       venue,
       status,
       result,
       toss,
       innings,
-      team1,
-      team2,
+      team1_id,
+      team2_id,
       battingTeam,
       bowlingTeam,
     };
