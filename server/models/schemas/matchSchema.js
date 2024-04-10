@@ -46,15 +46,18 @@ const matchSchema = new mongoose.Schema(
         },
       },
     },
-    innings: [
-      {
-        _id: {
-          type: mongoose.Types.ObjectId,
-          ref: "innings",
-          required: [true, "innings id is required"],
+    innings: {
+      current_innings_no: { type: Number },
+      details: [
+        {
+          _id: {
+            type: mongoose.Types.ObjectId,
+            ref: "innings",
+            required: [true, "innings id is required"],
+          },
         },
-      },
-    ],
+      ],
+    },
   },
   { timestamps: true }
 );
