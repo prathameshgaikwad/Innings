@@ -207,33 +207,32 @@ const getUpcomingMatches = async (req, res) => {
 const getCompletedMatches = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findById({ _id: tournamentId });
+    const tournament = await Tournament.findById(tournamentId);
 
     if (!tournament)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
 
-    const { fixture_id } = tournament.toObject();
+    const { fixtures } = tournament.toObject();
 
     const completedMatches = [];
 
-    for (const id of fixture_id) {
-      const fixture = await Fixture.findById({ _id: id });
+    for (const id of fixtures) {
+      const fixture = await Fixture.findById(id);
 
       if (fixture.status === "completed") {
-        const { match_id } = fixture;
-        const { team1_id, team2_id } = fixture;
-        const match = await Match.findById({ _id: match_id });
-        const team1 = await Team.findById({ _id: team1_id });
-        const team2 = await Team.findById({ _id: team2_id });
+        const { match_id, team1_id, team2_id } = fixture;
+        const match = await Match.findById(match_id);
+        const team1 = await Team.findById(team1_id);
+        const team2 = await Team.findById(team2_id);
 
-        const { _id, match_no, winner } = match;
+        const { _id, match_no, result } = match;
 
         const responseData = {
           _id,
           match_no,
-          winner,
+          result,
           team1,
           team2,
         };
