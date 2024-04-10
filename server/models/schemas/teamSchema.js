@@ -11,11 +11,11 @@ const teamSchema = new mongoose.Schema({
     min: 1,
     max: 50,
   },
-  nameShort: {
+  name_short: {
     type: String,
     required: true,
   },
-  color: {
+  team_color: {
     type: String,
     required: true,
   },
@@ -26,22 +26,14 @@ const teamSchema = new mongoose.Schema({
         auto: true,
         ref: "players",
       },
-      playerName: {
-        type: String,
-        required: true,
-      },
-      isCaptain: {
+      is_captain: {
         type: Boolean,
         default: false,
       },
     },
   ],
-  logoURL: {
+  logo_url: {
     type: String,
-  },
-  captainName: {
-    type: String,
-    required: true,
   },
   performance: {
     matches: { type: Number, default: 0 },
