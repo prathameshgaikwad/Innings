@@ -18,7 +18,7 @@ const tournamentSchema = new mongoose.Schema(
     venue: { type: String },
     overs: { type: Number, required: [true, "Number of overs is required"] },
     teams: [{ type: mongoose.Types.ObjectId, ref: "teams" }],
-    fixture_id: [{ type: mongoose.Types.ObjectId, ref: "fixtures" }], // TODO: Rename to fixtures
+    fixtures: [{ type: mongoose.Types.ObjectId, ref: "fixtures" }],
     banner_urls: {
       large: { type: String },
       small: { type: String },
