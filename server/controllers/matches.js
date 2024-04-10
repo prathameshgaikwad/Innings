@@ -6,6 +6,9 @@ const Tournament = require("../models/tournament");
 const {
   setBattingAndBowlingTeamData,
 } = require("../helpers/setBattingAndBowlingTeamData");
+const {
+  default: generateRichTossData,
+} = require("../helpers/generateRichTossData");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -81,19 +84,7 @@ const setTossResult = async (req, res) => {
     match.status = "ongoing";
     await match.save();
 
-    const { name_short: winner_name } = await Team.findById(
-      tossFromDb.winner_id
-    );
-    const losingTeamId =
-      tossFromDb.winner_id === match.team1_id ? team2_id : team1_id;
-    const { name_short: loser_name } = await Team.findById(losingTeamId);
-
-    const richTossData = {
-      decision,
-      winner_id: tossFromDb.winner_id,
-      winner_name,
-      loser_name,
-    };
+    const richTossData = generateRichTossData(tossFromDb);
 
     res.status(StatusCodes.OK).json({ toss: richTossData });
   } catch (error) {
@@ -113,17 +104,7 @@ const getTossResult = async (req, res) => {
 
     const { toss, status } = match;
 
-    const { name_short: winner_name } = await Team.findById(toss.winner_id);
-    const losingTeamId =
-      toss.winner_id === match.team1_id ? team2_id : team1_id;
-    const { name_short: loser_name } = await Team.findById(losingTeamId);
-
-    const richTossData = {
-      decision,
-      winner_id: toss.winner_id,
-      winner_name,
-      loser_name,
-    };
+    const richTossData = generateRichTossData(toss);
 
     res.status(StatusCodes.OK).json({ toss: richTossData, status });
   } catch (error) {
