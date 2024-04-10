@@ -285,7 +285,7 @@ const getFeaturedTournaments = async (req, res) => {
 const getAllTeams = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findById({ _id: tournamentId });
+    const tournament = await Tournament.findById(tournamentId);
 
     if (!tournament)
       return res
