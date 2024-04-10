@@ -10,7 +10,7 @@ const {
 } = require("../helpers/setBattingAndBowlingTeamData");
 const { generateCleanString } = require("../helpers/generateCleanString");
 
-const UPCOMING_MATCHES_OBJECT_COUNT = 10;
+const MAX_ELEMENTS_PER_ARRAY = 10;
 
 const createTournament = async (req, res) => {
   try {
@@ -186,7 +186,7 @@ const getUpcomingMatches = async (req, res) => {
         upcomingMatches.push(id);
       }
 
-      if (upcomingMatches.length >= UPCOMING_MATCHES_OBJECT_COUNT) break;
+      if (upcomingMatches.length >= MAX_ELEMENTS_PER_ARRAY) break;
     }
 
     if (upcomingMatches.length === 0)
@@ -260,7 +260,7 @@ const getFeaturedTournaments = async (req, res) => {
   try {
     // gets 10 random tournament ids
     const tournaments = await Tournament.aggregate([
-      { $sample: { size: 10 } },
+      { $sample: { size: MAX_ELEMENTS_PER_ARRAY } },
       { $project: { _id: 1 } },
     ]);
 
