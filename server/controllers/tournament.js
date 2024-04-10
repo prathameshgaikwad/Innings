@@ -346,12 +346,12 @@ const getAllFixtures = async (req, res) => {
   try {
     const { tournamentId } = req.params;
     const tournament = await Tournament.findById(tournamentId);
-    const { fixture_id } = tournament;
+    const { fixtures } = tournament;
 
     const responseData = [];
 
-    for (const element of fixture_id) {
-      const fixture = await Fixture.findById(element);
+    for (const id of fixtures) {
+      const fixture = await Fixture.findById(id);
       const { team1_id, team2_id, match_no, match_id, date, time, status } =
         fixture.toObject();
 
@@ -361,15 +361,15 @@ const getAllFixtures = async (req, res) => {
 
       const team1Details = {
         name: team1.name,
-        nameShort: team1.nameShort,
-        color: team1.color,
-        logoURL: team1.logoURL,
+        name_short: team1.name_short,
+        team_color: team1.team_color,
+        logo_url: team1.logo_url,
       };
       const team2Details = {
         name: team2.name,
-        nameShort: team2.nameShort,
-        color: team2.color,
-        logoURL: team2.logoURL,
+        nameShort: team2.name_short,
+        team_color: team2.team_color,
+        logoURL: team2.logo_url,
       };
 
       responseData.push({
@@ -380,7 +380,7 @@ const getAllFixtures = async (req, res) => {
         date,
         time,
         status,
-        overs: match.overs,
+        overs: match.total_overs,
       });
     }
     res.status(StatusCodes.OK).json(responseData);
