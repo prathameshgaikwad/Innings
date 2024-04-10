@@ -12,7 +12,7 @@ const getJoinedTournaments = async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ message: "User does not exist!" });
 
-    const joinedTournamentsIds = user.joinedTournaments;
+    const joinedTournamentsIds = user.joined_tournaments;
 
     res.status(StatusCodes.OK).json({
       length: joinedTournamentsIds.length,
@@ -35,7 +35,7 @@ const getCreatedTournaments = async (req, res) => {
         .status(StatusCodes.NOT_FOUND)
         .json({ message: "User does not exist!" });
 
-    const createdTournamentIds = user.createdTournaments;
+    const createdTournamentIds = user.created_tournaments;
 
     res.status(StatusCodes.OK).json({
       length: createdTournamentIds.length,
