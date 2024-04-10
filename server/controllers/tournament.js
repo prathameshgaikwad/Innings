@@ -63,15 +63,15 @@ const joinTournament = async (req, res) => {
 const getTournamentDetails = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findById({ _id: tournamentId });
+    const tournament = await Tournament.findById(tournamentId);
 
     if (!tournament)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
 
-    const adminUser = await User.findById({ _id: tournament.admin_id });
-    const adminName = `${adminUser.firstName} ${adminUser.lastName}`;
+    const adminUser = await User.findById(tournament.admin_id);
+    const adminName = `${adminUser.first_name} ${adminUser.last_name}`;
 
     const tournamentData = {
       ...tournament.toObject(),
