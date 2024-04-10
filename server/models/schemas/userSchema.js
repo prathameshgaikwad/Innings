@@ -4,13 +4,13 @@ const userSchema = new mongoose.Schema(
   {
     _id: { type: mongoose.Types.ObjectId, auto: true },
     player_id: { type: mongoose.ObjectId, ref: "Player", auto: true },
-    firstName: {
+    first_name: {
       type: String,
       required: [true, "First name is required"],
       min: 3,
       max: 20,
     },
-    lastName: {
+    last_name: {
       type: String,
       required: [true, "Last name is required"],
       min: 3,
@@ -22,9 +22,11 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
     password: { type: String },
-    profileImageURL: { type: String },
-    joinedTournaments: [{ type: mongoose.Types.ObjectId, ref: "tournaments" }],
-    createdTournaments: [{ type: mongoose.Types.ObjectId, ref: "tournaments" }],
+    profile_image_url: { type: String },
+    joined_tournaments: [{ type: mongoose.Types.ObjectId, ref: "tournaments" }],
+    created_tournaments: [
+      { type: mongoose.Types.ObjectId, ref: "tournaments" },
+    ],
   },
   { timestamps: true }
 );
