@@ -9,7 +9,7 @@ const USER_API = import.meta.env.VITE_SERVER_USER_API;
 const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
 
 export const getCreatedTournaments =
-  ({ userId, token }) =>
+  ({ userId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
       const response = await fetch(
@@ -27,6 +27,7 @@ export const getCreatedTournaments =
 
       const { data } = await response.json();
       dispatch(setCreatedTournaments(data));
+      setIsLoading(false);
     } catch (error) {
       console.log("error:", error);
     }
