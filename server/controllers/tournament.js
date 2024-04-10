@@ -311,13 +311,11 @@ const getAllTeams = async (req, res) => {
 const getPointsTable = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const response = await Tournament.findById({ _id: tournamentId }).select(
-      "teams"
-    );
+    const response = await Tournament.findById(tournamentId).select("teams");
 
     const teamsData = await Promise.all(
       response.teams.map(async (id) => {
-        return await Team.findById({ _id: id });
+        return await Team.findById(id);
       })
     );
 
