@@ -6,7 +6,6 @@ const Tournament = require("../models/tournament");
 const {
   setBattingAndBowlingTeamData,
 } = require("../helpers/setBattingAndBowlingTeamData");
-const { setInningsData } = require("../helpers/setInningsData");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -17,15 +16,14 @@ const getMatchDetails = async (req, res) => {
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
     const fixture = await Fixture.findOne({ match_id: match._id });
-    const tournament = await Tournament.findOne({ fixture_id: fixture._id });
+    const tournament = await Tournament.findOne({ fixtures: fixture._id });
     const { venue } = tournament;
 
     const {
       _id,
       match_no,
-      overs,
+      total_overs,
       status,
-      data,
       result,
       toss,
       innings,
@@ -43,25 +41,17 @@ const getMatchDetails = async (req, res) => {
       toss,
     });
 
-    const inningsData = setInningsData({
-      data,
-      battingTeam,
-      team1_id,
-      team2_id,
-    });
-
     const matchData = {
       _id,
       match_no,
-      overs,
+      total_overs,
       venue,
       status,
-      inningsData,
       result,
       toss,
       innings,
-      team1,
-      team2,
+      team1_id,
+      team2_id,
       battingTeam,
       bowlingTeam,
     };
