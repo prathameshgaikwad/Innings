@@ -16,7 +16,10 @@ const tournamentSchema = new mongoose.Schema(
     start_date: { type: Date, required: [true, "Start date is required"] },
     end_date: { type: Date, required: [true, "End date is required"] },
     venue: { type: String },
-    overs: { type: Number, required: [true, "Number of overs is required"] },
+    total_overs: {
+      type: Number,
+      required: [true, "Number of overs is required"],
+    },
     teams: [{ type: mongoose.Types.ObjectId, ref: "teams" }],
     fixtures: [{ type: mongoose.Types.ObjectId, ref: "fixtures" }],
     banner_urls: {
