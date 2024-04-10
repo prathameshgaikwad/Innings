@@ -47,8 +47,8 @@ const joinTournament = async (req, res) => {
   try {
     const { user_id, tournament_id } = req.body;
 
-    const user = await User.findById({ _id: user_id });
-    user.joinedTournaments.push(tournament_id);
+    const user = await User.findById(user_id);
+    user.joined_tournaments.push(tournament_id);
     await user.save();
     res
       .status(StatusCodes.CREATED)
