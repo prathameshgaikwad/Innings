@@ -34,7 +34,7 @@ export const getCreatedTournaments =
   };
 
 export const getJoinedTournaments =
-  ({ userId, token }) =>
+  ({ userId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
       const response = await fetch(`${USER_API}/${userId}/joined-tournaments`, {
@@ -49,13 +49,14 @@ export const getJoinedTournaments =
 
       const { data } = await response.json();
       dispatch(setJoinedTournaments(data));
+      setIsLoading(false);
     } catch (error) {
       console.log("error:", error);
     }
   };
 
 export const getLatestTournamentDetails =
-  ({ userId, token }) =>
+  ({ userId, token, setIsLoading }) =>
   async (dispatch) => {
     try {
       const response = await fetch(`${USER_API}/${userId}/latest-tournament`, {
@@ -72,6 +73,8 @@ export const getLatestTournamentDetails =
       const { isEmpty, latestTournament } = data;
 
       if (!isEmpty) dispatch(setLatestTournament(latestTournament));
+
+      setIsLoading(false);
     } catch (error) {
       console.log("error:", error);
     }
