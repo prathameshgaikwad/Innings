@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { matchPerformanceSchema } = require("./matchPerformanceSchema");
 
 const playerSchema = new mongoose.Schema({
   _id: {
@@ -26,18 +27,27 @@ const playerSchema = new mongoose.Schema({
   },
   picture_url: { type: String },
   statistics: {
-    matches: { type: Number },
-    runs: { type: Number },
-    strike_rate: { type: mongoose.Types.Decimal128 },
-    average: { type: mongoose.Types.Decimal128 },
-    highest_score: { type: Number },
-    fifties: { type: Number },
-    hundreds: { type: Number },
-    fours: { type: Number },
-    sixes: { type: Number },
-    wickets: { type: Number },
-    economy: { type: mongoose.Types.Decimal128 },
+    matches: { type: Number, default: 0 },
+    total_runs: { type: Number, default: 0 },
+    strike_rate: { type: mongoose.Types.Decimal128, default: 0.0 },
+    average: { type: mongoose.Types.Decimal128, default: 0.0 },
+    highest_score: {
+      runs: {
+        type: Number,
+        default: 0,
+      },
+      dismissed: { type: Boolean },
+    },
+    fifties: { type: Number, default: 0 },
+    hundreds: { type: Number, default: 0 },
+    fours: { type: Number, default: 0 },
+    sixes: { type: Number, default: 0 },
+    total_dismissals: { type: Number, default: 0 },
+    balls_faced: { type: Number, default: 0 },
+    wickets_taken: { type: Number, default: 0 },
+    economy: { type: mongoose.Types.Decimal128, default: 0.0 },
   },
+  match_performances: [matchPerformanceSchema],
 });
 
 module.exports = { playerSchema };
