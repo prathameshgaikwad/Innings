@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const ballSchema = require("./ballLogSchema");
-const wicketSchema = require("./wicketSchema");
-const battingLogSchema = require("./battingLogSchema");
 
 const matchSchema = new mongoose.Schema(
   {
@@ -27,61 +24,37 @@ const matchSchema = new mongoose.Schema(
       ref: "teams",
       required: [true, "team2 id is required"],
     },
-    overs: { type: Number, required: [true, "overs is required"] },
+    total_overs: { type: Number, required: [true, "overs is required"] },
     toss: {
       decision: {
         type: String,
         enum: ["bat", "field"],
       },
-      winner: {
-        type: String,
-      },
-      loser: {
-        type: String,
-      },
-      winnerId: {
+      winner_id: {
         type: mongoose.Types.ObjectId,
         ref: "teams",
       },
     },
-    innings: { type: Number },
     result: {
-      winnerId: { type: mongoose.Types.ObjectId, ref: "teams" },
-    },
-    data: {
-      team1: {
-        runs: { type: Number, default: 0 },
-        wickets: { type: Number, default: 0 },
-        balls_completed: { type: Number, default: 0 },
-        sixes: { type: Number, default: 0 },
-        fours: { type: Number, default: 0 },
-        extras: {
-          wides: { type: Number, default: 0 },
-          byes: { type: Number, default: 0 },
-          leg_byes: { type: Number, default: 0 },
-          no_balls: { type: Number, default: 0 },
+      winner_id: { type: mongoose.Types.ObjectId, ref: "teams" },
+      comment: { type: String },
+      player_of_the_match: {
+        _id: {
+          type: mongoose.Types.ObjectId,
+          auto: true,
+          ref: "players",
         },
-        ball_log: [ballSchema],
-        wicket_log: [wicketSchema],
-        batting_log: [battingLogSchema],
-      },
-      team2: {
-        runs: { type: Number, default: 0 },
-        wickets: { type: Number, default: 0 },
-        balls_completed: { type: Number, default: 0 },
-        sixes: { type: Number, default: 0 },
-        fours: { type: Number, default: 0 },
-        extras: {
-          wides: { type: Number, default: 0 },
-          byes: { type: Number, default: 0 },
-          leg_byes: { type: Number, default: 0 },
-          no_balls: { type: Number, default: 0 },
-        },
-        ball_log: [ballSchema],
-        wicket_log: [wicketSchema],
-        batting_log: [battingLogSchema],
       },
     },
+    innings: [
+      {
+        _id: {
+          type: mongoose.Types.ObjectId,
+          ref: "innings",
+          required: [true, "innings id is required"],
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
