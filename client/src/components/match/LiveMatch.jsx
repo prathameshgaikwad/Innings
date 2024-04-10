@@ -2,13 +2,13 @@
 
 import { Box, Link, Stack, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import { LiveIcon } from "../LiveIcon";
 import MatchCard from "../cards/MatchCard/MatchCard";
 import NoLiveMatchPlaceholder from "../NoLiveMatchPlaceholder";
 import Typography from "@mui/joy/Typography";
 import { useMediaQuery } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 import { userApi } from "../../services/api";
 
 const LiveMatch = ({ tournamentId }) => {
@@ -18,10 +18,11 @@ const LiveMatch = ({ tournamentId }) => {
   const isTab = useMediaQuery(theme.breakpoints.down(650));
   const token = useSelector((state) => state.user.token);
 
-  const { isLoading } = useQuery({
-    queryKey: ["liveMatch"],
-    queryFn: () => userApi.getLiveMatchInfo({ tournamentId, token, dispatch }),
-  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    dispatch(userApi.getLiveMatchInfo({ tournamentId, token, setIsLoading }));
+  }, [dispatch, tournamentId, token]);
 
   const liveMatch = useSelector((state) => state.user.liveMatch);
   const noLiveMatch = liveMatch.isEmpty;

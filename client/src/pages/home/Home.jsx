@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import Box from "@mui/joy/Box";
 import CustomToast from "../../components/cards/CustomToast";
@@ -10,7 +11,6 @@ import { Skeleton } from "@mui/joy";
 import UpcomingMatches from "../../components/lists/UpcomingMatches";
 import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 import { useTheme } from "@mui/joy/styles";
 
 const HomePage = () => {
@@ -20,25 +20,19 @@ const HomePage = () => {
   const token = useSelector((state) => state.user.token);
   const user = useSelector((state) => state.user.user);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const username = user && user.firstName;
   const userId = user && user._id;
 
-  const { isLoading: latestTournamentLoading } = useQuery({
-    queryKey: ["latestTournament"],
-    queryFn: () =>
-      tournamentsApi.getLatestTournamentDetails({
-        userId,
-        token,
-        dispatch,
-      }),
-  });
-  const { isLoading: joinedTournamentsLoading } = useQuery({
-    queryKey: ["joinedTournaments"],
-    queryFn: () =>
-      tournamentsApi.getJoinedTournaments({ userId, token, dispatch }),
-  });
-
-  const isLoading = latestTournamentLoading && joinedTournamentsLoading;
+  useEffect(() => {
+    dispatch(
+      tournamentsApi.getLatestTournamentDetails({ userId, token, setIsLoading })
+    );
+    dispatch(
+      tournamentsApi.getJoinedTournaments({ userId, token, setIsLoading })
+    );
+  }, [dispatch, userId, token]);
 
   const latestTournament = useSelector(
     (state) => state.tournaments.latestTournament
