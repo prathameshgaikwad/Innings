@@ -18,7 +18,7 @@ const wicketSchema = new mongoose.Schema({
     ref: "players",
   },
   wicket_number: { type: Number },
-  runs_completed: { type: Number, default: 0 },
+  runs_this_ball: { type: Number, default: 0 },
   dismissal_type: { type: String },
   fall_of_wicket_stamp: { type: String },
 });
