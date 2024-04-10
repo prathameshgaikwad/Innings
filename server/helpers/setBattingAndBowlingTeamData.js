@@ -2,7 +2,7 @@ const setBattingAndBowlingTeamData = ({ innings, toss, team1, team2 }) => {
   let battingTeam = {};
   let bowlingTeam = {};
 
-  const isFirstInnings = innings === 1;
+  const isFirstInnings = innings.length === 0;
   const isChoiceToBat = toss.decision === "bat";
   const tossWinningTeam = toss.winnerId === team1._id ? team1 : team2;
   const tossLosingTeam = toss.winnerId === team1._id ? team2 : team1;
