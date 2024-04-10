@@ -2,10 +2,10 @@ const setBattingAndBowlingTeamData = ({ innings, toss, team1, team2 }) => {
   let battingTeam = {};
   let bowlingTeam = {};
 
-  const isFirstInnings = innings === 1;
+  const isFirstInnings = innings.current_innings_no === 1;
   const isChoiceToBat = toss.decision === "bat";
-  const tossWinningTeam = toss.winnerId === team1._id ? team1 : team2;
-  const tossLosingTeam = toss.winnerId === team1._id ? team2 : team1;
+  const tossWinningTeam = toss.winner_id === team1._id ? team1 : team2;
+  const tossLosingTeam = toss.winner_id === team1._id ? team2 : team1;
 
   if (isFirstInnings) {
     if (isChoiceToBat) {
