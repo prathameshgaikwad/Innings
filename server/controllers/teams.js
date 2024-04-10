@@ -43,7 +43,7 @@ const createTeam = async (req, res) => {
     const newTeam = new Team({
       name: generateCleanString(teamName),
       name_short: generateShortName(teamName),
-      color: teamColor,
+      team_color: teamColor,
       players: [],
       logo_url: await fetchRandomImage("digital-art", false),
     });
