@@ -8,7 +8,7 @@ const fetchRandomImage = require("../helpers/fetchRandomImage");
 const {
   setBattingAndBowlingTeamData,
 } = require("../helpers/setBattingAndBowlingTeamData");
-const { setInningsData } = require("../helpers/setInningsData");
+const { generateCleanString } = require("../helpers/generateCleanString");
 
 const createTournament = async (req, res) => {
   try {
@@ -16,10 +16,10 @@ const createTournament = async (req, res) => {
     const { large, small } = await fetchRandomImage("abstract", true);
     const newTournament = new Tournament({
       admin_id,
-      name,
+      name: generateCleanString(name),
       start_date,
       end_date,
-      overs,
+      total_overs: overs,
       venue,
       banner_urls: { large, small },
     });
@@ -31,8 +31,8 @@ const createTournament = async (req, res) => {
 
     const savedTournament = await newTournament.save();
 
-    const user = await User.findById({ _id: admin_id });
-    user.createdTournaments.push(savedTournament._id);
+    const user = await User.findById(admin_id);
+    user.created_tournaments.push(savedTournament._id);
     await user.save();
 
     res.status(StatusCodes.CREATED).json(savedTournament);
@@ -139,20 +139,12 @@ const getLiveMatchDetails = async (req, res) => {
       toss,
     });
 
-    const inningsData = setInningsData({
-      data,
-      battingTeam,
-      team1_id,
-      team2_id,
-    });
-
     const responseData = {
       _id,
       match_no,
       overs,
       venue,
       status,
-      inningsData,
       result,
       toss,
       innings,
