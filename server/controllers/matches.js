@@ -72,19 +72,30 @@ const setTossResult = async (req, res) => {
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
-    const { decision, winner, winnerId, loser } = toss;
+    const { decision, winnerId } = toss;
     const { toss: tossFromDb } = match;
 
     tossFromDb.decision = decision;
-    tossFromDb.winner = winner;
-    tossFromDb.loser = loser;
-    tossFromDb.winnerId = winnerId;
+    tossFromDb.winner_id = winnerId;
 
     match.status = "ongoing";
-
     await match.save();
 
-    res.status(StatusCodes.OK).json({ toss: tossFromDb });
+    const { name_short: winner_name } = await Team.findById(
+      tossFromDb.winner_id
+    );
+    const losingTeamId =
+      tossFromDb.winner_id === match.team1_id ? team2_id : team1_id;
+    const { name_short: loser_name } = await Team.findById(losingTeamId);
+
+    const richTossData = {
+      decision,
+      winner_id: tossFromDb.winner_id,
+      winner_name,
+      loser_name,
+    };
+
+    res.status(StatusCodes.OK).json({ toss: richTossData });
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -102,7 +113,19 @@ const getTossResult = async (req, res) => {
 
     const { toss, status } = match;
 
-    res.status(StatusCodes.OK).json({ toss, status });
+    const { name_short: winner_name } = await Team.findById(toss.winner_id);
+    const losingTeamId =
+      toss.winner_id === match.team1_id ? team2_id : team1_id;
+    const { name_short: loser_name } = await Team.findById(losingTeamId);
+
+    const richTossData = {
+      decision,
+      winner_id: toss.winner_id,
+      winner_name,
+      loser_name,
+    };
+
+    res.status(StatusCodes.OK).json({ toss: richTossData, status });
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
