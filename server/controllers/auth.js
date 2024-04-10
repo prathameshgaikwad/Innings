@@ -7,62 +7,52 @@ const Player = require("../models/player.js");
 const fetchRandomImage = require("../helpers/fetchRandomImage.js");
 const fetchGoogleUserData = require("../helpers/fetchGoogleUserData.js");
 
+const JWT_SECRET = process.env.JWT_SECRET;
+
 const register = async (req, res) => {
   try {
     let newUser;
     let { access_token, firstName, lastName, email, password } = req.body;
-
     // USE GOOGLE OAUTH IF PROVIDED ACCESS TOKEN
     if (access_token) {
       const googleUserData = await fetchGoogleUserData(access_token);
-
       if (!googleUserData) {
         throw new Error("Failed to fetch user data from Google.");
       }
       newUser = new User({
-        firstName: googleUserData.given_name,
-        lastName: googleUserData.family_name,
+        first_name: googleUserData.given_name,
+        last_name: googleUserData.family_name,
         email: googleUserData.email,
-        profileImageURL: googleUserData.picture,
+        profile_image_url: googleUserData.picture,
       });
-
-      // const existingUser = await User.findOne({ email });
-      // if (existingUser) {
-      //   return res
-      //     .status(StatusCodes.BAD_REQUEST)
-      //     .json({ error: "Email already exists" });
-      // }
     } else {
       // ELSE GO FOR REGULAR USER REGISTRATION
-
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res
           .status(StatusCodes.BAD_REQUEST)
           .json({ error: "Email already exists" });
       }
-
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(password, salt);
       password = hashedPassword;
-
       newUser = new User({
-        firstName,
-        lastName,
+        first_name: firstName,
+        last_name: lastName,
         email,
         password: hashedPassword,
-        profileImageURL: await fetchRandomImage("person", false),
+        profile_image_url: await fetchRandomImage("person", false),
       });
     }
-
-    const player = new Player({
-      first_name: newUser.firstName,
-      last_name: newUser.lastName,
+    //CREATE A NEW PLAYER INSTANCE AND LINK IT WITH THE NEWLY CREATED USER ACCOUNT
+    const newPlayer = new Player({
+      first_name: newUser.first_name,
+      last_name: newUser.last_name,
       debut: new Date(),
     });
 
-    await player.save();
-    newUser.player_id = player._id;
+    await newPlayer.save();
+    newUser.player_id = newPlayer._id;
 
     const savedUser = await newUser.save();
     res.status(StatusCodes.CREATED).json(savedUser);
@@ -87,10 +77,10 @@ const login = async (req, res) => {
       user = await User.findOne({ email: googleUserData.email });
       if (!user) {
         user = new User({
-          firstName: googleUserData.given_name,
-          lastName: googleUserData.family_name,
+          first_name: googleUserData.given_name,
+          last_name: googleUserData.family_name,
           email: googleUserData.email,
-          profileImageURL: googleUserData.picture,
+          profile_image_url: googleUserData.picture,
         });
         await user.save();
       }
@@ -109,7 +99,7 @@ const login = async (req, res) => {
           .json({ message: "Invalid credentails." });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, {
       expiresIn: "30d",
     });
     delete user.password;
