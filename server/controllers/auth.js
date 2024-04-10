@@ -6,6 +6,7 @@ const User = require("../models/user.js");
 const Player = require("../models/player.js");
 const fetchRandomImage = require("../helpers/fetchRandomImage.js");
 const fetchGoogleUserData = require("../helpers/fetchGoogleUserData.js");
+const { generateCleanString } = require("../helpers/generateCleanString.js");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -20,8 +21,8 @@ const register = async (req, res) => {
         throw new Error("Failed to fetch user data from Google.");
       }
       newUser = new User({
-        first_name: googleUserData.given_name,
-        last_name: googleUserData.family_name,
+        first_name: generateCleanString(googleUserData.given_name),
+        last_name: generateCleanString(googleUserData.family_name),
         email: googleUserData.email,
         profile_image_url: googleUserData.picture,
       });
@@ -77,8 +78,8 @@ const login = async (req, res) => {
       user = await User.findOne({ email: googleUserData.email });
       if (!user) {
         user = new User({
-          first_name: googleUserData.given_name,
-          last_name: googleUserData.family_name,
+          first_name: generateCleanString(googleUserData.given_name),
+          last_name: generateCleanString(googleUserData.family_name),
           email: googleUserData.email,
           profile_image_url: googleUserData.picture,
         });
