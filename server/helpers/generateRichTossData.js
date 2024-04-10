@@ -1,4 +1,4 @@
-import Team from "../models/team";
+const Team = require("../models/team");
 
 const generateRichTossData = async ({ toss }) => {
   const { name_short: winner_name } = await Team.findById(toss.winner_id);
@@ -15,4 +15,4 @@ const generateRichTossData = async ({ toss }) => {
   return richTossData;
 };
 
-export default generateRichTossData;
+module.exports = { generateRichTossData };
