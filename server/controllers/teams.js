@@ -4,11 +4,12 @@ const Tournament = require("../models/tournament");
 const Player = require("../models/player");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
 const { generateShortName } = require("../helpers/generateShortName");
+const { generateCleanString } = require("../helpers/generateCleanString");
 
 const getTeam = async (req, res) => {
   try {
     const { teamId } = req.params;
-    const team = await Team.findById({ _id: teamId });
+    const team = await Team.findById(teamId);
 
     if (!team)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such team" });
@@ -25,28 +26,26 @@ const createTeam = async (req, res) => {
   try {
     const { teamName, teamColor, players, tournamentId } = req.body;
 
-    let assumedCaptain = players[0].playerName;
-    let givenCaptain = "";
+    let needToMarkCaptain = true;
 
     const indexOfCaptain = players.indexOf(
       (player) => player.isCaptain === true
     );
 
     if (indexOfCaptain !== -1) {
-      givenCaptain = players.find(
-        (player) => player.isCaptain === true
-      ).playerName;
+      needToMarkCaptain = false;
     }
-    const nameShort = generateShortName(teamName);
-    const logoURL = await fetchRandomImage("digital-art", false);
+
+    if (needToMarkCaptain) {
+      players[0].isCaptain = true;
+    }
 
     const newTeam = new Team({
-      name: teamName,
-      nameShort,
+      name: generateCleanString(teamName),
+      name_short: generateShortName(teamName),
       color: teamColor,
       players: [],
-      captainName: indexOfCaptain === -1 ? assumedCaptain : givenCaptain,
-      logoURL,
+      logo_url: await fetchRandomImage("digital-art", false),
     });
 
     const playerPromises = players.map(async (player) => {
@@ -56,28 +55,18 @@ const createTeam = async (req, res) => {
       const newPlayer = new Player({
         team_id: newTeam._id,
         tournament_id: tournamentId,
-        first_name,
-        last_name,
+        first_name: generateCleanString(first_name),
+        last_name: generateCleanString(last_name),
         debut: Date.now(),
         picture_url: await fetchRandomImage("person", false),
-        statistics: {
-          matches: 0,
-          runs: 0,
-          strike_rate: 0,
-          average: 0,
-          highest_score: 0,
-          fifties: 0,
-          hundreds: 0,
-          fours: 0,
-          sixes: 0,
-          wickets: 0,
-          economy: 0,
-        },
       });
       await newPlayer.save();
+
+      const isCaptain = player.isCaptain;
+
       const savedPlayer = {
         _id: newPlayer._id,
-        playerName: newPlayer.first_name + " " + newPlayer.last_name,
+        is_captain: isCaptain,
       };
       return savedPlayer;
     });
@@ -90,7 +79,7 @@ const createTeam = async (req, res) => {
         .json({ error: "Did not create team object" });
 
     const savedTeam = await newTeam.save();
-    const tournament = await Tournament.findById({ _id: tournamentId });
+    const tournament = await Tournament.findById(tournamentId);
     tournament.teams.push(savedTeam._id);
     await tournament.save();
 
