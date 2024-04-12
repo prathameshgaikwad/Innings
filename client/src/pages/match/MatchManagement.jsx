@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import ActionsPane from "../../components/matchManagement/ActionsPane";
 import BallLogList from "../../components/lists/BallLogList";
 import BatsmenStats from "../../components/match/BatsmenStats";
-import BattingStats from "../../components/matchManagement/BattingStats";
+import BattingStats from "../../components/matchManagement/BattingStats/BattingStats";
 import BowlingStats from "../../components/matchManagement/BowlingStats";
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import ConductToss from "../../components/matchManagement/ConductToss";
