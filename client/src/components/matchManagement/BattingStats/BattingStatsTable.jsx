@@ -2,6 +2,7 @@
 
 import { Sheet, Table, useTheme } from "@mui/joy";
 
+import TableHeader from "../../TableHeaders";
 import TableRow from "../../TableRow";
 import { useMediaQuery } from "@mui/material";
 
@@ -18,6 +19,17 @@ const BattingStatsTable = ({ battingData }) => {
     "fours",
     "sixes",
     "strike_rate",
+  ];
+
+  const tableHeaders = [
+    "#",
+    "NAME",
+    "WICKET",
+    "RUNS",
+    "BALLS",
+    "4s",
+    "6s",
+    "SR",
   ];
 
   return (
@@ -37,18 +49,7 @@ const BattingStatsTable = ({ battingData }) => {
           },
           fontSize: isMobile ? "0.85rem" : "",
         }}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>NAME</th>
-            <th>WICKET</th>
-            <th>RUNS</th>
-            <th>BALLS</th>
-            <th>4s</th>
-            <th>6s</th>
-            <th>SR</th>
-          </tr>
-        </thead>
+        <TableHeader headers={tableHeaders} />
         <tbody>
           {battingData.map((row, index) => (
             <TableRow key={index} data={row} dataKeys={dataKeys} />

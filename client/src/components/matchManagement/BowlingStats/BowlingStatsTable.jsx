@@ -2,6 +2,7 @@
 
 import { Sheet, Table, useTheme } from "@mui/joy";
 
+import TableHeader from "../../TableHeaders";
 import TableRow from "../../TableRow";
 import { useMediaQuery } from "@mui/material";
 
@@ -10,6 +11,7 @@ const BowlingStatsTable = ({ bowlingData }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const dataKeys = ["name", "overs", "runs", "wickets", "economy", "dots"];
+  const tableHeaders = ["NAME", "OVERS", "RUNS", "WICKETS", "ECON", "DOTS"];
 
   return (
     <Sheet sx={{ width: "100%", overflow: "auto", my: 2 }}>
@@ -22,16 +24,7 @@ const BowlingStatsTable = ({ bowlingData }) => {
           },
           fontSize: isMobile ? "0.85rem" : "",
         }}>
-        <thead>
-          <tr>
-            <th>NAME</th>
-            <th>OVERS</th>
-            <th>RUNS</th>
-            <th>WICKETS</th>
-            <th>ECON</th>
-            <th>DOTS</th>
-          </tr>
-        </thead>
+        <TableHeader headers={tableHeaders} />
         <tbody>
           {bowlingData.map((row, index) => (
             <TableRow key={index} data={row} dataKeys={dataKeys} />
