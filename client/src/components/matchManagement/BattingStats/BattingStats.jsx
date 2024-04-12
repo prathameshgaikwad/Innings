@@ -5,11 +5,8 @@ import { Card, CardContent } from "@mui/joy";
 import BattingStatsHeader from "./BattingStatsHeader";
 import BattingStatsTable from "./BattingStatsTable";
 import NoData from "../../NoData";
+import { createPlayerOption } from "../../../utilities/helpers/createPlayerOption";
 import { useSelector } from "react-redux";
-
-function createOption(name, _id) {
-  return { label: name, value: _id };
-}
 
 function createBattingData(
   sr_no,
@@ -30,7 +27,7 @@ const BattingStats = ({ isLoading }) => {
 
   const rawPlayersData =
     players &&
-    players.map((player) => createOption(player.playerName, player._id));
+    players.map((player) => createPlayerOption(player.playerName, player._id));
 
   const batsmen = useSelector((state) => state.matchManagement.batsmen);
 

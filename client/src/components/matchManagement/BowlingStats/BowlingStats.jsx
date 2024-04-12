@@ -5,11 +5,8 @@ import { Card, CardContent } from "@mui/joy";
 import BowlingStatsHeader from "./BowlingStatsHeader";
 import BowlingStatsTable from "./BowlingStatsTable";
 import NoData from "../../NoData";
+import { createPlayerOption } from "../../../utilities/helpers/createPlayerOption";
 import { useSelector } from "react-redux";
-
-function createOption(name, _id) {
-  return { label: name, value: _id };
-}
 
 function createBowlingData(name, overs, runs, wickets, economy, dots) {
   return { name, overs, runs, wickets, economy, dots };
@@ -21,7 +18,7 @@ const BowlingStats = ({ isLoading }) => {
 
   const rawPlayersData =
     players &&
-    players.map((player) => createOption(player.playerName, player._id));
+    players.map((player) => createPlayerOption(player.playerName, player._id));
 
   const bowler = useSelector((state) => state.matchManagement.bowler);
   const isBowlerSelected = bowler._id && bowler._id.length !== 0;
