@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 
-import { Sheet, Table, Typography, useTheme } from "@mui/joy";
+import { Sheet, Table, useTheme } from "@mui/joy";
 
+import TableRow from "../../TableRow";
 import { useMediaQuery } from "@mui/material";
 
 const BowlingStatsTable = ({ bowlingData }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const dataKeys = ["name", "overs", "runs", "wickets", "economy", "dots"];
+
   return (
     <Sheet sx={{ width: "100%", overflow: "auto", my: 2 }}>
       <Table
@@ -29,33 +33,8 @@ const BowlingStatsTable = ({ bowlingData }) => {
           </tr>
         </thead>
         <tbody>
-          {bowlingData.map((row) => (
-            <tr key={row.name}>
-              <td>
-                {" "}
-                <Typography level="body-xs">{row.name}</Typography>
-              </td>
-              <td>
-                {" "}
-                <Typography level="body-xs">{row.overs}</Typography>
-              </td>
-              <td>
-                {" "}
-                <Typography level="body-xs">{row.runs}</Typography>
-              </td>
-              <td>
-                {" "}
-                <Typography level="body-xs">{row.wickets}</Typography>
-              </td>
-              <td>
-                {" "}
-                <Typography level="body-xs">{row.economy}</Typography>
-              </td>
-              <td>
-                {" "}
-                <Typography level="body-xs">{row.dots}</Typography>
-              </td>
-            </tr>
+          {bowlingData.map((row, index) => (
+            <TableRow key={index} data={row} dataKeys={dataKeys} />
           ))}
         </tbody>
       </Table>

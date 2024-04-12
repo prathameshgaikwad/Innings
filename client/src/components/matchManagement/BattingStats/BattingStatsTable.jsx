@@ -1,12 +1,25 @@
 /* eslint-disable react/prop-types */
 
-import { Sheet, Table, Typography, useTheme } from "@mui/joy";
+import { Sheet, Table, useTheme } from "@mui/joy";
 
+import TableRow from "../../TableRow";
 import { useMediaQuery } from "@mui/material";
 
 const BattingStatsTable = ({ battingData }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const dataKeys = [
+    "sr_no",
+    "name",
+    "wicket",
+    "runs",
+    "balls",
+    "fours",
+    "sixes",
+    "strike_rate",
+  ];
+
   return (
     <Sheet sx={{ overflow: "auto", my: 2, minWidth: 660 }}>
       <Table
@@ -37,35 +50,8 @@ const BattingStatsTable = ({ battingData }) => {
           </tr>
         </thead>
         <tbody>
-          {battingData.map((row) => (
-            <tr key={row.sr_no}>
-              <td>
-                <Typography level="body-xs">{row.sr_no}</Typography>
-              </td>
-              {
-                <td>
-                  <Typography level="body-xs">{row.name}</Typography>
-                </td>
-              }
-              <td>
-                <Typography level="body-xs">{row.wicket}</Typography>
-              </td>
-              <td>
-                <Typography level="body-xs">{row.runs}</Typography>
-              </td>
-              <td>
-                <Typography level="body-xs">{row.balls}</Typography>
-              </td>
-              <td>
-                <Typography level="body-xs">{row.fours}</Typography>
-              </td>
-              <td>
-                <Typography level="body-xs">{row.sixes}</Typography>
-              </td>
-              <td>
-                <Typography level="body-xs">{row.strike_rate}</Typography>
-              </td>
-            </tr>
+          {battingData.map((row, index) => (
+            <TableRow key={index} data={row} dataKeys={dataKeys} />
           ))}
         </tbody>
       </Table>
