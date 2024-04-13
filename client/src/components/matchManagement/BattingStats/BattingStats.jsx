@@ -4,7 +4,7 @@ import { Card, CardContent } from "@mui/joy";
 
 import BattingStatsHeader from "./BattingStatsHeader";
 import BattingStatsTable from "./BattingStatsTable";
-import NoData from "../../NoData";
+import NoData from "../../fallbacks/NoData";
 import { createPlayerOption } from "../../../utilities/helpers/createPlayerOption";
 import { useSelector } from "react-redux";
 

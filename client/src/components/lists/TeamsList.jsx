@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import GroupsIcon from "@mui/icons-material/Groups";
-import NoData from "../NoData";
+import NoData from "../fallbacks/NoData";
 import SectionHeader from "../SectionHeader";
 import SectionWrapper from "../SectionWrapper";
 import SliderMask from "../SliderMask";

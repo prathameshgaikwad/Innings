@@ -1,6 +1,6 @@
 import { Sheet, Table, useTheme } from "@mui/joy";
 
-import NoData from "../NoData";
+import NoData from "../fallbacks/NoData";
 import TableHeader from "../TableHeaders";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";

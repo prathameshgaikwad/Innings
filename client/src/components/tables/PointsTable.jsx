@@ -2,7 +2,7 @@ import { Sheet, Table, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
-import NoData from "../NoData";
+import NoData from "../fallbacks/NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../SectionHeader";
 import SectionWrapper from "../SectionWrapper";

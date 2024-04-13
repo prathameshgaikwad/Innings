@@ -3,7 +3,7 @@
 import { Sheet, Table, Typography, useTheme } from "@mui/joy";
 import { useEffect, useState } from "react";
 
-import NoData from "../NoData";
+import NoData from "../fallbacks/NoData";
 import { useSelector } from "react-redux";
 
 function createPlayerData(playerName, isCaptain = false) {

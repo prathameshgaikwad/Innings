@@ -3,7 +3,7 @@
 import { Sheet, Table, useTheme } from "@mui/joy";
 
 import EventNoteIcon from "@mui/icons-material/EventNote";
-import NoData from "../NoData";
+import NoData from "../fallbacks/NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../SectionHeader";
 import SectionWrapper from "../SectionWrapper";

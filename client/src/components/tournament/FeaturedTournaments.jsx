@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import NoData from "../NoData";
+import NoData from "../fallbacks/NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../SectionHeader";
 import SectionWrapper from "../SectionWrapper";
