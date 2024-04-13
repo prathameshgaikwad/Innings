@@ -1,8 +1,8 @@
 import { Box, Button, Card, Modal, ModalDialog, Typography } from "@mui/joy";
 
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CreateTournamentModal from "../modals/CreateTournamentModal";
+import DrawIcon from "@mui/icons-material/Draw";
 import { useState } from "react";
 
 const CreateTournamentCard = () => {
@@ -19,7 +19,7 @@ const CreateTournamentCard = () => {
         borderStyle: "dashed",
         borderWidth: 2,
       }}>
-      <AddCircleOutlineIcon color="success" fontSize="xl3" />
+      <DrawIcon color="success" fontSize="xl3" />
       <div>
         <Typography fontSize="xl" fontWeight="lg" sx={{ mb: 1 }}>
           Create a new tournament
