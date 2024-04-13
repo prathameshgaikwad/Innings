@@ -30,7 +30,7 @@ const UserActions = () => {
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
 
-  const { firstName, profileImageURL } = useSelector(
+  const { first_name, profile_image_url } = useSelector(
     (state) => state.user.user
   );
 
@@ -75,10 +75,10 @@ const UserActions = () => {
                 backgroundColor: theme.palette.neutral.softHoverBg,
               },
             }}>
-            <Avatar size="md" src={profileImageURL}></Avatar>
+            <Avatar size="md" src={profile_image_url}></Avatar>
             <CardContent sx={{ maxWidth: "120px" }}>
               <Typography level="title-md" noWrap>
-                {firstName}
+                {first_name}
               </Typography>
             </CardContent>
             <Box sx={{ display: "inline-flex", alignItems: "center" }}>
