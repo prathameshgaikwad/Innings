@@ -31,11 +31,11 @@ const ChooseTeam = ({ id, name }) => {
 
   const selectedTeamId = id === 1 ? formik.values.team1 : formik.values.team2;
   const selectedTeam = selectedTeamId
-    ? rawTeamsData.find((team) => team._id === selectedTeamId)?.nameShort
+    ? rawTeamsData.find((team) => team._id === selectedTeamId)?.name_short
     : "";
 
   const teamColor = selectedTeamId
-    ? rawTeamsData.find((team) => team._id === selectedTeamId)?.color
+    ? rawTeamsData.find((team) => team._id === selectedTeamId)?.team_color
     : theme.palette.neutral;
 
   return (
