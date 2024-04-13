@@ -1,6 +1,7 @@
 import { Sheet, Table, useTheme } from "@mui/joy";
 
 import NoData from "../NoData";
+import TableHeader from "../TableHeaders";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
 
@@ -8,7 +9,7 @@ const FixturesList = () => {
   const theme = useTheme();
   const fixturesData = useSelector((state) => state.tournamentSetup.fixtures);
 
-  // console.log(fixturesData);
+  const tableHeaders = ["#", "Team 1", "Team 2", "Overs", "Date", "Time"];
 
   return (
     <Sheet sx={{ height: 200, width: "100%", overflow: "auto" }}>
@@ -26,16 +27,7 @@ const FixturesList = () => {
             "& thead th:nth-of-type(1)": { width: "10%" },
             "& thead th:nth-of-type(2)": {},
           }}>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Team 1</th>
-              <th>Team 2</th>
-              <th>Overs</th>
-              <th>Date</th>
-              <th>Time</th>
-            </tr>
-          </thead>
+          <TableHeader headers={tableHeaders} />
           <tbody>
             {fixturesData.map((row, i) => (
               <tr key={i}>
