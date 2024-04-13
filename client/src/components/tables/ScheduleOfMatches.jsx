@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Divider, Sheet, Table, Typography, useTheme } from "@mui/joy";
+import { Box, Sheet, Table, useTheme } from "@mui/joy";
 
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
+import SectionHeader from "../SectionHeader";
 import formatLongDate from "../../utilities/helpers/formatLongDate";
 import formatTime from "../../utilities/helpers/formatTime";
 import { useMediaQuery } from "@mui/material";
@@ -101,17 +102,7 @@ const ScheduleOfMatches = ({ isLoading }) => {
         alignItems: "center",
         width: "100%",
       }}>
-      <Box sx={{ width: "100%", mb: isMobile ? 3 : 6 }}>
-        <Divider>
-          <Typography
-            level={isMobile ? "h4" : "h3"}
-            sx={{ mx: 2 }}
-            color="warning"
-            startDecorator={<EventNoteIcon />}>
-            Schedule
-          </Typography>
-        </Divider>
-      </Box>
+      <SectionHeader title={"Schedule"} startDecorator={EventNoteIcon} />
       {isLoading ? (
         <RectangularSkeleton width="80%" height="200px" />
       ) : (

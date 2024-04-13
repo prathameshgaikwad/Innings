@@ -4,7 +4,7 @@ import "../../styles.css";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { Box, Divider, Typography, useTheme } from "@mui/joy";
+import { Box, useTheme } from "@mui/joy";
 import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { tournamentPageApi, tournamentSetupApi } from "../../services/api";
@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 
 import GroupsIcon from "@mui/icons-material/Groups";
 import NoData from "../NoData";
+import SectionHeader from "../SectionHeader";
 import SliderMask from "../SliderMask";
 import TeamCard from "../cards/TeamCard";
 import { useMediaQuery } from "@mui/material";
@@ -45,18 +46,8 @@ const TeamsList = ({ isSetupPage }) => {
   }, [dispatch, teams.length]);
 
   return (
-    <>
-      <Box sx={{ width: "100%", mb: isMobile ? 3 : 6, mt: 8 }}>
-        <Divider>
-          <Typography
-            level={isMobile ? "h4" : "h3"}
-            sx={{ mx: 2 }}
-            color="primary"
-            startDecorator={<GroupsIcon />}>
-            Teams
-          </Typography>
-        </Divider>
-      </Box>
+    <Box sx={{ width: "100%", mt: 8 }}>
+      <SectionHeader title={"Teams"} startDecorator={GroupsIcon} />
       <Box
         sx={{
           maxWidth: isMobile ? "85vw" : "70vw",
@@ -93,7 +84,7 @@ const TeamsList = ({ isSetupPage }) => {
           </Swiper>
         )}
       </Box>
-    </>
+    </Box>
   );
 };
 
