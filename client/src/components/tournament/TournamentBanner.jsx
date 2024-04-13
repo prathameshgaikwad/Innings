@@ -77,6 +77,7 @@ const TournamentBanner = ({
         />
       )}
       <Card
+        variant="plain"
         sx={{
           width: "100%",
           borderRadius: 0,
