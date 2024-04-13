@@ -8,8 +8,6 @@ const fetchRandomImage = require("../helpers/fetchRandomImage.js");
 const fetchGoogleUserData = require("../helpers/fetchGoogleUserData.js");
 const { generateCleanString } = require("../helpers/generateCleanString.js");
 
-const JWT_SECRET = process.env.JWT_SECRET;
-
 const register = async (req, res) => {
   try {
     let newUser;
@@ -100,7 +98,7 @@ const login = async (req, res) => {
           .json({ message: "Invalid credentails." });
     }
 
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "30d",
     });
     delete user.password;
