@@ -2,7 +2,7 @@
 
 import { Sheet, Table, useTheme } from "@mui/joy";
 
-import TableHeader from "../../TableHeaders";
+import TableHeader from "../../TableHeader";
 import TableRow from "../../TableRow";
 import { useMediaQuery } from "@mui/material";
 
