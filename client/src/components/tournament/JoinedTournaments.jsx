@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import JoinATournament from "../cards/JoinATournament";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SliderMask from "../SliderMask";
+import SwiperWrapper from "../SwiperWrapper";
 import TournamentCard from "../cards/TournamentCard";
 import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
@@ -45,16 +46,7 @@ const JoinedTournaments = ({ userId }) => {
           {isLoading ? (
             <RectangularSkeleton />
           ) : (
-            <Box
-              sx={{
-                maxWidth: isMobile ? "85vw" : "70vw",
-                display: "flex",
-                flexDirection: "column",
-                backgroundColor: "AppWorkspace",
-                borderTop: "1px solid",
-                borderBottom: "1px solid",
-                borderColor: theme.palette.divider,
-              }}>
+            <SwiperWrapper>
               <Swiper
                 slidesPerView={"auto"}
                 spaceBetween={80}
@@ -74,7 +66,7 @@ const JoinedTournaments = ({ userId }) => {
                   <SliderMask height={319} align={"right"} />
                 )}
               </Swiper>
-            </Box>
+            </SwiperWrapper>
           )}
         </>
       ) : (

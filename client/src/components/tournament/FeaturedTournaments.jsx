@@ -2,7 +2,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "../../styles.css";
 
-import { Box, Typography, useTheme } from "@mui/joy";
 import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,18 +10,17 @@ import { useEffect, useState } from "react";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SliderMask from "../SliderMask";
+import SwiperWrapper from "../SwiperWrapper";
 import TournamentCard from "../../components/cards/TournamentCard";
+import { Typography } from "@mui/joy";
 import { clearFeaturedTournaments } from "../../state/tournament/tournamentSlice";
 import { tournamentsApi } from "../../services/api";
-import { useMediaQuery } from "@mui/material";
 
 const FeaturedTournaments = () => {
-  const theme = useTheme();
   const dispatch = useDispatch();
   const featuredTournaments = useSelector(
     (state) => state.tournaments.featuredTournaments
   );
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -52,16 +50,7 @@ const FeaturedTournaments = () => {
           {featuredTournaments.length === 0 ? (
             <NoData />
           ) : (
-            <Box
-              sx={{
-                maxWidth: isMobile ? "85vw" : "70vw",
-                display: "flex",
-                flexDirection: "column",
-                backgroundColor: "AppWorkspace",
-                borderTop: "1px solid",
-                borderBottom: "1px solid",
-                borderColor: theme.palette.divider,
-              }}>
+            <SwiperWrapper>
               <Swiper
                 slidesPerView={"auto"}
                 spaceBetween={80}
@@ -81,7 +70,7 @@ const FeaturedTournaments = () => {
                   <SliderMask height={319} align={"right"} />
                 )}
               </Swiper>
-            </Box>
+            </SwiperWrapper>
           )}
         </>
       )}
