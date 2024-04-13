@@ -45,6 +45,7 @@ const playerSchema = new mongoose.Schema({
     total_dismissals: { type: Number, default: 0 },
     balls_faced: { type: Number, default: 0 },
     wickets_taken: { type: Number, default: 0 },
+    maidens: { type: Number, default: 0 },
     economy: { type: mongoose.Types.Decimal128, default: 0.0 },
   },
   match_performances: [matchPerformanceSchema],
