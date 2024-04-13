@@ -14,7 +14,11 @@ const SectionHeader = ({
 
   return (
     <Box sx={{ width: "100%", mb: isMobile ? 3 : 6 }}>
-      <Divider>
+      <Divider
+        sx={{
+          "--Divider-lineColor": theme.palette.primary[500],
+          "--Divider-thickness": "2px",
+        }}>
         <Typography
           level={isMobile ? "h4" : "h3"}
           sx={{ mx: 2 }}
