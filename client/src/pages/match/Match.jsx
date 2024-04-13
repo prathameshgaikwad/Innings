@@ -13,7 +13,7 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import TeamCard from "../../components/cards/TeamCard";
 import TossDetails from "../../components/match/TossDetails";
-import TossNotConducted from "../../components/match/TossNotConducted";
+import TossNotConducted from "../../components/fallbacks/TossNotConducted";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { matchApi } from "../../services/api";
 import { setToss } from "../../state/match/matchSlice";
