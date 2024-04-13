@@ -5,6 +5,7 @@ import { Stack, Tooltip } from "@mui/joy";
 import LogItem from "../LogItem";
 
 const TeamPerformance = ({ performance, size }) => {
+  // CHOOSE A MAXIMUM OF "SIZE" NUMBER OF ENTRIES
   if (size) {
     if (performance.length > size) {
       const len = performance.length;
