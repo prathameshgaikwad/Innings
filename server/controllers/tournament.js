@@ -4,6 +4,7 @@ const User = require("../models/user");
 const Team = require("../models/team");
 const Fixture = require("../models/fixture");
 const Match = require("../models/match");
+const Player = require("../models/player");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
 const {
   setBattingAndBowlingTeamData,
@@ -298,9 +299,24 @@ const getAllTeams = async (req, res) => {
       name: 1,
     });
 
+    const richTeamsData = [];
+
+    for (let team of teamsData) {
+      const { players } = team;
+      let captain_name = "";
+      for (let player of players) {
+        if (player.is_captain) {
+          const captain = await Player.findById(player._id);
+          captain_name = `${captain.first_name} ${captain.last_name}`;
+        }
+      }
+      const richIndividualTeamData = { ...team.toObject(), captain_name };
+      richTeamsData.push(richIndividualTeamData);
+    }
+
     res
       .status(StatusCodes.OK)
-      .json({ length: teamsData.length, teams: teamsData });
+      .json({ length: teamsData.length, teams: richTeamsData });
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

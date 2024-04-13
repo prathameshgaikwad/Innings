@@ -17,7 +17,7 @@ import { useParams } from "react-router-dom";
 
 const TeamCard = ({ team, isLoading }) => {
   const theme = useTheme();
-  const { color, logoURL, name, captainName, players, _id } = team;
+  const { team_color, logo_url, name, captain_name, players, _id } = team;
   const size = players.length;
   const { tournamentId } = useParams();
   const teamURL = `/tournaments/${tournamentId}/teams/${_id}`;
@@ -47,7 +47,7 @@ const TeamCard = ({ team, isLoading }) => {
             sx={{
               backgroundColor: isHovered
                 ? theme.palette.primary.softHoverBg
-                : color,
+                : team_color,
               transition: "all 0.3s ease-in-out",
             }}>
             <AspectRatio
@@ -57,14 +57,14 @@ const TeamCard = ({ team, isLoading }) => {
                 m: "auto",
                 transform: "translateY(50%)",
                 borderRadius: "50%",
-                backgroundColor: color,
+                backgroundColor: team_color,
                 width: "var(--icon-size)",
                 position: "relative",
               }}>
-              {!logoURL ? (
+              {!logo_url ? (
                 <TbSteam style={{ padding: 10, color: "#222" }} />
               ) : (
-                <img src={logoURL} style={{ backgroundSize: "cover" }} />
+                <img src={logo_url} style={{ backgroundSize: "cover" }} />
               )}
             </AspectRatio>
           </CardOverflow>
@@ -91,7 +91,7 @@ const TeamCard = ({ team, isLoading }) => {
               level="body-xs"
               mx={2}
               startDecorator={<TbHexagonLetterC size={16} />}>
-              {captainName}
+              {captain_name}
             </Typography>
             <Divider orientation="horizontal" />
             <Typography
