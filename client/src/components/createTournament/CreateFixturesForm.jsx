@@ -62,7 +62,7 @@ const CreateFixturesForm = () => {
         initialValues={initialValues}
         validationSchema={fixtureSchema(teams, existingMatchNumbers)}
         onSubmit={onSubmit}>
-        {({ isSubmitting }) => (
+        {({ isSubmitting, isValid }) => (
           <Form
             style={{
               display: "flex",
@@ -165,7 +165,7 @@ const CreateFixturesForm = () => {
                   size="lg"
                   color="success"
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !isValid}
                   fullWidth
                   startDecorator={<HiOutlineSaveAs fontSize={21} />}>
                   Save Fixture
