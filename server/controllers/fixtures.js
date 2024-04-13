@@ -1,14 +1,14 @@
 const { StatusCodes } = require("http-status-codes");
 const Tournament = require("../models/tournament");
 const Team = require("../models/team");
-const Fixture = require("../models/fixture");
 const Match = require("../models/match");
+const Fixture = require("../models/fixture");
 
 const createFixturesBatch = async (req, res) => {
   try {
-    const { fixtures: createdFixtures, tournamentId } = req.body;
+    const { fixtures, tournamentId } = req.body;
 
-    for (const fixture of createdFixtures) {
+    for (const fixture of fixtures) {
       const { team1_id, team2_id, match_no, date, time, overs } = fixture;
 
       const newFixture = new Fixture({
