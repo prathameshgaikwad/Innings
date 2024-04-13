@@ -28,7 +28,7 @@ const tournamentPageSlice = createSlice({
         admin_id,
         start_date,
         end_date,
-        overs,
+        total_overs,
         banner_urls,
         adminName,
       } = action.payload;
@@ -39,7 +39,7 @@ const tournamentPageSlice = createSlice({
         admin_id,
         start_date: formatDate(start_date),
         end_date: formatDate(end_date),
-        overs,
+        total_overs,
         banner_urls,
         adminName,
       };

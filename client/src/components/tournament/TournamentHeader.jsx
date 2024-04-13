@@ -29,7 +29,7 @@ const TournamentHeader = ({ id, isAdmin, isSetupComplete }) => {
   let venue = "";
   let startDate = "";
   let endDate = "";
-  let overs = "";
+  let total_overs = "";
   let bannerURL = "";
   let teamsLength = teams.length;
 
@@ -39,7 +39,7 @@ const TournamentHeader = ({ id, isAdmin, isSetupComplete }) => {
     venue = details.venue;
     startDate = details.start_date;
     endDate = details.end_date;
-    overs = details.overs;
+    total_overs = details.total_overs;
     if (details.banner_urls) bannerURL = details.banner_urls.large;
   }
 
@@ -72,7 +72,7 @@ const TournamentHeader = ({ id, isAdmin, isSetupComplete }) => {
         venue={venue}
         startDate={startDate}
         endDate={endDate}
-        overs={overs}
+        total_overs={total_overs}
         isLoading={isLoading}
       />
     </>

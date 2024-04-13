@@ -41,7 +41,7 @@ const TournamentInfo = ({
   venue,
   startDate,
   endDate,
-  overs,
+  total_overs,
   isLoading,
 }) => {
   const theme = useTheme();
@@ -110,7 +110,7 @@ const TournamentInfo = ({
                 </>
               }
               sx={{ ml: isMobile ? 0 : "auto" }}>
-              {overs} Overs
+              {total_overs} Overs
             </Typography>
           </Tooltip>
           <Divider orientation="vertical" />
