@@ -58,10 +58,11 @@ const getLatestTournamentDetails = async (req, res) => {
 
     const { joined_tournaments } = user;
 
-    if (!joined_tournaments || joined_tournaments.length === 0)
+    if (!joined_tournaments || joined_tournaments.length === 0) {
       return res
-        .status(StatusCodes.BAD_REQUEST)
+        .status(StatusCodes.OK)
         .json({ isEmpty: true, error: "No tournaments joined" });
+    }
 
     const ongoingTournaments = [];
 
@@ -79,7 +80,7 @@ const getLatestTournamentDetails = async (req, res) => {
     if (ongoingTournaments.length === 0)
       return res
         .status(StatusCodes.OK)
-        .json({ isEmpty: true, error: " No ongoing tournaments" });
+        .json({ isEmpty: true, message: " No ongoing tournaments" });
 
     ongoingTournaments.sort((a, b) => a.start_date - b.start_date);
 
