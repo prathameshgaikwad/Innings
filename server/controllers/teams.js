@@ -14,7 +14,39 @@ const getTeam = async (req, res) => {
     if (!team)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such team" });
 
-    res.status(StatusCodes.OK).json(team);
+    const { players } = team;
+
+    const richPlayersData = [];
+    let captain_name = "";
+
+    for (let player of players) {
+      const playerData = await Player.findById(player._id);
+      const player_name = `${playerData.first_name} ${playerData.last_name}`;
+      richPlayersData.push({
+        ...player.toObject(),
+        player_name,
+      });
+
+      if (player.is_captain) {
+        captain_name = player_name;
+      }
+    }
+
+    richPlayersData.sort((a, b) => {
+      const playerA = a.player_name.toLowerCase();
+      const playerB = b.player_name.toLowerCase();
+      if (playerA < playerB) return -1;
+      if (playerA > playerB) return 1;
+      return 0;
+    });
+
+    const richTeamsData = {
+      ...team.toObject(),
+      players: richPlayersData,
+      captain_name,
+    };
+
+    res.status(StatusCodes.OK).json(richTeamsData);
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
