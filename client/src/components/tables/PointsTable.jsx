@@ -6,6 +6,7 @@ import NoData from "../fallbacks/NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../SectionHeader";
 import SectionWrapper from "../SectionWrapper";
+import TableHeader from "../TableHeader";
 import { tournamentPageApi } from "../../services/api";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
@@ -57,6 +58,20 @@ export const PointsTableSheet = () => {
     )
   );
 
+  const regularTableHeaders = [
+    "POS",
+    "TEAM",
+    "MATCHES",
+    "WON",
+    "LOST",
+    "DRAW",
+    "POINTS",
+    "NRR",
+  ];
+  const mobileTableHeaders = ["P", "TEAM", "M", "W", "L", "D", "PTS", "NRR"];
+
+  const tableHeaders = isMobile ? mobileTableHeaders : regularTableHeaders;
+
   return (
     <>
       {isLoading ? (
@@ -85,18 +100,7 @@ export const PointsTableSheet = () => {
                 },
                 fontSize: isMobile ? "0.85rem" : "",
               }}>
-              <thead>
-                <tr>
-                  <th>{isMobile ? "P" : "POS"} </th>
-                  <th>TEAM </th>
-                  <th>{isMobile ? "M" : "MATCHES"}</th>
-                  <th>{isMobile ? "W" : "WON"}</th>
-                  <th>{isMobile ? "L" : "LOST"}</th>
-                  <th>{isMobile ? "D" : "DRAW"}</th>
-                  <th>{isMobile ? "PTS" : "POINTS"}</th>
-                  <th>NRR</th>
-                </tr>
-              </thead>
+              <TableHeader headers={tableHeaders} />
               <tbody>
                 {sheetData.map((row) => (
                   <tr key={row.pos}>
