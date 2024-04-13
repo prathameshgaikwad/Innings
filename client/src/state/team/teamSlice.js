@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   name: "",
-  color: "",
+  team_color: "",
   players: [],
-  captain: "",
-  logoURL: "",
+  captain_name: "",
+  logo_url: "",
   performance: null,
 };
 
@@ -14,13 +14,13 @@ const teamSlice = createSlice({
   initialState,
   reducers: {
     setTeam: (state, action) => {
-      const { name, color, players, logoURL, captainName, performance } =
+      const { name, team_color, players, logo_url, captain_name, performance } =
         action.payload;
       state.name = name;
-      state.color = color;
+      state.team_color = team_color;
       state.players = players;
-      state.captain = captainName;
-      state.logoURL = logoURL;
+      state.captain_name = captain_name;
+      state.logo_url = logo_url;
       state.performance = performance;
     },
     clearTeamData: () => initialState,

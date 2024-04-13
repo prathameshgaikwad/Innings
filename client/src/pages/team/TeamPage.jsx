@@ -41,14 +41,8 @@ const TeamPage = () => {
     dispatch(teamApi.getTeamInfo({ teamId, token, setIsLoading }));
   }, [dispatch, teamId, token]);
 
-  const { name, color, players, captain, logoURL, performance } = useSelector(
-    (state) => state.team
-  );
-
-  const rawPlayersData = players.map((player) => player.playerName);
-  const sortedPlayersData = rawPlayersData
-    .slice()
-    .sort((a, b) => a.localeCompare(b));
+  const { name, team_color, players, captain_name, logo_url, performance } =
+    useSelector((state) => state.team);
 
   const handleGoBackRequest = () => {
     dispatch(clearTeamData());
@@ -86,14 +80,14 @@ const TeamPage = () => {
             {isLoading ? (
               <Skeleton animation="wave" variant="circular" />
             ) : (
-              <img src={logoURL}></img>
+              <img src={logo_url}></img>
             )}
           </AspectRatio>
           <Divider
             sx={{
               "--Divider-lineColor": isLoading
                 ? theme.palette.neutral[500]
-                : color,
+                : team_color,
               "--Divider-thickness": "5px",
             }}>
             {isLoading ? (
@@ -128,7 +122,7 @@ const TeamPage = () => {
               my={2}
               justifyContent={"center"}
               startDecorator={<TbHexagonLetterC />}>
-              {captain}
+              {captain_name}
             </Typography>
           )}
         </Box>
@@ -169,10 +163,10 @@ const TeamPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedPlayersData.map((name, i) => (
-                    <tr key={i}>
+                  {players.map((player, i) => (
+                    <tr key={player._id}>
                       {<td>{i + 1}</td>}
-                      {<td>{name}</td>}
+                      {<td>{player.player_name}</td>}
                     </tr>
                   ))}
                 </tbody>
