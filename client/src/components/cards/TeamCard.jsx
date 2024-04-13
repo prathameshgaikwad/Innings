@@ -37,11 +37,8 @@ const TeamCard = ({ team, isLoading }) => {
             alignItems: "center",
             "--icon-size": "90px",
             width: 250,
-            outline: `2px solid `,
             transition: "all 0.3s ease-in-out",
-            outlineColor: "transparent",
             "&:hover": {
-              outlineColor: ` ${theme.palette.primary.softHoverBg}`,
               boxShadow: CARD_BOX_SHADOW_GLOW_EFFECT,
             },
           }}>
