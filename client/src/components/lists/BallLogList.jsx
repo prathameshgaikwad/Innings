@@ -7,12 +7,12 @@ import "../../styles.css";
 import { Box, Card, Divider, Typography } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import BallLogListFallback from "../fallbacks/BallLogListFallback";
 import BallLogListSkeleton from "../skeletons/BallLogListSkeleton";
 import BallLogSeparator from "../BallLogSeparator";
 import { BiSolidCricketBall } from "react-icons/bi";
 import LogItem from "../LogItem";
 import { Mousewheel } from "swiper/modules";
+import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 import SliderMask from "../SliderMask";
 
 const BallLogList = ({ data, isLoading }) => {
@@ -34,7 +34,11 @@ const BallLogList = ({ data, isLoading }) => {
       ) : (
         <>
           {!data || (data && data.length === 0) ? (
-            <BallLogListFallback />
+            <SimpleTextFallback
+              content={
+                "Bowling data will appear here once the game has been played."
+              }
+            />
           ) : (
             data && (
               <>

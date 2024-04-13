@@ -3,6 +3,7 @@
 import { Card, Divider, Grid, Typography, useTheme } from "@mui/joy";
 
 import BatsmenStatsSkeleton from "../skeletons/BatsmenStatsSkeleton";
+import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 
 const BatsmenStats = ({ isSmall, data, isLoading }) => {
   const { onStrikeBatsman, offStrikeBatsman } = data;
@@ -31,16 +32,13 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
       ) : (
         <>
           {isEmpty ? (
-            <Typography
+            <SimpleTextFallback
               height={isSmall ? 61.2 : 114.2}
               level={isSmall ? "body-xs" : "body-sm"}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                whiteSpace: "nowrap",
-              }}>
-              Batsmen data will appear here once the game has been played.
-            </Typography>
+              content={
+                "Batsmen data will appear here once the game has been played."
+              }
+            />
           ) : (
             data && (
               <Grid
