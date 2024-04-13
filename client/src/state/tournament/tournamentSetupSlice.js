@@ -49,8 +49,8 @@ const tournamentSetupSlice = createSlice({
       const team2Details = state.teams.find((team) => team._id === team2);
       const newFixture = {
         match_no: matchNumber,
-        team1Short: team1Details.nameShort,
-        team2Short: team2Details.nameShort,
+        team1Short: team1Details.name_short,
+        team2Short: team2Details.name_short,
         team1_id: team1,
         team2_id: team2,
         overs,

@@ -7,11 +7,11 @@ import TeamBadge from "./TeamBadge";
 import { useFormikContext } from "formik";
 import { useSelector } from "react-redux";
 
-function createOption(name, _id, color) {
+function createOption(name, _id, team_color) {
   return {
     label: name,
     value: _id,
-    color: color,
+    color: team_color,
   };
 }
 
@@ -22,7 +22,7 @@ const ChooseTeam = ({ id, name }) => {
     useSelector((state) => state.tournamentSetup.teams) || [];
 
   let allTeamsList = rawTeamsData.map((team) =>
-    createOption(team.name, team._id, team.color)
+    createOption(team.name, team._id, team.team_color)
   );
 
   const defaultOption = createOption("Select one", "default", "#90a4ae");

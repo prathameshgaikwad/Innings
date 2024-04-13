@@ -8,6 +8,8 @@ const FixturesList = () => {
   const theme = useTheme();
   const fixturesData = useSelector((state) => state.tournamentSetup.fixtures);
 
+  // console.log(fixturesData);
+
   return (
     <Sheet sx={{ height: 200, width: "100%", overflow: "auto" }}>
       {fixturesData.length === 0 ? (
