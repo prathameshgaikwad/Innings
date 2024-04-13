@@ -7,6 +7,7 @@ import "../../styles.css";
 import { Box, Card, Divider, Typography } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import BallLogListFallback from "../fallbacks/BallLogListFallback";
 import BallLogListSkeleton from "../skeletons/BallLogListSkeleton";
 import BallLogSeparator from "../BallLogSeparator";
 import { BiSolidCricketBall } from "react-icons/bi";
@@ -33,12 +34,7 @@ const BallLogList = ({ data, isLoading }) => {
       ) : (
         <>
           {!data || (data && data.length === 0) ? (
-            <Typography
-              height={61.2}
-              level={"body-xs"}
-              sx={{ display: "flex", alignItems: "center" }}>
-              Bowling data will appear here once the game has been played.
-            </Typography>
+            <BallLogListFallback />
           ) : (
             data && (
               <>
