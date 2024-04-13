@@ -16,7 +16,7 @@ const SignInForm = () => {
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    dispatch(userApi.signInUser(values, resetForm, navigate));
+    dispatch(userApi.signInUser({ values, resetForm, navigate }));
   };
 
   return (
