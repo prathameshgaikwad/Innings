@@ -17,13 +17,11 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const token = useSelector((state) => state.user.token);
-  const user = useSelector((state) => state.user.user);
+  const { user, token } = useSelector((state) => state.user);
+  const username = user && user.first_name;
+  const userId = user && user._id;
 
   const [isLoading, setIsLoading] = useState(true);
-
-  const username = user && user.firstName;
-  const userId = user && user._id;
 
   useEffect(() => {
     dispatch(
@@ -34,12 +32,8 @@ const HomePage = () => {
     );
   }, [dispatch, userId, token]);
 
-  const latestTournament = useSelector(
-    (state) => state.tournaments.latestTournament
-  );
-
-  const joinedTournaments = useSelector(
-    (state) => state.tournaments.joinedTournaments
+  const { latestTournament, joinedTournaments } = useSelector(
+    (state) => state.tournaments
   );
 
   let tournamentId = "";
