@@ -7,12 +7,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
+import SectionHeader from "../SectionHeader";
+import SectionWrapper from "../SectionWrapper";
 import SliderMask from "../SliderMask";
 import SwiperWrapper from "../SwiperWrapper";
 import TournamentCard from "../../components/cards/TournamentCard";
-import { Typography } from "@mui/joy";
 import { clearFeaturedTournaments } from "../../state/tournament/tournamentSlice";
 import { tournamentsApi } from "../../services/api";
 
@@ -39,10 +41,11 @@ const FeaturedTournaments = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Typography level="h2" sx={{ mt: 4, mr: "auto" }}>
-        Featured Tournaments
-      </Typography>
+    <SectionWrapper>
+      <SectionHeader
+        title={"Featured Tournaments"}
+        startDecorator={AutoAwesomeIcon}
+      />
       {isLoading ? (
         <RectangularSkeleton />
       ) : (
@@ -74,7 +77,7 @@ const FeaturedTournaments = () => {
           )}
         </>
       )}
-    </>
+    </SectionWrapper>
   );
 };
 

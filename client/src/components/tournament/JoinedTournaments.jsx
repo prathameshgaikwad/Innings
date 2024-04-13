@@ -12,8 +12,11 @@ import { useEffect, useState } from "react";
 
 import JoinATournament from "../cards/JoinATournament";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
+import SectionHeader from "../SectionHeader";
+import SectionWrapper from "../SectionWrapper";
 import SliderMask from "../SliderMask";
 import SwiperWrapper from "../SwiperWrapper";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import TournamentCard from "../cards/TournamentCard";
 import { tournamentsApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
@@ -37,10 +40,11 @@ const JoinedTournaments = ({ userId }) => {
   }, [dispatch, userId, token]);
 
   return (
-    <>
-      <Typography level="h2" sx={{ mt: 4, mr: "auto" }}>
-        Joined Tournaments
-      </Typography>
+    <SectionWrapper>
+      <SectionHeader
+        title={"Joined Tournaments"}
+        startDecorator={TaskAltIcon}
+      />
       {joinedTournaments.length !== 0 ? (
         <>
           {isLoading ? (
@@ -89,7 +93,7 @@ const JoinedTournaments = ({ userId }) => {
           <JoinATournament />
         </Box>
       )}
-    </>
+    </SectionWrapper>
   );
 };
 

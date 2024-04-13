@@ -11,7 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import CreateTournamentCard from "../cards/CreateTournamentCard";
+import DrawIcon from "@mui/icons-material/Draw";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
+import SectionHeader from "../SectionHeader";
+import SectionWrapper from "../SectionWrapper";
 import SliderMask from "../SliderMask";
 import SwiperWrapper from "../SwiperWrapper";
 import TournamentCard from "../cards/TournamentCard";
@@ -36,10 +39,8 @@ const CreatedTournaments = ({ userId }) => {
   }, [dispatch, userId, token]);
 
   return (
-    <>
-      <Typography level="h2" sx={{ mt: 4, mr: "auto" }}>
-        My Tournaments
-      </Typography>
+    <SectionWrapper>
+      <SectionHeader title={"Created Tournaments"} startDecorator={DrawIcon} />
       {createdTournaments.length !== 0 ? (
         <>
           {isLoading ? (
@@ -88,7 +89,7 @@ const CreatedTournaments = ({ userId }) => {
           <CreateTournamentCard />
         </Box>
       )}
-    </>
+    </SectionWrapper>
   );
 };
 
