@@ -1,10 +1,11 @@
-import { Box, Sheet, Table, useTheme } from "@mui/joy";
+import { Sheet, Table, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../SectionHeader";
+import SectionWrapper from "../SectionWrapper";
 import { tournamentPageApi } from "../../services/api";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
@@ -122,17 +123,10 @@ export const PointsTableSheet = () => {
 
 const PointsTable = () => {
   return (
-    <Box
-      sx={{
-        mt: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}>
+    <SectionWrapper>
       <SectionHeader title={"Points Table"} startDecorator={LeaderboardIcon} />
       <PointsTableSheet />
-    </Box>
+    </SectionWrapper>
   );
 };
 

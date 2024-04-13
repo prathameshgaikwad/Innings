@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Sheet, Table, useTheme } from "@mui/joy";
+import { Sheet, Table, useTheme } from "@mui/joy";
 
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../SectionHeader";
+import SectionWrapper from "../SectionWrapper";
 import formatLongDate from "../../utilities/helpers/formatLongDate";
 import formatTime from "../../utilities/helpers/formatTime";
 import { useMediaQuery } from "@mui/material";
@@ -94,14 +95,7 @@ const ScheduleOfMatches = ({ isLoading }) => {
   const scheduleRows = fixtures.map((fixture) => createData(fixture));
 
   return (
-    <Box
-      sx={{
-        mt: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}>
+    <SectionWrapper>
       <SectionHeader title={"Schedule"} startDecorator={EventNoteIcon} />
       {isLoading ? (
         <RectangularSkeleton width="80%" height="200px" />
@@ -120,7 +114,7 @@ const ScheduleOfMatches = ({ isLoading }) => {
           )}
         </Sheet>
       )}
-    </Box>
+    </SectionWrapper>
   );
 };
 

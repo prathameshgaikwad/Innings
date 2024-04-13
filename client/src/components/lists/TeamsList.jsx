@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import GroupsIcon from "@mui/icons-material/Groups";
 import NoData from "../NoData";
 import SectionHeader from "../SectionHeader";
+import SectionWrapper from "../SectionWrapper";
 import SliderMask from "../SliderMask";
 import TeamCard from "../cards/TeamCard";
 import { useMediaQuery } from "@mui/material";
@@ -46,7 +47,7 @@ const TeamsList = ({ isSetupPage }) => {
   }, [dispatch, teams.length]);
 
   return (
-    <Box sx={{ width: "100%", mt: 8 }}>
+    <SectionWrapper>
       <SectionHeader title={"Teams"} startDecorator={GroupsIcon} />
       <Box
         sx={{
@@ -84,7 +85,7 @@ const TeamsList = ({ isSetupPage }) => {
           </Swiper>
         )}
       </Box>
-    </Box>
+    </SectionWrapper>
   );
 };
 
