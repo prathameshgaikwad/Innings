@@ -61,7 +61,7 @@ const getLatestTournamentDetails = async (req, res) => {
     if (!joined_tournaments || joined_tournaments.length === 0) {
       return res
         .status(StatusCodes.OK)
-        .json({ isEmpty: true, error: "No tournaments joined" });
+        .json({ isEmpty: true, message: "No tournaments joined" });
     }
 
     const ongoingTournaments = [];
