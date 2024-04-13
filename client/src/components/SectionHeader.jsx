@@ -4,7 +4,11 @@ import { Box, Divider, Typography, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const SectionHeader = ({ title, color, startDecorator: StartDecorator }) => {
+const SectionHeader = ({
+  title,
+  color = "primary",
+  startDecorator: StartDecorator,
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
