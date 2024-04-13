@@ -3,7 +3,7 @@
 import { Stack, useTheme } from "@mui/joy";
 
 import CustomSelect from "../formComponents/CustomSelect";
-import TeamBadge from "./TeamBadge";
+import TeamBadgeCircular from "./TeamBadgeCircular";
 import { useFormikContext } from "formik";
 import { useSelector } from "react-redux";
 
@@ -40,7 +40,7 @@ const ChooseTeam = ({ id, name }) => {
 
   return (
     <Stack direction="column" spacing={2} alignItems="center">
-      <TeamBadge teamName={selectedTeam} teamColor={teamColor} />
+      <TeamBadgeCircular teamName={selectedTeam} teamColor={teamColor} />
       <CustomSelect name={name} options={allTeamsList} />
     </Stack>
   );

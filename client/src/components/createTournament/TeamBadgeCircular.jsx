@@ -2,7 +2,7 @@
 
 import { Card, Typography } from "@mui/joy";
 
-const TeamBadge = ({ teamName, teamColor }) => {
+const TeamBadgeCircular = ({ teamName, teamColor }) => {
   return (
     <Card
       variant="solid"
@@ -24,4 +24,4 @@ const TeamBadge = ({ teamName, teamColor }) => {
     </Card>
   );
 };
-export default TeamBadge;
+export default TeamBadgeCircular;
