@@ -11,7 +11,7 @@ const { generateCleanString } = require("../helpers/generateCleanString.js");
 const register = async (req, res) => {
   try {
     let newUser;
-    let { access_token, firstName, lastName, email, password } = req.body;
+    let { access_token, first_name, last_name, email, password } = req.body;
     // USE GOOGLE OAUTH IF PROVIDED ACCESS TOKEN
     if (access_token) {
       const googleUserData = await fetchGoogleUserData(access_token);
@@ -36,8 +36,8 @@ const register = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, salt);
       password = hashedPassword;
       newUser = new User({
-        first_name: firstName,
-        last_name: lastName,
+        first_name,
+        last_name,
         email,
         password: hashedPassword,
         profile_image_url: await fetchRandomImage("person", false),
@@ -50,8 +50,8 @@ const register = async (req, res) => {
       debut: new Date(),
     });
 
-    await newPlayer.save();
-    newUser.player_id = newPlayer._id;
+    const savedPlayer = await newPlayer.save();
+    newUser.player_id = savedPlayer._id;
 
     const savedUser = await newUser.save();
     res.status(StatusCodes.CREATED).json(savedUser);
