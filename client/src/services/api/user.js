@@ -167,7 +167,6 @@ export const signInUser =
         resetForm();
 
         if (responseData) {
-          console.log(response);
           dispatch(
             setLogin({
               user: responseData.user,
