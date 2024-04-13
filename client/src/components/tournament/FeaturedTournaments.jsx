@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import NoData from "../NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SliderMask from "../SliderMask";
 import TournamentCard from "../../components/cards/TournamentCard";
@@ -47,36 +48,42 @@ const FeaturedTournaments = () => {
       {isLoading ? (
         <RectangularSkeleton />
       ) : (
-        <Box
-          sx={{
-            maxWidth: isMobile ? "85vw" : "70vw",
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: "AppWorkspace",
-            borderTop: "1px solid",
-            borderBottom: "1px solid",
-            borderColor: theme.palette.divider,
-          }}>
-          <Swiper
-            slidesPerView={"auto"}
-            spaceBetween={80}
-            direction={"horizontal"}
-            mousewheel={true}
-            pagination={{
-              dynamicBullets: true,
-            }}
-            modules={[Pagination, Mousewheel]}
-            className="mySwiper">
-            {featuredTournaments.map((tournamentId) => (
-              <SwiperSlide key={tournamentId}>
-                <TournamentCard id={tournamentId} />
-              </SwiperSlide>
-            ))}
-            {featuredTournaments.length >= 3 && (
-              <SliderMask height={319} align={"right"} />
-            )}
-          </Swiper>
-        </Box>
+        <>
+          {featuredTournaments.length === 0 ? (
+            <NoData />
+          ) : (
+            <Box
+              sx={{
+                maxWidth: isMobile ? "85vw" : "70vw",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: "AppWorkspace",
+                borderTop: "1px solid",
+                borderBottom: "1px solid",
+                borderColor: theme.palette.divider,
+              }}>
+              <Swiper
+                slidesPerView={"auto"}
+                spaceBetween={80}
+                direction={"horizontal"}
+                mousewheel={true}
+                pagination={{
+                  dynamicBullets: true,
+                }}
+                modules={[Pagination, Mousewheel]}
+                className="mySwiper">
+                {featuredTournaments.map((tournamentId) => (
+                  <SwiperSlide key={tournamentId}>
+                    <TournamentCard id={tournamentId} />
+                  </SwiperSlide>
+                ))}
+                {featuredTournaments.length >= 3 && (
+                  <SliderMask height={319} align={"right"} />
+                )}
+              </Swiper>
+            </Box>
+          )}
+        </>
       )}
     </>
   );
