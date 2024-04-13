@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
     _id: { type: mongoose.Types.ObjectId, auto: true },
-    player_id: { type: mongoose.ObjectId, ref: "Player", auto: true },
+    player_id: { type: mongoose.ObjectId, ref: "Player" },
     first_name: {
       type: String,
       required: [true, "First name is required"],
