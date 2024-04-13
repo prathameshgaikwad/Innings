@@ -8,11 +8,11 @@ const UserStatistics = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { firstName, lastName, profileImageURL } = useSelector(
+  const { first_name, last_name, profile_image_url } = useSelector(
     (state) => state.user.user
   );
 
-  const userName = `${firstName} ${lastName}`;
+  const userName = `${first_name} ${last_name}`;
 
   //pName, teamName,  runs, avg, sr, high,  w, econ, imgURL, teamColor, [matches, debut, 50s, 100s, 4s, 6s,]
   const userData = [
@@ -24,7 +24,7 @@ const UserStatistics = () => {
     "43*",
     "12",
     "9.56",
-    profileImageURL,
+    profile_image_url,
     "#77C7F2",
     ["16", "2023", "2", "0", "12", "3"],
   ];
@@ -41,12 +41,10 @@ const UserStatistics = () => {
           justifyContent: "space-between",
           mb: 4,
         }}>
-        <Typography level={isMobile ? "h3" : "h2"} sx={{}}>
-          My Statistics
-        </Typography>
+        <Typography level={isMobile ? "h3" : "h2"}>My Statistics</Typography>
         <Typography
           level={isMobile ? "h3" : "h2"}
-          color="neutral"
+          color="primary"
           sx={{ opacity: 0.5 }}>
           {userName}
         </Typography>
