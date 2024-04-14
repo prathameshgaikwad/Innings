@@ -71,7 +71,7 @@ const HomePage = () => {
                   <CustomToast
                     color={"warning"}
                     content={"Please join a tournament to see the matches!"}
-                    duration={5000000}
+                    duration={5000}
                   />
                 ) : (
                   <CustomToast
