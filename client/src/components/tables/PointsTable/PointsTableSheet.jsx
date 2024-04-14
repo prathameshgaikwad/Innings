@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NoData from "../../fallbacks/NoData";
 import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
 import TableHeader from "../../tableComponents/TableHeader";
-import { tournamentPageApi } from "../../../services/api/tournamentPage";
+import { tournamentPageApi } from "../../../services/api";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
