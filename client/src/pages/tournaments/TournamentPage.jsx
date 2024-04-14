@@ -8,7 +8,7 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NextMatchSkeleton from "../../components/skeletons/NextMatchSkeleton";
 import PointsTable from "../../components/tables/PointsTable/PointsTable";
-import ScheduleOfMatches from "../../components/tables/ScheduleOfMatches";
+import ScheduleOfMatches from "../../components/tables/ScheduleOfMatches/ScheduleOfMatches";
 import SimpleMatchCard from "../../components/cards/SimpleMatchCard/SimpleMatchCard";
 import TeamsList from "../../components/lists/TeamsList";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
