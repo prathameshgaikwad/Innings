@@ -9,6 +9,7 @@ import {
   useTheme,
 } from "@mui/joy";
 
+import { CARD_BOX_SHADOW_GLOW_EFFECT } from "../../../utilities/constants";
 import CallToActionButton from "./CallToActionButton";
 import CustomModal from "../../modals/CustomModal";
 import { MdAccessTime } from "react-icons/md";
@@ -65,6 +66,13 @@ const SimpleMatchCard = ({
           sx={{
             width: "100%",
             maxWidth: 700,
+            outline: `1px solid `,
+            transition: "all 0.3s ease-in-out",
+            outlineColor: "transparent",
+            "&:hover": {
+              outlineColor: ` ${theme.palette.primary.softHoverBg}`,
+              boxShadow: CARD_BOX_SHADOW_GLOW_EFFECT,
+            },
           }}>
           <CardOverflow
             variant="soft"
