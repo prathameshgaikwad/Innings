@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import NoData from "../../fallbacks/NoData";
 import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
-import TableHeader from "../../TableHeader";
-import {tournamentPageApi} from "../../../services/api/tournamentPage"
+import TableHeader from "../tableComponents/TableHeader";
+import { tournamentPageApi } from "../../../services/api/tournamentPage";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -122,4 +122,4 @@ const PointsTableSheet = () => {
   );
 };
 
-export default PointsTableSheet
+export default PointsTableSheet;

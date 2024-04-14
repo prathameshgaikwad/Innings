@@ -2,8 +2,8 @@
 
 import { Sheet, Table, useTheme } from "@mui/joy";
 
-import TableHeader from "../../TableHeader";
-import TableRow from "../../TableRow";
+import TableHeader from "../../tables/tableComponents/TableHeader";
+import TableRow from "../../tables/tableComponents/TableRow";
 import { useMediaQuery } from "@mui/material";
 
 const BowlingStatsTable = ({ bowlingData }) => {
