@@ -5,6 +5,7 @@ import { Alert, Box, LinearProgress, Typography, useTheme } from "@mui/joy";
 import { IoIosWarning } from "react-icons/io";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoMdInformationCircle } from "react-icons/io";
+import { TOAST_BOX_SHADOW } from "../../utilities/constants";
 import { useMediaQuery } from "@mui/material";
 import useToastAnimation from "../../hooks/useToastAnimation";
 
@@ -25,8 +26,8 @@ const CustomToast = ({ content, color, duration }) => {
           style={{
             position: "fixed",
             zIndex: 1000,
-            bottom: isMobile ? 15 : 30,
-            right: isMobile ? 15 : 30,
+            bottom: isMobile ? 15 : 20,
+            right: isMobile ? 15 : 20,
           }}>
           <Alert
             variant="soft"
@@ -38,6 +39,7 @@ const CustomToast = ({ content, color, duration }) => {
               alignItems: "center",
               zIndex: 101,
               p: 2,
+              boxShadow: TOAST_BOX_SHADOW,
             }}>
             <Typography
               level={"body-sm"}
