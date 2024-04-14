@@ -6,9 +6,7 @@ const Tournament = require("../models/tournament");
 const {
   setBattingAndBowlingTeamData,
 } = require("../helpers/setBattingAndBowlingTeamData");
-const {
-  default: generateRichTossData,
-} = require("../helpers/generateRichTossData");
+const { generateRichTossData } = require("../helpers/generateRichTossData");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -44,7 +42,11 @@ const getMatchDetails = async (req, res) => {
       toss,
     });
 
-    const richTossData = generateRichTossData(toss);
+    const richTossData = await generateRichTossData({
+      toss,
+      team1_id,
+      team2_id,
+    });
 
     const matchData = {
       _id,
@@ -72,7 +74,8 @@ const getMatchDetails = async (req, res) => {
 const setTossResult = async (req, res) => {
   try {
     const { matchId, toss } = req.body;
-    const match = await Match.findById({ _id: matchId });
+    const match = await Match.findById(matchId);
+    const { team1_id, team2_id } = match;
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
@@ -86,7 +89,11 @@ const setTossResult = async (req, res) => {
     match.status = "ongoing";
     await match.save();
 
-    const richTossData = generateRichTossData(tossFromDb);
+    const richTossData = generateRichTossData({
+      toss: tossFromDb,
+      team1_id,
+      team2_id,
+    });
 
     res.status(StatusCodes.OK).json({ toss: richTossData });
   } catch (error) {
@@ -99,14 +106,15 @@ const setTossResult = async (req, res) => {
 const getTossResult = async (req, res) => {
   try {
     const { matchId } = req.params;
-    const match = await Match.findById({ _id: matchId });
+    const match = await Match.findById(matchId);
+    const { team1_id, team2_id } = match;
 
     if (!match)
       return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
 
     const { toss, status } = match;
 
-    const richTossData = generateRichTossData(toss);
+    const richTossData = generateRichTossData({ toss, team1_id, team2_id });
 
     res.status(StatusCodes.OK).json({ toss: richTossData, status });
   } catch (error) {
