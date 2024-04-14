@@ -6,7 +6,7 @@ import {
   setBowler,
   setOffStrikeBatsman,
   setOnStrikeBatsman,
-} from "../../state/match/matchManagement";
+} from "../../state/match/matchManagementSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import CustomSelect from "../formComponents/CustomSelect";

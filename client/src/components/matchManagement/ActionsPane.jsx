@@ -7,7 +7,7 @@ import CustomModal from "../modals/CustomModal";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { TbArrowsExchange } from "react-icons/tb";
 import { TbSwitch3 } from "react-icons/tb";
-import { setStrikeChange } from "../../state/match/matchManagement";
+import { setStrikeChange } from "../../state/match/matchManagementSlice";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 

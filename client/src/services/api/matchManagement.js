@@ -3,7 +3,7 @@ import {
   setMatchOngoing,
   setStatus,
   setTossResult,
-} from "../../state/match/matchManagement";
+} from "../../state/match/matchManagementSlice";
 
 const MATCHES_API = import.meta.env.VITE_SERVER_MATCHES_API;
 

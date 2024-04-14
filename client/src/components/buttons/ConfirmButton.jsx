@@ -3,7 +3,7 @@
 import {
   completeFirstInnings,
   setBattingTeam,
-} from "../../state/match/matchManagement";
+} from "../../state/match/matchManagementSlice";
 
 import { Button } from "@mui/joy";
 import { useDispatch } from "react-redux";

@@ -3,7 +3,7 @@ import {
   addRuns,
   setBallLog,
   setRuns,
-} from "../../state/match/matchManagement";
+} from "../../state/match/matchManagementSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 

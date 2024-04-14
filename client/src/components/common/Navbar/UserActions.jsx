@@ -16,7 +16,7 @@ import MenuItem from "@mui/joy/MenuItem";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import Typography from "@mui/joy/Typography";
 import { clearMatchData } from "../../../state/match/matchSlice";
-import { clearMatchManagementData } from "../../../state/match/matchManagement";
+import { clearMatchManagementData } from "../../../state/match/matchManagementSlice";
 import { clearTeamData } from "../../../state/team/teamSlice";
 import { clearTournamentPage } from "../../../state/tournament/tournamentPageSlice";
 import { clearTournamentSetup } from "../../../state/tournament/tournamentSetupSlice";

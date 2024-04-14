@@ -10,7 +10,7 @@ import {
 } from "redux-persist";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import { matchManagementReducer } from "./state/match/matchManagement";
+import { matchManagementReducer } from "./state/match/matchManagementSlice";
 import { matchReducer } from "./state/match/matchSlice";
 import storage from "redux-persist/lib/storage";
 import { teamReducer } from "./state/team/teamSlice";
