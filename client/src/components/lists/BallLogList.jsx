@@ -13,7 +13,7 @@ import { BiSolidCricketBall } from "react-icons/bi";
 import LogItem from "../LogItem";
 import { Mousewheel } from "swiper/modules";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
-import SliderMask from "../SliderMask";
+import SliderMask from "../swiperComponents/SliderMask";
 
 const BallLogList = ({ data, isLoading }) => {
   return (

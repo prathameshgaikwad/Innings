@@ -15,7 +15,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import NoData from "../fallbacks/NoData";
 import SectionHeader from "../sectionComponents/SectionHeader";
 import SectionWrapper from "../sectionComponents/SectionWrapper";
-import SliderMask from "../SliderMask";
+import SliderMask from "../swiperComponents/SliderMask";
 import TeamCard from "../cards/TeamCard";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
