@@ -31,7 +31,7 @@ const CustomToast = ({ content, color, duration }) => {
           }}>
           <Alert
             variant="soft"
-            color={"warning"}
+            color={color}
             size={isMobile ? "sm" : "md"}
             sx={{
               display: "flex",
