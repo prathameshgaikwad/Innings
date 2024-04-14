@@ -6,7 +6,7 @@ const generateRichTossData = async ({ toss }) => {
   const { name_short: loser_name } = await Team.findById(losingTeamId);
 
   const richTossData = {
-    decision,
+    decision: toss.decision,
     winner_id: toss.winner_id,
     winner_name,
     loser_name,
