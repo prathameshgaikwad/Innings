@@ -5,9 +5,8 @@ const initialState = {
   match_no: null,
   battingTeam: {},
   bowlingTeam: {},
-  team1: null,
-  team2: null,
-  inningsData: {},
+  team1_id: null,
+  team2_id: null,
   batsmen: {
     onStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
     offStrikeBatsman: { _id: null, name: null, runs: null, ballsPlayed: null },
@@ -16,8 +15,7 @@ const initialState = {
     _id: null,
     name: null,
   },
-  overs: null,
-  innings: null,
+  total_overs: null,
   venue: null,
   status: null,
   toss: {
@@ -28,7 +26,13 @@ const initialState = {
   },
   result: {
     winnerId: null,
+    comment: null,
+    player_of_the_match: {
+      id: null,
+      name: null,
+    },
   },
+  innings: [],
 };
 
 const matchManagementSlice = createSlice({
@@ -40,13 +44,12 @@ const matchManagementSlice = createSlice({
         _id,
         toss,
         innings,
-        overs,
+        total_overs,
         venue,
-        team1,
-        team2,
+        team1_id,
+        team2_id,
         match_no,
         status,
-        inningsData,
         result,
         battingTeam,
         bowlingTeam,
@@ -54,18 +57,30 @@ const matchManagementSlice = createSlice({
 
       state._id = _id;
       state.match_no = match_no;
-      state.toss = toss;
-      state.innings = innings;
-      state.overs = overs;
+      state.total_overs = total_overs;
       state.venue = venue;
-      state.team1 = team1;
-      state.team2 = team2;
+      state.team1_id = team1_id;
+      state.team2_id = team2_id;
       state.status = status;
       state.battingTeam = battingTeam;
       state.bowlingTeam = bowlingTeam;
-      state.inningsData = inningsData;
 
-      if (result.winnerId) state.result.winnerId = result.winnerId;
+      if (toss.winner_id) {
+        state.toss.winnerId = toss.winner_id;
+        state.toss.decision = toss.decision;
+        state.toss.winner = toss.winner;
+        state.toss.loser = toss.loser;
+      }
+
+      if (result.winnerId) {
+        state.result.winnerId = result.winner_id;
+        state.result.comment = result.comment;
+        state.result.player_of_the_match.name = result.player_of_the_match.name;
+      }
+
+      if (innings && innings.length > 0) {
+        //TODO: Setup innings data handling logic
+      }
     },
     setTossResult: (state, action) => {
       const toss = action.payload;
