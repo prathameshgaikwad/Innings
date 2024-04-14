@@ -1,12 +1,11 @@
-import { Alert, Box, Typography, useTheme } from "@mui/joy";
+import { Box, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import Footer from "../../components/common/Footer";
 import ManageEventAlert from "../../components/ManageEventAlert";
 import Navbar from "../../components/common/Navbar/Navbar";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import NextMatchSkeleton from "../../components/skeletons/NextMatchSkeleton";
+import NextMatchCard from "../../components/cards/NextMatchCard";
 import PointsTable from "../../components/tables/PointsTable/PointsTable";
 import ScheduleOfMatches from "../../components/tables/ScheduleOfMatches/ScheduleOfMatches";
 import SimpleMatchCard from "../../components/cards/SimpleMatchCard/SimpleMatchCard";
@@ -46,7 +45,7 @@ const TournamentPage = () => {
   const nextMatch =
     fixturesData.length > 1
       ? {
-          team1: fixturesData[1].team1Details.nameShort,
+          team1: fixturesData[1].team1Details.name_short,
           team2: fixturesData[1].team2Details.nameShort,
         }
       : {};
@@ -73,23 +72,7 @@ const TournamentPage = () => {
           />
         )}
         {fixturesData.length > 1 && (
-          <>
-            {isLoading ? (
-              <NextMatchSkeleton />
-            ) : (
-              <Alert variant="soft" sx={{ mt: 4 }}>
-                <Typography
-                  level="body-sm"
-                  color="warning"
-                  endDecorator={<NavigateNextIcon />}>
-                  Next Match
-                </Typography>
-                <Typography level="body-md">
-                  {nextMatch.team1} vs {nextMatch.team2}
-                </Typography>
-              </Alert>
-            )}
-          </>
+          <NextMatchCard isLoading={isLoading} nextMatch={nextMatch} />
         )}
         <PointsTable />
         <ScheduleOfMatches isLoading={isLoading} />
