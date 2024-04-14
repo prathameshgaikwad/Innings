@@ -9,6 +9,7 @@ const {
 const {
   default: generateRichTossData,
 } = require("../helpers/generateRichTossData");
+const { setRichTossData } = require("../helpers/setTossData");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -44,6 +45,8 @@ const getMatchDetails = async (req, res) => {
       toss,
     });
 
+    const { richTossData } = setRichTossData({ toss, team1, team2 });
+
     const matchData = {
       _id,
       match_no,
@@ -51,7 +54,7 @@ const getMatchDetails = async (req, res) => {
       venue,
       status,
       result,
-      toss,
+      toss: richTossData,
       innings,
       team1_id,
       team2_id,
