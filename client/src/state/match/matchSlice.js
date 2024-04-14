@@ -20,9 +20,9 @@ const initialState = {
   status: null,
   toss: {
     decision: null,
-    winner: null,
-    winnerId: null,
-    loser: null,
+    winner_name: null,
+    winner_id: null,
+    loser_name: null,
   },
   result: {
     winnerId: null,
@@ -66,10 +66,10 @@ const matchSlice = createSlice({
       state.bowlingTeam = bowlingTeam;
 
       if (toss.winner_id) {
-        state.toss.winnerId = toss.winner_id;
+        state.toss.winner_id = toss.winner_id;
         state.toss.decision = toss.decision;
-        state.toss.winner = toss.winner;
-        state.toss.loser = toss.loser;
+        state.toss.winner_name = toss.winner_name;
+        state.toss.loser_name = toss.loser_name;
       }
 
       if (result.winnerId) {

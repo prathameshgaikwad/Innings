@@ -20,9 +20,9 @@ const initialState = {
   status: null,
   toss: {
     decision: null,
-    winner: null,
-    winnerId: null,
-    loser: null,
+    winner_name: null,
+    winner_id: null,
+    loser_name: null,
   },
   result: {
     winnerId: null,
@@ -84,11 +84,11 @@ const matchManagementSlice = createSlice({
     },
     setTossResult: (state, action) => {
       const toss = action.payload;
-      const { decision, winner, winnerId, loser } = toss;
+      const { decision, winner_name, winner_id, loser_name } = toss;
       state.toss.decision = decision;
-      state.toss.winner = winner;
-      state.toss.winnerId = winnerId;
-      state.toss.loser = loser;
+      state.toss.winner_name = winner_name;
+      state.toss.winner_id = winner_id;
+      state.toss.loser_name = loser_name;
     },
     setStatus: (state, action) => {
       state.status = action.payload;

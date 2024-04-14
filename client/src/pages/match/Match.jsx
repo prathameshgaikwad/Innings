@@ -64,7 +64,7 @@ const Match = () => {
   const innings = match.innings;
 
   const tossConducted = toss && toss.decision && toss.decision.length > 0;
-  const tossWinner = toss.winner;
+  const tossWinner = toss.winner_name;
   const tossDecision = toss.decision;
 
   const matchStatus = match && match.status;
