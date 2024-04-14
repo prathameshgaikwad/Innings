@@ -1,9 +1,10 @@
-import { Sheet, Table, useTheme } from "@mui/joy";
+import { Table, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 
 import NoData from "../../fallbacks/NoData";
 import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
 import TableHeader from "../../tableComponents/TableHeader";
+import TableWrapper from "../../tableComponents/TableWrapper";
 import { tournamentPageApi } from "../../../services/api";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
@@ -74,11 +75,7 @@ const PointsTableSheet = () => {
       {isLoading ? (
         <RectangularSkeleton width="80%" height="200px" />
       ) : (
-        <Sheet
-          sx={{
-            width: isMobile ? "90%" : "80%",
-            overflow: "auto",
-          }}>
+        <TableWrapper>
           {pointsTable.length === 0 ? (
             <NoData />
           ) : (
@@ -116,7 +113,7 @@ const PointsTableSheet = () => {
               </tbody>
             </Table>
           )}
-        </Sheet>
+        </TableWrapper>
       )}
     </>
   );

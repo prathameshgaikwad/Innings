@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { Sheet, useTheme } from "@mui/joy";
-
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import NoData from "../../fallbacks/NoData";
 import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
 import ScheduleOfMatchesSheet from "./ScheduleOfMatchesSheet";
 import SectionHeader from "../../sectionComponents/SectionHeader";
 import SectionWrapper from "../../sectionComponents/SectionWrapper";
+import TableWrapper from "../../tableComponents/TableWrapper";
 import formatLongDate from "../../../utilities/helpers/formatLongDate";
 import formatTime from "../../../utilities/helpers/formatTime";
-import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
 function createData(fixture) {
@@ -35,8 +33,6 @@ function createData(fixture) {
 }
 
 const ScheduleOfMatches = ({ isLoading }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const fixtures = useSelector((state) => state.tournamentPage.fixtures);
 
   const scheduleRows = fixtures.map((fixture) => createData(fixture));
@@ -47,19 +43,13 @@ const ScheduleOfMatches = ({ isLoading }) => {
       {isLoading ? (
         <RectangularSkeleton width="80%" height="200px" />
       ) : (
-        <Sheet
-          sx={{
-            width: isMobile ? "90%" : "80%",
-            overflow: "auto",
-            maxHeight: 442,
-            mx: "auto",
-          }}>
+        <TableWrapper>
           {scheduleRows.length === 0 ? (
             <NoData />
           ) : (
             <ScheduleOfMatchesSheet rows={scheduleRows} />
           )}
-        </Sheet>
+        </TableWrapper>
       )}
     </SectionWrapper>
   );
