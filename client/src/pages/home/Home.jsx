@@ -18,7 +18,6 @@ const HomePage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { user, token } = useSelector((state) => state.user);
-  const username = user && user.first_name;
   const userId = user && user._id;
 
   const [isLoading, setIsLoading] = useState(true);
@@ -71,15 +70,13 @@ const HomePage = () => {
                 {joinedTournaments && joinedTournaments.length === 0 ? (
                   <CustomToast
                     color={"warning"}
-                    title={"You've not joined any tournaments."}
                     content={"Please join a tournament to see the matches!"}
-                    duration={5000}
+                    duration={5000000}
                   />
                 ) : (
                   <CustomToast
                     color={"neutral"}
                     content={`All tournaments you've joined are currently inactive.`}
-                    title={`Hey, ${username}!`}
                     duration={5000}
                   />
                 )}
