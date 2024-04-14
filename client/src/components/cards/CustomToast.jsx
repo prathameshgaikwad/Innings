@@ -59,6 +59,7 @@ const CustomToast = ({ content, color, duration }) => {
                 position: "absolute",
                 bottom: 0,
                 transform: "rotate(180deg)",
+                borderRadius: 0,
               }}
             />
           </Alert>
