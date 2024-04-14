@@ -1,6 +1,5 @@
 import {
   setMatch,
-  setMatchOngoing,
   setStatus,
   setTossResult,
 } from "../../state/match/matchManagementSlice";
@@ -67,7 +66,7 @@ export const saveTossResultToDb =
       if (!response.ok) {
         throw new Error("Could not save toss result!");
       }
-      setMatchOngoing();
+      //TODO: Get toss response and set match status
     } catch (error) {
       console.log("error:", error);
     }

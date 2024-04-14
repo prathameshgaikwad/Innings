@@ -93,9 +93,6 @@ const matchManagementSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
-    setMatchOngoing: (state) => {
-      state.status = "ongoing";
-    },
     setOnStrikeBatsman: (state, action) => {
       const { _id, name } = action.payload;
       state.batsmen.onStrikeBatsman._id = _id;
@@ -169,7 +166,6 @@ export const {
   setMatch,
   setTossResult,
   setStatus,
-  setMatchOngoing,
   setOnStrikeBatsman,
   setOnStrikeBatsmanRuns,
   setOffStrikeBatsman,
