@@ -93,30 +93,6 @@ const matchManagementSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
-    setBattingTeam: (state) => {
-      const winningTeam =
-        state.toss.winnerId === state.team1._id ? state.team1 : state.team2;
-      const losingTeam =
-        state.toss.winnerId === state.team1._id ? state.team2 : state.team1;
-
-      if (state.innings === 1) {
-        if (state.toss.decision === "bat") {
-          state.battingTeam = winningTeam;
-          state.bowlingTeam = losingTeam;
-        } else {
-          state.battingTeam = losingTeam;
-          state.bowlingTeam = winningTeam;
-        }
-      } else {
-        if (state.toss.decision === "bat") {
-          state.battingTeam = losingTeam;
-          state.bowlingTeam = winningTeam;
-        } else {
-          state.battingTeam = winningTeam;
-          state.bowlingTeam = losingTeam;
-        }
-      }
-    },
     setMatchOngoing: (state) => {
       state.status = "ongoing";
     },
@@ -193,7 +169,6 @@ export const {
   setMatch,
   setTossResult,
   setStatus,
-  setBattingTeam,
   setMatchOngoing,
   setOnStrikeBatsman,
   setOnStrikeBatsmanRuns,
