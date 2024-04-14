@@ -70,8 +70,7 @@ const Match = () => {
   const matchStatus = match && match.status;
   const isMatchCompleted = matchStatus === "completed";
 
-  const inningsData = match.inningsData;
-  const { ball_log } = inningsData;
+  const ball_log = [];
   const batsmenData = match.batsmen;
 
   return (
@@ -143,9 +142,9 @@ const Match = () => {
                   alignItems: "center",
                   justifyContent: "center",
                 }}>
-                <TeamCard team={match.team1} isLoading={isLoading} />
+                <TeamCard team={match.battingTeam} isLoading={isLoading} />
                 <Typography level="body-lg">vs</Typography>
-                <TeamCard team={match.team2} isLoading={isLoading} />
+                <TeamCard team={match.bowlingTeam} isLoading={isLoading} />
               </Box>
             )}
           </>
