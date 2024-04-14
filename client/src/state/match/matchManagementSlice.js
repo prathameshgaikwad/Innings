@@ -93,10 +93,6 @@ const matchManagementSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
-    completeFirstInnings: (state) => {
-      const newInnings = 2;
-      state.innings = newInnings;
-    },
     setBattingTeam: (state) => {
       const winningTeam =
         state.toss.winnerId === state.team1._id ? state.team1 : state.team2;
@@ -195,7 +191,6 @@ const matchManagementSlice = createSlice({
 export const {
   addRuns,
   setMatch,
-  completeFirstInnings,
   setTossResult,
   setStatus,
   setBattingTeam,
