@@ -38,6 +38,7 @@ const NoTournamentsJoined = () => {
           <Button size="lg" color="primary" sx={{ width: "100%" }}>
             <Link
               href="/tournaments"
+              overlay
               sx={{
                 color: "white",
                 "&:hover": { textDecoration: "none" },
