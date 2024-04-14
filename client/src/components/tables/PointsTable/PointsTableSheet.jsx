@@ -1,13 +1,10 @@
 import { Sheet, Table, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 
-import LeaderboardIcon from "@mui/icons-material/Leaderboard";
-import NoData from "../fallbacks/NoData";
-import RectangularSkeleton from "../skeletons/RectangularSkeleton";
-import SectionHeader from "../SectionHeader";
-import SectionWrapper from "../SectionWrapper";
-import TableHeader from "../TableHeader";
-import { tournamentPageApi } from "../../services/api";
+import NoData from "../../fallbacks/NoData";
+import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
+import TableHeader from "../../TableHeader";
+import {tournamentPageApi} from "../../../services/api/tournamentPage"
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -27,7 +24,7 @@ function createData(
   return { pos, name, nameShort, matches, won, lost, draw, points, nrr };
 }
 
-export const PointsTableSheet = () => {
+const PointsTableSheet = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -125,13 +122,4 @@ export const PointsTableSheet = () => {
   );
 };
 
-const PointsTable = () => {
-  return (
-    <SectionWrapper>
-      <SectionHeader title={"Points Table"} startDecorator={LeaderboardIcon} />
-      <PointsTableSheet />
-    </SectionWrapper>
-  );
-};
-
-export default PointsTable;
+export default PointsTableSheet

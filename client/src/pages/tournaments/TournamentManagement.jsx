@@ -5,7 +5,7 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import NoCompletedMatches from "../../components/fallbacks/NoCompletedMatches";
 import NoPendingMatches from "../../components/fallbacks/NoPendingMatches";
 import PendingMatches from "../../components/lists/PendingMatches";
-import PointsTable from "../../components/tables/PointsTable";
+import PointsTable from "../../components/tables/PointsTable/PointsTable";
 import { Stack } from "@mui/joy";
 import TeamsList from "../../components/lists/TeamsList";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
