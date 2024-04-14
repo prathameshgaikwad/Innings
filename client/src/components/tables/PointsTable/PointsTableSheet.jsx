@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import NoData from "../../fallbacks/NoData";
 import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
-import TableHeader from "../tableComponents/TableHeader";
+import TableHeader from "../../tableComponents/TableHeader";
 import { tournamentPageApi } from "../../../services/api/tournamentPage";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
