@@ -40,8 +40,8 @@ const CustomToast = ({ content, color, duration }) => {
               p: 2,
             }}>
             <Typography
-              level={isMobile ? "body-sm" : "body-md"}
-              color="neutral"
+              level={"body-sm"}
+              sx={{ color: "text.primary" }}
               startDecorator={
                 (isSuccess && <IoMdDoneAll fontSize={18} />) ||
                 (isWarning && <IoIosWarning fontSize={18} />) ||
