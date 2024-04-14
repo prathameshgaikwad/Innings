@@ -14,7 +14,7 @@ const TossNotConducted = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: 300,
+        height: 250,
         width: "90%",
         my: 8,
       }}>
@@ -26,7 +26,7 @@ const TossNotConducted = () => {
             : theme.palette.neutral[300],
         }}
       />
-      <Typography color="neutral" level={"body-md"} mt={4}>
+      <Typography color="neutral" level={"body-md"} mt={2}>
         Oops! Looks like the match hasn&apos;t begun yet.
       </Typography>
     </Card>
