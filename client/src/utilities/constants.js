@@ -13,6 +13,9 @@ export const BACKGROUND_ART_DARK_URL =
 export const CARD_BOX_SHADOW_GLOW_EFFECT =
   "rgba(180,166,91,0.2)  0px 6px 24px 0px, rgba(180,166,91,0.2) 0px 0px 0px 1px";
 
+export const TOAST_BOX_SHADOW =
+  "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px";
+
 export const SAMPLE_SCORECARD_BATTING_DATA_1 = [
   createBattingData(
     1,
