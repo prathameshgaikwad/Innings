@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 
 import JoinATournament from "../cards/JoinATournament";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
-import SectionHeader from "../SectionHeader";
-import SectionWrapper from "../SectionWrapper";
+import SectionHeader from "../sectionComponents/SectionHeader";
+import SectionWrapper from "../sectionComponents/SectionWrapper";
 import SliderMask from "../SliderMask";
 import SwiperWrapper from "../SwiperWrapper";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";

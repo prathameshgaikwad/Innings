@@ -1,7 +1,7 @@
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import PointsTableSheet from "./PointsTableSheet";
-import SectionHeader from "../../SectionHeader";
-import SectionWrapper from "../../SectionWrapper";
+import SectionHeader from "../../sectionComponents/SectionHeader";
+import SectionWrapper from "../../sectionComponents/SectionWrapper";
 
 const PointsTable = () => {
   return (
