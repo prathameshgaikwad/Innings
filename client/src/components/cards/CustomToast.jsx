@@ -8,7 +8,7 @@ import { IoMdInformationCircle } from "react-icons/io";
 import { useMediaQuery } from "@mui/material";
 import useToastAnimation from "../../hooks/useToastAnimation";
 
-const CustomToast = ({ content, title, color, duration }) => {
+const CustomToast = ({ content, color, duration }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -30,36 +30,18 @@ const CustomToast = ({ content, title, color, duration }) => {
           }}>
           <Alert
             variant="soft"
-            color="neutral"
-            size={isMobile ? "sm" : "lg"}
+            color={"warning"}
+            size={isMobile ? "sm" : "md"}
             sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               zIndex: 101,
-              p: 2.5,
+              p: 2,
             }}>
-            {title && (
-              <Typography
-                level={isMobile ? "title-md" : "title-lg"}
-                sx={{
-                  alignSelf: "start",
-                  color:
-                    (isSuccess && theme.palette.success[400]) ||
-                    (isWarning && theme.palette.warning[400]) ||
-                    theme.palette.neutral[300],
-                }}>
-                {title}
-              </Typography>
-            )}
             <Typography
               level={isMobile ? "body-sm" : "body-md"}
-              sx={{
-                color:
-                  (isSuccess && theme.palette.success[300]) ||
-                  (isWarning && theme.palette.warning[300]) ||
-                  theme.palette.neutral[400],
-              }}
+              color="neutral"
               startDecorator={
                 (isSuccess && <IoMdDoneAll fontSize={18} />) ||
                 (isWarning && <IoIosWarning fontSize={18} />) ||
