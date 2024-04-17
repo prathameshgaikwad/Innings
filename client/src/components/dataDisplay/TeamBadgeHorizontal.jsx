@@ -4,8 +4,8 @@ import { Box, Link } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
 import { TbSteam } from "react-icons/tb";
-import TeamBadgeHorizontalSkeleton from "./skeletons/TeamBadgeHorizontalSkeleton";
-import TeamPerformance from "./lists/TeamPerformance";
+import TeamBadgeHorizontalSkeleton from "../skeletons/TeamBadgeHorizontalSkeleton";
+import TeamPerformance from "../lists/TeamPerformance";
 import Typography from "@mui/joy/Typography";
 import { useParams } from "react-router-dom";
 

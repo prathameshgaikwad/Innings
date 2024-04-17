@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/joy";
 
-import PlayerStatisticsCard from "./cards/PlayerStatisticsCard";
+import PlayerStatisticsCard from "../cards/PlayerStatisticsCard";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 
