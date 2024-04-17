@@ -57,7 +57,7 @@ const Match = () => {
   const toss = match.toss;
   const innings = match.innings;
 
-  const tossConducted = toss && toss.decision && toss.decision.length > 0;
+  const isTossConducted = toss && toss.decision && toss.decision.length > 0;
   const tossWinner = toss.winner_name;
   const tossDecision = toss.decision;
 
@@ -83,7 +83,7 @@ const Match = () => {
           mb: 8,
         }}>
         {isAdmin && <ManageEventAlert eventType={"match"} />}
-        {tossConducted ? (
+        {isTossConducted ? (
           <>
             <TossDetails
               tossWinner={tossWinner}
