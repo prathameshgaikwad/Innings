@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Link } from "@mui/joy";
-
+import CenteredBox from "../../layouts/pages/CenteredBox";
+import { Link } from "@mui/joy";
 import MatchCardContent from "./MatchCardContent";
 import MatchCardSkeleton from "../../skeletons/MatchCardSkeleton";
 
@@ -15,16 +15,9 @@ const MatchCard = ({ isLoading, tournamentId, data, isMatchPage }) => {
       ) : (
         <>
           {isMatchPage ? (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "100%",
-                mx: "auto",
-              }}>
+            <CenteredBox>
               <MatchCardContent data={data} />
-            </Box>
+            </CenteredBox>
           ) : (
             <Link
               href={matchURL}

@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Link, Stack, useTheme } from "@mui/joy";
+import { Link, Stack, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import CenteredBox from "../layouts/pages/CenteredBox";
 import { LiveIcon } from "../LiveIcon";
 import MatchCard from "../cards/MatchCard/MatchCard";
 import NoLiveMatchPlaceholder from "../fallbacks/NoLiveMatchPlaceholder";
@@ -35,13 +36,7 @@ const LiveMatch = ({ tournamentId }) => {
       {noLiveMatch ? (
         <NoLiveMatchPlaceholder />
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: isMobile ? "85vw" : "70vw",
-          }}>
+        <CenteredBox customStyles={{ width: isMobile ? "85vw" : "70vw" }}>
           <Stack
             sx={{
               width: isTab ? "96%" : "72%",
@@ -69,7 +64,7 @@ const LiveMatch = ({ tournamentId }) => {
             tournamentId={tournamentId}
             data={liveMatch.data}
           />
-        </Box>
+        </CenteredBox>
       )}
     </>
   );

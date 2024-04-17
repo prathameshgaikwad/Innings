@@ -1,5 +1,7 @@
 import { Box, IconButton, Link, Typography, useTheme } from "@mui/joy";
 
+import CenteredBox from "../../layouts/pages/CenteredBox";
+
 const LogoBox = () => {
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
@@ -21,12 +23,7 @@ const LogoBox = () => {
           },
         }}
         href="/">
-        <Box
-          sx={{
-            gap: 2,
-            display: "flex",
-            alignItems: "center",
-          }}>
+        <CenteredBox customStyles={{ gap: 2, flexDirection: "row" }}>
           <IconButton size="lg">
             <img src={logoURL} />
           </IconButton>
@@ -41,7 +38,7 @@ const LogoBox = () => {
             }}>
             Innings
           </Typography>
-        </Box>
+        </CenteredBox>
       </Link>
     </Box>
   );

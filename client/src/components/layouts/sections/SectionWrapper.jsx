@@ -1,20 +1,9 @@
 /* eslint-disable react/prop-types */
 
-import { Box } from "@mui/joy";
+import CenteredBox from "../pages/CenteredBox";
 
 const SectionWrapper = ({ children }) => {
-  return (
-    <Box
-      sx={{
-        mt: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}>
-      {children}
-    </Box>
-  );
+  return <CenteredBox customStyles={{ mt: 8 }}>{children}</CenteredBox>;
 };
 
 export default SectionWrapper;

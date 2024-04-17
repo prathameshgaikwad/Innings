@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Divider, useTheme } from "@mui/joy";
+import { Divider, useTheme } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
 import { CARD_BOX_SHADOW_GLOW_EFFECT } from "../../utilities/constants";
 import Card from "@mui/joy/Card";
 import CardOverflow from "@mui/joy/CardOverflow";
+import CenteredBox from "../layouts/pages/CenteredBox";
 import LinkedButton from "../buttons/LinkedButton";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { TbHexagonLetterC } from "react-icons/tb";
@@ -79,14 +80,7 @@ const TeamCard = ({ team, isLoading }) => {
             noWrap>
             {name}
           </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 0.8,
-              my: 1,
-            }}>
+          <CenteredBox customStyles={{ width: "auto", gap: 0.8, my: 1 }}>
             <Typography
               level="body-xs"
               mx={2}
@@ -100,7 +94,7 @@ const TeamCard = ({ team, isLoading }) => {
               startDecorator={<PeopleAltIcon />}>
               {size} Players
             </Typography>
-          </Box>
+          </CenteredBox>
           <LinkedButton
             title={"View Team"}
             size={"sm"}

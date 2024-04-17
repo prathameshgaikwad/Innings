@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import BottomBar from "./BottomBar";
+import CenteredBox from "../../layouts/pages/CenteredBox";
 import FixtureCardSkeleton from "../../skeletons/FixtureCardSkeleton";
 import TeamBadgeVertical from "../../TeamBadgeVertical";
 import TopBar from "./TopBar";
@@ -74,12 +75,7 @@ const FixtureCard = ({ id }) => {
               logoURL={team1.logoURL}
               widths={[45, 60]}
             />
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}>
+            <CenteredBox>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Typography
                   level={isMobile ? "body-md" : "body-lg"}
@@ -87,7 +83,7 @@ const FixtureCard = ({ id }) => {
                   vs
                 </Typography>
               </Box>
-            </Box>
+            </CenteredBox>
             <TeamBadgeVertical
               nameShort={team2.nameShort}
               color={team2.color}

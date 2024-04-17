@@ -9,7 +9,7 @@ import {
   SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_2,
 } from "../../../utilities/constants";
 
-import ScorecardContainer from "./ScorecardContainer";
+import CenteredBox from "../../layouts/pages/CenteredBox";
 import ScorecardContent from "./ScorecardContent";
 import ScorecardHeader from "./ScorecardHeader";
 import ScorecardSkeleton from "../../skeletons/ScorecardSkeleton";
@@ -66,7 +66,7 @@ const Scorecard = ({ isAdmin, isLoading }) => {
       {isLoading ? (
         <ScorecardSkeleton />
       ) : (
-        <ScorecardContainer>
+        <CenteredBox customStyles={{ mt: 8 }}>
           <ScorecardHeader />
           <TabsSegmentedControls
             setIndex={setIndex}
@@ -84,7 +84,7 @@ const Scorecard = ({ isAdmin, isLoading }) => {
             extrasDetails={extrasDetails}
             fallOfWicketsData={fallOfWicketsData}
           />
-        </ScorecardContainer>
+        </CenteredBox>
       )}
     </>
   );
