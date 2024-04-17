@@ -58,7 +58,7 @@ const TeamPage = () => {
       <PageContainer customStyles={{ mb: 8 }}>
         <Box
           sx={{
-            width: isMobile ? "95%" : "80%",
+            width: "100%",
             mb: isMobile ? 3 : 6,
           }}>
           <AspectRatio
