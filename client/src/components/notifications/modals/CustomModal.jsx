@@ -2,12 +2,12 @@
 
 import { Box, Button, Divider, Modal, ModalDialog, Typography } from "@mui/joy";
 
-import ConfirmButton from "../buttons/ConfirmButton";
-import ConfirmFinishTournamentSetup from "../buttons/ConfirmFinishTournamentSetup";
-import DeleteTeamButton from "../buttons/DeleteTeamButton";
+import ConfirmButton from "../../buttons/ConfirmButton";
+import ConfirmFinishTournamentSetup from "../../buttons/ConfirmFinishTournamentSetup";
+import DeleteTeamButton from "../../buttons/DeleteTeamButton";
 import { FiCheckCircle } from "react-icons/fi";
 import { IoWarningOutline } from "react-icons/io5";
-import LinkedConfirmButton from "../buttons/LinkedConfirmButton";
+import LinkedConfirmButton from "../../buttons/LinkedConfirmButton";
 import { TbSwitch3 } from "react-icons/tb";
 
 const CustomModal = ({

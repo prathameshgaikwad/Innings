@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import AddIcon from "@mui/icons-material/Add";
 import { CgDetailsMore } from "react-icons/cg";
-import CustomInput from "../formComponents/CustomInput";
-import { addCreatedTournament } from "../../state/tournament/tournamentSlice";
-import { tournamentSchema } from "../../schema/tournament/tournament";
-import { tournamentSetupApi } from "../../services/api";
+import CustomInput from "../../formComponents/CustomInput";
+import { addCreatedTournament } from "../../../state/tournament/tournamentSlice";
+import { tournamentSchema } from "../../../schema/tournament/tournament";
+import { tournamentSetupApi } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 
 const CreateTournamentModal = ({ setOpen }) => {
