@@ -35,7 +35,9 @@ const Match = () => {
       socket.on("connect", () => {
         socket.emit("subscribeToMatch", matchId);
       });
-
+      socket.on("tossResult", (toss) => {
+        dispatch(setToss(toss));
+      });
       socket.on("disconnect", () => {});
     }
   }, [socket, matchId]);
@@ -50,14 +52,6 @@ const Match = () => {
     (state) => state.tournaments.createdTournaments
   );
   const isAdmin = createdTournaments.includes(tournamentId);
-
-  useEffect(() => {
-    if (socket) {
-      socket.on("tossResult", (toss) => {
-        dispatch(setToss(toss));
-      });
-    }
-  }, [socket, matchId]);
 
   const match = useSelector((state) => state.match);
   const toss = match.toss;
