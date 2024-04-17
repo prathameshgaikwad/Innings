@@ -4,7 +4,7 @@ import { Card, Divider, Skeleton, Typography, useTheme } from "@mui/joy";
 
 import { RiCopperCoinLine } from "react-icons/ri";
 
-const TossDetails = ({ tossWinner, choice, isLoading }) => {
+const TossDetails = ({ tossWinner, decision, isLoading }) => {
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
   return (
@@ -33,7 +33,7 @@ const TossDetails = ({ tossWinner, choice, isLoading }) => {
           />
         ) : (
           <Typography level="body-sm">
-            {tossWinner} won the toss and chose to {choice}
+            {tossWinner} won the toss and chose to {decision}
           </Typography>
         )}
       </Card>

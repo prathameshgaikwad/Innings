@@ -87,7 +87,7 @@ const Match = () => {
           <>
             <TossDetails
               tossWinner={tossWinner}
-              choice={tossDecision}
+              decision={tossDecision}
               isLoading={isLoading}
             />
             <Box
