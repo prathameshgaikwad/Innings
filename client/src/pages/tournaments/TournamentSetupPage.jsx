@@ -1,4 +1,4 @@
-import { Box, Grid, useTheme } from "@mui/joy";
+import { Grid, useTheme } from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
 import AddPlayers from "../../components/cards/AddPlayersCard/AddPlayers";
@@ -7,6 +7,7 @@ import CreateFixturesForm from "../../components/createTournament/CreateFixtures
 import FinishSetup from "../../components/createTournament/FinishSetup";
 import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar/Navbar";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import TeamsList from "../../components/lists/TeamsList";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { useMediaQuery } from "@mui/material";
@@ -33,16 +34,7 @@ const TournamentSetupPage = () => {
         id={tournamentId}
         isSetupComplete={false}
       />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          minHeight: "calc(100vh - 73px)",
-          pt: isMobile ? 4 : 4,
-          maxWidth: isMobile ? "95vw" : "82vw",
-          mx: "auto",
-        }}>
+      <PageContainer customStyles={{ maxWidth: isMobile ? "95vw" : "82vw" }}>
         <Grid
           container
           columns={25}
@@ -60,7 +52,7 @@ const TournamentSetupPage = () => {
         <TeamsList isSetupPage={true} />
         <CreateFixturesForm />
         <FinishSetup />
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );

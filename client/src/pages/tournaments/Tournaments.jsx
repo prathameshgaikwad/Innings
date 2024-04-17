@@ -6,6 +6,7 @@ import Footer from "../../components/common/Footer";
 import JoinATournament from "../../components/cards/JoinATournament";
 import JoinedTournaments from "../../components/tournament/JoinedTournaments";
 import Navbar from "../../components/common/Navbar/Navbar";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/joy/styles";
@@ -25,17 +26,7 @@ const Tournaments = () => {
   return (
     <>
       <Navbar />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          minHeight: "calc(100vh - 73px)",
-          maxWidth: isMobile ? "85vw" : "70vw",
-          mx: "auto",
-          gap: 2,
-          mb: 4,
-        }}>
+      <PageContainer customStyles={{ gap: 2, mb: 4 }}>
         <JoinedTournaments userId={_id} />
         <FeaturedTournaments />
         <CreatedTournaments userId={_id} />
@@ -50,7 +41,7 @@ const Tournaments = () => {
           {joinedTournaments.length !== 0 && <JoinATournament />}
           {createdTournaments.length !== 0 && <CreateTournamentCard />}
         </Box>
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );

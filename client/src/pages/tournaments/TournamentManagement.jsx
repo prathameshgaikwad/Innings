@@ -1,9 +1,9 @@
-import Box from "@mui/joy/Box";
 import CompletedMatches from "../../components/lists/CompletedMatches";
 import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar/Navbar";
 import NoCompletedMatches from "../../components/fallbacks/NoCompletedMatches";
 import NoPendingMatches from "../../components/fallbacks/NoPendingMatches";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import PendingMatches from "../../components/lists/PendingMatches";
 import PointsTable from "../../components/tables/PointsTable/PointsTable";
 import { Stack } from "@mui/joy";
@@ -37,17 +37,7 @@ const TournamentManagement = () => {
         id={tournamentId}
         isSetupComplete={true}
       />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          minHeight: "calc(100vh - 73px)",
-          pt: isMobile ? 4 : 6,
-          maxWidth: "92vw",
-          mx: "auto",
-          gap: 4,
-        }}>
+      <PageContainer customStyles={{ maxWidth: "92vw", gap: 4 }}>
         <Stack
           direction={isMobile ? "column" : "row"}
           justifyContent="center"
@@ -66,7 +56,7 @@ const TournamentManagement = () => {
         </Stack>
         <PointsTable />
         <TeamsList />
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );

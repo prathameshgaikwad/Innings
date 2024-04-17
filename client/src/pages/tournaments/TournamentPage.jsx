@@ -1,4 +1,3 @@
-import { Box, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -6,6 +5,7 @@ import Footer from "../../components/common/Footer";
 import ManageEventAlert from "../../components/ManageEventAlert";
 import Navbar from "../../components/common/Navbar/Navbar";
 import NextMatchCard from "../../components/cards/NextMatchCard";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import PointsTable from "../../components/tables/PointsTable/PointsTable";
 import ScheduleOfMatches from "../../components/tables/ScheduleOfMatches/ScheduleOfMatches";
 import SimpleMatchCard from "../../components/cards/SimpleMatchCard/SimpleMatchCard";
@@ -14,6 +14,7 @@ import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { tournamentPageApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { useTheme } from "@mui/joy";
 
 const TournamentPage = () => {
   const theme = useTheme();
@@ -54,16 +55,7 @@ const TournamentPage = () => {
     <>
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          minHeight: "calc(100vh - 73px)",
-          pt: isMobile ? 4 : 4,
-          maxWidth: isMobile ? "95vw" : "82vw",
-          mx: "auto",
-        }}>
+      <PageContainer customStyles={{ maxWidth: isMobile ? "95vw" : "82vw" }}>
         {fixturesData.length !== 0 && (
           <SimpleMatchCard
             callToAction={"Go to Match"}
@@ -78,7 +70,7 @@ const TournamentPage = () => {
         <ScheduleOfMatches isLoading={isLoading} />
         <TeamsList isSetupPage={false} />
         {isAdmin && <ManageEventAlert eventType={"tournament"} />}
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );

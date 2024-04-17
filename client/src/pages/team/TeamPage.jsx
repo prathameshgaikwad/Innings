@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar/Navbar";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import RectangularSkeleton from "../../components/skeletons/RectangularSkeleton";
 import { TbHexagonLetterC } from "react-icons/tb";
 import TeamPerformance from "../../components/lists/TeamPerformance";
@@ -53,14 +54,7 @@ const TeamPage = () => {
     <>
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
-      <Box
-        sx={{
-          my: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          minHeight: "100vh",
-        }}>
+      <PageContainer customStyles={{ mb: 8 }}>
         <Box
           sx={{
             width: isMobile ? "95%" : "80%",
@@ -184,7 +178,7 @@ const TeamPage = () => {
             Go Back
           </Button>
         </Card>
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );
