@@ -1,5 +1,6 @@
 import {
   AspectRatio,
+  Avatar,
   Box,
   Button,
   Card,
@@ -127,7 +128,7 @@ const TeamPage = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            width: isMobile ? "86%" : "56%",
+            width: isMobile ? "86%" : "66%",
             mb: isMobile ? 2 : 4,
             py: isMobile ? 1.5 : 3,
             px: isMobile ? 3 : 6,
@@ -146,13 +147,17 @@ const TeamPage = () => {
                 variant="outlined"
                 sx={{
                   "& thead th:nth-of-type(1)": {
-                    width: "16%",
+                    width: "12%",
+                  },
+                  "& thead th:nth-of-type(2)": {
+                    width: "18%",
                   },
                   fontSize: isMobile ? "0.85rem" : "",
                 }}>
                 <thead>
                   <tr>
                     <th>#</th>
+                    <th></th>
                     <th>NAME</th>
                   </tr>
                 </thead>
@@ -160,7 +165,16 @@ const TeamPage = () => {
                   {players.map((player, i) => (
                     <tr key={player._id}>
                       {<td>{i + 1}</td>}
-                      {<td>{player.player_name}</td>}
+                      {
+                        <td>
+                          <Avatar
+                            src={player.picture_url}
+                            color="neutral"
+                            sx={{ border: "2px solid" }}
+                          />
+                        </td>
+                      }
+                      {<td>{player.first_name + " " + player.last_name}</td>}
                     </tr>
                   ))}
                 </tbody>
