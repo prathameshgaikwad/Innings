@@ -17,6 +17,7 @@ import ConductToss from "../../components/matchManagement/ConductToss";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/matchManagement/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
@@ -86,16 +87,7 @@ const MatchManagement = () => {
   return (
     <>
       <Navbar />
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          maxWidth: isMobile ? "85vw" : "78vw",
-          mx: "auto",
-          gap: 2,
-          mt: 4,
-        }}>
+      <PageContainer customStyles={{ gap: 2, mt: 4 }}>
         {isHeaderDataAvailable && (
           <Header
             isLoading={isLoading}
@@ -155,7 +147,7 @@ const MatchManagement = () => {
             </Box>
           </>
         )}
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );

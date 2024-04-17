@@ -7,16 +7,13 @@ import Footer from "../../components/common/Footer";
 import LiveMatch from "../../components/match/LiveMatch";
 import Navbar from "../../components/common/Navbar/Navbar";
 import NoTournamentsJoined from "../../components/fallbacks/NoTournamentsJoined";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import { Skeleton } from "@mui/joy";
 import UpcomingMatches from "../../components/lists/UpcomingMatches";
 import { tournamentsApi } from "../../services/api";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/joy/styles";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { user, token } = useSelector((state) => state.user);
   const userId = user && user._id;
 
@@ -44,17 +41,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "calc(100vh - 73px)",
-          pt: isMobile ? 4 : 6,
-          maxWidth: isMobile ? "85vw" : "70vw",
-          mx: "auto",
-        }}>
+      <PageContainer>
         {isLoading ? (
           <Skeleton width={"100%"} height={"100%"} />
         ) : (
@@ -84,7 +71,7 @@ const HomePage = () => {
             )}
           </>
         )}
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );

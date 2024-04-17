@@ -10,6 +10,7 @@ import ManOfTheMatchCard from "../../components/cards/ManOfTheMatchCard";
 import ManageEventAlert from "../../components/ManageEventAlert";
 import MatchCard from "../../components/cards/MatchCard/MatchCard";
 import Navbar from "../../components/common/Navbar/Navbar";
+import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import TeamCard from "../../components/cards/TeamCard";
 import TossDetails from "../../components/match/TossDetails";
@@ -71,17 +72,7 @@ const Match = () => {
     <>
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          minHeight: "calc(100vh - 73px)",
-          maxWidth: isMobile ? "85vw" : "70vw",
-          mx: "auto",
-          gap: 2,
-          mb: 8,
-        }}>
+      <PageContainer customStyles={{ gap: 2, mb: 8 }}>
         {isAdmin && <ManageEventAlert eventType={"match"} />}
         {isTossConducted ? (
           <>
@@ -143,7 +134,7 @@ const Match = () => {
             )}
           </>
         )}
-      </Box>
+      </PageContainer>
       <Footer />
     </>
   );
