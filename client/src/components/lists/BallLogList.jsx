@@ -8,9 +8,9 @@ import { Box, Card, Divider, Typography } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import BallLogListSkeleton from "../skeletons/BallLogListSkeleton";
-import BallLogSeparator from "../BallLogSeparator";
+import BallLogSeparator from "../dataDisplay/BallLogSeparator";
 import { BiSolidCricketBall } from "react-icons/bi";
-import LogItem from "../LogItem";
+import LogItem from "../dataDisplay/LogItem";
 import { Mousewheel } from "swiper/modules";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 import SliderMask from "../layouts/swiper/SliderMask";

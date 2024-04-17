@@ -2,7 +2,7 @@
 
 import { Stack, Tooltip } from "@mui/joy";
 
-import LogItem from "../LogItem";
+import LogItem from "../dataDisplay/LogItem";
 
 const TeamPerformance = ({ performance, size }) => {
   // CHOOSE A MAXIMUM OF "SIZE" NUMBER OF ENTRIES

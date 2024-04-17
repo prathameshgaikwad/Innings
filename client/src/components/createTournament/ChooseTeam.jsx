@@ -3,7 +3,7 @@
 import { Stack, useTheme } from "@mui/joy";
 
 import CustomSelect from "../formComponents/CustomSelect";
-import TeamBadgeCircular from "./TeamBadgeCircular";
+import TeamBadgeCircular from "../dataDisplay/TeamBadgeCircular";
 import { useFormikContext } from "formik";
 import { useSelector } from "react-redux";
 

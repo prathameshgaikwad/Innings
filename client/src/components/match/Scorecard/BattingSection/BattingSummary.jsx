@@ -3,7 +3,7 @@
 import { Card, Typography } from "@mui/joy";
 
 import { MdSportsCricket } from "react-icons/md";
-import TeamBadgeHorizontal from "../../../TeamBadgeHorizontal";
+import TeamBadgeHorizontal from "../../../dataDisplay/TeamBadgeHorizontal";
 
 const BattingSummary = ({ total, team }) => {
   return (

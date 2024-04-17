@@ -5,7 +5,7 @@ import NoTournamentsJoined from "../../components/fallbacks/NoTournamentsJoined"
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import PlayerStatisticsList from "../../components/lists/PlayerStatisticsList";
 import TournamentStatisticsList from "../../components/lists/TournamentStatisticsList";
-import UserStatistics from "../../components/UserStatistics";
+import UserStatistics from "../../components/dataDisplay/UserStatistics";
 import { useSelector } from "react-redux";
 
 const Statistics = () => {

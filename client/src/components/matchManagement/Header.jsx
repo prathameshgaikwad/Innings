@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CustomModal from "../notifications/modals/CustomModal";
 import { FiCheckCircle } from "react-icons/fi";
-import TeamBadgeHorizontal from "../TeamBadgeHorizontal";
+import TeamBadgeHorizontal from "../dataDisplay/TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 

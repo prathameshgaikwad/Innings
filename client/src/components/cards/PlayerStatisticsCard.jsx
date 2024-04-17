@@ -6,7 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Card from "@mui/joy/Card";
 import CardOverflow from "@mui/joy/CardOverflow";
-import DataChip from "../DataChip";
+import DataChip from "../dataDisplay/DataChip";
 import PlayerStatisticsCardSkeleton from "../skeletons/PlayerStatisticsCardSkeleton";
 import Typography from "@mui/joy/Typography";
 import { useState } from "react";

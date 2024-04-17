@@ -5,7 +5,7 @@ import { Card, CardContent, CardOverflow, useTheme } from "@mui/joy";
 import BottomBar from "./BottomBar";
 import { CARD_BOX_SHADOW_GLOW_EFFECT } from "../../../utilities/constants";
 import ScorePane from "./ScorePane";
-import TeamBadgeVertical from "../../TeamBadgeVertical";
+import TeamBadgeVertical from "../../dataDisplay/TeamBadgeVertical";
 import TopBar from "./TopBar";
 import { useMediaQuery } from "@mui/material";
 

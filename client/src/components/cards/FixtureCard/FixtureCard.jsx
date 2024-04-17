@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import BottomBar from "./BottomBar";
 import CenteredBox from "../../layouts/pages/CenteredBox";
 import FixtureCardSkeleton from "../../skeletons/FixtureCardSkeleton";
-import TeamBadgeVertical from "../../TeamBadgeVertical";
+import TeamBadgeVertical from "../../dataDisplay/TeamBadgeVertical";
 import TopBar from "./TopBar";
 import { fixtureApi } from "../../../services/api";
 import { useMediaQuery } from "@mui/material";
