@@ -10,7 +10,7 @@ import Typography from "@mui/joy/Typography";
 import { useParams } from "react-router-dom";
 
 const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
-  const { color, logoURL, name, _id, performance } = team;
+  const { team_color, logo_url, name, _id, performance } = team;
   const { tournamentId } = useParams();
 
   return (
@@ -31,14 +31,14 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
               sx={{
                 borderRadius: "50%",
                 border: "4px solid",
-                borderColor: color,
+                borderColor: team_color,
                 width: isSmall ? 40 : 50,
                 mr: 2,
               }}>
-              {!logoURL ? (
+              {!logo_url ? (
                 <TbSteam style={{ padding: 10, color: "#222" }} />
               ) : (
-                <img src={logoURL} style={{ backgroundSize: "cover" }} />
+                <img src={logo_url} style={{ backgroundSize: "cover" }} />
               )}
             </AspectRatio>
             <Typography level={isSmall ? "title-lg" : "h3"}>{name}</Typography>

@@ -44,14 +44,14 @@ const extrasDetails2 = "( nb 0, w 6, b 0, lb 5 )";
 const Scorecard = ({ isAdmin, isLoading }) => {
   const [index, setIndex] = useState(0);
 
-  const team1 = useSelector((state) =>
-    isAdmin ? state.matchManagement.team1 : state.match.team1
+  const battingTeam = useSelector((state) =>
+    isAdmin ? state.matchManagement.battingTeam : state.match.battingTeam
   );
-  const team2 = useSelector((state) =>
-    isAdmin ? state.matchManagement.team2 : state.match.team2
+  const bowlingTeam = useSelector((state) =>
+    isAdmin ? state.matchManagement.bowlingTeam : state.match.bowlingTeam
   );
 
-  const team = index === 0 ? team1 : team2;
+  const team = index === 0 ? battingTeam : bowlingTeam;
   const total = index === 0 ? total1 : total2;
   const battingData = index === 0 ? battingData1 : battingData2;
   const nonBattingData = index === 0 ? nonBattingData1 : nonBattingData2;
@@ -71,8 +71,8 @@ const Scorecard = ({ isAdmin, isLoading }) => {
           <TabsSegmentedControls
             setIndex={setIndex}
             index={index}
-            team1Name={team1.nameShort}
-            team2Name={team2.nameShort}
+            team1Name={battingTeam.name_short}
+            team2Name={bowlingTeam.name_short}
           />
           <ScorecardContent
             team={team}

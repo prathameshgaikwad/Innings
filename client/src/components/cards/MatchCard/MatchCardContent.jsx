@@ -49,9 +49,9 @@ const MatchCardContent = ({ data }) => {
           justifyContent: "space-around",
         }}>
         <TeamBadgeVertical
-          color={data.battingTeam.color}
-          logoURL={data.battingTeam.logoURL}
-          nameShort={data.battingTeam.nameShort}
+          color={data.battingTeam.team_color}
+          logoURL={data.battingTeam.logo_url}
+          nameShort={data.battingTeam.name_short}
           widths={[65, 90]}
         />
         <ScorePane
@@ -62,9 +62,9 @@ const MatchCardContent = ({ data }) => {
           currentRunRate={currentRunRate}
         />
         <TeamBadgeVertical
-          color={data.bowlingTeam.color}
-          logoURL={data.bowlingTeam.logoURL}
-          nameShort={data.bowlingTeam.nameShort}
+          color={data.bowlingTeam.team_color}
+          logoURL={data.bowlingTeam.logo_url}
+          nameShort={data.bowlingTeam.name_short}
           widths={[65, 90]}
         />
       </CardContent>
