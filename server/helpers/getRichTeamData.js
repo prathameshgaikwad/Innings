@@ -18,6 +18,14 @@ const getRichTeamData = async ({ team_id }) => {
       })
     );
 
+    richPlayersData.sort((a, b) => {
+      const playerA = `${a.first_name} ${a.last_name}`.toLowerCase();
+      const playerB = `${b.first_name} ${b.last_name}`.toLowerCase();
+      if (playerA < playerB) return -1;
+      if (playerA > playerB) return 1;
+      return 0;
+    });
+
     const richTeamData = {
       ...teamData.toObject(),
       players: richPlayersData,
