@@ -35,7 +35,7 @@ const getMatchDetails = async (req, res) => {
     const team1 = await Team.findById(team1_id);
     const team2 = await Team.findById(team2_id);
 
-    const { battingTeam, bowlingTeam } = setBattingAndBowlingTeamData({
+    const { battingTeam, bowlingTeam } = await setBattingAndBowlingTeamData({
       innings,
       team1,
       team2,
