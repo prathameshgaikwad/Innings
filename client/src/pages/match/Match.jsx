@@ -7,7 +7,7 @@ import BatsmenStats from "../../components/match/BatsmenStats";
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import Footer from "../../components/common/Footer";
 import ManOfTheMatchCard from "../../components/cards/ManOfTheMatchCard";
-import ManageEventAlert from "../../components/ManageEventAlert";
+import ManageEventAlert from "../../components/notifications/alerts/ManageEventAlert";
 import MatchCard from "../../components/cards/MatchCard/MatchCard";
 import Navbar from "../../components/common/Navbar/Navbar";
 import PageContainer from "../../components/layouts/pages/PageContainer";

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import Footer from "../../components/common/Footer";
-import ManageEventAlert from "../../components/ManageEventAlert";
+import ManageEventAlert from "../../components/notifications/alerts/ManageEventAlert";
 import Navbar from "../../components/common/Navbar/Navbar";
 import NextMatchCard from "../../components/cards/NextMatchCard";
 import PageContainer from "../../components/layouts/pages/PageContainer";
