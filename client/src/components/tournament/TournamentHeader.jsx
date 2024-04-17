@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import CustomToast from "../cards/CustomToast";
+import CustomToast from "../notifications/toasts/CustomToast";
 import TournamentBanner from "./TournamentBanner";
 import TournamentInfo from "./TournamentInfo";
 import { tournamentPageApi } from "../../services/api";

@@ -3,7 +3,7 @@ import { Box, Button, Divider, Link, Stack, Typography } from "@mui/joy";
 import BackgroundArt from "../../components/accounts/BackgroundArt";
 import ColorSchemeToggle from "../../components/common/ColorSchemeToggle";
 import CreateAccountForm from "../../components/accounts/CreateAccountForm";
-import CustomToast from "../../components/cards/CustomToast";
+import CustomToast from "../../components/notifications/toasts/CustomToast";
 import Footer from "../../components/common/Footer";
 import GlobalStyles from "@mui/joy/GlobalStyles";
 import GoogleIcon from "../../../public/assets/GoogleIcon";

@@ -14,7 +14,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CustomToast from "../cards/CustomToast";
+import CustomToast from "../notifications/toasts/CustomToast";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdOutlineBuildCircle } from "react-icons/md";
 import { addJoinedTournament } from "../../state/tournament/tournamentSlice";

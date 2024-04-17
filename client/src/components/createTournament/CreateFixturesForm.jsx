@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ChooseTeam from "./ChooseTeam";
 import CustomInput from "../formComponents/CustomInput";
-import CustomToast from "../cards/CustomToast";
+import CustomToast from "../notifications/toasts/CustomToast";
 import { FaUndo } from "react-icons/fa";
 import FixturesList from "./FixturesList";
 import { HiMiniAdjustmentsVertical } from "react-icons/hi2";

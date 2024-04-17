@@ -1,6 +1,6 @@
 import AddPlayersForm from "./AddPlayersForm";
 import { Card } from "@mui/joy";
-import CustomToast from "../CustomToast";
+import CustomToast from "../../notifications/toasts/CustomToast";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 

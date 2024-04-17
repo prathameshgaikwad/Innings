@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import Box from "@mui/joy/Box";
-import CustomToast from "../../components/cards/CustomToast";
+import CustomToast from "../../components/notifications/toasts/CustomToast";
 import Footer from "../../components/common/Footer";
 import LiveMatch from "../../components/match/LiveMatch";
 import Navbar from "../../components/common/Navbar/Navbar";

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CustomInput from "../formComponents/CustomInput";
-import CustomToast from "./CustomToast";
+import CustomToast from "../notifications/toasts/CustomToast";
 import { addJoinedTournament } from "../../state/tournament/tournamentSlice";
 import { joinTournamentSchema } from "../../schema/tournament/joinTournament";
 import { tournamentPageApi } from "../../services/api";
