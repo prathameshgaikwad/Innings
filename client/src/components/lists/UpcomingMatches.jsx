@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import FixtureCard from "../cards/FixtureCard/FixtureCard";
-import SliderMask from "../swiperComponents/SliderMask";
+import SliderMask from "../layouts/swiper/SliderMask";
 import UpcomingMatchesSkeleton from "../skeletons/UpcomingMatchesSkeleton";
 import { useMediaQuery } from "@mui/material";
 import { userApi } from "../../services/api";

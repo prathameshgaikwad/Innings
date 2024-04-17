@@ -9,7 +9,7 @@ import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import FallOfWicketCard from "../../cards/FallOfWicketCard";
-import SliderMask from "../../swiperComponents/SliderMask";
+import SliderMask from "../../layouts/swiper/SliderMask";
 
 const FallOfWicketsList = ({ data }) => {
   return (
