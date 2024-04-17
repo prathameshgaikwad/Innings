@@ -1,15 +1,8 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Divider,
-  Link,
-  Typography,
-} from "@mui/joy";
+import { Box, Card, CardContent, Divider, Typography } from "@mui/joy";
 
 import CreateTournamentCard from "../cards/CreateTournamentCard";
 import JoinATournament from "../cards/JoinATournament";
+import LinkedButton from "../buttons/LinkedButton";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const NoTournamentsJoined = () => {
@@ -35,17 +28,12 @@ const NoTournamentsJoined = () => {
           </Typography>
           <JoinATournament />
           <Divider sx={{ my: 2 }}>or</Divider>
-          <Button size="lg" color="primary" sx={{ width: "100%" }}>
-            <Link
-              href="/tournaments"
-              overlay
-              sx={{
-                color: "white",
-                "&:hover": { textDecoration: "none" },
-              }}>
-              Go to Tournaments
-            </Link>
-          </Button>
+          <LinkedButton
+            title={"Explore Tournaments"}
+            link={"/tournaments"}
+            width={"100%"}
+            size={"lg"}
+          />
           <Divider sx={{ my: 2 }}>or</Divider>
           <CreateTournamentCard />
         </CardContent>
