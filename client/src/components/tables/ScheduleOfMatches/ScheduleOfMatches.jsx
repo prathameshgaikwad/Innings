@@ -6,7 +6,7 @@ import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
 import ScheduleOfMatchesSheet from "./ScheduleOfMatchesSheet";
 import SectionHeader from "../../layouts/sections/SectionHeader";
 import SectionWrapper from "../../layouts/sections/SectionWrapper";
-import TableWrapper from "../../tableComponents/TableWrapper";
+import TableWrapper from "../../layouts/tables/TableWrapper";
 import formatLongDate from "../../../utilities/helpers/formatLongDate";
 import formatTime from "../../../utilities/helpers/formatTime";
 import { useSelector } from "react-redux";
