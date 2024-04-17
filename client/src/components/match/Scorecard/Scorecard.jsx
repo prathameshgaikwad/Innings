@@ -13,7 +13,7 @@ import CenteredBox from "../../layouts/pages/CenteredBox";
 import ScorecardContent from "./ScorecardContent";
 import ScorecardHeader from "./ScorecardHeader";
 import ScorecardSkeleton from "../../skeletons/ScorecardSkeleton";
-import TabsSegmentedControls from "../../TabsSegmentedControls";
+import TabsSegmentedControls from "../../controls/TabsSegmentedControls";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
