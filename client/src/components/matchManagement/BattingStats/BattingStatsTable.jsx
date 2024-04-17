@@ -2,8 +2,8 @@
 
 import { Sheet, Table, useTheme } from "@mui/joy";
 
-import TableHeader from "../../tableComponents/TableHeader";
-import TableRow from "../../tableComponents/TableRow";
+import TableHeader from "../../layouts/tables/TableHeader";
+import TableRow from "../../layouts/tables/TableRow";
 import { useMediaQuery } from "@mui/material";
 
 const BattingStatsTable = ({ battingData }) => {

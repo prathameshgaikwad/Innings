@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import NoData from "../../fallbacks/NoData";
 import RectangularSkeleton from "../../skeletons/RectangularSkeleton";
-import TableHeader from "../../tableComponents/TableHeader";
-import TableWrapper from "../../tableComponents/TableWrapper";
+import TableHeader from "../../layouts/tables/TableHeader";
+import TableWrapper from "../../layouts/tables/TableWrapper";
 import { tournamentPageApi } from "../../../services/api";
 import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";

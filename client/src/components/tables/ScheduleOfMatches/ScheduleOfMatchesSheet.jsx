@@ -2,7 +2,7 @@
 
 import { Table, useTheme } from "@mui/joy";
 
-import TableHeader from "../../tableComponents/TableHeader";
+import TableHeader from "../../layouts/tables/TableHeader";
 import { useMediaQuery } from "@mui/material";
 
 const ScheduleOfMatchesSheet = ({ rows }) => {
