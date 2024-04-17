@@ -11,7 +11,7 @@ import {
 
 import { CARD_BOX_SHADOW_GLOW_EFFECT } from "../../../utilities/constants";
 import CallToActionButton from "./CallToActionButton";
-import CustomModal from "../../modals/CustomModal";
+import CustomModal from "../../notifications/modals/CustomModal";
 import { MdAccessTime } from "react-icons/md";
 import SimpleMatchCardSkeleton from "../../skeletons/SimpleMatchCardSkeleton";
 import TeamColorBadge from "./TeamColorBadge";

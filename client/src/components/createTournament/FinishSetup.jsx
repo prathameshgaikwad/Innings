@@ -1,5 +1,5 @@
 import { Button } from "@mui/joy";
-import CustomModal from "../modals/CustomModal";
+import CustomModal from "../notifications/modals/CustomModal";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import { useSelector } from "react-redux";
 import { useState } from "react";

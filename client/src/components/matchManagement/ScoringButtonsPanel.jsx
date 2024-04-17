@@ -3,7 +3,7 @@
 import { Button, ButtonGroup, Card, Typography } from "@mui/joy";
 import { useEffect, useState } from "react";
 
-import CustomRunsModal from "../modals/CustomRunsModal";
+import CustomRunsModal from "../notifications/modals/CustomRunsModal";
 import { GrUndo } from "react-icons/gr";
 import ScoreButton from "../buttons/ScoreButton";
 import { useSelector } from "react-redux";

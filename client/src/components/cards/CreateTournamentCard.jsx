@@ -1,7 +1,7 @@
 import { Box, Button, Card, Modal, ModalDialog, Typography } from "@mui/joy";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CreateTournamentModal from "../modals/CreateTournamentModal";
+import CreateTournamentModal from "../notifications/modals/CreateTournamentModal";
 import DrawIcon from "@mui/icons-material/Draw";
 import { useState } from "react";
 

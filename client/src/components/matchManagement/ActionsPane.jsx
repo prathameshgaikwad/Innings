@@ -3,7 +3,7 @@
 import { Button, ButtonGroup, Typography, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 
-import CustomModal from "../modals/CustomModal";
+import CustomModal from "../notifications/modals/CustomModal";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { TbArrowsExchange } from "react-icons/tb";
 import { TbSwitch3 } from "react-icons/tb";

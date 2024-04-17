@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
 import CustomInput from "../../formComponents/CustomInput";
-import CustomModal from "../../modals/CustomModal";
+import CustomModal from "../../notifications/modals/CustomModal";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { HiOutlineSaveAs } from "react-icons/hi";
