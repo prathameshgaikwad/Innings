@@ -17,7 +17,10 @@ const LinkedButton = ({ title, link, size, width, my, color = "primary" }) => {
           color: theme.palette.common.white,
           "&:hover": { textDecoration: "none" },
         }}>
-        <Typography level="title-sm" noWrap color={theme.palette.common.white}>
+        <Typography
+          level={`title-${size === "sm" ? "sm" : "md"}`}
+          noWrap
+          color={theme.palette.common.white}>
           {title}
         </Typography>
       </Link>
