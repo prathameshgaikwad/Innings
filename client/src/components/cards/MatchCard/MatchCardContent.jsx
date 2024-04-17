@@ -68,7 +68,6 @@ const MatchCardContent = ({ data }) => {
           widths={[65, 90]}
         />
       </CardContent>
-
       <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
         <BottomBar overs={data.overs} venue={data.venue} progress={progress} />
       </CardOverflow>
