@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import CenteredBox from "../layouts/pages/CenteredBox";
-import { LiveIcon } from "../LiveIcon";
+import LiveIcon from "../LiveIcon";
 import MatchCard from "../cards/MatchCard/MatchCard";
 import NoLiveMatchPlaceholder from "../fallbacks/NoLiveMatchPlaceholder";
 import Typography from "@mui/joy/Typography";
