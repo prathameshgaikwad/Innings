@@ -2,7 +2,7 @@
 
 import { Divider, Skeleton } from "@mui/joy";
 
-const BatsmenStatsSkeleton = ({ isSmall }) => {
+const OnFieldBatsmenStatsSkeleton = ({ isSmall }) => {
   return (
     <>
       <Skeleton
@@ -20,4 +20,4 @@ const BatsmenStatsSkeleton = ({ isSmall }) => {
   );
 };
 
-export default BatsmenStatsSkeleton;
+export default OnFieldBatsmenStatsSkeleton;

@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 
 import BallLogList from "../lists/BallLogList";
-import BatsmenStats from "./BatsmenStats";
+import OnFieldBatsmenStats from "./OnFieldBatsmenStats";
 
 const OnFieldStats = ({ isLoading, batsmenData, ballLog, isSmall = true }) => {
   return (
     <>
-      <BatsmenStats
+      <OnFieldBatsmenStats
         data={batsmenData}
         isSmall={isSmall}
         isLoading={isLoading}
       />
-      <BallLogList isSmall={true} data={ballLog} isLoading={isLoading} />
+      <BallLogList data={ballLog} isLoading={isLoading} />
     </>
   );
 };

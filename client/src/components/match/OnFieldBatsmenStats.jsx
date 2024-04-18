@@ -2,10 +2,10 @@
 
 import { Card, Divider, Grid, Typography, useTheme } from "@mui/joy";
 
-import BatsmenStatsSkeleton from "../skeletons/BatsmenStatsSkeleton";
+import OnFieldBatsmenStatsSkeleton from "../skeletons/OnFieldBatsmenStatsSkeleton";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 
-const BatsmenStats = ({ isSmall, data, isLoading }) => {
+const OnFieldBatsmenStats = ({ isSmall, data, isLoading }) => {
   const { onStrikeBatsman, offStrikeBatsman } = data;
   const isEmpty =
     !data.onStrikeBatsman.name ||
@@ -28,7 +28,7 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
         py: 0,
       }}>
       {isLoading ? (
-        <BatsmenStatsSkeleton isSmall={isSmall} />
+        <OnFieldBatsmenStatsSkeleton isSmall={isSmall} />
       ) : (
         <>
           {isEmpty ? (
@@ -78,4 +78,4 @@ const BatsmenStats = ({ isSmall, data, isLoading }) => {
   );
 };
 
-export default BatsmenStats;
+export default OnFieldBatsmenStats;
