@@ -46,13 +46,13 @@ const TournamentCard = ({ id }) => {
           throw new Error("Could not retrieve tournament details");
         }
 
-        const { name, venue, start_date, overs, banner_urls } =
+        const { name, venue, start_date, total_overs, banner_urls } =
           await response.json();
 
         setName(name);
         setStartDate(() => formatDate(start_date));
         setVenue(venue);
-        setOvers(overs);
+        setOvers(total_overs);
         setBannerURLS(banner_urls);
         setIsLoading(false);
       } catch (error) {
