@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import BallLogList from "../lists/BallLogList";
+import BallLog from "../lists/BallLog";
 import CenteredBox from "../layouts/pages/CenteredBox";
 import OnFieldBatsmenStats from "./OnFieldBatsmenStats";
 
@@ -20,7 +20,7 @@ const OnFieldStats = ({
         isLoading={isLoading}
         isAdmin={isAdmin}
       />
-      <BallLogList
+      <BallLog
         ballLog={ballLog}
         bowlerData={bowlerData}
         isLoading={isLoading}

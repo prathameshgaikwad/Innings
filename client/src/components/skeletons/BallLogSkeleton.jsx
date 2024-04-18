@@ -1,6 +1,6 @@
 import { Divider, Skeleton } from "@mui/joy";
 
-const BallLogListSkeleton = () => {
+const BallLogSkeleton = () => {
   return (
     <>
       <Skeleton animation="wave" variant="text" level="body-sm" width={"38%"} />
@@ -15,4 +15,4 @@ const BallLogListSkeleton = () => {
   );
 };
 
-export default BallLogListSkeleton;
+export default BallLogSkeleton;

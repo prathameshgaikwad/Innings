@@ -7,8 +7,8 @@ import "../../styles.css";
 import { Box, Card, Divider, Stack, Typography } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import BallLogListSkeleton from "../skeletons/BallLogListSkeleton";
 import BallLogSeparator from "../dataDisplay/BallLogSeparator";
+import BallLogSkeleton from "../skeletons/BallLogSkeleton";
 import { BiSolidCricketBall } from "react-icons/bi";
 import LogItem from "../dataDisplay/LogItem";
 import { Mousewheel } from "swiper/modules";
@@ -18,7 +18,7 @@ import SliderMask from "../layouts/swiper/SliderMask";
 import { setBowler } from "../../state/match/matchManagementSlice";
 import { useSelector } from "react-redux";
 
-const BallLogList = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
+const BallLog = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
   const { bowlingTeam } = useSelector((state) => state.matchManagement);
   const noBowler = !bowlerData.name || bowlerData.name.length === 0;
 
@@ -36,7 +36,7 @@ const BallLogList = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
         py: 0,
       }}>
       {isLoading ? (
-        <BallLogListSkeleton />
+        <BallLogSkeleton />
       ) : (
         <>
           <Box width={"38%"} alignItems={"center"}>
@@ -146,4 +146,4 @@ const BallLogList = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
   );
 };
 
-export default BallLogList;
+export default BallLog;
