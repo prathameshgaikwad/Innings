@@ -8,6 +8,7 @@ import {
 
 import OnFieldBatsmenStatsSkeleton from "../skeletons/OnFieldBatsmenStatsSkeleton";
 import SelectPlayer from "../matchManagement/SelectPlayer";
+import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 import { useSelector } from "react-redux";
 
 const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
@@ -61,13 +62,19 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
                     isDarkTheme ? "light" : "dark"
                   }.svg`}
                 />
-                {isAdmin && noOnStrikeBatsman ? (
-                  <SelectPlayer
-                    playerType={"On-Strike Batsman"}
-                    players={battingTeam.players}
-                    dispatchTarget={setOnStrikeBatsman}
-                    disabled={isLoading}
-                  />
+                {noOnStrikeBatsman ? (
+                  isAdmin ? (
+                    <SelectPlayer
+                      playerType={"On-Strike Batsman"}
+                      players={battingTeam.players}
+                      dispatchTarget={setOnStrikeBatsman}
+                      disabled={isLoading}
+                    />
+                  ) : (
+                    <SimpleTextFallback
+                      content={"On-Strike batsman data will appear here."}
+                    />
+                  )
                 ) : (
                   <Typography level={isSmall ? "title-sm" : "title-md"}>
                     {onStrikeBatsman.name} - {onStrikeBatsman.runs || 0} (
@@ -77,13 +84,19 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
               </Grid>
               <Divider orientation="vertical" sx={{ marginRight: 2 }} />
               <Grid>
-                {isAdmin && noOffStrikeBatsman ? (
-                  <SelectPlayer
-                    playerType={"Off-Strike Batsman"}
-                    players={battingTeam.players}
-                    dispatchTarget={setOffStrikeBatsman}
-                    disabled={isLoading}
-                  />
+                {noOffStrikeBatsman ? (
+                  isAdmin ? (
+                    <SelectPlayer
+                      playerType={"Off-Strike Batsman"}
+                      players={battingTeam.players}
+                      dispatchTarget={setOffStrikeBatsman}
+                      disabled={isLoading}
+                    />
+                  ) : (
+                    <SimpleTextFallback
+                      content={"Off-Strike batsman data will appear here."}
+                    />
+                  )
                 ) : (
                   <Typography level={isSmall ? "body-xs" : "body-sm"}>
                     {offStrikeBatsman.name} - {offStrikeBatsman.runs || 0} (
