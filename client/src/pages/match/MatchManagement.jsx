@@ -113,7 +113,6 @@ const MatchManagement = () => {
                 flexDirection: isMobile ? "column" : "row",
                 alignItems: "center",
                 gap: isMobile ? 4 : 1.5,
-                mt: 4,
                 width: "100%",
               }}>
               <Card
