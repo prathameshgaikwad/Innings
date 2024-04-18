@@ -7,7 +7,12 @@ const SimpleTextFallback = ({ height = 61.2, content, level = "body-xs" }) => {
     <Typography
       height={height}
       level={level}
-      sx={{ display: "flex", alignItems: "center", whiteSpace: "nowrap" }}>
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        whiteSpace: "nowrap",
+        opacity: 0.66,
+      }}>
       {content}
     </Typography>
   );
