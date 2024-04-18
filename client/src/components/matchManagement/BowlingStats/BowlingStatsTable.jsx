@@ -25,11 +25,11 @@ const BowlingStatsTable = ({ bowlingData }) => {
           fontSize: isMobile ? "0.85rem" : "",
         }}>
         <TableHeader headers={tableHeaders} />
-        <tbody>
+        {/* <tbody>
           {bowlingData.map((row, index) => (
             <TableRow key={index} data={row} dataKeys={dataKeys} />
           ))}
-        </tbody>
+        </tbody> */}
       </Table>
     </Sheet>
   );

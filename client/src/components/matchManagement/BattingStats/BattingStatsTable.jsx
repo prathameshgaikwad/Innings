@@ -50,11 +50,11 @@ const BattingStatsTable = ({ battingData }) => {
           fontSize: isMobile ? "0.85rem" : "",
         }}>
         <TableHeader headers={tableHeaders} />
-        <tbody>
+        {/* <tbody>
           {battingData.map((row, index) => (
             <TableRow key={index} data={row} dataKeys={dataKeys} />
           ))}
-        </tbody>
+        </tbody> */}
       </Table>
     </Sheet>
   );
