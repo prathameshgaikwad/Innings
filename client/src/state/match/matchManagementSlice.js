@@ -66,10 +66,10 @@ const matchManagementSlice = createSlice({
       state.bowlingTeam = bowlingTeam;
 
       if (toss.winner_id) {
-        state.toss.winnerId = toss.winner_id;
+        state.toss.winner_id = toss.winner_id;
         state.toss.decision = toss.decision;
-        state.toss.winner = toss.winner;
-        state.toss.loser = toss.loser;
+        state.toss.winner_name = toss.winner_name;
+        state.toss.loser_name = toss.loser_name;
       }
 
       if (result.winnerId) {
