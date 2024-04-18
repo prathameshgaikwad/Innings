@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import BallLog from "../lists/BallLog";
+import BallLog from "../lists/BallLog/BallLog";
 import CenteredBox from "../layouts/pages/CenteredBox";
 import OnFieldBatsmenStats from "./OnFieldBatsmenStats";
 
