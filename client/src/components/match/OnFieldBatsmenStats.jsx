@@ -56,12 +56,6 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
                   gap: 2,
                   mr: 2,
                 }}>
-                <img
-                  width={21}
-                  src={`/assets/batsman_icon_${
-                    isDarkTheme ? "light" : "dark"
-                  }.svg`}
-                />
                 {noOnStrikeBatsman ? (
                   isAdmin ? (
                     <SelectPlayer
@@ -76,10 +70,18 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
                     />
                   )
                 ) : (
-                  <Typography level={isSmall ? "title-sm" : "title-md"}>
-                    {onStrikeBatsman.name} - {onStrikeBatsman.runs || 0} (
-                    {onStrikeBatsman.ballsPlayed || 0})
-                  </Typography>
+                  <>
+                    <img
+                      width={21}
+                      src={`/assets/batsman_icon_${
+                        isDarkTheme ? "light" : "dark"
+                      }.svg`}
+                    />
+                    <Typography level={isSmall ? "title-sm" : "title-md"}>
+                      {onStrikeBatsman.name} - {onStrikeBatsman.runs || 0} (
+                      {onStrikeBatsman.ballsPlayed || 0})
+                    </Typography>
+                  </>
                 )}
               </Grid>
               <Divider orientation="vertical" sx={{ marginRight: 2 }} />
