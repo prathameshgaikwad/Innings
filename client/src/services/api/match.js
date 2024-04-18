@@ -1,10 +1,8 @@
-import { setMatch } from "../../state/match/matchSlice";
-
 const MATCHES_API = import.meta.env.VITE_SERVER_MATCHES_API;
 
 export const getMatchInfo =
   ({ matchId, token, setIsLoading }) =>
-  async (dispatch) => {
+  async () => {
     try {
       const response = await fetch(`${MATCHES_API}/${matchId}`, {
         method: "GET",
@@ -16,10 +14,11 @@ export const getMatchInfo =
         throw new Error("Fetching error");
       }
 
-      const data = await response.json();
-      dispatch(setMatch(data));
-      setIsLoading(false);
+      const matchData = await response.json();
+      return matchData;
     } catch (error) {
       console.log("error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
