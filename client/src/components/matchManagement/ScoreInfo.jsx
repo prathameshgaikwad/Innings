@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 
 const ScoreInfo = ({ isLoading }) => {
   const matchManagement = useSelector((state) => state.matchManagement);
-  const totalOvers = matchManagement.overs || 0;
+  const totalOvers = matchManagement.total_overs || 0;
   const battingTeam = matchManagement.battingTeam || "ABC";
   const runs = matchManagement.runs || 0;
   const wickets = matchManagement.wickets || 0;
@@ -40,7 +40,7 @@ const ScoreInfo = ({ isLoading }) => {
             <CardContent
               orientation="horizontal"
               sx={{ justifyContent: "space-between", alignItems: "center" }}>
-              <Typography level="h2">{battingTeam.nameShort}</Typography>
+              <Typography level="h2">{battingTeam.name_short}</Typography>
               <Typography level="h2">
                 {runs}/{wickets}
               </Typography>
