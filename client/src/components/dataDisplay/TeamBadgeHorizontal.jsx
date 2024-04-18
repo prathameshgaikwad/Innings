@@ -32,7 +32,7 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
                 borderRadius: "50%",
                 border: "4px solid",
                 borderColor: team_color,
-                width: isSmall ? 30 : 40,
+                width: isSmall ? 35 : 40,
                 mr: 2,
               }}>
               {!logo_url ? (
