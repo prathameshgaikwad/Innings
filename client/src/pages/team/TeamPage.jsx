@@ -20,9 +20,8 @@ const TeamPage = () => {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
-  const { tournamentId } = useParams();
+  const { tournamentId, teamId } = useParams();
 
-  const { teamId } = useParams();
   const token = useSelector((state) => state.user.token);
 
   const [isLoading, setIsLoading] = useState(true);
