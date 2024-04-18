@@ -15,57 +15,50 @@ import { useEffect, useState } from "react";
 import { BiSolidCricketBall } from "react-icons/bi";
 import TournamentCardSkeleton from "../skeletons/TournamentCardSkeleton";
 import formatDate from "../../utilities/helpers/formatDate";
+import { tournamentPageApi } from "../../services/api";
 import useHover from "../../hooks/useHover";
 import { useSelector } from "react-redux";
-
-const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
 
 const TournamentCard = ({ id }) => {
   const token = useSelector((state) => state.user.token);
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
+  const tournamentId = id;
+  const tournamentURL = `/tournaments/${tournamentId}`;
 
   const [isLoading, setIsLoading] = useState(true);
+  const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
 
-  const [name, setName] = useState("");
-  const [venue, setVenue] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [overs, setOvers] = useState("");
-  const [bannerURLS, setBannerURLS] = useState({ large: "", small: "" });
+  const [tournamentDetails, setTournamentDetails] = useState({
+    name: "",
+    venue: "",
+    startDate: "",
+    totalOvers: "",
+    bannerURLS: { large: "", small: "" },
+  });
+
+  const { name, venue, startDate, totalOvers, bannerURLS } = tournamentDetails;
 
   useEffect(() => {
-    const getTournamentDetails = async () => {
-      try {
-        const response = await fetch(`${TOURNAMENTS_API}/${id}`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Could not retrieve tournament details");
-        }
+    const fetchTournamentDetails = async () => {
+      const { name, venue, start_date, total_overs, banner_urls } =
+        await tournamentPageApi.getTournamentDetails({
+          id,
+          token,
+          setIsLoading,
+        })();
 
-        const { name, venue, start_date, total_overs, banner_urls } =
-          await response.json();
-
-        setName(name);
-        setStartDate(() => formatDate(start_date));
-        setVenue(venue);
-        setOvers(total_overs);
-        setBannerURLS(banner_urls);
-        setIsLoading(false);
-      } catch (error) {
-        console.log("error:", error);
-      }
+      setTournamentDetails({
+        name,
+        venue,
+        startDate: formatDate(start_date || Date.now()),
+        totalOvers: total_overs,
+        bannerURLS: banner_urls,
+      });
     };
-    getTournamentDetails();
-  }, [id]);
 
-  const tournamentID = id;
-  const tournamentURL = `/tournaments/${tournamentID}`;
-
-  const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
+    fetchTournamentDetails();
+  }, [id, token, setIsLoading]);
 
   return (
     <>
@@ -132,7 +125,7 @@ const TournamentCard = ({ id }) => {
                       style={{ color: theme.palette.text.secondary }}
                     />
                   }>
-                  {overs} Overs
+                  {totalOvers} Overs
                 </Typography>
                 <Divider orientation="vertical" />
                 <Typography

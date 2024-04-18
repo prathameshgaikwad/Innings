@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CustomToast from "../notifications/toasts/CustomToast";
 import TournamentBanner from "./TournamentBanner";
 import TournamentInfo from "./TournamentInfo";
+import { setTournamentDetails } from "../../state/tournament/tournamentPageSlice";
 import { tournamentPageApi } from "../../services/api";
 
 const TournamentHeader = ({ id, isAdmin, isSetupComplete }) => {
@@ -16,10 +17,17 @@ const TournamentHeader = ({ id, isAdmin, isSetupComplete }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
-    dispatch(
-      tournamentPageApi.getTournamentDetails({ id, token, setIsLoading })
-    );
-  }, [dispatch, id, token]);
+    const fetchTournamentDetails = async () => {
+      const tournamentDetails = await tournamentPageApi.getTournamentDetails({
+        id,
+        token,
+        setIsLoading,
+      })();
+      dispatch(setTournamentDetails(tournamentDetails));
+    };
+
+    fetchTournamentDetails();
+  }, [setIsLoading, id, token]);
 
   const details = useSelector((state) => state.tournamentPage.details);
   const teams = useSelector((state) => state.tournamentPage.teams);
