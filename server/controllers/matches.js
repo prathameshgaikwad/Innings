@@ -42,11 +42,15 @@ const getMatchDetails = async (req, res) => {
       toss,
     });
 
-    const richTossData = await generateRichTossData({
-      toss,
-      team1_id,
-      team2_id,
-    });
+    let tossData = toss;
+
+    if (toss.winner_id) {
+      tossData = await generateRichTossData({
+        toss,
+        team1_id,
+        team2_id,
+      });
+    }
 
     const matchData = {
       _id,
@@ -55,7 +59,7 @@ const getMatchDetails = async (req, res) => {
       venue,
       status,
       result,
-      toss: richTossData,
+      toss: tossData,
       innings,
       team1_id,
       team2_id,
