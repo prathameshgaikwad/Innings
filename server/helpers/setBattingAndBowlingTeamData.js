@@ -12,14 +12,16 @@ const setBattingAndBowlingTeamData = async ({
   const richTeam1Data = await getRichTeamData({ team_id: team1._id });
   const richTeam2Data = await getRichTeamData({ team_id: team2._id });
 
-  const isFirstInnings = innings.length === 0;
+  const isOddInnings = (innings.length + 1) % 2 === 1;
   const isChoiceToBat = toss.decision === "bat";
-  const tossWinningTeam =
-    toss.winnerId === team1._id ? richTeam1Data : richTeam2Data;
-  const tossLosingTeam =
-    toss.winnerId === team1._id ? richTeam2Data : richTeam1Data;
+  const tossWinningTeam = toss.winner_id.equals(team1._id)
+    ? richTeam1Data
+    : richTeam2Data;
+  const tossLosingTeam = toss.winner_id.equals(team1._id)
+    ? richTeam2Data
+    : richTeam1Data;
 
-  if (isFirstInnings) {
+  if (isOddInnings) {
     if (isChoiceToBat) {
       battingTeam = tossWinningTeam;
       bowlingTeam = tossLosingTeam;
