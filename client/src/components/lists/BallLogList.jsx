@@ -40,12 +40,16 @@ const BallLogList = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
       ) : (
         <>
           <Box width={"38%"} alignItems={"center"}>
-            {isAdmin && noBowler ? (
-              <SelectPlayer
-                playerType={"Bowler"}
-                players={bowlingTeam.players}
-                dispatchTarget={setBowler}
-              />
+            {noBowler ? (
+              isAdmin ? (
+                <SelectPlayer
+                  playerType={"Bowler"}
+                  players={bowlingTeam.players}
+                  dispatchTarget={setBowler}
+                />
+              ) : (
+                <SimpleTextFallback content={"Bowler data will appear here."} />
+              )
             ) : (
               <Typography
                 level={"body-xs"}
@@ -65,7 +69,7 @@ const BallLogList = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
           {!ballLog || (ballLog && ballLog.length === 0) ? (
             <SimpleTextFallback
               content={
-                "Bowling data will appear here once the game has been played."
+                "Ball log will appear here once the game has been played."
               }
             />
           ) : (
