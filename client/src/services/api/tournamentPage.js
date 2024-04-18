@@ -2,7 +2,6 @@ import {
   setFixturesData,
   setPointsTable,
   setTeams,
-  setTournamentDetails,
 } from "../../state/tournament/tournamentPageSlice";
 
 const TOURNAMENTS_API = import.meta.env.VITE_SERVER_TOURNAMENTS_API;
@@ -78,7 +77,7 @@ export const getPointsTable =
 
 export const getTournamentDetails =
   ({ id, token, setIsLoading }) =>
-  async (dispatch) => {
+  async () => {
     try {
       const response = await fetch(`${TOURNAMENTS_API}/${id}`, {
         method: "GET",
@@ -89,12 +88,12 @@ export const getTournamentDetails =
       if (!response.ok) {
         throw new Error("Could not retrieve tournament details");
       }
-
-      const details = await response.json();
-      dispatch(setTournamentDetails(details));
-      setIsLoading(false);
+      const tournamentDetails = await response.json();
+      return tournamentDetails;
     } catch (error) {
       console.log("error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
