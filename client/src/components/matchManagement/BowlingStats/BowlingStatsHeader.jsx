@@ -3,13 +3,8 @@
 import { Stack, Typography } from "@mui/joy";
 
 import { BiSolidCricketBall } from "react-icons/bi";
-import SelectPlayer from "../SelectPlayer";
 
-const BowlingStatsHeader = ({
-  rawPlayersData,
-  isBowlerSelected,
-  isLoading,
-}) => {
+const BowlingStatsHeader = () => {
   return (
     <Stack direction="row" alignItems="center" justifyContent="space-between">
       <Typography
@@ -18,13 +13,6 @@ const BowlingStatsHeader = ({
         startDecorator={<BiSolidCricketBall />}>
         BOWLING
       </Typography>
-      {rawPlayersData && !isBowlerSelected && (
-        <SelectPlayer
-          playerType={"Bowler"}
-          rawPlayersData={rawPlayersData}
-          disabled={isLoading}
-        />
-      )}
     </Stack>
   );
 };

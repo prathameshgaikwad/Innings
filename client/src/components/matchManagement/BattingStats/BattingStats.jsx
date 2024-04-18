@@ -5,7 +5,6 @@ import { Card, CardContent } from "@mui/joy";
 import BattingStatsHeader from "./BattingStatsHeader";
 import BattingStatsTable from "./BattingStatsTable";
 import NoData from "../../fallbacks/NoData";
-import { createPlayerOption } from "../../../utilities/helpers/createPlayerOption";
 import { useSelector } from "react-redux";
 
 function createBattingData(
@@ -22,25 +21,7 @@ function createBattingData(
 }
 
 const BattingStats = ({ isLoading }) => {
-  const battingTeam = useSelector((state) => state.matchManagement.battingTeam);
-  const players = battingTeam && battingTeam.players;
-
-  const rawPlayersData =
-    players &&
-    players.map((player) =>
-      createPlayerOption(`${player.first_name} ${player.last_name}`, player._id)
-    );
-
   const batsmen = useSelector((state) => state.matchManagement.batsmen);
-
-  let batsmenCount = 0;
-
-  if (batsmen.onStrikeBatsman._id && batsmen.onStrikeBatsman._id.length > 0) {
-    batsmenCount++;
-  }
-  if (batsmen.offStrikeBatsman._id && batsmen.offStrikeBatsman._id.length > 0) {
-    batsmenCount++;
-  }
 
   const battingData = [
     createBattingData(
@@ -68,11 +49,7 @@ const BattingStats = ({ isLoading }) => {
   return (
     <Card variant="plain" sx={{ width: "100%" }}>
       <CardContent>
-        <BattingStatsHeader
-          isLoading={isLoading}
-          rawPlayersData={rawPlayersData}
-          batsmenCount={batsmenCount}
-        />
+        <BattingStatsHeader />
         {isLoading || battingData.length === 0 ? (
           <NoData height={150} isSmall={true} />
         ) : (

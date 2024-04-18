@@ -3,9 +3,8 @@
 import { Stack, Typography } from "@mui/joy";
 
 import { MdSportsCricket } from "react-icons/md";
-import SelectPlayer from "../SelectPlayer";
 
-const BattingStatsHeader = ({ rawPlayersData, batsmenCount, isLoading }) => {
+const BattingStatsHeader = () => {
   return (
     <Stack direction="row" alignItems="center" justifyContent="space-between">
       <Typography
@@ -14,13 +13,6 @@ const BattingStatsHeader = ({ rawPlayersData, batsmenCount, isLoading }) => {
         startDecorator={<MdSportsCricket />}>
         BATTING
       </Typography>
-      {rawPlayersData && batsmenCount !== 2 && (
-        <SelectPlayer
-          playerType={"Batsman"}
-          rawPlayersData={rawPlayersData}
-          disabled={isLoading}
-        />
-      )}
     </Stack>
   );
 };
