@@ -2,19 +2,25 @@
 
 import { Button, Stack } from "@mui/joy";
 import { Form, Formik } from "formik";
-import {
-  setBowler,
-  setOffStrikeBatsman,
-  setOnStrikeBatsman,
-} from "../../state/match/matchManagementSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 import CustomSelect from "../formComponents/CustomSelect";
 import { choosePlayer } from "../../schema/match/choosePlayer";
+import { createPlayerOption } from "../../utilities/helpers/createPlayerOption";
+import { useDispatch } from "react-redux";
 
-const SelectPlayer = ({ playerType, rawPlayersData, disabled }) => {
+const SelectPlayer = ({
+  playerType,
+  players,
+  disabled = false,
+  dispatchTarget,
+}) => {
   const dispatch = useDispatch();
-  const batsmen = useSelector((state) => state.matchManagement.batsmen);
+
+  const rawPlayersData =
+    players &&
+    players.map((player) =>
+      createPlayerOption(`${player.first_name} ${player.last_name}`, player._id)
+    );
 
   const sortedPlayersData = rawPlayersData
     .slice()
@@ -35,14 +41,7 @@ const SelectPlayer = ({ playerType, rawPlayersData, disabled }) => {
     });
     values.player.name = name.label;
 
-    if (batsmen.onStrikeBatsman._id.length === 0) {
-      dispatch(setOnStrikeBatsman(values.player));
-    } else if (batsmen.offStrikeBatsman._id.length === 0) {
-      dispatch(setOffStrikeBatsman(values.player));
-    } else {
-      dispatch(setBowler(values.player));
-    }
-
+    dispatch(dispatchTarget(values.player));
     resetForm();
   };
 
@@ -53,9 +52,18 @@ const SelectPlayer = ({ playerType, rawPlayersData, disabled }) => {
       onSubmit={onSubmit}>
       {() => (
         <Form>
-          <Stack spacing={2} justifyContent="flex-start" direction="row" my={2}>
+          <Stack
+            gap={2}
+            justifyContent="flex-start"
+            alignItems={"center"}
+            direction="row"
+            my={2}>
             <CustomSelect name="player._id" options={sortedPlayersData} />
-            <Button type="submit" disabled={disabled}>
+            <Button
+              type="submit"
+              size="sm"
+              sx={{ fontSize: "xs", textWrap: "nowrap" }}
+              disabled={disabled}>
               Choose {playerType}
             </Button>
           </Stack>
