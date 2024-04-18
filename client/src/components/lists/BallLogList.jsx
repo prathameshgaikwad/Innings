@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "../../styles.css";
 
-import { Box, Card, Divider, Typography } from "@mui/joy";
+import { Box, Card, Divider, Stack, Typography } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import BallLogListSkeleton from "../skeletons/BallLogListSkeleton";
@@ -51,18 +51,43 @@ const BallLogList = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
                 <SimpleTextFallback content={"Bowler data will appear here."} />
               )
             ) : (
-              <Typography
-                level={"body-xs"}
-                color="neutral"
-                startDecorator={
-                  <BiSolidCricketBall
-                    fontSize={16}
-                    style={{ marginRight: 4 }}
-                  />
-                }
-                noWrap>
-                {bowlerData.name}
-              </Typography>
+              <Stack direction={"row"} justifyContent={"space-between"}>
+                <Typography
+                  level={"body-sm"}
+                  color="neutral"
+                  fontWeight={"lg"}
+                  startDecorator={
+                    <BiSolidCricketBall
+                      fontSize={16}
+                      style={{ marginRight: 4 }}
+                    />
+                  }
+                  noWrap>
+                  {bowlerData.name}
+                </Typography>
+                <Stack
+                  direction={"row"}
+                  justifyContent={"space-between"}
+                  gap={1}>
+                  <Typography
+                    level={"body-sm"}
+                    color="neutral"
+                    noWrap
+                    fontWeight={"lg"}>
+                    {`${bowlerData.runs_conceded || 0} -
+                  ${bowlerData.wickets_taken || 0}`}
+                  </Typography>
+                  <Typography
+                    level={"body-sm"}
+                    color="neutral"
+                    noWrap
+                    sx={{ opacity: 0.75 }}>
+                    {`(${bowlerData.overs_bowled || 0}.${
+                      bowlerData.balls_bowled || 0
+                    })`}
+                  </Typography>
+                </Stack>
+              </Stack>
             )}
           </Box>
           <Divider orientation="vertical" />

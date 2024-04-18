@@ -14,6 +14,10 @@ const initialState = {
   bowler: {
     _id: null,
     name: null,
+    overs_bowled: null,
+    balls_bowled: null,
+    wickets_taken: null,
+    runs_conceded: null,
   },
   total_overs: null,
   venue: null,
