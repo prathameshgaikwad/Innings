@@ -74,6 +74,7 @@ const Match = () => {
 
   const ball_log = [];
   const batsmenData = match.batsmen;
+  const bowlerData = match.bowler;
 
   return (
     <>
@@ -114,6 +115,7 @@ const Match = () => {
                 <OnFieldStats
                   isLoading={isLoading}
                   batsmenData={batsmenData}
+                  bowlerData={bowlerData}
                   ballLog={ball_log}
                   isSmall={false}
                 />

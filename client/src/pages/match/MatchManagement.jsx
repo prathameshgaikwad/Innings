@@ -49,11 +49,12 @@ const MatchManagement = () => {
   const ballLog = useSelector((state) => state.matchManagement.ball_log);
   const innings = useSelector((state) => state.matchManagement.innings);
   const batsmenData = useSelector((state) => state.matchManagement.batsmen);
-  const { team1, team2, match_no } = useSelector(
+  const bowlerData = useSelector((state) => state.matchManagement.bowler);
+  const { battingTeam, bowlingTeam, match_no } = useSelector(
     (state) => state.matchManagement
   );
 
-  const isHeaderDataAvailable = team1 && team2 && match_no;
+  const isHeaderDataAvailable = battingTeam && bowlingTeam && match_no;
 
   const [tossCompleted, setTossCompleted] = useState(status);
 
@@ -90,14 +91,20 @@ const MatchManagement = () => {
         {isHeaderDataAvailable && (
           <Header
             isLoading={isLoading}
-            team1={team1}
-            team2={team2}
+            team1={battingTeam}
+            team2={bowlingTeam}
             match_no={match_no}
           />
         )}
         {!tossCompleted ? (
-          team1 &&
-          team2 && <ConductToss matchId={matchId} team1={team1} team2={team2} />
+          battingTeam &&
+          bowlingTeam && (
+            <ConductToss
+              matchId={matchId}
+              team1={battingTeam}
+              team2={bowlingTeam}
+            />
+          )
         ) : (
           <>
             <Box
@@ -130,7 +137,9 @@ const MatchManagement = () => {
                 <OnFieldStats
                   isLoading={isLoading}
                   batsmenData={batsmenData}
+                  bowlerData={bowlerData}
                   ballLog={ballLog}
+                  isAdmin={true}
                 />
                 <PlayerStatsOverview isLoading={isLoading} />
               </Card>
