@@ -2,7 +2,7 @@ import { Box, Card, useTheme } from "@mui/joy";
 import {
   addRuns,
   setBallLog,
-  setRuns,
+  setMatch,
 } from "../../state/match/matchManagementSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ import PageContainer from "../../components/layouts/pages/PageContainer";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
-import { matchManagementApi } from "../../services/api";
+import { matchApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
@@ -37,15 +37,16 @@ const MatchManagement = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(
-      matchManagementApi.getMatchManagementInfo({
+    const fetchMatchDetails = async () => {
+      const matchDetails = await matchApi.getMatchInfo({
         matchId,
         token,
         setIsLoading,
-      })
-    );
-    dispatch(setRuns());
-  }, [dispatch, matchId, token]);
+      })();
+      dispatch(setMatch(matchDetails));
+    };
+    fetchMatchDetails();
+  }, [setIsLoading, matchId, token]);
 
   const ballLog = useSelector((state) => state.matchManagement.ball_log);
   const innings = useSelector((state) => state.matchManagement.innings);
