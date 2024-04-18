@@ -32,7 +32,7 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
                 borderRadius: "50%",
                 border: "4px solid",
                 borderColor: team_color,
-                width: isSmall ? 40 : 50,
+                width: isSmall ? 30 : 40,
                 mr: 2,
               }}>
               {!logo_url ? (
@@ -41,7 +41,9 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
                 <img src={logo_url} style={{ backgroundSize: "cover" }} />
               )}
             </AspectRatio>
-            <Typography level={isSmall ? "title-lg" : "h3"}>{name}</Typography>
+            <Typography level={isSmall ? "title-lg" : "h4"} noWrap>
+              {name}
+            </Typography>
           </Link>
           {performance && performance.length > 0 && (
             <TeamPerformance performance={performance} size={5} />

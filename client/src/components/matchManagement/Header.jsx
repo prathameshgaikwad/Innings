@@ -40,9 +40,9 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
         sx={{
           display: "inline-flex",
           alignItems: "center",
-          gap: isMobile ? 2 : 4,
+          gap: 2,
         }}>
-        <Typography level={isMobile ? "h3" : "h1"} sx={{ opacity: 0.5 }}>
+        <Typography level={isMobile ? "h4" : "h3"} sx={{ opacity: 0.5 }} noWrap>
           # {matchNumber}
         </Typography>
         <TeamBadgeHorizontal
@@ -50,7 +50,7 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
           isSmall={false}
           isLoading={isLoading}
         />
-        <Typography level={isMobile ? "h4" : "h3"} color="neutral">
+        <Typography level={isMobile ? "title-lg " : "h4"} color="neutral">
           vs
         </Typography>
         <TeamBadgeHorizontal
