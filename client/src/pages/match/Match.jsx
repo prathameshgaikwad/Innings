@@ -3,14 +3,13 @@ import { setMatch, setToss } from "../../state/match/matchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import BallLogList from "../../components/lists/BallLogList";
-import BatsmenStats from "../../components/match/BatsmenStats";
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import Footer from "../../components/common/Footer";
 import ManOfTheMatchCard from "../../components/cards/ManOfTheMatchCard";
 import ManageEventAlert from "../../components/notifications/alerts/ManageEventAlert";
 import MatchCard from "../../components/cards/MatchCard/MatchCard";
 import Navbar from "../../components/common/Navbar/Navbar";
+import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import TeamCard from "../../components/cards/TeamCard";
@@ -112,12 +111,12 @@ const Match = () => {
                 direction={"column"}
                 gap={2}>
                 {innings === "2" && <ChaseStatsCard isAdmin={false} />}
-                <BatsmenStats
-                  data={batsmenData}
-                  isSmall={false}
+                <OnFieldStats
                   isLoading={isLoading}
+                  batsmenData={batsmenData}
+                  ballLog={ball_log}
+                  isSmall={false}
                 />
-                <BallLogList data={ball_log} isLoading={isLoading} />
               </Stack>
             )}
             <Scorecard isAdmin={false} isLoading={isLoading} />

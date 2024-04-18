@@ -8,16 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import ActionsPane from "../../components/matchManagement/ActionsPane";
-import BallLogList from "../../components/lists/BallLogList";
-import BatsmenStats from "../../components/match/BatsmenStats";
-import BattingStats from "../../components/matchManagement/BattingStats/BattingStats";
-import BowlingStats from "../../components/matchManagement/BowlingStats/BowlingStats";
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import ConductToss from "../../components/matchManagement/ConductToss";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/matchManagement/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
+import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
+import PlayerStatsOverview from "../../components/match/PlayerStatsOverview";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
@@ -129,18 +127,12 @@ const MatchManagement = () => {
                   justifyContent: "space-between",
                 }}>
                 <ActionsPane isLoading={isLoading} />
-                <BatsmenStats
-                  data={batsmenData}
-                  isSmall={true}
+                <OnFieldStats
                   isLoading={isLoading}
+                  batsmenData={batsmenData}
+                  ballLog={ballLog}
                 />
-                <BallLogList
-                  isSmall={true}
-                  data={ballLog}
-                  isLoading={isLoading}
-                />
-                <BattingStats isLoading={isLoading} />
-                <BowlingStats isLoading={isLoading} />
+                <PlayerStatsOverview isLoading={isLoading} />
               </Card>
             </Box>
             <Box mb={8}>
