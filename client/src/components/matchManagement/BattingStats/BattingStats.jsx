@@ -27,7 +27,9 @@ const BattingStats = ({ isLoading }) => {
 
   const rawPlayersData =
     players &&
-    players.map((player) => createPlayerOption(player.playerName, player._id));
+    players.map((player) =>
+      createPlayerOption(`${player.first_name} ${player.last_name}`, player._id)
+    );
 
   const batsmen = useSelector((state) => state.matchManagement.batsmen);
 
