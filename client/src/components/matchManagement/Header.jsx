@@ -18,10 +18,9 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const { tournamentId } = useParams();
-  const { matchId } = useParams();
 
   const handleGoBackRequest = () => {
-    navigate(`/tournaments/${tournamentId}/${matchId}`);
+    navigate(`/tournaments/${tournamentId}/manage`);
   };
 
   const [openCompleteScoringModal, setOpenCompleteScoringModal] =
