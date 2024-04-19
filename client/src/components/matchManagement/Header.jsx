@@ -1,6 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Button, Card, Typography, useTheme } from "@mui/joy";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardOverflow,
+  Typography,
+  useTheme,
+} from "@mui/joy";
 import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -38,73 +46,87 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
       }}>
       <Card
         variant="soft"
+        orientation="horizontal"
         sx={{
           flexDirection: "row",
           gap: 2,
           width: "100%",
+          height: "100%",
           justifyContent: "space-between",
           alignItems: "center",
         }}>
-        <Button
-          variant="outlined"
-          color="neutral"
-          sx={{ width: 300 }}
-          startDecorator={<ArrowBackIcon />}
-          onClick={() => handleGoBackRequest()}>
-          <Typography noWrap textColor={"text.primary"}>
-            Go Back
-          </Typography>
-        </Button>
-        <Box
-          sx={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            gap: 2,
-          }}>
-          <Typography
-            level={isMobile ? "h4" : "h3"}
-            sx={{ opacity: 0.5 }}
-            noWrap>
-            # {matchNumber}
-          </Typography>
-          <TeamBadgeHorizontal
-            team={team1}
-            isSmall={false}
-            isLoading={isLoading}
-          />
-          <Typography level={isMobile ? "title-lg " : "h4"} color="neutral">
-            vs
-          </Typography>
-          <TeamBadgeHorizontal
-            team={team2}
-            isSmall={false}
-            isLoading={isLoading}
-          />
-        </Box>
-        <Button
-          variant="solid"
-          color="success"
-          size={isMobile ? "sm" : "lg"}
-          sx={{ width: 300 }}
-          disabled={isLoading}
-          onClick={() => setOpenCompleteScoringModal(true)}
-          endDecorator={<FiCheckCircle size={isMobile ? 18 : 21} />}>
-          <Typography noWrap textColor={"text.primary"}>
-            Complete Scoring
-          </Typography>
-        </Button>
-        <CustomModal
-          open={openCompleteScoringModal}
-          setOpen={setOpenCompleteScoringModal}
-          title={"Confirm Completion"}
-          content={
-            "Are you sure you have input all data and want to complete scoring for this match?"
-          }
-          useCase={"completeScoring"}
-        />
+        <CardOverflow>
+          <Button
+            variant="soft"
+            color="neutral"
+            size={isMobile ? "sm" : "lg"}
+            sx={{
+              borderRadius: 0,
+              borderTopLeftRadius: 8,
+              borderBottomLeftRadius: 8,
+              width: 220,
+            }}
+            disabled={isLoading}
+            onClick={() => handleGoBackRequest()}
+            startDecorator={<ArrowBackIcon />}>
+            <Typography noWrap textColor={"text.primary"}>
+              Go Back
+            </Typography>
+          </Button>
+        </CardOverflow>
+        <CardContent>
+          <Box
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              gap: 2,
+            }}>
+            <Typography
+              level={isMobile ? "h4" : "h3"}
+              sx={{ opacity: 0.5 }}
+              noWrap>
+              # {matchNumber}
+            </Typography>
+            <TeamBadgeHorizontal
+              team={team1}
+              isSmall={false}
+              isLoading={isLoading}
+            />
+            <Typography level={isMobile ? "title-lg " : "h4"} color="neutral">
+              vs
+            </Typography>
+            <TeamBadgeHorizontal
+              team={team2}
+              isSmall={false}
+              isLoading={isLoading}
+            />
+          </Box>
+        </CardContent>
+        <CardOverflow>
+          <Button
+            variant="solid"
+            color="success"
+            size={isMobile ? "sm" : "lg"}
+            disabled={isLoading}
+            onClick={() => setOpenCompleteScoringModal(true)}
+            endDecorator={<FiCheckCircle size={isMobile ? 18 : 21} />}>
+            <Typography noWrap textColor={"text.primary"}>
+              Complete Scoring
+            </Typography>
+          </Button>
+        </CardOverflow>
       </Card>
+      <CustomModal
+        open={openCompleteScoringModal}
+        setOpen={setOpenCompleteScoringModal}
+        title={"Confirm Completion"}
+        content={
+          "Are you sure you have input all data and want to complete scoring for this match?"
+        }
+        useCase={"completeScoring"}
+      />
     </Box>
   );
 };
