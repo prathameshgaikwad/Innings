@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import ActionsPane from "../../components/matchManagement/ActionsPane";
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import ConductToss from "../../components/matchManagement/ConductToss";
+import CustomToast from "../../components/notifications/toasts/CustomToast";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/matchManagement/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
@@ -28,10 +29,13 @@ const MatchManagement = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const token = useSelector((state) => state.user.token);
+  const { token, user } = useSelector((state) => state.user);
   const { matchId } = useParams();
+  const username = `${user.first_name}`;
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isSocketConnected, setIsSocketConnected] = useState(false);
+  const [isSocketDisconnected, setIsSocketDisonnected] = useState(false);
 
   useEffect(() => {
     const fetchMatchDetails = async () => {
@@ -71,7 +75,7 @@ const MatchManagement = () => {
   useEffect(() => {
     if (socket) {
       socket.on("connect", () => {
-        console.log("Connected to Socket.IO server");
+        setIsSocketConnected(true);
         socket.emit("subscribeToMatch", matchId);
 
         socket.on("getBallLog", (ball_log) => {
@@ -81,7 +85,7 @@ const MatchManagement = () => {
       });
 
       socket.on("disconnect", () => {
-        console.log("Disconnected from Socket.IO server");
+        setIsSocketDisonnected(false);
       });
     }
   }, [socket, matchId]);
@@ -90,6 +94,20 @@ const MatchManagement = () => {
     <>
       <Navbar />
       <PageContainer customStyles={{ gap: 2, mt: 4 }}>
+        {isSocketConnected && (
+          <CustomToast
+            color={"success"}
+            content={`Hey ${username}, you're in control of this match!`}
+            duration={4000}
+          />
+        )}
+        {isSocketDisconnected && (
+          <CustomToast
+            color={"danger"}
+            content={`Connection lost! Please refresh the page and try again.`}
+            duration={4000}
+          />
+        )}
         {isHeaderDataAvailable && (
           <Header
             isLoading={isLoading}
