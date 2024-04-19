@@ -5,6 +5,7 @@ import { Alert, Box, LinearProgress, Typography, useTheme } from "@mui/joy";
 import { IoIosWarning } from "react-icons/io";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoMdInformationCircle } from "react-icons/io";
+import { MdDangerous } from "react-icons/md";
 import { TOAST_BOX_SHADOW } from "../../../utilities/constants";
 import { useMediaQuery } from "@mui/material";
 import useToastAnimation from "../../../hooks/useToastAnimation";
@@ -17,6 +18,7 @@ const CustomToast = ({ content, color, duration }) => {
 
   const isSuccess = color === "success";
   const isWarning = color === "warning";
+  const isDanger = color === "danger";
   const isNeutral = color === "neutral";
 
   return (
@@ -47,6 +49,7 @@ const CustomToast = ({ content, color, duration }) => {
               startDecorator={
                 (isSuccess && <IoMdDoneAll fontSize={18} />) ||
                 (isWarning && <IoIosWarning fontSize={18} />) ||
+                (isDanger && <MdDangerous fontSize={18} />) ||
                 (isNeutral && <IoMdInformationCircle fontSize={18} />)
               }>
               {content}
