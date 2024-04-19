@@ -1,16 +1,10 @@
 import { Box, Card, useTheme } from "@mui/joy";
-import {
-  addRuns,
-  setBallLog,
-  setMatch,
-} from "../../state/match/matchManagementSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import ActionsPane from "../../components/matchManagement/ActionsPane";
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
 import ConductToss from "../../components/matchManagement/ConductToss";
-import CustomToast from "../../components/notifications/toasts/CustomToast";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/matchManagement/Header";
 import Navbar from "../../components/common/Navbar/Navbar";
@@ -20,7 +14,9 @@ import PlayerStatsOverview from "../../components/match/PlayerStatsOverview";
 import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
+import SocketProvider from "../../components/SocketProvider";
 import { matchApi } from "../../services/api";
+import { setMatch } from "../../state/match/matchManagementSlice";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
@@ -29,13 +25,10 @@ const MatchManagement = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const { token, user } = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.user);
   const { matchId } = useParams();
-  const username = `${user.first_name}`;
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isSocketConnected, setIsSocketConnected] = useState(false);
-  const [isSocketDisconnected, setIsSocketDisonnected] = useState(false);
 
   useEffect(() => {
     const fetchMatchDetails = async () => {
@@ -72,102 +65,72 @@ const MatchManagement = () => {
 
   const socket = useSocket();
 
-  useEffect(() => {
-    if (socket) {
-      socket.on("connect", () => {
-        setIsSocketConnected(true);
-        socket.emit("subscribeToMatch", matchId);
-
-        socket.on("getBallLog", (ball_log) => {
-          dispatch(setBallLog(ball_log));
-          dispatch(addRuns({ score: ball_log.runs_conceded }));
-        });
-      });
-
-      socket.on("disconnect", () => {
-        setIsSocketDisonnected(false);
-      });
-    }
-  }, [socket, matchId]);
-
   return (
     <>
       <Navbar />
       <PageContainer customStyles={{ gap: 2, mt: 4 }}>
-        {isSocketConnected && (
-          <CustomToast
-            color={"success"}
-            content={`Hey ${username}, you're in control of this match!`}
-            duration={4000}
-          />
-        )}
-        {isSocketDisconnected && (
-          <CustomToast
-            color={"danger"}
-            content={`Connection lost! Please refresh the page and try again.`}
-            duration={4000}
-          />
-        )}
-        {isHeaderDataAvailable && (
-          <Header
-            isLoading={isLoading}
-            team1={battingTeam}
-            team2={bowlingTeam}
-            match_no={match_no}
-          />
-        )}
-        {!tossCompleted ? (
-          battingTeam &&
-          bowlingTeam && (
-            <ConductToss
-              matchId={matchId}
+        <SocketProvider matchId={matchId} socket={socket} isAdmin={true}>
+          {isHeaderDataAvailable && (
+            <Header
+              isLoading={isLoading}
               team1={battingTeam}
               team2={bowlingTeam}
+              match_no={match_no}
             />
-          )
-        ) : (
-          <>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: isMobile ? "column" : "row",
-                alignItems: "center",
-                gap: isMobile ? 4 : 1.5,
-                width: "100%",
-              }}>
-              <Card
+          )}
+          {!tossCompleted ? (
+            battingTeam &&
+            bowlingTeam && (
+              <ConductToss
+                matchId={matchId}
+                team1={battingTeam}
+                team2={bowlingTeam}
+              />
+            )
+          ) : (
+            <>
+              <Box
                 sx={{
-                  justifyContent: "space-between",
-                  minHeight: "85vh",
-                }}>
-                <ScoreInfo isLoading={isLoading} />
-                {secondInnings && <ChaseStatsCard isAdmin={true} />}
-                <ScoringButtonsPanel socket={socket} disabled={isLoading} />
-              </Card>
-              <Card
-                sx={{
+                  display: "flex",
+                  flexDirection: isMobile ? "column" : "row",
+                  alignItems: "center",
+                  gap: isMobile ? 4 : 1.5,
                   width: "100%",
-                  maxHeight: "85vh",
-                  minHeight: "85vh",
-                  overflow: "auto",
-                  justifyContent: "space-between",
                 }}>
-                <ActionsPane isLoading={isLoading} />
-                <OnFieldStats
-                  isLoading={isLoading}
-                  batsmenData={batsmenData}
-                  bowlerData={bowlerData}
-                  ballLog={ballLog}
-                  isAdmin={true}
-                />
-                <PlayerStatsOverview isLoading={isLoading} />
-              </Card>
-            </Box>
-            <Box mb={8}>
-              <Scorecard isAdmin={true} isLoading={isLoading} />
-            </Box>
-          </>
-        )}
+                <Card
+                  sx={{
+                    justifyContent: "space-between",
+                    minHeight: "85vh",
+                  }}>
+                  <ScoreInfo isLoading={isLoading} />
+                  {secondInnings && <ChaseStatsCard isAdmin={true} />}
+                  <ScoringButtonsPanel socket={socket} disabled={isLoading} />
+                </Card>
+                <Card
+                  sx={{
+                    width: "100%",
+                    maxHeight: "85vh",
+                    minHeight: "85vh",
+                    overflow: "auto",
+                    justifyContent: "space-between",
+                  }}>
+                  <ActionsPane isLoading={isLoading} />
+                  <OnFieldStats
+                    isLoading={isLoading}
+                    batsmenData={batsmenData}
+                    bowlerData={bowlerData}
+                    ballLog={ballLog}
+                    isAdmin={true}
+                  />
+                  <PlayerStatsOverview isLoading={isLoading} />
+                </Card>
+              </Box>
+              <Box mb={8}>
+                <Scorecard isAdmin={true} isLoading={isLoading} />
+              </Box>
+            </>
+          )}
+        </SocketProvider>
       </PageContainer>
       <Footer />
     </>

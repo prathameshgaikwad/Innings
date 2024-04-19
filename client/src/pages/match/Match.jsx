@@ -1,5 +1,4 @@
 import { Box, Stack, Typography, useTheme } from "@mui/joy";
-import { setMatch, setToss } from "../../state/match/matchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -12,11 +11,13 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
+import SocketProvider from "../../components/SocketProvider";
 import TeamCard from "../../components/cards/TeamCard";
 import TossDetails from "../../components/match/TossDetails";
 import TossNotConducted from "../../components/fallbacks/TossNotConducted";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { matchApi } from "../../services/api";
+import { setMatch } from "../../state/match/matchSlice";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
@@ -29,18 +30,6 @@ const Match = () => {
   const { tournamentId, matchId } = useParams();
 
   const socket = useSocket();
-
-  useEffect(() => {
-    if (socket) {
-      socket.on("connect", () => {
-        socket.emit("subscribeToMatch", matchId);
-      });
-      socket.on("tossResult", (toss) => {
-        dispatch(setToss(toss));
-      });
-      socket.on("disconnect", () => {});
-    }
-  }, [socket, matchId]);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -81,68 +70,70 @@ const Match = () => {
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ gap: 2, mb: 8 }}>
-        {isAdmin && <ManageEventAlert eventType={"match"} />}
-        {isTossConducted ? (
-          <>
-            <TossDetails
-              tossWinner={tossWinner}
-              decision={tossDecision}
-              isLoading={isLoading}
-            />
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                mt: 6,
-                mb: 3,
-              }}>
-              <MatchCard
+        <SocketProvider matchId={matchId} socket={socket} isAdmin={false}>
+          {isAdmin && <ManageEventAlert eventType={"match"} />}
+          {isTossConducted ? (
+            <>
+              <TossDetails
+                tossWinner={tossWinner}
+                decision={tossDecision}
                 isLoading={isLoading}
-                tournamentId={tournamentId}
-                data={match}
-                isMatchPage={true}
               />
-            </Box>
-            {isMatchCompleted ? (
-              <ManOfTheMatchCard />
-            ) : (
-              <Stack
-                width={isMobile ? "96%" : "72%"}
-                direction={"column"}
-                gap={2}>
-                {innings === "2" && <ChaseStatsCard isAdmin={false} />}
-                <OnFieldStats
-                  isLoading={isLoading}
-                  batsmenData={batsmenData}
-                  bowlerData={bowlerData}
-                  ballLog={ball_log}
-                  isSmall={false}
-                />
-              </Stack>
-            )}
-            <Scorecard isAdmin={false} isLoading={isLoading} />
-          </>
-        ) : (
-          <>
-            <TossNotConducted />
-            {!isLoading && (
               <Box
                 sx={{
+                  width: "100%",
                   display: "flex",
-                  flexDirection: "row",
-                  gap: 6,
-                  width: "80%",
-                  alignItems: "center",
                   justifyContent: "center",
+                  mt: 6,
+                  mb: 3,
                 }}>
-                <TeamCard team={match.battingTeam} isLoading={isLoading} />
-                <Typography level="body-lg">vs</Typography>
-                <TeamCard team={match.bowlingTeam} isLoading={isLoading} />
+                <MatchCard
+                  isLoading={isLoading}
+                  tournamentId={tournamentId}
+                  data={match}
+                  isMatchPage={true}
+                />
               </Box>
-            )}
-          </>
-        )}
+              {isMatchCompleted ? (
+                <ManOfTheMatchCard />
+              ) : (
+                <Stack
+                  width={isMobile ? "96%" : "72%"}
+                  direction={"column"}
+                  gap={2}>
+                  {innings === "2" && <ChaseStatsCard isAdmin={false} />}
+                  <OnFieldStats
+                    isLoading={isLoading}
+                    batsmenData={batsmenData}
+                    bowlerData={bowlerData}
+                    ballLog={ball_log}
+                    isSmall={false}
+                  />
+                </Stack>
+              )}
+              <Scorecard isAdmin={false} isLoading={isLoading} />
+            </>
+          ) : (
+            <>
+              <TossNotConducted />
+              {!isLoading && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 6,
+                    width: "80%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                  <TeamCard team={match.battingTeam} isLoading={isLoading} />
+                  <Typography level="body-lg">vs</Typography>
+                  <TeamCard team={match.bowlingTeam} isLoading={isLoading} />
+                </Box>
+              )}
+            </>
+          )}
+        </SocketProvider>
       </PageContainer>
       <Footer />
     </>
