@@ -30,7 +30,6 @@ const MatchManagement = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const token = useSelector((state) => state.user.token);
   const { matchId } = useParams();
-  const status = useSelector((state) => state.matchManagement.status);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,13 +45,16 @@ const MatchManagement = () => {
     fetchMatchDetails();
   }, [setIsLoading, matchId, token]);
 
-  const ballLog = useSelector((state) => state.matchManagement.ball_log);
-  const innings = useSelector((state) => state.matchManagement.innings);
-  const batsmenData = useSelector((state) => state.matchManagement.batsmen);
-  const bowlerData = useSelector((state) => state.matchManagement.bowler);
-  const { battingTeam, bowlingTeam, match_no } = useSelector(
-    (state) => state.matchManagement
-  );
+  const {
+    status,
+    ball_log: ballLog,
+    innings,
+    batsmen: batsmenData,
+    bowler: bowlerData,
+    battingTeam,
+    bowlingTeam,
+    match_no,
+  } = useSelector((state) => state.matchManagement);
 
   const isHeaderDataAvailable = battingTeam && bowlingTeam && match_no;
 
