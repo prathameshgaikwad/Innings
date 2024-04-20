@@ -9,28 +9,23 @@ import {
   Typography,
   useTheme,
 } from "@mui/joy";
-import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CenteredBox from "../layouts/pages/CenteredBox";
 import CustomModal from "../notifications/modals/CustomModal";
 import { FiCheckCircle } from "react-icons/fi";
+import LinkedButton from "../buttons/LinkedButton";
 import TeamBadgeHorizontal from "../dataDisplay/TeamBadgeHorizontal";
 import { useMediaQuery } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 const Header = ({ isLoading, team1, team2, match_no }) => {
   const matchNumber = match_no;
-
-  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const { tournamentId } = useParams();
-
-  const handleGoBackRequest = () => {
-    navigate(`/tournaments/${tournamentId}/manage`);
-  };
 
   const [openCompleteScoringModal, setOpenCompleteScoringModal] =
     useState(false);
@@ -48,25 +43,19 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
           alignItems: "center",
         }}>
         <CardOverflow>
-          <Button
-            variant="plain"
+          <LinkedButton
+            title={"Go Back"}
             color="danger"
-            size={isMobile ? "sm" : "lg"}
-            sx={{
+            size={"lg"}
+            link={`/tournaments/${tournamentId}/manage`}
+            startDecorator={ArrowBackIcon}
+            customStyles={{
               borderRadius: 0,
               borderTopLeftRadius: 8,
               borderBottomLeftRadius: 8,
               width: 220,
             }}
-            disabled={isLoading}
-            onClick={() => handleGoBackRequest()}>
-            <Typography
-              noWrap
-              color="danger"
-              startDecorator={<ArrowBackIcon />}>
-              Go Back
-            </Typography>
-          </Button>
+          />
         </CardOverflow>
         <CardContent>
           <Box
