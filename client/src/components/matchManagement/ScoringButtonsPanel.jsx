@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 const ScoringButtonsPanel = ({ disabled, socket }) => {
   const [isValid, setIsValid] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isCustomRuns, setIsCustomRuns] = useState(false);
   const [isWicket, setIsWicket] = useState(false);
   const batsmen = useSelector((state) => state.matchManagement.batsmen);
   const bowler = useSelector((state) => state.matchManagement.bowler);
@@ -49,10 +49,12 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
         <ScoreButton socket={socket} score={"6"} />
       </ButtonGroup>
       <ButtonGroup spacing="0.8rem" disabled={!isValid || disabled}>
-        <Button sx={{ height: 50, flexGrow: 1 }} onClick={() => setOpen(true)}>
+        <Button
+          sx={{ height: 50, flexGrow: 1 }}
+          onClick={() => setIsCustomRuns(true)}>
           <Typography level="title-md">CUSTOM</Typography>
         </Button>
-        <CustomRunsModal open={open} setOpen={setOpen} />
+        <CustomRunsModal open={isCustomRuns} setOpen={setIsCustomRuns} />
         <ScoreButton socket={socket} type={"extra"} score={"WD"} />
         <ScoreButton socket={socket} type={"extra"} score={"NB"} />
       </ButtonGroup>
@@ -76,7 +78,7 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
             WICKET
           </Typography>
         </Button>
-        {isWicket && <WicketModal open={isWicket} setOpen={setIsWicket} />}
+        <WicketModal open={isWicket} setOpen={setIsWicket} />
       </ButtonGroup>
     </Card>
   );
