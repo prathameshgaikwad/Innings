@@ -68,7 +68,8 @@ const MatchManagement = () => {
   return (
     <>
       <Navbar />
-      <PageContainer customStyles={{ gap: 2, mt: 4 }}>
+      <PageContainer
+        customStyles={{ gap: 2, mt: 4, maxWidth: isMobile ? "85vw" : "80vw" }}>
         <SocketProvider matchId={matchId} socket={socket} isAdmin={true}>
           {isHeaderDataAvailable && (
             <Header
