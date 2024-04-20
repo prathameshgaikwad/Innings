@@ -2,12 +2,14 @@
 
 import { ListItem, Typography, useTheme } from "@mui/joy";
 
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import HomeRounded from "@mui/icons-material/HomeRounded";
-import ShowChartIcon from "@mui/icons-material/ShowChart";
 import { useMediaQuery } from "@mui/material";
 
-const CustomListItem = ({ isSamePage, title, link }) => {
+const CustomListItem = ({
+  isSamePage,
+  title,
+  link,
+  startDecorator: StartDecorator,
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   return (
@@ -28,15 +30,7 @@ const CustomListItem = ({ isSamePage, title, link }) => {
       <Typography
         level="title-md"
         color={isSamePage ? "primary" : "neutral"}
-        startDecorator={
-          title === "Home" ? (
-            <HomeRounded />
-          ) : title === "Tournaments" ? (
-            <EmojiEventsIcon />
-          ) : (
-            <ShowChartIcon />
-          )
-        }>
+        startDecorator={StartDecorator && <StartDecorator />}>
         {title}
       </Typography>
     </ListItem>
