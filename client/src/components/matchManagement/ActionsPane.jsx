@@ -45,7 +45,9 @@ const ActionsPane = ({ isLoading }) => {
             <IoPersonCircleSharp size={isMobile ? 18 : 21} />
           </>
         }>
-        <Typography noWrap>Change Strike</Typography>
+        <Typography noWrap textColor={"common.white"}>
+          Change Strike
+        </Typography>
       </Button>
       <Button
         variant="solid"
