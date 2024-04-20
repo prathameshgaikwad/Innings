@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { extrasSchema } = require("./extrasSchema");
 const { ballLogSchema } = require("./ballLogSchema");
 
 const inningsSchema = new mongoose.Schema(
