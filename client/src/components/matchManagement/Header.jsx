@@ -88,7 +88,9 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
               isSmall={false}
               isLoading={isLoading}
             />
-            <Typography level={isMobile ? "title-lg " : "h4"} color="neutral">
+            <Typography
+              level={isMobile ? "title-md" : "title-lg"}
+              color="neutral">
               vs
             </Typography>
             <TeamBadgeHorizontal
