@@ -12,6 +12,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CenteredBox from "../layouts/pages/CenteredBox";
 import CustomModal from "../notifications/modals/CustomModal";
 import { FiCheckCircle } from "react-icons/fi";
 import TeamBadgeHorizontal from "../dataDisplay/TeamBadgeHorizontal";
@@ -35,15 +36,7 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
     useState(false);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-        justifyContent: "space-between",
-        gap: 2,
-      }}>
+    <CenteredBox>
       <Card
         variant="soft"
         orientation="horizontal"
@@ -51,14 +44,13 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
           flexDirection: "row",
           gap: 2,
           width: "100%",
-          height: "100%",
           justifyContent: "space-between",
           alignItems: "center",
         }}>
         <CardOverflow>
           <Button
-            variant="soft"
-            color="neutral"
+            variant="plain"
+            color="danger"
             size={isMobile ? "sm" : "lg"}
             sx={{
               borderRadius: 0,
@@ -67,9 +59,11 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
               width: 220,
             }}
             disabled={isLoading}
-            onClick={() => handleGoBackRequest()}
-            startDecorator={<ArrowBackIcon />}>
-            <Typography noWrap textColor={"text.primary"}>
+            onClick={() => handleGoBackRequest()}>
+            <Typography
+              noWrap
+              color="danger"
+              startDecorator={<ArrowBackIcon />}>
               Go Back
             </Typography>
           </Button>
@@ -112,7 +106,7 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
             disabled={isLoading}
             onClick={() => setOpenCompleteScoringModal(true)}
             endDecorator={<FiCheckCircle size={isMobile ? 18 : 21} />}>
-            <Typography noWrap textColor={"text.primary"}>
+            <Typography noWrap textColor={"common.white"}>
               Complete Scoring
             </Typography>
           </Button>
@@ -127,7 +121,7 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
         }
         useCase={"completeScoring"}
       />
-    </Box>
+    </CenteredBox>
   );
 };
 
