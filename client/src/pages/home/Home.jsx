@@ -57,7 +57,7 @@ const HomePage = () => {
                 {joinedTournaments && joinedTournaments.length === 0 ? (
                   <CustomToast
                     color={"warning"}
-                    content={"Please join a tournament to see the matches!"}
+                    content={"Please join a tournament to see latest content!"}
                     duration={5000}
                   />
                 ) : (
