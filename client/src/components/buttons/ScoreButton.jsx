@@ -9,9 +9,8 @@ import { useSelector } from "react-redux";
 const ScoreButton = ({ score, type, socket }) => {
   const { matchId } = useParams();
 
-  const { batsmen, bowler, battingTeam, bowlingTeam } = useSelector(
-    (state) => state.matchManagement
-  );
+  const { batsmen, bowler, battingTeam, bowlingTeam, current_innings_no } =
+    useSelector((state) => state.matchManagement);
 
   const handleClick = () => {
     if (type === "extra") {
@@ -27,9 +26,11 @@ const ScoreButton = ({ score, type, socket }) => {
       const runLogData = {
         matchId,
         battingTeamId: battingTeam._id,
+        bowlingTeamId: bowlingTeam._id,
         batsman: batsmen.onStrikeBatsman,
         bowler,
-        score: type === "dot" ? 0 : parseInt(score),
+        runs_scored: type === "dot" ? 0 : parseInt(score),
+        innings_no: current_innings_no,
       };
       socket.emit("addRun", runLogData);
     }
