@@ -99,8 +99,7 @@ const TeamCard = ({ team, isLoading }) => {
             title={"View Team"}
             size={"sm"}
             link={teamURL}
-            width={200}
-            my={1}
+            customStyles={{ width: 200, my: 1 }}
           />
         </Card>
       )}
