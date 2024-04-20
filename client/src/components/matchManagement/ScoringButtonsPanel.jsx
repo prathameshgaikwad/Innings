@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import CustomRunsModal from "../notifications/modals/CustomRunsModal";
 import { GrUndo } from "react-icons/gr";
 import ScoreButton from "../buttons/ScoreButton";
+import WicketModal from "../notifications/modals/WicketModal";
 import { useSelector } from "react-redux";
 
 const ScoringButtonsPanel = ({ disabled, socket }) => {
   const [isValid, setIsValid] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isWicket, setIsWicket] = useState(false);
   const batsmen = useSelector((state) => state.matchManagement.batsmen);
   const bowler = useSelector((state) => state.matchManagement.bowler);
 
@@ -64,11 +66,17 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
         </Button>
       </ButtonGroup>
       <ButtonGroup disabled={!isValid || disabled}>
-        <Button color="danger" variant="solid" fullWidth sx={{ height: 50 }}>
+        <Button
+          color="danger"
+          variant="solid"
+          fullWidth
+          sx={{ height: 50 }}
+          onClick={() => setIsWicket(true)}>
           <Typography level="title-md" sx={{ color: "white" }}>
             WICKET
           </Typography>
         </Button>
+        {isWicket && <WicketModal open={isWicket} setOpen={setIsWicket} />}
       </ButtonGroup>
     </Card>
   );
