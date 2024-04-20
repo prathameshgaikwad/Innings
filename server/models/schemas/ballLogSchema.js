@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const ballLogSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Types.ObjectId,
-    auto: true,
-  },
   bowler_id: {
     type: mongoose.Types.ObjectId,
     ref: "players",
@@ -16,10 +12,10 @@ const ballLogSchema = new mongoose.Schema({
   runs_scored: { type: Number },
   wicket: {
     is_wicket: { type: Boolean, default: false },
-    wicket_id: {
-      type: mongoose.Types.ObjectId,
-      ref: "wickets",
-    },
+    wicket_number: { type: Number },
+    runs_this_ball: { type: Number, default: 0 },
+    dismissal_comment: { type: String },
+    fall_of_wicket_stamp: { type: String },
   },
   extra: {
     is_extra: { type: Boolean, default: false },

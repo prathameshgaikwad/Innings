@@ -1,17 +1,9 @@
 const mongoose = require("mongoose");
 const { extrasSchema } = require("./extrasSchema");
+const { ballLogSchema } = require("./ballLogSchema");
 
 const inningsSchema = new mongoose.Schema(
   {
-    _id: {
-      type: mongoose.Types.ObjectId,
-      auto: true,
-    },
-    match_id: {
-      type: mongoose.Types.ObjectId,
-      ref: "matches",
-      required: [true, "match id is required"],
-    },
     innings_no: {
       type: Number,
       required: [true, "innings number is required"],
@@ -33,16 +25,15 @@ const inningsSchema = new mongoose.Schema(
       total_overs: { type: Number, required: [true, "overs is required"] },
       total_sixes: { type: Number, default: 0 },
       total_fours: { type: Number, default: 0 },
-      extras: extrasSchema,
-      ball_log: [
-        {
-          _id: {
-            type: mongoose.Types.ObjectId,
-            ref: "ball_log",
-            required: [true, "ball_log id is required"],
-          },
-        },
-      ],
+      extras: {
+        total: { type: Number, default: 0 },
+        wides: { type: Number, default: 0 },
+        byes: { type: Number, default: 0 },
+        leg_byes: { type: Number, default: 0 },
+        no_balls: { type: Number, default: 0 },
+        penalties: { type: Number, default: 0 },
+      },
+      ball_log: [ballLogSchema],
     },
   },
   { timestamps: true }

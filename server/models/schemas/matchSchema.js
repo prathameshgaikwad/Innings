@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { inningsSchema } = require("./inningsSchema");
 
 const matchSchema = new mongoose.Schema(
   {
@@ -46,15 +47,7 @@ const matchSchema = new mongoose.Schema(
         },
       },
     },
-    innings: [
-      {
-        _id: {
-          type: mongoose.Types.ObjectId,
-          ref: "innings",
-          required: [true, "innings id is required"],
-        },
-      },
-    ],
+    innings: [inningsSchema],
   },
   { timestamps: true }
 );
