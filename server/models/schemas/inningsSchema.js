@@ -39,7 +39,7 @@ const inningsSchema = new mongoose.Schema(
           _id: {
             type: mongoose.Types.ObjectId,
             ref: "ball_log",
-            required: [true, "innings id is required"],
+            required: [true, "ball_log id is required"],
           },
         },
       ],
