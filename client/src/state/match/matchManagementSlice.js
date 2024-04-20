@@ -37,6 +37,7 @@ const initialState = {
     },
   },
   innings: [],
+  current_innings_no: null,
 };
 
 const matchManagementSlice = createSlice({
@@ -80,6 +81,11 @@ const matchManagementSlice = createSlice({
         state.result.winnerId = result.winner_id;
         state.result.comment = result.comment;
         state.result.player_of_the_match.name = result.player_of_the_match.name;
+      }
+
+      if (innings && innings.length === 0) {
+        state.current_innings_no = 1;
+        //TODO: Setup innings data handling logic
       }
 
       if (innings && innings.length > 0) {
