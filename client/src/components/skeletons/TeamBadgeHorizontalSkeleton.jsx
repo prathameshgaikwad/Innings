@@ -18,7 +18,7 @@ const TeamBadgeHorizontalSkeleton = ({ isSmall }) => {
         sx={{
           borderRadius: "50%",
           border: "4px solid",
-          width: isSmall ? 40 : 50,
+          width: isSmall ? 70 : 80,
         }}>
         <Skeleton variant="circular" animation="wave" />
       </AspectRatio>
@@ -26,7 +26,6 @@ const TeamBadgeHorizontalSkeleton = ({ isSmall }) => {
         animation="wave"
         variant="text"
         level={isSmall ? "title-lg" : "h3"}
-        width={150}
       />
       <Skeleton animation="wave" variant="text" level={"body-sm"} width={80} />
     </Box>
