@@ -31,8 +31,8 @@ const NoTournamentsJoined = () => {
           <LinkedButton
             title={"Explore Tournaments"}
             link={"/tournaments"}
-            width={"100%"}
             size={"lg"}
+            customStyles={{ width: "100%" }}
           />
           <Divider sx={{ my: 2 }}>or</Divider>
           <CreateTournamentCard />
