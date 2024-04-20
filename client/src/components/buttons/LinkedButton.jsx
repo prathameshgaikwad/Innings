@@ -6,6 +6,7 @@ const LinkedButton = ({
   title,
   link,
   size,
+  variant = "solid",
   color = "primary",
   startDecorator: StartDecorator,
   endDecorator: EndDecorator,
@@ -13,7 +14,11 @@ const LinkedButton = ({
 }) => {
   const theme = useTheme();
   return (
-    <Button variant="solid" color={color} size={size} sx={{ ...customStyles }}>
+    <Button
+      variant={variant}
+      color={color}
+      size={size}
+      sx={{ ...customStyles }}>
       <Link
         href={link}
         overlay
