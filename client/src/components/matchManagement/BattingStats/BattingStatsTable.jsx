@@ -45,16 +45,16 @@ const BattingStatsTable = ({ battingData }) => {
             width: "20%",
           },
           "& thead th:nth-of-type(3)": {
-            width: isMobile ? "20%" : "30%",
+            width: isMobile ? "20%" : "27%",
           },
           fontSize: isMobile ? "0.85rem" : "",
         }}>
         <TableHeader headers={tableHeaders} />
-        {/* <tbody>
+        <tbody>
           {battingData.map((row, index) => (
             <TableRow key={index} data={row} dataKeys={dataKeys} />
           ))}
-        </tbody> */}
+        </tbody>
       </Table>
     </Sheet>
   );

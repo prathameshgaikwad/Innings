@@ -10,8 +10,16 @@ const BowlingStatsTable = ({ bowlingData }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const dataKeys = ["name", "overs", "runs", "wickets", "economy", "dots"];
-  const tableHeaders = ["NAME", "OVERS", "RUNS", "WICKETS", "ECON", "DOTS"];
+  const dataKeys = [
+    "name",
+    "overs",
+    "runs",
+    "wickets",
+    "economy",
+    "dots",
+    "maidens",
+  ];
+  const tableHeaders = ["NAME", "OVERS", "RUNS", "W", "ECON", "DOTS", "M"];
 
   return (
     <Sheet sx={{ width: "100%", overflow: "auto", my: 2 }}>
@@ -25,11 +33,11 @@ const BowlingStatsTable = ({ bowlingData }) => {
           fontSize: isMobile ? "0.85rem" : "",
         }}>
         <TableHeader headers={tableHeaders} />
-        {/* <tbody>
+        <tbody>
           {bowlingData.map((row, index) => (
             <TableRow key={index} data={row} dataKeys={dataKeys} />
           ))}
-        </tbody> */}
+        </tbody>
       </Table>
     </Sheet>
   );
