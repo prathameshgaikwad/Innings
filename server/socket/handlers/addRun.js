@@ -1,45 +1,59 @@
 const Match = require("../../models/match");
+const Innings = require("../../models/innings");
+const BallLog = require("../../models/ballLog");
 const { broadcastMatchData } = require("../broadcasts/broadcastMatchData");
 const { addPlayerRuns } = require("./addPlayerRuns");
 
 const addRun = (io, runLogData) => {
-  const { matchId, battingTeamId, batsman, bowler, score } = runLogData;
+  const {
+    matchId,
+    battingTeamId,
+    bowlingTeamId,
+    batsman,
+    bowler,
+    runs_scored,
+    innings_no,
+  } = runLogData;
+
   try {
     const updateMatchRunLog = async () => {
       const match = await Match.findById(matchId);
+      const { innings } = match.toObject();
 
-      const isTeam1 = match.team1_id.toString() === battingTeamId;
-
-      const runLogItem = {
-        run_scorer: batsman._id,
-        score,
-      };
-      const ballLogItem = {
-        bowler: bowler._id,
-        runs_conceded: score,
-        wicket: {
-          isWicket: false,
-        },
-      };
-
-      if (isTeam1) {
-        match.team1_run_log.push(runLogItem);
-        match.team1_runs = match.team1_runs + score;
-        if (score === 4) match.team1_fours++;
-        else if (score === 6) match.team1_sixes++;
-        match.team2_ball_log.push(ballLogItem);
-      } else {
-        match.team2_run_log.push(runLogItem);
-        match.team2_runs = match.team2_runs + score;
-        if (score === 4) match.team2_fours++;
-        else if (score === 6) match.team2_sixes++;
-        match.team1_ball_log.push(ballLogItem);
+      //CREATE A NEW INNINGS IF INNINGS ARRAY IS EMPTY OR INNINGS ARRAY LENGTH IS NOT EQUAL TO INNINGS_NO
+      if (innings.length === 0 || innings.length !== innings_no) {
+        const newInnings = new Innings({
+          match_id: matchId,
+          innings_no: 1,
+          data: {
+            batting_team_id: battingTeamId,
+            bowling_team_id: bowlingTeamId,
+          },
+        });
+        await newInnings.save();
+        innings.push(newInnings._id);
+        await match.save();
       }
 
-      await match.save();
+      //CREATE A BALL_LOG ITEM AND PUSH IT TO THE RESPECTIVE INNINGS' DATA
+      const newBallLogItem = new BallLog({
+        bowler_id: bowler._id,
+        batsman_id: batsman._id,
+        runs_scored,
+        wicket: {
+          is_wicket: false,
+        },
+        extra: {
+          is_extra: false,
+        },
+      });
 
-      addPlayerRuns(batsman._id, score);
-      broadcastMatchData(io, matchId);
+      await newBallLogItem.save();
+      innings[innings_no - 1].data.ball_log.push(newBallLogItem._id);
+      await innings.save();
+
+      addPlayerRuns({ player_id: batsman._id, runs_scored });
+      // broadcastMatchData(io, matchId);
     };
     updateMatchRunLog();
   } catch (error) {
