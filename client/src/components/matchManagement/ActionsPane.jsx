@@ -15,6 +15,7 @@ const ActionsPane = ({ isLoading }) => {
   const [openSwitchModal, setOpenSwitchModal] = useState(false);
 
   const theme = useTheme();
+  const isDarkTheme = theme.palette.mode === "dark";
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const innings = useSelector((state) => state.matchManagement.innings);
@@ -32,6 +33,12 @@ const ActionsPane = ({ isLoading }) => {
         variant="solid"
         color="primary"
         size={isMobile ? "sm" : "lg"}
+        sx={{
+          bgcolor: theme.palette.secondary[isDarkTheme ? 700 : 500],
+          "&:hover": {
+            bgcolor: theme.palette.secondary[600],
+          },
+        }}
         fullWidth
         disabled={isLoading}
         onClick={() => handleStrikeChange()}
@@ -50,14 +57,21 @@ const ActionsPane = ({ isLoading }) => {
         </Typography>
       </Button>
       <Button
-        variant="solid"
-        color="danger"
+        variant="soft"
+        sx={{
+          bgcolor: theme.palette.secondary[isDarkTheme ? 700 : 500],
+          "&:hover": {
+            bgcolor: theme.palette.secondary[600],
+          },
+        }}
         size={isMobile ? "sm" : "lg"}
         fullWidth
         disabled={isLoading || isSecondInnings}
         onClick={() => setOpenSwitchModal(true)}
-        endDecorator={<TbSwitch3 size={isMobile ? 18 : 21} />}>
-        Switch Sides
+        endDecorator={<TbSwitch3 size={isMobile ? 18 : 21} color="white" />}>
+        <Typography noWrap textColor={"common.white"}>
+          Switch Sides
+        </Typography>
       </Button>
       <CustomModal
         open={openSwitchModal}
