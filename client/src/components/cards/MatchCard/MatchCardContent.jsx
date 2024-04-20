@@ -57,7 +57,7 @@ const MatchCardContent = ({ data }) => {
         <ScorePane
           totalRuns={totalRuns}
           totalWickets={totalWickets}
-          overs={data.overs}
+          overs={data.total_overs}
           oversCompleted={oversCompleted}
           currentRunRate={currentRunRate}
         />
@@ -69,7 +69,11 @@ const MatchCardContent = ({ data }) => {
         />
       </CardContent>
       <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
-        <BottomBar overs={data.overs} venue={data.venue} progress={progress} />
+        <BottomBar
+          overs={data.total_overs}
+          venue={data.venue}
+          progress={progress}
+        />
       </CardOverflow>
     </Card>
   );
