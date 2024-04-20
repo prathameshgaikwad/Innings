@@ -2,14 +2,18 @@
 
 import { Button, Link, Typography, useTheme } from "@mui/joy";
 
-const LinkedButton = ({ title, link, size, width, my, color = "primary" }) => {
+const LinkedButton = ({
+  title,
+  link,
+  size,
+  color = "primary",
+  startDecorator: StartDecorator,
+  endDecorator: EndDecorator,
+  customStyles,
+}) => {
   const theme = useTheme();
   return (
-    <Button
-      variant="solid"
-      color={color}
-      size={size}
-      sx={{ width: width, my: my }}>
+    <Button variant="solid" color={color} size={size} sx={{ ...customStyles }}>
       <Link
         href={link}
         overlay
@@ -20,7 +24,9 @@ const LinkedButton = ({ title, link, size, width, my, color = "primary" }) => {
         <Typography
           level={`title-${size === "sm" ? "sm" : "md"}`}
           noWrap
-          color={theme.palette.common.white}>
+          color={theme.palette.common.white}
+          startDecorator={StartDecorator && <StartDecorator />}
+          endDecorator={EndDecorator && <EndDecorator />}>
           {title}
         </Typography>
       </Link>
