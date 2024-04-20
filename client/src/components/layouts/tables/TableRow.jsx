@@ -5,9 +5,9 @@ import { Typography } from "@mui/joy";
 const TableRow = ({ data, dataKeys }) => {
   return (
     <tr>
-      {data.map((key) => (
+      {dataKeys.map((key) => (
         <td key={key}>
-          <Typography variant="body2">{data[dataKeys]}</Typography>
+          <Typography variant="body2">{data[key]}</Typography>
         </td>
       ))}
     </tr>
