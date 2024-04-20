@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Button, ButtonGroup, Card, Typography } from "@mui/joy";
+import { Button, ButtonGroup, Card, Typography, useTheme } from "@mui/joy";
 import { useEffect, useState } from "react";
 
 import CustomRunsModal from "../notifications/modals/CustomRunsModal";
@@ -10,6 +10,8 @@ import WicketModal from "../notifications/modals/WicketModal";
 import { useSelector } from "react-redux";
 
 const ScoringButtonsPanel = ({ disabled, socket }) => {
+  const theme = useTheme();
+  const isDarkTheme = theme.palette.mode === "dark";
   const [isValid, setIsValid] = useState(false);
   const [isCustomRuns, setIsCustomRuns] = useState(false);
   const [isWicket, setIsWicket] = useState(false);
@@ -63,7 +65,14 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
         <ScoreButton socket={socket} type={"extra"} score={"LB"} />
         <Button
           variant="solid"
-          sx={{ height: 50, flexGrow: 1, backgroundColor: "darkslategray" }}>
+          sx={{
+            height: 50,
+            flexGrow: 1,
+            bgcolor: theme.palette.secondary[isDarkTheme ? 700 : 500],
+            "&:hover": {
+              bgcolor: theme.palette.secondary[600],
+            },
+          }}>
           <GrUndo size={26} />
         </Button>
       </ButtonGroup>
