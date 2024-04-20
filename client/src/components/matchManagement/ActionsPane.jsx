@@ -15,7 +15,6 @@ const ActionsPane = ({ isLoading }) => {
   const [openSwitchModal, setOpenSwitchModal] = useState(false);
 
   const theme = useTheme();
-  const isDarkTheme = theme.palette.mode === "dark";
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const innings = useSelector((state) => state.matchManagement.innings);
@@ -34,9 +33,9 @@ const ActionsPane = ({ isLoading }) => {
         color="primary"
         size={isMobile ? "sm" : "lg"}
         sx={{
-          bgcolor: theme.palette.secondary[isDarkTheme ? 700 : 500],
+          bgcolor: theme.palette.secondary.solidBg,
           "&:hover": {
-            bgcolor: theme.palette.secondary[600],
+            bgcolor: theme.palette.secondary.solidHoverBg,
           },
         }}
         fullWidth
@@ -57,11 +56,11 @@ const ActionsPane = ({ isLoading }) => {
         </Typography>
       </Button>
       <Button
-        variant="soft"
+        variant="solid"
         sx={{
-          bgcolor: theme.palette.secondary[isDarkTheme ? 700 : 500],
+          bgcolor: theme.palette.secondary.solidBg,
           "&:hover": {
-            bgcolor: theme.palette.secondary[600],
+            bgcolor: theme.palette.secondary.solidHoverBg,
           },
         }}
         size={isMobile ? "sm" : "lg"}

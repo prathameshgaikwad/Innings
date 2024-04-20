@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 const ScoringButtonsPanel = ({ disabled, socket }) => {
   const theme = useTheme();
-  const isDarkTheme = theme.palette.mode === "dark";
   const [isValid, setIsValid] = useState(false);
   const [isCustomRuns, setIsCustomRuns] = useState(false);
   const [isWicket, setIsWicket] = useState(false);
@@ -68,9 +67,9 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
           sx={{
             height: 50,
             flexGrow: 1,
-            bgcolor: theme.palette.secondary[isDarkTheme ? 700 : 500],
+            bgcolor: theme.palette.secondary.solidBg,
             "&:hover": {
-              bgcolor: theme.palette.secondary[600],
+              bgcolor: theme.palette.secondary.solidHoverBg,
             },
           }}>
           <GrUndo size={26} />
