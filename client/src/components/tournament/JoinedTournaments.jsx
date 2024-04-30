@@ -64,9 +64,7 @@ const JoinedTournaments = ({ userId }) => {
                     <TournamentCard id={tournamentId} />
                   </SwiperSlide>
                 ))}
-                {joinedTournaments.length >= 3 && (
-                  <SliderMask height={319} align={"right"} />
-                )}
+                <SliderMask height={319} align={"right"} />
               </Swiper>
             </SwiperWrapper>
           )}
