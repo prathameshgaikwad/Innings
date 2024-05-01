@@ -14,21 +14,28 @@ import ScoreInfoSkeleton from "../skeletons/ScoreInfoSkeleton";
 import { useSelector } from "react-redux";
 
 const ScoreInfo = ({ isLoading }) => {
-  const matchManagement = useSelector((state) => state.matchManagement);
-  const totalOvers = matchManagement.total_overs || 0;
-  const battingTeam = matchManagement.battingTeam || "ABC";
-  const runs = matchManagement.runs || 0;
-  const wickets = matchManagement.wickets || 0;
+  const current_innings_no = useSelector(
+    (state) => state.matchManagement.current_innings_no
+  );
+  const latestInningsData = useSelector(
+    (state) => state.matchManagement.innings[current_innings_no - 1].data
+  );
+  const totalOvers = latestInningsData.total_overs || 0;
+  const battingTeam =
+    useSelector((state) => state.matchManagement.battingTeam) || "ABC";
+  const runs = latestInningsData.total_runs || 0;
+  const wickets = latestInningsData.total_wickets || 0;
 
   const overs = "6.3";
   const crr = "11.08";
-  const extrasCount = "7";
-  const extrasDetails = {
-    wide: 4,
-    noBall: 1,
-    bye: 1,
-    legBye: 1,
-  };
+  const {
+    total: extrasCount,
+    wides,
+    no_balls,
+    byes,
+    leg_byes,
+    penalties,
+  } = latestInningsData.extras;
 
   return (
     <>
@@ -62,8 +69,8 @@ const ScoreInfo = ({ isLoading }) => {
           <Stack direction="row" px={2} justifyContent="space-between" mt={2}>
             <Typography level="body-xs">Extras: {extrasCount}</Typography>
             <Typography level="body-xs">
-              (WD: {extrasDetails.wide}, NB: {extrasDetails.noBall}, B:{" "}
-              {extrasDetails.bye}, LB:{extrasDetails.legBye})
+              (WD: {wides}, NB: {no_balls}, B: {byes}, LB:{leg_byes}, P:
+              {penalties})
             </Typography>
           </Stack>
         </Box>
