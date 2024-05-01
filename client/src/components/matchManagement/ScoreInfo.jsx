@@ -9,6 +9,10 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
+import {
+  getCompletedOvers,
+  getCurrentRunRate,
+} from "../../utilities/helpers/matchMetrics";
 
 import ScoreInfoSkeleton from "../skeletons/ScoreInfoSkeleton";
 import { useSelector } from "react-redux";
@@ -26,8 +30,11 @@ const ScoreInfo = ({ isLoading }) => {
   const runs = latestInningsData.total_runs || 0;
   const wickets = latestInningsData.total_wickets || 0;
 
-  const overs = "6.3";
-  const crr = "11.08";
+  const overs = getCompletedOvers(latestInningsData.balls_completed);
+  const crr = getCurrentRunRate({
+    total_runs: latestInningsData.total_runs,
+    total_overs_completed: overs,
+  });
   const {
     total: extrasCount,
     wides,
