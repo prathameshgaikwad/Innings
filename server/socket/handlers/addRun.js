@@ -1,9 +1,9 @@
 const Match = require("../../models/match");
 const mongoose = require("mongoose");
-const { broadcastMatchData } = require("../broadcasts/broadcastMatchData");
 const { addPlayerRuns } = require("./addPlayerRuns");
 const { inningsSchema } = require("../../models/schemas/inningsSchema");
 const { ballLogSchema } = require("../../models/schemas/ballLogSchema");
+const { broadcastInningsData } = require("../broadcasts/broadcastInningsData");
 
 const addRun = (io, runLogData) => {
   const {
@@ -54,7 +54,7 @@ const addRun = (io, runLogData) => {
       await match.save();
 
       addPlayerRuns({ player_id: batsman._id, runs_scored });
-      // broadcastMatchData(io, matchId);
+      broadcastInningsData(io, matchId);
     };
     updateMatchRunLog();
   } catch (error) {
