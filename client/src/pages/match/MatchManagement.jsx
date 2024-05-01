@@ -44,8 +44,8 @@ const MatchManagement = () => {
 
   const {
     status,
-    ball_log: ballLog,
     innings,
+    current_innings_no,
     batsmen: batsmenData,
     bowler: bowlerData,
     battingTeam,
@@ -54,6 +54,7 @@ const MatchManagement = () => {
   } = useSelector((state) => state.matchManagement);
 
   const isHeaderDataAvailable = battingTeam && bowlingTeam && match_no;
+  const ballLog = innings[current_innings_no - 1].data.ball_log;
 
   const [tossCompleted, setTossCompleted] = useState(status);
 
