@@ -32,17 +32,14 @@ const BallLogList = ({ ballLog }) => {
             {ballLog.map((item, i) => {
               let type = "";
               switch (true) {
-                case item.isWicket:
+                case item.wicket.is_wicket:
                   type = "danger";
                   break;
-                case item.runs_conceded === 4:
-                case item.runs_conceded === 6:
+                case item.runs_scored === 4:
+                case item.runs_scored === 6:
                   type = "success";
                   break;
-                case item.runs_conceded === "WD":
-                case item.runs_conceded === "B":
-                case item.runs_conceded === "LB":
-                case item.runs_conceded === "NB":
+                case item.extra.is_extra === "NB":
                   type = "warning";
                   break;
               }
@@ -53,7 +50,7 @@ const BallLogList = ({ ballLog }) => {
                   {item === "-" ? (
                     <BallLogSeparator />
                   ) : (
-                    <LogItem item={item.runs_conceded} type={type} />
+                    <LogItem item={item.runs_scored} type={type} />
                   )}
                 </SwiperSlide>
               );
