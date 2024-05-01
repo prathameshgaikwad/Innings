@@ -37,6 +37,7 @@ const initialState = {
     },
   },
   innings: [],
+  current_innings_no: null,
 };
 
 const matchSlice = createSlice({
@@ -82,8 +83,14 @@ const matchSlice = createSlice({
         state.result.player_of_the_match.name = result.player_of_the_match.name;
       }
 
-      if (innings && innings.length > 0) {
-        //TODO: Setup innings data handling logic
+      state.innings = innings;
+
+      if (innings) {
+        if (innings.length === 0) {
+          state.current_innings_no = 1;
+        } else {
+          state.current_innings_no = innings.length;
+        }
       }
     },
     setToss: (state, action) => {

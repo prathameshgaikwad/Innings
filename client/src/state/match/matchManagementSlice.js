@@ -83,13 +83,14 @@ const matchManagementSlice = createSlice({
         state.result.player_of_the_match.name = result.player_of_the_match.name;
       }
 
-      if (innings && innings.length === 0) {
-        state.current_innings_no = 1;
-        //TODO: Setup innings data handling logic
-      }
+      state.innings = innings;
 
-      if (innings && innings.length > 0) {
-        //TODO: Setup innings data handling logic
+      if (innings) {
+        if (innings.length === 0) {
+          state.current_innings_no = 1;
+        } else {
+          state.current_innings_no = innings.length;
+        }
       }
     },
     setTossResult: (state, action) => {
