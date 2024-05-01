@@ -8,7 +8,8 @@ import { Box, Card, Divider } from "@mui/joy";
 
 import BallLogList from "./BallLogList";
 import BallLogSkeleton from "../../skeletons/BallLogSkeleton";
-import CurrentBowlerData from "./CurrentBowlerData";
+import { BiSolidCricketBall } from "react-icons/bi";
+import PlayerStatsWithSelector from "../../dataDisplay/PlayerStatsWithSelector";
 import SelectPlayer from "../../matchManagement/SelectPlayer";
 import SimpleTextFallback from "../../fallbacks/SimpleTextFallback";
 import { setBowler } from "../../../state/match/matchManagementSlice";
@@ -35,7 +36,7 @@ const BallLog = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
         <BallLogSkeleton />
       ) : (
         <>
-          <Box width={"38%"} alignItems={"center"}>
+          <Box width={"60%"} alignItems={"center"}>
             {noBowler ? (
               isAdmin ? (
                 <SelectPlayer
@@ -47,7 +48,16 @@ const BallLog = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
                 <SimpleTextFallback content={"Bowler data will appear here."} />
               )
             ) : (
-              <CurrentBowlerData bowlerData={bowlerData} />
+              <PlayerStatsWithSelector
+                playerName={bowlerData.name}
+                primaryStat={`${bowlerData.runs_conceded || 0} - ${
+                  bowlerData.wickets_taken || 0
+                }`}
+                secondaryStat={`${bowlerData.overs_bowled || 0}.${
+                  bowlerData.balls_bowled || 0
+                }`}
+                startDecorator={BiSolidCricketBall}
+              />
             )}
           </Box>
           <Divider orientation="vertical" />

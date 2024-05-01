@@ -1,20 +1,13 @@
 /* eslint-disable react/prop-types */
 
-import {
-  Card,
-  Divider,
-  IconButton,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/joy";
+import { Card, Divider, useTheme } from "@mui/joy";
 import {
   setOffStrikeBatsman,
   setOnStrikeBatsman,
 } from "../../state/match/matchManagementSlice";
 
-import { HiSelector } from "react-icons/hi";
 import OnFieldBatsmenStatsSkeleton from "../skeletons/OnFieldBatsmenStatsSkeleton";
+import PlayerStatsWithSelector from "../dataDisplay/PlayerStatsWithSelector";
 import SelectPlayer from "../matchManagement/SelectPlayer";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 import { useSelector } from "react-redux";
@@ -31,10 +24,6 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
 
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
-
-  const handlePlayerChange = () => {
-    alert("Requesting player change");
-  };
 
   return (
     <Card
@@ -68,30 +57,15 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
                   />
                 )
               ) : (
-                <Stack
-                  direction={"row"}
-                  width={"60%"}
-                  alignItems={"center"}
-                  justifyContent={"space-between"}>
-                  <Stack direction={"row"} spacing={1} alignItems={"center"}>
-                    <img
-                      width={20}
-                      src={`/assets/batsman_icon_${
-                        isDarkTheme ? "light" : "dark"
-                      }.svg`}
-                    />
-                    <Typography level={isSmall ? "title-sm" : "title-md"}>
-                      {onStrikeBatsman.name} - {onStrikeBatsman.runs || 0} (
-                      {onStrikeBatsman.ballsPlayed || 0})
-                    </Typography>
-                  </Stack>
-                  <IconButton
-                    color="neutral"
-                    size="sm"
-                    onClick={() => handlePlayerChange()}>
-                    <HiSelector />
-                  </IconButton>
-                </Stack>
+                <PlayerStatsWithSelector
+                  isSmall={isSmall}
+                  playerName={onStrikeBatsman.name}
+                  primaryStat={onStrikeBatsman.runs}
+                  secondaryStat={onStrikeBatsman.ballsPlayed}
+                  img_src={`/assets/batsman_icon_${
+                    isDarkTheme ? "light" : "dark"
+                  }.svg`}
+                />
               )}
               <Divider orientation="vertical" sx={{ marginRight: 2 }} />
               <>
@@ -109,24 +83,12 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
                     />
                   )
                 ) : (
-                  <Stack
-                    direction={"row"}
-                    spacing={1}
-                    width={"40%"}
-                    alignItems={"center"}
-                    justifyContent={"space-between"}>
-                    <Typography level={isSmall ? "body-xs" : "body-sm"}>
-                      {offStrikeBatsman.name} - {offStrikeBatsman.runs || 0} (
-                      {offStrikeBatsman.ballsPlayed || 0})
-                    </Typography>
-                    <IconButton
-                      color="neutral"
-                      size="sm"
-                      sx={{ marginLeft: 5 }}
-                      onClick={() => handlePlayerChange()}>
-                      <HiSelector />
-                    </IconButton>
-                  </Stack>
+                  <PlayerStatsWithSelector
+                    isSmall={isSmall}
+                    playerName={offStrikeBatsman.name}
+                    primaryStat={offStrikeBatsman.runs}
+                    secondaryStat={offStrikeBatsman.ballsPlayed}
+                  />
                 )}
               </>
             </>
