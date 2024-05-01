@@ -19,8 +19,8 @@ const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
         setIsSocketConnected(true);
         socket.emit("subscribeToMatch", matchId);
 
-        socket.on("getBallLog", (ball_log) => {
-          console.log("Got some ball log...", ball_log);
+        socket.on("richInningsData", (richInningsData) => {
+          console.log("Got some richInningsData...", richInningsData);
         });
       });
 
@@ -32,7 +32,7 @@ const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
     return () => {
       if (socket) {
         socket.off("connect");
-        socket.off("getBallLog");
+        socket.off("richInningsData");
         socket.off("disconnect");
       }
     };
