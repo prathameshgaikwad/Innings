@@ -168,6 +168,9 @@ const matchManagementSlice = createSlice({
       };
       state.extras_log = [...state.extras_log, newExtra];
     },
+    setMatchManagementInningsData: (state, action) => {
+      state.innings[state.current_innings_no - 1].data = action.payload;
+    },
     clearMatchManagementData: () => initialState,
   },
 });
@@ -186,6 +189,7 @@ export const {
   setExtrasLog,
   setStrikeChange,
   setWicketLog,
+  setMatchManagementInningsData,
   clearMatchManagementData,
 } = matchManagementSlice.actions;
 export const matchManagementReducer = matchManagementSlice.reducer;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import CustomToast from "./notifications/toasts/CustomToast";
+import { setMatchManagementInningsData } from "../state/match/matchManagementSlice";
 
 const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
         socket.emit("subscribeToMatch", matchId);
 
         socket.on("richInningsData", (richInningsData) => {
-          console.log("Got some richInningsData...", richInningsData);
+          dispatch(setMatchManagementInningsData(richInningsData));
         });
       });
 
