@@ -13,28 +13,18 @@ const ScoreButton = ({ score, type, socket }) => {
     useSelector((state) => state.matchManagement);
 
   const handleClick = () => {
-    if (type === "extra") {
-      const extraLogItem = {
-        extraType: score,
-        runs: 1,
-        bowler,
-        matchId,
-        bowlingTeamId: bowlingTeam._id,
-      };
-      socket.emit("addExtra", extraLogItem);
-    } else {
-      const runLogData = {
-        matchId,
-        battingTeamId: battingTeam._id,
-        bowlingTeamId: bowlingTeam._id,
-        batsman: batsmen.onStrikeBatsman,
-        bowler,
-        runs_scored: type === "dot" ? 0 : parseInt(score),
-        innings_no: current_innings_no,
-      };
-      socket.emit("addRun", runLogData);
-    }
+    const runLogData = {
+      matchId,
+      battingTeamId: battingTeam._id,
+      bowlingTeamId: bowlingTeam._id,
+      batsman: batsmen.onStrikeBatsman,
+      bowler,
+      runs_scored: type === "dot" ? 0 : parseInt(score),
+      innings_no: current_innings_no,
+    };
+    socket.emit("addRun", runLogData);
   };
+
   return (
     <Button sx={{ height: 50, flexGrow: 1 }} onClick={handleClick}>
       {type === "dot" ? (
