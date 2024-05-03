@@ -33,7 +33,7 @@ const WicketModal = ({ open, setOpen }) => {
           width: 400,
         })}>
         <Typography level="h4" color="danger">
-          Enter Wicket Detail
+          Wicket Details
         </Typography>
         <Divider />
         <Input
@@ -51,6 +51,7 @@ const WicketModal = ({ open, setOpen }) => {
           <Button
             variant="solid"
             color="success"
+            sx={{ flexGrow: 1 }}
             onClick={() => handleWicket()}>
             Confirm Wicket
           </Button>
