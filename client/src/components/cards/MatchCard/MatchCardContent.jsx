@@ -75,6 +75,8 @@ const MatchCardContent = ({ data }) => {
           overs={total_overs}
           oversCompleted={oversCompleted}
           currentRunRate={currentRunRate}
+          current_innings_no={current_innings_no}
+          inningsData={innings}
         />
         <TeamBadgeVertical
           color={data.bowlingTeam.team_color}

@@ -6,21 +6,33 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { VscGitCommit } from "react-icons/vsc";
 import { useMediaQuery } from "@mui/material";
 
-const OPPONENT_SCORE = 196;
-const OPPONENT_WICKETS = 6;
-
 const ScorePane = ({
   totalRuns,
   totalWickets,
   oversCompleted,
   overs,
   currentRunRate,
-  innings = 2,
+  current_innings_no = 1,
+  inningsData,
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isTextOverflow = useMediaQuery(theme.breakpoints.down(1015));
-  const isSecondInnings = innings === 2;
+  const isSecondInnings = current_innings_no === 2;
+
+  let previousInningsPerformance = {
+    total_runs: 0,
+    total_wickets: 0,
+  };
+
+  if (isSecondInnings) {
+    const previousInningsData = inningsData[current_innings_no - 2]?.data ?? {};
+    previousInningsPerformance = {
+      total_runs: previousInningsData?.total_runs || 0,
+      total_wickets: previousInningsData?.total_wickets || 0,
+    };
+  }
+
   return (
     <Box
       sx={{
@@ -50,7 +62,8 @@ const ScorePane = ({
             <Typography
               level={isMobile ? "h4" : "h3"}
               sx={{ color: "InactiveCaptionText" }}>
-              {OPPONENT_SCORE}/{OPPONENT_WICKETS}
+              {previousInningsPerformance.total_runs}/
+              {previousInningsPerformance.total_wickets}
             </Typography>
           </>
         )}
