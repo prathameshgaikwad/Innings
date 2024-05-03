@@ -4,6 +4,7 @@ import { Button, ButtonGroup, Card, Typography, useTheme } from "@mui/joy";
 import { useEffect, useState } from "react";
 
 import CustomRunsModal from "../notifications/modals/CustomRunsModal";
+import ExtrasButton from "../buttons/ExtrasButton";
 import { GrUndo } from "react-icons/gr";
 import ScoreButton from "../buttons/ScoreButton";
 import WicketModal from "../notifications/modals/WicketModal";
@@ -56,12 +57,13 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
           <Typography level="title-md">CUSTOM</Typography>
         </Button>
         <CustomRunsModal open={isCustomRuns} setOpen={setIsCustomRuns} />
-        <ScoreButton socket={socket} type={"extra"} score={"WD"} />
-        <ScoreButton socket={socket} type={"extra"} score={"NB"} />
+        <ExtrasButton socket={socket} type={"WD"} />
+        <ExtrasButton socket={socket} type={"NB"} />
       </ButtonGroup>
       <ButtonGroup spacing="0.8rem" disabled={!isValid || disabled}>
-        <ScoreButton socket={socket} type={"extra"} score={"B"} />
-        <ScoreButton socket={socket} type={"extra"} score={"LB"} />
+        <ExtrasButton socket={socket} type={"B"} />
+        <ExtrasButton socket={socket} type={"LB"} />
+        <ExtrasButton socket={socket} type={"P"} />
         <Button
           variant="solid"
           sx={{
