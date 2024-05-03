@@ -96,10 +96,18 @@ const matchSlice = createSlice({
     setToss: (state, action) => {
       state.toss = action.payload;
     },
+    setMatchInningsData: (state, action) => {
+      state.innings[state.current_innings_no - 1].data = action.payload;
+    },
     clearMatchData: () => initialState,
   },
 });
 
-export const { setMatch, setBattingTeam, setToss, clearMatchData } =
-  matchSlice.actions;
+export const {
+  setMatch,
+  setBattingTeam,
+  setToss,
+  setMatchInningsData,
+  clearMatchData,
+} = matchSlice.actions;
 export const matchReducer = matchSlice.reducer;
