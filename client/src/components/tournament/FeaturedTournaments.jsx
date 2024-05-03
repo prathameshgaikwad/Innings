@@ -64,12 +64,13 @@ const FeaturedTournaments = () => {
                 }}
                 modules={[Pagination, Mousewheel]}
                 className="mySwiper">
+                <SliderMask height={319} align={"right"} />
+                <SliderMask height={319} align={"left"} />
                 {featuredTournaments.map((tournamentId) => (
                   <SwiperSlide key={tournamentId}>
                     <TournamentCard id={tournamentId} />
                   </SwiperSlide>
                 ))}
-                <SliderMask height={319} align={"right"} />
               </Swiper>
             </SwiperWrapper>
           )}

@@ -59,12 +59,13 @@ const JoinedTournaments = ({ userId }) => {
                 }}
                 modules={[Pagination, Mousewheel]}
                 className="mySwiper">
+                <SliderMask height={319} align={"right"} />
+                <SliderMask height={319} align={"left"} />
                 {joinedTournaments.map((tournamentId) => (
                   <SwiperSlide key={tournamentId}>
                     <TournamentCard id={tournamentId} />
                   </SwiperSlide>
                 ))}
-                <SliderMask height={319} align={"right"} />
               </Swiper>
             </SwiperWrapper>
           )}
