@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import { Card, CardContent, CardOverflow, useTheme } from "@mui/joy";
+import {
+  getCompletedOvers,
+  getCurrentRunRate,
+} from "../../../utilities/helpers/matchMetrics";
 
 import BottomBar from "./BottomBar";
 import { CARD_BOX_SHADOW_GLOW_EFFECT } from "../../../utilities/constants";
@@ -9,16 +13,23 @@ import TeamBadgeVertical from "../../dataDisplay/TeamBadgeVertical";
 import TopBar from "./TopBar";
 import { useMediaQuery } from "@mui/material";
 
-const totalRuns = "91";
-const totalWickets = "2";
-const oversCompleted = "6.3";
-const currentRunRate = "13.86";
 const progress = 63;
 
 const MatchCardContent = ({ data }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isTab = useMediaQuery(theme.breakpoints.down(650));
+
+  const { innings, current_innings_no } = data;
+  const { total_runs, total_wickets, balls_completed, total_overs } =
+    innings[current_innings_no - 1]?.data || {};
+
+  const oversCompleted = getCompletedOvers(balls_completed);
+  const currentRunRate = getCurrentRunRate({
+    total_runs,
+    total_overs_completed: oversCompleted,
+  });
+
   return (
     <Card
       variant="outlined"
@@ -55,9 +66,9 @@ const MatchCardContent = ({ data }) => {
           widths={[65, 90]}
         />
         <ScorePane
-          totalRuns={totalRuns}
-          totalWickets={totalWickets}
-          overs={data.total_overs}
+          totalRuns={total_runs}
+          totalWickets={total_wickets}
+          overs={total_overs}
           oversCompleted={oversCompleted}
           currentRunRate={currentRunRate}
         />
@@ -69,11 +80,7 @@ const MatchCardContent = ({ data }) => {
         />
       </CardContent>
       <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
-        <BottomBar
-          overs={data.total_overs}
-          venue={data.venue}
-          progress={progress}
-        />
+        <BottomBar overs={total_overs} venue={data.venue} progress={progress} />
       </CardOverflow>
     </Card>
   );
