@@ -51,10 +51,10 @@ const MatchManagement = () => {
     battingTeam,
     bowlingTeam,
     match_no,
-  } = useSelector((state) => state.matchManagement);
+  } = useSelector((state) => state.matchManagement) || {};
 
   const isHeaderDataAvailable = battingTeam && bowlingTeam && match_no;
-  const ballLog = innings[current_innings_no - 1].data.ball_log;
+  const ballLog = innings[current_innings_no - 1]?.data?.ball_log || [];
 
   const [tossCompleted, setTossCompleted] = useState(status);
 
@@ -119,8 +119,8 @@ const MatchManagement = () => {
                   <ActionsPane isLoading={isLoading} />
                   <OnFieldStats
                     isLoading={isLoading}
-                    batsmenData={batsmenData}
-                    bowlerData={bowlerData}
+                    batsmenData={batsmenData || []}
+                    bowlerData={bowlerData || []}
                     ballLog={ballLog}
                     isAdmin={true}
                   />

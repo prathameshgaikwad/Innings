@@ -22,17 +22,17 @@ const ScoreInfo = ({ isLoading }) => {
     (state) => state.matchManagement.current_innings_no
   );
   const latestInningsData = useSelector(
-    (state) => state.matchManagement.innings[current_innings_no - 1].data
+    (state) => state.matchManagement.innings[current_innings_no - 1]?.data
   );
-  const totalOvers = latestInningsData.total_overs || 0;
+  const totalOvers = latestInningsData?.total_overs || 0;
   const battingTeam =
     useSelector((state) => state.matchManagement.battingTeam) || "ABC";
-  const runs = latestInningsData.total_runs || 0;
-  const wickets = latestInningsData.total_wickets || 0;
+  const runs = latestInningsData?.total_runs || 0;
+  const wickets = latestInningsData?.total_wickets || 0;
 
-  const overs = getCompletedOvers(latestInningsData.balls_completed);
+  const overs = getCompletedOvers(latestInningsData?.balls_completed);
   const crr = getCurrentRunRate({
-    total_runs: latestInningsData.total_runs,
+    total_runs: latestInningsData?.total_runs,
     total_overs_completed: overs,
   });
   const {
@@ -42,7 +42,7 @@ const ScoreInfo = ({ isLoading }) => {
     byes,
     leg_byes,
     penalties,
-  } = latestInningsData.extras;
+  } = latestInningsData?.extras ?? {};
 
   return (
     <>
