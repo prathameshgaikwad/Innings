@@ -4,6 +4,7 @@ import { Card, CardContent, CardOverflow, useTheme } from "@mui/joy";
 import {
   getCompletedOvers,
   getCurrentRunRate,
+  getMatchProgress,
 } from "../../../utilities/helpers/matchMetrics";
 
 import BottomBar from "./BottomBar";
@@ -12,8 +13,6 @@ import ScorePane from "./ScorePane";
 import TeamBadgeVertical from "../../dataDisplay/TeamBadgeVertical";
 import TopBar from "./TopBar";
 import { useMediaQuery } from "@mui/material";
-
-const progress = 63;
 
 const MatchCardContent = ({ data }) => {
   const theme = useTheme();
@@ -28,6 +27,11 @@ const MatchCardContent = ({ data }) => {
   const currentRunRate = getCurrentRunRate({
     total_runs,
     total_overs_completed: oversCompleted,
+  });
+  const progress = getMatchProgress({
+    balls_completed,
+    total_overs,
+    current_innings_no,
   });
 
   return (
