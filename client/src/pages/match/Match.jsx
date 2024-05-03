@@ -51,19 +51,18 @@ const Match = () => {
   const isAdmin = createdTournaments.includes(tournamentId);
 
   const match = useSelector((state) => state.match);
-  const toss = match.toss;
-  const innings = match.innings;
+  const { toss, innings, current_innings_no, status, batsmen, bowler } = match;
 
   const isTossConducted = toss && toss.decision && toss.decision.length > 0;
   const tossWinner = toss.winner_name;
   const tossDecision = toss.decision;
 
-  const matchStatus = match && match.status;
+  const matchStatus = status;
   const isMatchCompleted = matchStatus === "completed";
 
-  const ball_log = [];
-  const batsmenData = match.batsmen;
-  const bowlerData = match.bowler;
+  const ball_log = innings[current_innings_no - 1]?.data?.ball_log || [];
+  const batsmenData = batsmen;
+  const bowlerData = bowler;
 
   return (
     <>
@@ -101,7 +100,9 @@ const Match = () => {
                   width={isMobile ? "96%" : "72%"}
                   direction={"column"}
                   gap={2}>
-                  {innings === "2" && <ChaseStatsCard isAdmin={false} />}
+                  {current_innings_no === 2 && (
+                    <ChaseStatsCard isAdmin={false} />
+                  )}
                   <OnFieldStats
                     isLoading={isLoading}
                     batsmenData={batsmenData}
