@@ -35,10 +35,14 @@ const CustomRunsModal = ({ open, setOpen }) => {
           Enter Custom Runs
         </Typography>
         <Divider />
-        <Input name="customRuns" placeholder="5, 7 ,8 ..."></Input>
+        <Input
+          name="customRuns"
+          placeholder="5, 7 ,8 ..."
+          sx={{ my: 2, mx: 1 }}></Input>
         <Box
           sx={{
             mt: 1,
+            mx: 1,
             display: "flex",
             gap: 1,
             flexDirection: { xs: "column", sm: "row-reverse" },
@@ -46,6 +50,7 @@ const CustomRunsModal = ({ open, setOpen }) => {
           <Button
             variant="solid"
             color="success"
+            sx={{ flexGrow: 1 }}
             onClick={() => handleCustomRuns()}>
             Add Runs
           </Button>
