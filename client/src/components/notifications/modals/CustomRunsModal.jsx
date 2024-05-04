@@ -18,6 +18,7 @@ const CustomRunsModal = ({ open, setOpen }) => {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <ModalDialog
+        color="primary"
         aria-labelledby="nested-modal-title"
         aria-describedby="nested-modal-description"
         sx={(theme) => ({
@@ -31,7 +32,7 @@ const CustomRunsModal = ({ open, setOpen }) => {
             maxWidth: "unset",
           },
         })}>
-        <Typography level="h4" color="warning">
+        <Typography level="h4" color="primary">
           Enter Custom Runs
         </Typography>
         <Divider />
@@ -49,7 +50,7 @@ const CustomRunsModal = ({ open, setOpen }) => {
           }}>
           <Button
             variant="solid"
-            color="success"
+            color="primary"
             sx={{ flexGrow: 1 }}
             onClick={() => handleCustomRuns()}>
             Add Runs
