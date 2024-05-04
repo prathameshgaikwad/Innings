@@ -7,6 +7,7 @@ import { useMediaQuery } from "@mui/material";
 const SectionHeader = ({
   title,
   color = "primary",
+  level = "h3",
   startDecorator: StartDecorator,
 }) => {
   const theme = useTheme();
@@ -20,7 +21,7 @@ const SectionHeader = ({
           "--Divider-thickness": "2px",
         }}>
         <Typography
-          level={isMobile ? "h4" : "h3"}
+          level={isMobile ? "h4" : level}
           sx={{ mx: 2 }}
           color={color}
           startDecorator={StartDecorator && <StartDecorator />}>
