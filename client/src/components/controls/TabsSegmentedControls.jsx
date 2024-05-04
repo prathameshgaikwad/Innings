@@ -1,8 +1,15 @@
 /* eslint-disable react/prop-types */
 
-import { Tab, TabList, Tabs, tabClasses } from "@mui/joy";
+import { Tab, TabList, Tabs, tabClasses, useTheme } from "@mui/joy";
 
-const TabsSegmentedControls = ({ setIndex, index, team1Name, team2Name }) => {
+const TabsSegmentedControls = ({
+  setIndex,
+  index,
+  battingTeamName,
+  bowlingTeamName,
+}) => {
+  const theme = useTheme();
+
   return (
     <Tabs
       aria-label="tabs"
@@ -17,11 +24,12 @@ const TabsSegmentedControls = ({ setIndex, index, team1Name, team2Name }) => {
           borderRadius: "xl",
           bgcolor: "background.level1",
           [`& .${tabClasses.root}[aria-selected="true"]`]: {
-            bgcolor: "background.surface",
+            color: theme.palette.neutral.plainColor,
+            bgcolor: theme.palette.primary.plainActiveBg,
           },
         }}>
-        <Tab disableIndicator>{team1Name} Innings</Tab>
-        <Tab disableIndicator>{team2Name} Innings</Tab>
+        <Tab disableIndicator>{battingTeamName} Innings</Tab>
+        <Tab disableIndicator>{bowlingTeamName} Innings</Tab>
       </TabList>
     </Tabs>
   );
