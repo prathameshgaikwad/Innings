@@ -8,7 +8,7 @@ const BowlingPerformance = ({ bowlingData }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Sheet sx={{ width: "94%", overflow: "auto", my: 2 }}>
+    <Sheet sx={{ width: "94%", overflow: "auto" }}>
       <Table
         stickyHeader
         variant="outlined"
