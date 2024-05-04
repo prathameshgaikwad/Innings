@@ -19,7 +19,7 @@ const ballLogSchema = new mongoose.Schema({
   },
   extra: {
     is_extra: { type: Boolean, default: false },
-    extra_type: { type: String, enum: ["WD", "NB", "B", "LB"] },
+    extra_type: { type: String, enum: ["WD", "NB", "B", "LB", "P"] },
     runs_this_ball: { type: Number, default: 0 },
   },
 });
