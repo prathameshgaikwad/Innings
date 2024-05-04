@@ -99,7 +99,9 @@ const setTossResult = async (req, res) => {
       team2_id,
     });
 
-    res.status(StatusCodes.OK).json({ toss: richTossData });
+    res
+      .status(StatusCodes.OK)
+      .json({ toss: richTossData, status: match.status });
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
