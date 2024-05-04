@@ -112,7 +112,12 @@ const Match = () => {
                   />
                 </Stack>
               )}
-              <Scorecard isAdmin={false} isLoading={isLoading} />
+              <Scorecard
+                isAdmin={false}
+                isLoading={isLoading}
+                innings={innings}
+                current_innings_no={current_innings_no}
+              />
             </>
           ) : (
             <>

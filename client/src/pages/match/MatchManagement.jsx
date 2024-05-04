@@ -128,7 +128,12 @@ const MatchManagement = () => {
                 </Card>
               </Box>
               <Box mb={8}>
-                <Scorecard isAdmin={true} isLoading={isLoading} />
+                <Scorecard
+                  isAdmin={true}
+                  isLoading={isLoading}
+                  innings={innings}
+                  current_innings_no={current_innings_no}
+                />
               </Box>
             </>
           )}
