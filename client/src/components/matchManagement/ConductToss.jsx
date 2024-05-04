@@ -57,11 +57,7 @@ const ConductToss = ({ matchId, team1, team2 }) => {
     try {
       await dispatch(
         matchManagementApi.saveTossResultToDb({ matchId, toss, token })
-      )
-        .then(() =>
-          dispatch(matchManagementApi.getTossResult({ matchId, token }))
-        )
-        .then(() => resetForm()); //TODO: remove second API call and use result from 1st to set toss result
+      ).then(() => resetForm());
     } catch (error) {
       console.error("Error saving data to the database:", error);
     }
