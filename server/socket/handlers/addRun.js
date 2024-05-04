@@ -5,15 +5,18 @@ const { inningsSchema } = require("../../models/schemas/inningsSchema");
 const { ballLogSchema } = require("../../models/schemas/ballLogSchema");
 const { broadcastInningsData } = require("../broadcasts/broadcastInningsData");
 
-const addRun = (io, runLogData) => {
+const addRun = ({ io, runLogData }) => {
   const {
     matchId,
     battingTeamId,
     bowlingTeamId,
     batsman,
     bowler,
-    runs_scored,
+    runs_scored = 0,
     innings_no,
+    isExtra = false,
+    extraType,
+    runs_this_ball,
   } = runLogData;
 
   try {
@@ -35,6 +38,16 @@ const addRun = (io, runLogData) => {
         innings.push(newInnings);
       }
 
+      const detailedExtraObject = {
+        is_extra: true,
+        extra_type: extraType,
+        runs_this_ball,
+      };
+
+      const simpleExtraObject = {
+        is_extra: false,
+      };
+
       //CREATE A BALL_LOG ITEM AND PUSH IT TO THE RESPECTIVE INNINGS' DATA
       const newBallLogItem = new mongoose.model("Ball_logs", ballLogSchema)({
         bowler_id: bowler._id,
@@ -43,14 +56,14 @@ const addRun = (io, runLogData) => {
         wicket: {
           is_wicket: false,
         },
-        extra: {
-          is_extra: false,
-        },
+        extra: isExtra ? detailedExtraObject : simpleExtraObject,
       });
 
+      const newRunsScored = (runs_scored ?? 0) + (runs_this_ball ?? 0);
+
       innings[innings_no - 1].data.ball_log.push(newBallLogItem);
-      innings[innings_no - 1].data.total_runs += runs_scored;
-      innings[innings_no - 1].data.balls_completed += 1;
+      innings[innings_no - 1].data.total_runs += newRunsScored;
+      innings[innings_no - 1].data.balls_completed += isExtra ? 0 : 1;
       await match.save();
 
       addPlayerRuns({ player_id: batsman._id, runs_scored });
