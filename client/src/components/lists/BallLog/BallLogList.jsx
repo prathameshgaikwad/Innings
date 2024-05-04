@@ -31,17 +31,23 @@ const BallLogList = ({ ballLog }) => {
             className={"smallSwiper"}>
             {ballLog.map((item, i) => {
               let type = "";
+              let content = "";
               switch (true) {
                 case item.wicket.is_wicket:
                   type = "danger";
+                  content = "W";
                   break;
                 case item.runs_scored === 4:
                 case item.runs_scored === 6:
                   type = "success";
+                  content = item.runs_scored;
                   break;
-                case item.extra.is_extra === "NB":
+                case item.extra.is_extra:
                   type = "warning";
+                  content = item.extra.extra_type;
                   break;
+                default:
+                  content = item.runs_scored;
               }
               return (
                 <SwiperSlide
@@ -50,7 +56,7 @@ const BallLogList = ({ ballLog }) => {
                   {item === "-" ? (
                     <BallLogSeparator />
                   ) : (
-                    <LogItem item={item.runs_scored} type={type} />
+                    <LogItem item={content} type={type} />
                   )}
                 </SwiperSlide>
               );
