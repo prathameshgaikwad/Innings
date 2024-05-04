@@ -1,18 +1,17 @@
 /* eslint-disable react/prop-types */
 
-import { Box, Card, Typography } from "@mui/joy";
+import { Box, Typography } from "@mui/joy";
 
 const DidNotBatSection = ({ nonBattingData }) => {
   return (
-    <Card
-      variant="outlined"
-      size="md"
+    <Box
       sx={{
         display: "inline-flex",
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
         width: "100%",
-        mb: 2,
+        p: 1,
       }}>
       <Typography level="title-sm" color="neutral">
         DID NOT BAT:
@@ -21,12 +20,13 @@ const DidNotBatSection = ({ nonBattingData }) => {
         {nonBattingData.map((item, i) => {
           return (
             <Typography key={i} level="body-sm" color="neutral" sx={{ mx: 1 }}>
-              {item},
+              {item}
+              {i < nonBattingData.length - 1 ? "," : ""}
             </Typography>
           );
         })}
       </Box>
-    </Card>
+    </Box>
   );
 };
 export default DidNotBatSection;
