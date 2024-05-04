@@ -15,22 +15,22 @@ const FallOfWicketsList = ({ data }) => {
   return (
     <Card
       variant="outlined"
-      size="md"
       sx={{
         display: "inline-flex",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
-        mb: 2,
+        my: 2,
         py: 0,
+        px: 4,
       }}>
       <Typography level="title-md" color="neutral">
         FALL OF WICKETS:
       </Typography>
       <Box
         sx={{
-          maxWidth: "50vw",
+          maxWidth: "56vw",
           display: "inline-flex",
         }}>
         <Swiper
@@ -61,14 +61,12 @@ const FallOfWicketsList = ({ data }) => {
             align={"left"}
             radius={"8px"}
           />
-          {data.length >= 4 && (
-            <SliderMask
-              height={162.6}
-              bg={"var(--joy-palette-background-surface)"}
-              align={"right"}
-              radius={"8px"}
-            />
-          )}
+          <SliderMask
+            height={162.6}
+            bg={"var(--joy-palette-background-surface)"}
+            align={"right"}
+            radius={"8px"}
+          />
         </Swiper>
       </Box>
     </Card>
