@@ -10,9 +10,8 @@ import { useState } from "react";
 
 const ExtrasButton = ({ type, socket }) => {
   const { matchId } = useParams();
-  const { bowler, bowlingTeam, current_innings_no } = useSelector(
-    (state) => state.matchManagement
-  );
+  const { batsmen, bowler, bowlingTeam, battingTeam, current_innings_no } =
+    useSelector((state) => state.matchManagement);
 
   const [open, setOpen] = useState(false);
 
@@ -21,12 +20,17 @@ const ExtrasButton = ({ type, socket }) => {
       const extraLogItem = {
         matchId,
         bowlingTeamId: bowlingTeam._id,
+        battingTeamId: battingTeam._id,
+        batsman: batsmen.onStrikeBatsman,
         bowler,
         extraType: type,
-        runs: 1,
         innings_no: current_innings_no,
       };
       socket.emit("addExtra", extraLogItem);
+    }
+
+    if (type === "P") {
+      setOpen(true);
     }
   };
 
