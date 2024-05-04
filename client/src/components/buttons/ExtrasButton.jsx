@@ -17,22 +17,30 @@ const ExtrasButton = ({ type, socket }) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    setOpen(true);
-    const extraLogItem = {
-      matchId,
-      bowlingTeamId: bowlingTeam._id,
-      bowler,
-      extraType: type,
-      runs: 1,
-      innings_no: current_innings_no,
-    };
-    socket.emit("addExtra", extraLogItem);
+    if (!open) {
+      const extraLogItem = {
+        matchId,
+        bowlingTeamId: bowlingTeam._id,
+        bowler,
+        extraType: type,
+        runs: 1,
+        innings_no: current_innings_no,
+      };
+      socket.emit("addExtra", extraLogItem);
+    }
   };
 
-  const longPressEvent = useLongPress(handleClick);
+  const handleLongPress = () => {
+    setOpen(true);
+  };
+
+  const longPressEvent = useLongPress(handleLongPress);
 
   return (
-    <Button sx={{ height: 50, flexGrow: 1 }} {...longPressEvent}>
+    <Button
+      sx={{ height: 50, flexGrow: 1 }}
+      {...longPressEvent}
+      onClick={handleClick}>
       <Typography level="title-md">{type}</Typography>
       <CustomRunsModal open={open} setOpen={setOpen} />
     </Button>
