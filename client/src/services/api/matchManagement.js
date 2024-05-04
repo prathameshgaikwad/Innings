@@ -30,7 +30,7 @@ export const getTossResult =
 
 export const saveTossResultToDb =
   ({ matchId, toss, token }) =>
-  async () => {
+  async (dispatch) => {
     try {
       const response = await fetch(`${MATCHES_API}/toss`, {
         method: "POST",
@@ -43,7 +43,10 @@ export const saveTossResultToDb =
       if (!response.ok) {
         throw new Error("Could not save toss result!");
       }
-      //TODO: Get toss response and set match status
+      const data = await response.json();
+      const { status, toss: tossFromDb } = data;
+      dispatch(setTossResult(tossFromDb));
+      dispatch(setStatus(status));
     } catch (error) {
       console.log("error:", error);
     }
