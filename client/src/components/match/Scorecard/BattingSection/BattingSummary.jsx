@@ -10,7 +10,8 @@ const BattingSummary = ({ total, team }) => {
     <>
       <Typography
         level="h3"
-        color="warning"
+        color="primary"
+        sx={{ my: 2 }}
         startDecorator={<MdSportsCricket />}>
         Batting
       </Typography>
