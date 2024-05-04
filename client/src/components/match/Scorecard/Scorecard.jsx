@@ -11,8 +11,8 @@ import {
 
 import CenteredBox from "../../layouts/pages/CenteredBox";
 import ScorecardContent from "./ScorecardContent";
-import ScorecardHeader from "./ScorecardHeader";
 import ScorecardSkeleton from "../../skeletons/ScorecardSkeleton";
+import SectionHeader from "../../layouts/sections/SectionHeader";
 import TabsSegmentedControls from "../../controls/TabsSegmentedControls";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -34,14 +34,8 @@ const nonBattingData2 = [
 ];
 const fallOfWicketsData1 = SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_1;
 const fallOfWicketsData2 = SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_2;
-const total1 = "226/6";
-const total2 = "218/8";
-const extras1 = "7";
-const extras2 = "11";
-const extrasDetails1 = "( nb 2, w 4, b 0, lb 1 )";
-const extrasDetails2 = "( nb 0, w 6, b 0, lb 5 )";
 
-const Scorecard = ({ isAdmin, isLoading }) => {
+const Scorecard = ({ isAdmin, isLoading, innings, current_innings_no }) => {
   const [index, setIndex] = useState(0);
 
   const battingTeam = useSelector((state) =>
@@ -51,12 +45,16 @@ const Scorecard = ({ isAdmin, isLoading }) => {
     isAdmin ? state.matchManagement.bowlingTeam : state.match.bowlingTeam
   );
 
+  const latestInningsData = innings[current_innings_no - 1]?.data;
+  const previousInningsData = innings[current_innings_no - 2]?.data;
+  const inningsData = index === 0 ? latestInningsData : previousInningsData;
+
+  const total = `${inningsData?.total_runs}/${inningsData?.total_wickets}`;
+  const extras = inningsData?.extras;
   const team = index === 0 ? battingTeam : bowlingTeam;
-  const total = index === 0 ? total1 : total2;
+
   const battingData = index === 0 ? battingData1 : battingData2;
   const nonBattingData = index === 0 ? nonBattingData1 : nonBattingData2;
-  const extras = index === 0 ? extras1 : extras2;
-  const extrasDetails = index === 0 ? extrasDetails1 : extrasDetails2;
   const bowlingData = index === 0 ? bowlingData1 : bowlingData2;
   const fallOfWicketsData =
     index === 0 ? fallOfWicketsData1 : fallOfWicketsData2;
@@ -67,12 +65,13 @@ const Scorecard = ({ isAdmin, isLoading }) => {
         <ScorecardSkeleton />
       ) : (
         <CenteredBox customStyles={{ mt: 8 }}>
-          <ScorecardHeader />
+          <SectionHeader title={"Scorecard"} />
           <TabsSegmentedControls
             setIndex={setIndex}
             index={index}
-            team1Name={battingTeam.name_short}
-            team2Name={bowlingTeam.name_short}
+            battingTeamName={battingTeam.name_short}
+            bowlingTeamName={bowlingTeam.name_short}
+            current_innings_no={current_innings_no}
           />
           <ScorecardContent
             team={team}
@@ -81,7 +80,6 @@ const Scorecard = ({ isAdmin, isLoading }) => {
             bowlingData={bowlingData}
             nonBattingData={nonBattingData}
             extras={extras}
-            extrasDetails={extrasDetails}
             fallOfWicketsData={fallOfWicketsData}
           />
         </CenteredBox>
