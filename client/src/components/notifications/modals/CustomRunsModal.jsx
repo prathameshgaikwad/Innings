@@ -15,8 +15,12 @@ const CustomRunsModal = ({ open, setOpen }) => {
     setOpen(false);
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Modal open={open} onClose={() => setOpen(false)}>
+    <Modal open={open} onClose={handleClose}>
       <ModalDialog
         color="primary"
         aria-labelledby="nested-modal-title"
@@ -55,10 +59,7 @@ const CustomRunsModal = ({ open, setOpen }) => {
             onClick={() => handleCustomRuns()}>
             Add Runs
           </Button>
-          <Button
-            variant="outlined"
-            color="neutral"
-            onClick={() => setOpen(false)}>
+          <Button variant="outlined" color="neutral" onClick={handleClose}>
             Cancel
           </Button>
         </Box>
