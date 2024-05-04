@@ -16,7 +16,7 @@ export const getMatchProgress = ({
   const oversCompleted = getCompletedOvers(balls_completed);
   const progress = (oversCompleted / total_overs) * 100;
   if (current_innings_no === 1) {
-    return progress / 2;
+    return (progress / 2).toFixed(2);
   }
   return progress;
 };
