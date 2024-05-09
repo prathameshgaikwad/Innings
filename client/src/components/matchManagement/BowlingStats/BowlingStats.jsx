@@ -2,9 +2,10 @@
 
 import { Card, CardContent } from "@mui/joy";
 
-import BowlingStatsHeader from "./BowlingStatsHeader";
+import { BiSolidCricketBall } from "react-icons/bi";
 import BowlingStatsTable from "./BowlingStatsTable";
 import NoData from "../../fallbacks/NoData";
+import StatsOverviewHeader from "../../layouts/StatsOverviewHeader";
 import { useSelector } from "react-redux";
 
 function createBowlingData(
@@ -30,7 +31,10 @@ const BowlingStats = ({ isLoading }) => {
   return (
     <Card variant="plain" sx={{ width: "100%" }}>
       <CardContent>
-        <BowlingStatsHeader />
+        <StatsOverviewHeader
+          title={"BOWLING"}
+          startDecorator={BiSolidCricketBall}
+        />
         {isLoading || bowlingData.length === 0 ? (
           <NoData height={150} isSmall={true} />
         ) : (

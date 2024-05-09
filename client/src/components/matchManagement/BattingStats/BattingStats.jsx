@@ -2,9 +2,10 @@
 
 import { Card, CardContent } from "@mui/joy";
 
-import BattingStatsHeader from "./BattingStatsHeader";
 import BattingStatsTable from "./BattingStatsTable";
+import { MdSportsCricket } from "react-icons/md";
 import NoData from "../../fallbacks/NoData";
+import StatsOverviewHeader from "../../layouts/StatsOverviewHeader";
 import { useSelector } from "react-redux";
 
 function createBattingData(
@@ -49,7 +50,10 @@ const BattingStats = ({ isLoading }) => {
   return (
     <Card variant="plain" sx={{ width: "100%" }}>
       <CardContent>
-        <BattingStatsHeader />
+        <StatsOverviewHeader
+          title={"BATTING"}
+          startDecorator={MdSportsCricket}
+        />
         {isLoading || battingData.length === 0 ? (
           <NoData height={150} isSmall={true} />
         ) : (
