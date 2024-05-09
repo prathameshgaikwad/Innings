@@ -1,21 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { Divider, Skeleton } from "@mui/joy";
+import { Divider } from "@mui/joy";
+import OnFieldPlayerStatsSkeleton from "./OnFieldPlayerStatsSkeleton";
 
 const OnFieldBatsmenStatsSkeleton = ({ isSmall }) => {
   return (
     <>
-      <Skeleton
-        animation="wave"
-        variant="text"
-        level={isSmall ? "body-xs" : "body-sm"}
-      />
+      <OnFieldPlayerStatsSkeleton isSmall={isSmall} />
       <Divider orientation="vertical" />
-      <Skeleton
-        animation="wave"
-        variant="text"
-        level={isSmall ? "body-xs" : "body-sm"}
-      />
+      <OnFieldPlayerStatsSkeleton isSmall={isSmall} />
     </>
   );
 };
