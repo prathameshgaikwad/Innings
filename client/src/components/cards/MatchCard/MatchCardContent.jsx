@@ -67,6 +67,7 @@ const MatchCardContent = ({ data }) => {
           color={data.battingTeam.team_color}
           logoURL={data.battingTeam.logo_url}
           nameShort={data.battingTeam.name_short}
+          name={data.battingTeam.name}
           widths={[65, 90]}
         />
         <ScorePane
@@ -82,6 +83,7 @@ const MatchCardContent = ({ data }) => {
           color={data.bowlingTeam.team_color}
           logoURL={data.bowlingTeam.logo_url}
           nameShort={data.bowlingTeam.name_short}
+          name={data.bowlingTeam.name}
           widths={[65, 90]}
         />
       </CardContent>
