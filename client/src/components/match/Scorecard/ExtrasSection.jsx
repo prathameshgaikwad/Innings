@@ -19,7 +19,7 @@ const ExtrasSection = ({ extras }) => {
       <Typography level="title-sm" color="danger">
         EXTRAS: {extras.total}
       </Typography>
-      <Stack direction={"row"} spacing={1}>
+      <Stack direction={"row"} spacing={2}>
         <DataChip title={"Wides"} value={wides} />
         <DataChip title={"No Balls"} value={no_balls} />
         <DataChip title={"Byes"} value={byes} />
