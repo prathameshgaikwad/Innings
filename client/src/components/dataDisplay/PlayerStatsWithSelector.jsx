@@ -56,7 +56,8 @@ const PlayerStatsWithSelector = ({
         </Stack>
       </Stack>
       <IconButton
-        color="neutral"
+        variant="plain"
+        color="secondary"
         size="sm"
         onClick={() => handlePlayerChange()}>
         <HiSelector />
