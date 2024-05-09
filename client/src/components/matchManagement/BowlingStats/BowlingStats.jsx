@@ -36,7 +36,7 @@ const BowlingStats = ({ isLoading }) => {
           startDecorator={BiSolidCricketBall}
         />
         {isLoading || bowlingData.length === 0 ? (
-          <NoData height={150} isSmall={true} />
+          <NoData height={150} isSmall={true} customStyles={{ my: 2 }} />
         ) : (
           <BowlingStatsTable bowlingData={bowlingData} />
         )}

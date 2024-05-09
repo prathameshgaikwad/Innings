@@ -55,7 +55,7 @@ const BattingStats = ({ isLoading }) => {
           startDecorator={MdSportsCricket}
         />
         {isLoading || battingData.length === 0 ? (
-          <NoData height={150} isSmall={true} />
+          <NoData height={150} isSmall={true} customStyles={{ my: 2 }} />
         ) : (
           <BattingStatsTable battingData={battingData} />
         )}
