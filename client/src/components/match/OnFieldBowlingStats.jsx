@@ -2,20 +2,25 @@
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../../styles.css";
+import "../../styles.css";
 
 import { Box, Card, Divider } from "@mui/joy";
 
-import BallLogList from "./BallLogList";
-import BallLogSkeleton from "../../skeletons/BallLogSkeleton";
+import BallLogList from "../lists/BallLog/BallLogList";
 import { BiSolidCricketBall } from "react-icons/bi";
-import PlayerStatsWithSelector from "../../dataDisplay/PlayerStatsWithSelector";
-import SelectPlayer from "../../matchManagement/SelectPlayer";
-import SimpleTextFallback from "../../fallbacks/SimpleTextFallback";
-import { setBowler } from "../../../state/match/matchManagementSlice";
+import OnFieldBowlingStatsSkeleton from "../skeletons/OnFieldBowlingStatsSkeleton";
+import PlayerStatsWithSelector from "../dataDisplay/PlayerStatsWithSelector";
+import SelectPlayer from "../matchManagement/SelectPlayer";
+import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
+import { setBowler } from "../../state/match/matchManagementSlice";
 import { useSelector } from "react-redux";
 
-const BallLog = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
+const OnFieldBowlingStats = ({
+  ballLog,
+  bowlerData,
+  isLoading,
+  isAdmin = false,
+}) => {
   const { bowlingTeam } = useSelector((state) => state.matchManagement);
   const noBowler = !bowlerData.name || bowlerData.name.length === 0;
 
@@ -33,7 +38,7 @@ const BallLog = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
         py: 0,
       }}>
       {isLoading ? (
-        <BallLogSkeleton />
+        <OnFieldBowlingStatsSkeleton />
       ) : (
         <>
           <Box width={"60%"} alignItems={"center"}>
@@ -68,4 +73,4 @@ const BallLog = ({ ballLog, bowlerData, isLoading, isAdmin = false }) => {
   );
 };
 
-export default BallLog;
+export default OnFieldBowlingStats;
