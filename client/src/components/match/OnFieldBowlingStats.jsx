@@ -6,7 +6,7 @@ import "../../styles.css";
 
 import { Box, Card, Divider } from "@mui/joy";
 
-import BallLogList from "../lists/BallLog/BallLogList";
+import BallLogList from "../lists/BallLogList";
 import { BiSolidCricketBall } from "react-icons/bi";
 import OnFieldBowlingStatsSkeleton from "../skeletons/OnFieldBowlingStatsSkeleton";
 import PlayerStatsWithSelector from "../dataDisplay/PlayerStatsWithSelector";

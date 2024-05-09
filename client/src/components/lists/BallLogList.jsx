@@ -2,15 +2,15 @@
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../../styles.css";
+import "../../styles.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import BallLogSeparator from "../../dataDisplay/BallLogSeparator";
-import LogItem from "../../dataDisplay/LogItem";
+import BallLogSeparator from "../dataDisplay/BallLogSeparator";
+import LogItem from "../dataDisplay/LogItem";
 import { Mousewheel } from "swiper/modules";
-import SimpleTextFallback from "../../fallbacks/SimpleTextFallback";
-import SliderMask from "../../layouts/swiper/SliderMask";
+import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
+import SliderMask from "../layouts/swiper/SliderMask";
 
 const BallLogList = ({ ballLog }) => {
   return (
