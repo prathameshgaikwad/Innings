@@ -1,4 +1,4 @@
-import { Box, Card, useTheme } from "@mui/joy";
+import { Box, Card, Divider, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -91,15 +91,19 @@ const MatchManagement = () => {
             )
           ) : (
             <>
-              <Box
+              <Card
+                size="lg"
                 sx={{
                   display: "flex",
                   flexDirection: isMobile ? "column" : "row",
                   alignItems: "center",
                   gap: isMobile ? 4 : 1.5,
                   width: "100%",
+                  borderWidth: 3,
+                  p: 2,
                 }}>
                 <Card
+                  variant="plain"
                   sx={{
                     justifyContent: "space-between",
                     minHeight: "85vh",
@@ -108,7 +112,9 @@ const MatchManagement = () => {
                   {secondInnings && <ChaseStatsCard isAdmin={true} />}
                   <ScoringButtonsPanel socket={socket} disabled={isLoading} />
                 </Card>
+                <Divider orientation="vertical" />
                 <Card
+                  variant="plain"
                   sx={{
                     width: "100%",
                     maxHeight: "85vh",
@@ -119,14 +125,14 @@ const MatchManagement = () => {
                   <ActionsPane isLoading={isLoading} />
                   <OnFieldStats
                     isLoading={isLoading}
-                    batsmenData={batsmenData || []}
-                    bowlerData={bowlerData || []}
+                    batsmenData={batsmenData || {}}
+                    bowlerData={bowlerData || {}}
                     ballLog={ballLog}
                     isAdmin={true}
                   />
                   <PlayerStatsOverview isLoading={isLoading} />
                 </Card>
-              </Box>
+              </Card>
               <Box mb={8}>
                 <Scorecard
                   isAdmin={true}
