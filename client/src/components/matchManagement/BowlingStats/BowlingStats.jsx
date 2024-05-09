@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 
-import { Card, CardContent } from "@mui/joy";
-
 import { BiSolidCricketBall } from "react-icons/bi";
 import BowlingStatsTable from "./BowlingStatsTable";
+import { Box } from "@mui/joy";
 import NoData from "../../fallbacks/NoData";
 import StatsOverviewHeader from "../../layouts/StatsOverviewHeader";
 import { useSelector } from "react-redux";
@@ -29,19 +28,17 @@ const BowlingStats = ({ isLoading }) => {
   ];
 
   return (
-    <Card variant="plain" sx={{ width: "100%" }}>
-      <CardContent>
-        <StatsOverviewHeader
-          title={"BOWLING"}
-          startDecorator={BiSolidCricketBall}
-        />
-        {isLoading || bowlingData.length === 0 ? (
-          <NoData height={150} isSmall={true} customStyles={{ my: 2 }} />
-        ) : (
-          <BowlingStatsTable bowlingData={bowlingData} />
-        )}
-      </CardContent>
-    </Card>
+    <Box variant="plain" sx={{ width: "100%" }}>
+      <StatsOverviewHeader
+        title={"BOWLING"}
+        startDecorator={BiSolidCricketBall}
+      />
+      {isLoading || bowlingData.length === 0 ? (
+        <NoData height={150} isSmall={true} customStyles={{ my: 2 }} />
+      ) : (
+        <BowlingStatsTable bowlingData={bowlingData} />
+      )}
+    </Box>
   );
 };
 

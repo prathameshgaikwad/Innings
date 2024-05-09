@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import { Card, CardContent } from "@mui/joy";
-
 import BattingStatsTable from "./BattingStatsTable";
+import { Box } from "@mui/joy";
 import { MdSportsCricket } from "react-icons/md";
 import NoData from "../../fallbacks/NoData";
 import StatsOverviewHeader from "../../layouts/StatsOverviewHeader";
@@ -48,19 +47,14 @@ const BattingStats = ({ isLoading }) => {
   ];
 
   return (
-    <Card variant="plain" sx={{ width: "100%" }}>
-      <CardContent>
-        <StatsOverviewHeader
-          title={"BATTING"}
-          startDecorator={MdSportsCricket}
-        />
-        {isLoading || battingData.length === 0 ? (
-          <NoData height={150} isSmall={true} customStyles={{ my: 2 }} />
-        ) : (
-          <BattingStatsTable battingData={battingData} />
-        )}
-      </CardContent>
-    </Card>
+    <Box variant="plain" sx={{ width: "100%" }}>
+      <StatsOverviewHeader title={"BATTING"} startDecorator={MdSportsCricket} />
+      {isLoading || battingData.length === 0 ? (
+        <NoData height={150} isSmall={true} customStyles={{ my: 2 }} />
+      ) : (
+        <BattingStatsTable battingData={battingData} />
+      )}
+    </Box>
   );
 };
 
