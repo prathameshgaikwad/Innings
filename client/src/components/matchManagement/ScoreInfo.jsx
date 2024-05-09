@@ -7,6 +7,7 @@ import {
   CardOverflow,
   Divider,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/joy";
 import {
@@ -54,7 +55,15 @@ const ScoreInfo = ({ isLoading }) => {
             <CardContent
               orientation="horizontal"
               sx={{ justifyContent: "space-between", alignItems: "center" }}>
-              <Typography level="h2">{battingTeam.name_short}</Typography>
+              <Tooltip
+                title={battingTeam.name}
+                color="neutral"
+                variant="outlined"
+                arrow
+                size="sm"
+                placement="top">
+                <Typography level="h2">{battingTeam.name_short}</Typography>
+              </Tooltip>
               <Typography level="h2">
                 {runs}/{wickets}
               </Typography>
