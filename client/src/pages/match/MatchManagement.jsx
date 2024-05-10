@@ -1,20 +1,15 @@
-import { Box, Card, Divider, useTheme } from "@mui/joy";
+import { Box, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import ActionsPane from "../../components/matchManagement/ActionsPane";
-import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
-import ConductToss from "../../components/matchManagement/ConductToss";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/matchManagement/Header";
+import MainContent from "../../components/matchManagement/MainContent/MainContent";
 import Navbar from "../../components/common/Navbar/Navbar";
-import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
-import PlayerStatsOverview from "../../components/match/PlayerStatsOverview";
-import ScoreInfo from "../../components/matchManagement/ScoreInfo";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
-import ScoringButtonsPanel from "../../components/matchManagement/ScoringButtonsPanel";
 import SocketProvider from "../../components/SocketProvider";
+import TossProvider from "../../components/TossProvider";
 import { matchApi } from "../../services/api";
 import { setMatch } from "../../state/match/matchManagementSlice";
 import { useMediaQuery } from "@mui/material";
@@ -42,26 +37,8 @@ const MatchManagement = () => {
     fetchMatchDetails();
   }, [setIsLoading, matchId, token]);
 
-  const {
-    status,
-    innings,
-    current_innings_no,
-    batsmen: batsmenData,
-    bowler: bowlerData,
-    battingTeam,
-    bowlingTeam,
-    match_no,
-  } = useSelector((state) => state.matchManagement) || {};
-
-  const ballLog = innings[current_innings_no - 1]?.data?.ball_log || [];
-
-  const [tossCompleted, setTossCompleted] = useState(status);
-
-  useEffect(() => {
-    setTossCompleted(status === "ongoing");
-  }, [status]);
-
-  const secondInnings = innings && innings === "2";
+  const { innings, current_innings_no, battingTeam, bowlingTeam, match_no } =
+    useSelector((state) => state.matchManagement) || {};
 
   const socket = useSocket();
 
@@ -77,59 +54,12 @@ const MatchManagement = () => {
             team2={bowlingTeam}
             match_no={match_no}
           />
-          {!tossCompleted ? (
-            battingTeam &&
-            bowlingTeam && (
-              <ConductToss
-                matchId={matchId}
-                team1={battingTeam}
-                team2={bowlingTeam}
-              />
-            )
-          ) : (
+          <TossProvider
+            matchId={matchId}
+            team1={battingTeam}
+            team2={bowlingTeam}>
             <>
-              <Card
-                size="lg"
-                sx={{
-                  display: "flex",
-                  flexDirection: isMobile ? "column" : "row",
-                  alignItems: "center",
-                  gap: isMobile ? 4 : 1.5,
-                  width: "100%",
-                  borderWidth: 3,
-                  p: 2,
-                }}>
-                <Card
-                  variant="plain"
-                  sx={{
-                    justifyContent: "space-between",
-                    minHeight: "85vh",
-                  }}>
-                  <ScoreInfo isLoading={isLoading} />
-                  {secondInnings && <ChaseStatsCard isAdmin={true} />}
-                  <ScoringButtonsPanel socket={socket} disabled={isLoading} />
-                </Card>
-                <Divider orientation="vertical" />
-                <Card
-                  variant="plain"
-                  sx={{
-                    width: "100%",
-                    maxHeight: "85vh",
-                    minHeight: "85vh",
-                    overflow: "auto",
-                    justifyContent: "space-between",
-                  }}>
-                  <ActionsPane isLoading={isLoading} />
-                  <OnFieldStats
-                    isLoading={isLoading}
-                    batsmenData={batsmenData || {}}
-                    bowlerData={bowlerData || {}}
-                    ballLog={ballLog}
-                    isAdmin={true}
-                  />
-                  <PlayerStatsOverview isLoading={isLoading} />
-                </Card>
-              </Card>
+              <MainContent isLoading={isLoading} socket={socket} />
               <Box mb={8}>
                 <Scorecard
                   isAdmin={true}
@@ -139,7 +69,7 @@ const MatchManagement = () => {
                 />
               </Box>
             </>
-          )}
+          </TossProvider>
         </SocketProvider>
       </PageContainer>
       <Footer />
