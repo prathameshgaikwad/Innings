@@ -37,13 +37,13 @@ const TeamPlayersSheet = ({ players, performance }) => {
         variant="outlined"
         sx={{
           "& thead th:nth-of-type(1)": {
-            width: "6%",
+            width: "4%",
           },
           "& thead th:nth-of-type(2)": {
-            width: "9%",
+            width: "7%",
           },
           "& thead th:nth-of-type(3)": {
-            width: "19%",
+            width: "22%",
           },
           fontSize: isMobile ? "0.85rem" : "",
         }}>
@@ -61,7 +61,7 @@ const TeamPlayersSheet = ({ players, performance }) => {
                   />
                 </td>
               }
-              {<td>{player.first_name + " " + player.last_name}</td>}
+              {<td>{`${player.first_name} ${player.last_name}`}</td>}
               {<td>{format(player.debut, "yyyy")}</td>}
               {<td>{player.statistics.matches}</td>}
               {<td>{player.statistics.total_runs}</td>}
