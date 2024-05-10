@@ -20,8 +20,7 @@ import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
-const Header = ({ isLoading, team1, team2, match_no }) => {
-  const matchNumber = match_no;
+const Header = ({ isLoading, team1, team2, match_no = "" }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -70,7 +69,7 @@ const Header = ({ isLoading, team1, team2, match_no }) => {
               level={isMobile ? "h4" : "h3"}
               sx={{ opacity: 0.5 }}
               noWrap>
-              # {matchNumber}
+              # {match_no}
             </Typography>
             <TeamBadgeHorizontal
               team={team1}
