@@ -13,6 +13,8 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
   const { team_color, logo_url, name, _id, performance } = team;
   const { tournamentId } = useParams();
 
+  const teamPageLink = `/tournaments/${tournamentId}/teams/${_id}`;
+
   return (
     <>
       {isLoading ? (
@@ -25,13 +27,13 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
             alignItems: "center",
             gap: 2,
           }}>
-          <Link href={`/tournaments/${tournamentId}/teams/${_id}`}>
+          <Link href={teamPageLink}>
             <AspectRatio
               ratio="1"
               sx={{
                 borderRadius: "50%",
                 border: "4px solid",
-                borderColor: team_color,
+                borderColor: team_color ?? "#222",
                 width: isSmall ? 35 : 40,
                 mr: 2,
               }}>
@@ -42,7 +44,7 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
               )}
             </AspectRatio>
             <Typography level={isSmall ? "title-lg" : "h4"} noWrap>
-              {name}
+              {name ?? ""}
             </Typography>
           </Link>
           {performance && performance.length > 0 && (
