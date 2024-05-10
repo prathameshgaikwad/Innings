@@ -65,6 +65,7 @@ const ConductToss = ({ matchId, team1, team2 }) => {
 
   return (
     <Card
+      size="lg"
       sx={{
         display: "flex",
         alignItems: "center",
@@ -72,6 +73,7 @@ const ConductToss = ({ matchId, team1, team2 }) => {
         height: "70vh",
         mt: isMobile ? 2 : 4,
         mb: 8,
+        borderWidth: 3,
       }}>
       <Formik
         initialValues={initialValues}
