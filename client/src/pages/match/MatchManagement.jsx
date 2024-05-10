@@ -53,7 +53,6 @@ const MatchManagement = () => {
     match_no,
   } = useSelector((state) => state.matchManagement) || {};
 
-  const isHeaderDataAvailable = battingTeam && bowlingTeam && match_no;
   const ballLog = innings[current_innings_no - 1]?.data?.ball_log || [];
 
   const [tossCompleted, setTossCompleted] = useState(status);
@@ -72,14 +71,12 @@ const MatchManagement = () => {
       <PageContainer
         customStyles={{ gap: 2, mt: 4, maxWidth: isMobile ? "85vw" : "80vw" }}>
         <SocketProvider matchId={matchId} socket={socket} isAdmin={true}>
-          {isHeaderDataAvailable && (
-            <Header
-              isLoading={isLoading}
-              team1={battingTeam}
-              team2={bowlingTeam}
-              match_no={match_no}
-            />
-          )}
+          <Header
+            isLoading={isLoading}
+            team1={battingTeam}
+            team2={bowlingTeam}
+            match_no={match_no}
+          />
           {!tossCompleted ? (
             battingTeam &&
             bowlingTeam && (
