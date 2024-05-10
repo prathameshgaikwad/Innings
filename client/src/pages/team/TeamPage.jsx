@@ -52,15 +52,16 @@ const TeamPage = () => {
         />
         <Card
           variant="outlined"
+          size="lg"
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            width: isMobile ? "86%" : "86%",
+            width: "86%",
             mb: isMobile ? 2 : 4,
-            py: isMobile ? 1.5 : 3,
             px: isMobile ? 3 : 6,
+            borderWidth: 3,
           }}>
           {isLoading ? (
             <RectangularSkeleton />
