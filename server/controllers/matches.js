@@ -44,7 +44,7 @@ const getMatchDetails = async (req, res) => {
 
     let tossData = toss;
 
-    if (toss.winner_id) {
+    if (toss.conducted) {
       tossData = await generateRichTossData({
         toss,
         team1_id,
@@ -89,6 +89,7 @@ const setTossResult = async (req, res) => {
 
     tossFromDb.decision = decision;
     tossFromDb.winner_id = winnerId;
+    tossFromDb.conducted = true;
 
     match.status = "ongoing";
     await match.save();

@@ -10,6 +10,7 @@ const generateRichTossData = async ({ toss, team1_id, team2_id }) => {
     winner_id: toss.winner_id,
     winner_name,
     loser_name,
+    conducted: toss.conducted,
   };
 
   return richTossData;

@@ -27,6 +27,10 @@ const matchSchema = new mongoose.Schema(
     },
     total_overs: { type: Number, required: [true, "overs is required"] },
     toss: {
+      conducted: {
+        type: Boolean,
+        default: false,
+      },
       decision: {
         type: String,
         enum: ["bat", "field"],

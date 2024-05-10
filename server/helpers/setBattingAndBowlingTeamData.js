@@ -12,7 +12,7 @@ const setBattingAndBowlingTeamData = async ({
   const richTeam1Data = await getRichTeamData({ team_id: team1._id });
   const richTeam2Data = await getRichTeamData({ team_id: team2._id });
 
-  if (!toss.decision || toss.decision.length === 0) {
+  if (!toss.conducted) {
     return { battingTeam: team1, bowlingTeam: team2 };
   }
 
