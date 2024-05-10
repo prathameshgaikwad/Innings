@@ -12,7 +12,11 @@ const setBattingAndBowlingTeamData = async ({
   const richTeam1Data = await getRichTeamData({ team_id: team1._id });
   const richTeam2Data = await getRichTeamData({ team_id: team2._id });
 
-  const isOddInnings = innings.length % 2 === 1;
+  if (!toss.decision || toss.decision.length === 0) {
+    return { battingTeam: team1, bowlingTeam: team2 };
+  }
+
+  const isOddInnings = innings.length % 2 === 0;
   const isChoiceToBat = toss.decision === "bat";
   const tossWinningTeam = toss.winner_id.equals(team1._id)
     ? richTeam1Data
