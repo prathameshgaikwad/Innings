@@ -53,7 +53,7 @@ const Match = () => {
   const match = useSelector((state) => state.match);
   const { toss, innings, current_innings_no, status, batsmen, bowler } = match;
 
-  const isTossConducted = toss && toss.decision && toss.decision.length > 0;
+  const isTossConducted = toss && toss.conducted;
   const tossWinner = toss.winner_name;
   const tossDecision = toss.decision;
 
