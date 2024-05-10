@@ -5,7 +5,7 @@ import { Box, Stack, Typography } from "@mui/joy";
 import DataChip from "../../dataDisplay/DataChip";
 
 const ExtrasSection = ({ extras }) => {
-  const { wides, no_balls, byes, leg_byes, penalties } = extras;
+  const { wides, no_balls, byes, leg_byes, penalties, total } = extras ?? {};
   return (
     <Box
       sx={{
@@ -17,7 +17,7 @@ const ExtrasSection = ({ extras }) => {
         p: 1,
       }}>
       <Typography level="title-sm" color="danger">
-        EXTRAS: {extras.total}
+        EXTRAS: {total}
       </Typography>
       <Stack direction={"row"} spacing={2}>
         <DataChip title={"Wides"} value={wides} />
