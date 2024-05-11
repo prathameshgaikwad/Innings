@@ -81,7 +81,8 @@ const TeamsList = ({ isSetupPage }) => {
                 </SwiperSlide>
               );
             })}
-            {teams.length >= 3 && <SliderMask align={"right"} />}
+            <SliderMask align={"right"} />
+            <SliderMask align={"left"} />
           </Swiper>
         )}
       </Box>
