@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, useTheme } from "@mui/joy";
+import { Box, Stack, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -12,7 +12,6 @@ import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import SocketProvider from "../../components/SocketProvider";
-import TeamCard from "../../components/cards/TeamCard";
 import TossDetails from "../../components/match/TossDetails";
 import TossNotConducted from "../../components/fallbacks/TossNotConducted";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
@@ -120,24 +119,11 @@ const Match = () => {
               />
             </>
           ) : (
-            <>
-              <TossNotConducted />
-              {!isLoading && (
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: 6,
-                    width: "80%",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <TeamCard team={match.battingTeam} isLoading={isLoading} />
-                  <Typography level="body-lg">vs</Typography>
-                  <TeamCard team={match.bowlingTeam} isLoading={isLoading} />
-                </Box>
-              )}
-            </>
+            <TossNotConducted
+              isLoading={isLoading}
+              battingTeam={match.battingTeam}
+              bowlingTeam={match.bowlingTeam}
+            />
           )}
         </SocketProvider>
       </PageContainer>
