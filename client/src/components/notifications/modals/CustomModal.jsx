@@ -3,11 +3,12 @@
 import { Box, Button, Divider, Modal, ModalDialog, Typography } from "@mui/joy";
 
 import ActionButton from "../../buttons/ActionButton";
-import DeleteTeamButton from "../../buttons/DeleteTeamButton";
 import { FiCheckCircle } from "react-icons/fi";
 import { IoWarningOutline } from "react-icons/io5";
 import LinkedConfirmButton from "../../buttons/LinkedConfirmButton";
 import { TbSwitch3 } from "react-icons/tb";
+import { clearTempTeam } from "../../../state/tournament/tournamentSetupSlice";
+import { useDispatch } from "react-redux";
 
 const CustomModal = ({
   color,
@@ -19,6 +20,8 @@ const CustomModal = ({
   redirectLink,
   title,
 }) => {
+  const dispatch = useDispatch();
+
   const deleteTeam = useCase === "deleteTeam";
   const finishSetup = useCase === "finishSetup";
   const startMatch = useCase === "startMatch";
@@ -46,6 +49,11 @@ const CustomModal = ({
     //   })
     // );
     //TODO: ATOMIZE above API call, and move it to its own component
+  };
+
+  const handleDeleteTeam = async () => {
+    dispatch(clearTempTeam());
+    setOpen(false);
   };
 
   return (
@@ -106,7 +114,13 @@ const CustomModal = ({
               title={`Yes, I&apos;m Sure`}
             />
           )}
-          {deleteTeam && <DeleteTeamButton setOpen={setOpen} />}
+          {deleteTeam && (
+            <ActionButton
+              color="success"
+              title="Yes, Delete this team"
+              handleOnClick={handleDeleteTeam}
+            />
+          )}
           {completeScoring && (
             <ActionButton
               color="success"
