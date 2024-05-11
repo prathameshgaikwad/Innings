@@ -19,7 +19,6 @@
     "@mui/material": "^5.15.5",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.1.0",
-    "@tanstack/react-query": "^5.29.0",
     "date-fns": "^3.3.1",
     "formik": "^2.4.5",
     "randomcolor": "^0.6.2",
