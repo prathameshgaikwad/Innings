@@ -3,7 +3,6 @@
 import { Box, Button, Divider, Modal, ModalDialog, Typography } from "@mui/joy";
 
 import ActionButton from "../../buttons/ActionButton";
-import ConfirmFinishTournamentSetup from "../../buttons/ConfirmFinishTournamentSetup";
 import DeleteTeamButton from "../../buttons/DeleteTeamButton";
 import { FiCheckCircle } from "react-icons/fi";
 import { IoWarningOutline } from "react-icons/io5";
@@ -34,6 +33,19 @@ const CustomModal = ({
   const handleCompleteScoring = () => {
     alert("Completing scoring");
     setOpen(false);
+  };
+
+  const handleFinishSetup = async () => {
+    // dispatch(
+    //   tournamentSetupApi.saveFixturesBatchToDb({
+    //     tournamentId,
+    //     token,
+    //     fixtures,
+    //     navigate,
+    //     setOpen,
+    //   })
+    // );
+    //TODO: ATOMIZE above API call, and move it to its own component
   };
 
   return (
@@ -87,7 +99,13 @@ const CustomModal = ({
               setOpen={setOpen}
             />
           )}
-          {finishSetup && <ConfirmFinishTournamentSetup setOpen={setOpen} />}
+          {finishSetup && (
+            <ActionButton
+              handleOnClick={handleFinishSetup}
+              color="success"
+              title={`Yes, I&apos;m Sure`}
+            />
+          )}
           {deleteTeam && <DeleteTeamButton setOpen={setOpen} />}
           {completeScoring && (
             <ActionButton
