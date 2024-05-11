@@ -376,12 +376,14 @@ const getAllFixtures = async (req, res) => {
       const match = await Match.findById(match_id);
 
       const team1Details = {
+        _id: team1._id,
         name: team1.name,
         name_short: team1.name_short,
         team_color: team1.team_color,
         logo_url: team1.logo_url,
       };
       const team2Details = {
+        _id: team2._id,
         name: team2.name,
         name_short: team2.name_short,
         team_color: team2.team_color,
