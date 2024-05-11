@@ -2,7 +2,7 @@
 
 import { Box, Button, Divider, Modal, ModalDialog, Typography } from "@mui/joy";
 
-import ConfirmButton from "../../buttons/ConfirmButton";
+import ActionButton from "../../buttons/ActionButton";
 import ConfirmFinishTournamentSetup from "../../buttons/ConfirmFinishTournamentSetup";
 import DeleteTeamButton from "../../buttons/DeleteTeamButton";
 import { FiCheckCircle } from "react-icons/fi";
@@ -25,6 +25,16 @@ const CustomModal = ({
   const startMatch = useCase === "startMatch";
   const completeScoring = useCase === "completeScoring";
   const switchSides = useCase === "switchSides";
+
+  const handleSwitch = () => {
+    alert("Switching sides");
+    setOpen(false);
+  };
+
+  const handleCompleteScoring = () => {
+    alert("Completing scoring");
+    setOpen(false);
+  };
 
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
@@ -80,13 +90,17 @@ const CustomModal = ({
           {finishSetup && <ConfirmFinishTournamentSetup setOpen={setOpen} />}
           {deleteTeam && <DeleteTeamButton setOpen={setOpen} />}
           {completeScoring && (
-            <ConfirmButton setOpen={setOpen} title={"Yes, Complete Scoring"} />
+            <ActionButton
+              color="success"
+              title="Yes, Complete Scoring"
+              handleOnClick={handleCompleteScoring}
+            />
           )}
           {switchSides && (
-            <ConfirmButton
-              setOpen={setOpen}
-              title={"Switch and Continue"}
-              useCase="Switch"
+            <ActionButton
+              color="success"
+              title="Switch and Continue"
+              handleOnClick={handleSwitch}
             />
           )}
           <Button
