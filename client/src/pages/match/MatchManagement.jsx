@@ -55,9 +55,11 @@ const MatchManagement = () => {
             match_no={match_no}
           />
           <TossProvider
+            isLoading={isLoading}
             matchId={matchId}
             team1={battingTeam}
-            team2={bowlingTeam}>
+            team2={bowlingTeam}
+            canConductToss={true}>
             <>
               <MainContent isLoading={isLoading} socket={socket} />
               <Box mb={8}>

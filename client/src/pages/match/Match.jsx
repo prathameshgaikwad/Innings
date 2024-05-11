@@ -13,7 +13,7 @@ import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import SocketProvider from "../../components/SocketProvider";
 import TossDetails from "../../components/match/TossDetails";
-import TossNotConducted from "../../components/fallbacks/TossNotConducted";
+import TossProvider from "../../components/TossProvider";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { matchApi } from "../../services/api";
 import { setMatch } from "../../state/match/matchSlice";
@@ -52,7 +52,6 @@ const Match = () => {
   const match = useSelector((state) => state.match);
   const { toss, innings, current_innings_no, status, batsmen, bowler } = match;
 
-  const isTossConducted = toss && toss.conducted;
   const tossWinner = toss.winner_name;
   const tossDecision = toss.decision;
 
@@ -69,8 +68,13 @@ const Match = () => {
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ gap: 2, mb: 8 }}>
         <SocketProvider matchId={matchId} socket={socket} isAdmin={false}>
-          {isAdmin && <ManageEventAlert eventType={"match"} />}
-          {isTossConducted ? (
+          <TossProvider
+            isLoading={isLoading}
+            matchId={matchId}
+            team1={match.battingTeam}
+            team2={match.bowlingTeam}
+            canConductToss={false}>
+            {isAdmin && <ManageEventAlert eventType={"match"} />}
             <>
               <TossDetails
                 tossWinner={tossWinner}
@@ -118,13 +122,7 @@ const Match = () => {
                 current_innings_no={current_innings_no}
               />
             </>
-          ) : (
-            <TossNotConducted
-              isLoading={isLoading}
-              battingTeam={match.battingTeam}
-              bowlingTeam={match.bowlingTeam}
-            />
-          )}
+          </TossProvider>
         </SocketProvider>
       </PageContainer>
       <Footer />
