@@ -25,12 +25,15 @@ const FallOfWicketsList = ({ data }) => {
         py: 0,
         px: 4,
       }}>
-      <Typography level="title-md" color="neutral">
+      <Typography
+        level="title-md"
+        color="neutral"
+        sx={{ whiteSpace: "nowrap" }}>
         FALL OF WICKETS:
       </Typography>
       <Box
         sx={{
-          maxWidth: "56vw",
+          width: "56vw",
           display: "inline-flex",
         }}>
         <Swiper
