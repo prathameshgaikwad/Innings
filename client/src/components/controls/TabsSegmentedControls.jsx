@@ -29,10 +29,10 @@ const TabsSegmentedControls = ({
           [`& .${tabClasses.root}[aria-selected="true"]`]: {
             color: theme.palette.neutral.plainColor,
             bgcolor: theme.palette.primary.plainActiveBg,
-          },
-          [`& .${tabClasses.root}[aria-disabled="true"]`]: {
-            color: theme.palette.neutral.solidDisabledColor,
-            bgcolor: theme.palette.neutral.solidDisabledBg,
+            transition: "all 0.2s ease-in-out",
+            "&:hover": {
+              bgcolor: theme.palette.primary.plainHoverBg,
+            },
           },
         }}>
         <Tab disableIndicator>{battingTeamName} Innings</Tab>
