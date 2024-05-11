@@ -1,23 +1,6 @@
 # Innings - The Ultimate Cricket Tournament Platform
 
-Welcome to Innings!
-
-## Introduction
-
-This project is the client-side implementation of a Cricket Tournament Management System. It provides a user interface for interacting with the system, allowing users to view tournaments, fixtures, matches, teams, and other relevant data related to cricket tournaments.
-
-## Features
-
-- Register/Login using email or a Google account
-- View live match in a tournament
-- Join tournaments
-- Create and setup new tournaments
-- View list of featured, created, and joined tournaments
-- View details of a specific tournament
-- View list of fixtures, teams, and points table for a tournament
-- View details of a specific match
-- Manage tournaments, and matches (admin only)
-- Light/Dark mode
+Welcome to Innings (client)!
 
 ## Technologies Used
 
