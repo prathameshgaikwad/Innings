@@ -14,7 +14,7 @@ import CallToActionButton from "./CallToActionButton";
 import CustomModal from "../../notifications/modals/CustomModal";
 import { MdAccessTime } from "react-icons/md";
 import SimpleMatchCardSkeleton from "../../skeletons/SimpleMatchCardSkeleton";
-import TeamColorBadge from "./TeamColorBadge";
+import TeamBadgeHorizontal from "../../dataDisplay/TeamBadgeHorizontal";
 import formatTime from "../../../utilities/helpers/formatTime";
 import setTimeFromString from "../../../utilities/helpers/setTimeFromString";
 import { useMediaQuery } from "@mui/material";
@@ -34,16 +34,7 @@ const SimpleMatchCard = ({
   const { tournamentId } = useParams();
 
   const MatchNumber = matchData.match_no;
-  const {
-    name: team1Name,
-    nameShort: team1NameShort,
-    color: team1Color,
-  } = matchData.team1Details;
-  const {
-    name: team2Name,
-    nameShort: team2NameShort,
-    color: team2Color,
-  } = matchData.team2Details;
+
   const matchStatus = matchData.status;
   const matchTime = formatTime(setTimeFromString(matchData.time));
   const matchId = matchData.match_id;
@@ -93,20 +84,17 @@ const SimpleMatchCard = ({
               gap={1}
               sx={{ height: "100%" }}>
               <Stack direction="row" alignItems="center" gap={1}>
-                <Typography
-                  level={isMobile ? "title-sm" : "title-md"}
-                  whiteSpace="nowrap"
-                  startDecorator={<TeamColorBadge teamColor={team1Color} />}>
-                  {" "}
-                  {isMobile ? team1NameShort : team1Name}
-                </Typography>{" "}
+                <TeamBadgeHorizontal
+                  isLoading={isLoading}
+                  team={matchData.team1Details}
+                  isSmall={true}
+                />
                 vs
-                <Typography
-                  level={isMobile ? "title-sm" : "title-md"}
-                  whiteSpace="nowrap"
-                  endDecorator={<TeamColorBadge teamColor={team2Color} />}>
-                  {isMobile ? team2NameShort : team2Name}
-                </Typography>
+                <TeamBadgeHorizontal
+                  isLoading={isLoading}
+                  team={matchData.team2Details}
+                  isSmall={true}
+                />
               </Stack>
               <Stack direction="row" alignItems="center" width="100%">
                 <Typography
