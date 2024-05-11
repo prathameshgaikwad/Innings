@@ -383,9 +383,9 @@ const getAllFixtures = async (req, res) => {
       };
       const team2Details = {
         name: team2.name,
-        nameShort: team2.name_short,
+        name_short: team2.name_short,
         team_color: team2.team_color,
-        logoURL: team2.logo_url,
+        logo_url: team2.logo_url,
       };
 
       responseData.push({
