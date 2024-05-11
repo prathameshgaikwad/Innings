@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { Tab, TabList, Tabs, tabClasses, useTheme } from "@mui/joy";
+import { Tab, TabList, Tabs, Tooltip, tabClasses, useTheme } from "@mui/joy";
 
 const TabsSegmentedControls = ({
   setIndex,
   index,
-  battingTeamName,
-  bowlingTeamName,
+  battingTeam,
+  bowlingTeam,
   current_innings_no,
 }) => {
   const theme = useTheme();
@@ -35,10 +35,22 @@ const TabsSegmentedControls = ({
             },
           },
         }}>
-        <Tab disableIndicator>{battingTeamName} Innings</Tab>
-        <Tab disabled={isSecondTabDisabled} disableIndicator>
-          {bowlingTeamName} Innings
-        </Tab>
+        <Tooltip
+          title={battingTeam.name}
+          placement="top"
+          variant="outlined"
+          arrow>
+          <Tab disableIndicator>{battingTeam.name_short} Innings</Tab>
+        </Tooltip>
+        <Tooltip
+          title={bowlingTeam.name}
+          placement="top"
+          variant="outlined"
+          arrow>
+          <Tab disabled={isSecondTabDisabled} disableIndicator>
+            {bowlingTeam.name_short} Innings
+          </Tab>
+        </Tooltip>
       </TabList>
     </Tabs>
   );

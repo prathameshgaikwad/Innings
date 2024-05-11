@@ -69,8 +69,8 @@ const Scorecard = ({ isAdmin, isLoading, innings, current_innings_no }) => {
           <TabsSegmentedControls
             setIndex={setIndex}
             index={index}
-            battingTeamName={battingTeam.name_short}
-            bowlingTeamName={bowlingTeam.name_short}
+            battingTeam={battingTeam}
+            bowlingTeam={bowlingTeam}
             current_innings_no={current_innings_no}
           />
           <ScorecardContent
