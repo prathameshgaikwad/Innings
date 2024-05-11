@@ -16,7 +16,8 @@ const setBattingAndBowlingTeamData = async ({
     return { battingTeam: team1, bowlingTeam: team2 };
   }
 
-  const isOddInnings = innings.length % 2 === 0;
+  const isNewMatch = innings.length === 0;
+  const isOddInnings = innings.length % 2 === 1;
   const isChoiceToBat = toss.decision === "bat";
   const tossWinningTeam = toss.winner_id.equals(team1._id)
     ? richTeam1Data
@@ -24,6 +25,17 @@ const setBattingAndBowlingTeamData = async ({
   const tossLosingTeam = toss.winner_id.equals(team1._id)
     ? richTeam2Data
     : richTeam1Data;
+
+  if (isNewMatch) {
+    if (isChoiceToBat) {
+      battingTeam = tossWinningTeam;
+      bowlingTeam = tossLosingTeam;
+    } else {
+      battingTeam = tossLosingTeam;
+      bowlingTeam = tossWinningTeam;
+    }
+    return { battingTeam, bowlingTeam };
+  }
 
   if (isOddInnings) {
     if (isChoiceToBat) {
