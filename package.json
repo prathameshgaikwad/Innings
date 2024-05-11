@@ -1,0 +1,14 @@
+{
+  "name": "innings",
+  "version": "1.0.0",
+  "description": "cricket tournament management app",
+  "main": "client/index.html",
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\" "
+  },
+  "author": "prathamesh gaikwad",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
