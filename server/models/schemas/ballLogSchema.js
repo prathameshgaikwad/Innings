@@ -5,7 +5,11 @@ const ballLogSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "players",
   },
-  batsman_id: {
+  on_strike_batsman_id: {
+    type: mongoose.Types.ObjectId,
+    ref: "players",
+  },
+  off_strike_batsman_id: {
     type: mongoose.Types.ObjectId,
     ref: "players",
   },

@@ -10,7 +10,8 @@ const addRun = ({ io, runLogData }) => {
     matchId,
     battingTeamId,
     bowlingTeamId,
-    batsman,
+    onStrikeBatsman,
+    offStrikeBatsman,
     bowler,
     runs_scored = 0,
     innings_no,
@@ -51,7 +52,8 @@ const addRun = ({ io, runLogData }) => {
       //CREATE A BALL_LOG ITEM AND PUSH IT TO THE RESPECTIVE INNINGS' DATA
       const newBallLogItem = new mongoose.model("Ball_logs", ballLogSchema)({
         bowler_id: bowler._id,
-        batsman_id: batsman._id,
+        on_strike_batsman_id: onStrikeBatsman._id,
+        off_strike_batsman_id: offStrikeBatsman._id,
         runs_scored,
         wicket: {
           is_wicket: false,
@@ -71,7 +73,7 @@ const addRun = ({ io, runLogData }) => {
 
       await match.save();
 
-      addPlayerRuns({ player_id: batsman._id, runs_scored });
+      addPlayerRuns({ player_id: onStrikeBatsman._id, runs_scored });
       broadcastInningsData(io, matchId);
     };
     updateMatchRunLog();
