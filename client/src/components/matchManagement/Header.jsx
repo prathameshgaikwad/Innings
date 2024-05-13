@@ -16,6 +16,7 @@ import CustomModal from "../notifications/modals/CustomModal";
 import { FiCheckCircle } from "react-icons/fi";
 import LinkedButton from "../buttons/LinkedButton";
 import TeamBadgeHorizontal from "../dataDisplay/TeamBadgeHorizontal";
+import VersusIcon from "../icons/VersusIcon";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -76,11 +77,7 @@ const Header = ({ isLoading, team1, team2, match_no = "" }) => {
               isSmall={false}
               isLoading={isLoading}
             />
-            <Typography
-              level={isMobile ? "title-md" : "title-lg"}
-              color="neutral">
-              vs
-            </Typography>
+            <VersusIcon />
             <TeamBadgeHorizontal
               team={team2}
               isSmall={false}

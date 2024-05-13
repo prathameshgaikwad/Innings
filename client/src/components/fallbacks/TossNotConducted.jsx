@@ -4,6 +4,7 @@ import { Box, Card, Typography, useTheme } from "@mui/joy";
 
 import { RiCopperCoinLine } from "react-icons/ri";
 import TeamCard from "../cards/TeamCard";
+import VersusIcon from "../icons/VersusIcon";
 
 const TossNotConducted = ({ isLoading, battingTeam, bowlingTeam }) => {
   const theme = useTheme();
@@ -43,7 +44,7 @@ const TossNotConducted = ({ isLoading, battingTeam, bowlingTeam }) => {
             justifyContent: "center",
           }}>
           <TeamCard team={battingTeam} isLoading={isLoading} />
-          <Typography level="body-lg">vs</Typography>
+          <VersusIcon />
           <TeamCard team={bowlingTeam} isLoading={isLoading} />
         </Box>
       )}

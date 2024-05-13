@@ -6,10 +6,10 @@ import {
   CardOverflow,
   Divider,
   Skeleton,
-  Typography,
   useTheme,
 } from "@mui/joy";
 
+import VersusIcon from "../icons/VersusIcon";
 import { useMediaQuery } from "@mui/material";
 
 const FixtureCardSkeleton = () => {
@@ -74,13 +74,7 @@ const FixtureCardSkeleton = () => {
             flexDirection: "column",
             justifyContent: "center",
           }}>
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Typography
-              level={isMobile ? "body-md" : "body-lg"}
-              color="neutral">
-              vs
-            </Typography>
-          </Box>
+          <VersusIcon />
         </Box>
 
         {/* Team  2*/}

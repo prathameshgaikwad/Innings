@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import { Card, Typography } from "@mui/joy";
+import { Card, Stack, Typography } from "@mui/joy";
 
 import { CARD_BOX_SHADOW_SMALL } from "../../utilities/constants";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NextMatchSkeleton from "../skeletons/NextMatchSkeleton";
+import VersusIcon from "../icons/VersusIcon";
 
 const NextMatchCard = ({ isLoading, nextMatch }) => {
+  console.log(nextMatch);
   return (
     <>
       {isLoading ? (
@@ -16,7 +18,7 @@ const NextMatchCard = ({ isLoading, nextMatch }) => {
           variant="soft"
           size="md"
           sx={{
-            display: "inline-flex",
+            display: "flex",
             flexDirection: "row",
             mt: 4,
             boxShadow: CARD_BOX_SHADOW_SMALL,
@@ -27,9 +29,15 @@ const NextMatchCard = ({ isLoading, nextMatch }) => {
             endDecorator={<NavigateNextIcon />}>
             Next Match
           </Typography>
-          <Typography level="title-sm">
-            {nextMatch.team1} vs {nextMatch.team2}
-          </Typography>
+          <Stack
+            direction={"row"}
+            gap={0.5}
+            alignItems={"center"}
+            justifyContent={"center"}>
+            <Typography level="title-sm">{nextMatch.team1}</Typography>
+            <VersusIcon />
+            <Typography level="title-sm">{nextMatch.team2}</Typography>
+          </Stack>
         </Card>
       )}
     </>

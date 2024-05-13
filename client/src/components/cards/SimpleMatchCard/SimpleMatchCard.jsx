@@ -15,6 +15,7 @@ import CustomModal from "../../notifications/modals/CustomModal";
 import { MdAccessTime } from "react-icons/md";
 import SimpleMatchCardSkeleton from "../../skeletons/SimpleMatchCardSkeleton";
 import TeamBadgeHorizontal from "../../dataDisplay/TeamBadgeHorizontal";
+import VersusIcon from "../../icons/VersusIcon";
 import formatTime from "../../../utilities/helpers/formatTime";
 import setTimeFromString from "../../../utilities/helpers/setTimeFromString";
 import { useMediaQuery } from "@mui/material";
@@ -89,7 +90,7 @@ const SimpleMatchCard = ({
                   team={matchData.team1Details}
                   isSmall={true}
                 />
-                vs
+                <VersusIcon />
                 <TeamBadgeHorizontal
                   isLoading={isLoading}
                   team={matchData.team2Details}

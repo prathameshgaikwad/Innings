@@ -1,21 +1,14 @@
 /* eslint-disable react/prop-types */
 
-import {
-  Box,
-  Card,
-  CardContent,
-  CardOverflow,
-  Typography,
-  useTheme,
-} from "@mui/joy";
+import { Card, CardContent, CardOverflow, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import BottomBar from "./BottomBar";
-import CenteredBox from "../../layouts/pages/CenteredBox";
 import FixtureCardSkeleton from "../../skeletons/FixtureCardSkeleton";
 import TeamBadgeVertical from "../../dataDisplay/TeamBadgeVertical";
 import TopBar from "./TopBar";
+import VersusIcon from "../../icons/VersusIcon";
 import { fixtureApi } from "../../../services/api";
 import { useMediaQuery } from "@mui/material";
 
@@ -75,15 +68,7 @@ const FixtureCard = ({ id }) => {
               logoURL={team1.logo_url}
               widths={[45, 60]}
             />
-            <CenteredBox>
-              <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Typography
-                  level={isMobile ? "body-md" : "body-lg"}
-                  color="neutral">
-                  vs
-                </Typography>
-              </Box>
-            </CenteredBox>
+            <VersusIcon />
             <TeamBadgeVertical
               nameShort={team2.name_short}
               color={team2.team_color}

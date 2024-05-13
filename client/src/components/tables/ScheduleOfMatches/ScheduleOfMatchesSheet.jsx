@@ -3,6 +3,7 @@
 import { Table, useTheme } from "@mui/joy";
 
 import TableHeader from "../../layouts/tables/TableHeader";
+import VersusIcon from "../../icons/VersusIcon";
 import { useMediaQuery } from "@mui/material";
 
 const ScheduleOfMatchesSheet = ({ rows }) => {
@@ -45,7 +46,9 @@ const ScheduleOfMatchesSheet = ({ rows }) => {
               {row.match_no}
             </td>
             {isMobile ? <td>{row.team1Short}</td> : <td>{row.team1}</td>}
-            <td>vs</td>
+            <td>
+              <VersusIcon />
+            </td>
             {isMobile ? <td>{row.team2Short}</td> : <td>{row.team2}</td>}
             <td>{row.date}</td>
             <td>{row.time}</td>

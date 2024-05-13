@@ -13,6 +13,7 @@ import { FaUndo } from "react-icons/fa";
 import FixturesList from "./FixturesList";
 import { HiMiniAdjustmentsVertical } from "react-icons/hi2";
 import { HiOutlineSaveAs } from "react-icons/hi";
+import VersusIcon from "../icons/VersusIcon";
 import { fixtureSchema } from "../../schema/tournament/fixture";
 import { useState } from "react";
 
@@ -91,9 +92,7 @@ const CreateFixturesForm = () => {
                 width="100%"
                 alignItems="center">
                 <ChooseTeam name="team1" id={1} />
-                <Typography level="body-lg" color="neutral">
-                  vs
-                </Typography>
+                <VersusIcon />
                 <ChooseTeam name="team2" id={2} />
               </Stack>
               <Grid

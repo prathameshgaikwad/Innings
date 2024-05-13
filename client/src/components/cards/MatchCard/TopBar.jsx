@@ -2,6 +2,7 @@
 
 import { CardContent, Divider, Typography, useTheme } from "@mui/joy";
 
+import VersusIcon from "../../icons/VersusIcon";
 import { useMediaQuery } from "@mui/material";
 
 const TopBar = ({ match_no, battingTeamName, bowlingTeamName }) => {
@@ -24,7 +25,7 @@ const TopBar = ({ match_no, battingTeamName, bowlingTeamName }) => {
           sx={{ color: "text.tertiary" }}>
           {battingTeamName}
         </Typography>
-        vs
+        <VersusIcon />
         <Typography
           level={isMobile ? "title-lg" : "h4"}
           sx={{ color: "text.tertiary" }}>

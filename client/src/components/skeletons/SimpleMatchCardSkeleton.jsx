@@ -2,6 +2,8 @@
 
 import { Card, Divider, Skeleton } from "@mui/joy";
 
+import VersusIcon from "../icons/VersusIcon";
+
 const SimpleMatchCardSkeleton = ({ isTournamentManagementPage, isMobile }) => {
   return (
     <Card
@@ -21,7 +23,7 @@ const SimpleMatchCardSkeleton = ({ isTournamentManagementPage, isMobile }) => {
         variant="text"
         level={isMobile ? "title-sm" : "title-md"}
       />
-      vs
+      <VersusIcon />
       <Skeleton
         animation="wave"
         variant="text"
