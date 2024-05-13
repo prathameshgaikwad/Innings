@@ -47,7 +47,7 @@ const TournamentPage = () => {
     fixturesData.length > 1
       ? {
           team1: fixturesData[1].team1Details.name_short,
-          team2: fixturesData[1].team2Details.nameShort,
+          team2: fixturesData[1].team2Details.name_short,
         }
       : {};
 
