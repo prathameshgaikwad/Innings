@@ -70,9 +70,9 @@ const FixtureCard = ({ id }) => {
               justifyContent: "space-around",
             }}>
             <TeamBadgeVertical
-              nameShort={team1.nameShort}
-              color={team1.color}
-              logoURL={team1.logoURL}
+              nameShort={team1.name_short}
+              color={team1.team_color}
+              logoURL={team1.logo_url}
               widths={[45, 60]}
             />
             <CenteredBox>
@@ -85,9 +85,9 @@ const FixtureCard = ({ id }) => {
               </Box>
             </CenteredBox>
             <TeamBadgeVertical
-              nameShort={team2.nameShort}
-              color={team2.color}
-              logoURL={team2.logoURL}
+              nameShort={team2.name_short}
+              color={team2.team_color}
+              logoURL={team2.logo_url}
               widths={[45, 60]}
             />
           </CardContent>
