@@ -6,6 +6,7 @@ const addPlayerRuns = ({ player_id, runs_scored }) => {
       const player = await Player.findById(player_id);
 
       player.statistics.total_runs += runs_scored;
+      player.statistics.balls_faced += 1;
 
       if (runs_scored === 4) {
         player.statistics.fours++;
