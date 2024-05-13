@@ -7,6 +7,10 @@ const addPlayerRuns = ({ player_id, runs_scored }) => {
 
       player.statistics.total_runs += runs_scored;
       player.statistics.balls_faced += 1;
+      player.statistics.strike_rate =
+        (total_runs / player.statistics.balls_faced) * 100;
+      player.statistics.average =
+        total_runs / player.statistics.total_dismissals;
 
       if (runs_scored === 4) {
         player.statistics.fours++;
