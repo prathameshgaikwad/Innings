@@ -24,7 +24,6 @@ function createData(fixture) {
     match_no: fixture.match_no,
     team1: fixture.team1Details.name,
     team1Short: fixture.team1Details.nameShort,
-    vs: "vs",
     team2: fixture.team2Details.name,
     team2Short: fixture.team2Details.nameShort,
     time: formatTime(date),
