@@ -24,6 +24,7 @@ const userSlice = createSlice({
     setLiveMatch: (state, action) => {
       state.liveMatch.isEmpty = false;
       state.liveMatch.data = action.payload;
+      state.liveMatch.data.current_innings_no = action.payload.innings.length;
     },
     setNoLiveMatch: (state) => {
       state.liveMatch.isEmpty = true;
