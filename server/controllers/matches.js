@@ -1,12 +1,9 @@
 const { StatusCodes } = require("http-status-codes");
 const Match = require("../models/match");
-const Team = require("../models/team");
 const Fixture = require("../models/fixture");
 const Tournament = require("../models/tournament");
-const {
-  setBattingAndBowlingTeamData,
-} = require("../helpers/setBattingAndBowlingTeamData");
 const { generateRichTossData } = require("../helpers/generateRichTossData");
+const { getRichMatchInfo } = require("../helpers/getRichMatchInfo");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -32,40 +29,18 @@ const getMatchDetails = async (req, res) => {
       team2_id,
     } = match;
 
-    const team1 = await Team.findById(team1_id);
-    const team2 = await Team.findById(team2_id);
-
-    const { battingTeam, bowlingTeam } = await setBattingAndBowlingTeamData({
-      innings,
-      team1,
-      team2,
-      toss,
-    });
-
-    let tossData = toss;
-
-    if (toss.conducted) {
-      tossData = await generateRichTossData({
-        toss,
-        team1_id,
-        team2_id,
-      });
-    }
-
-    const matchData = {
+    const matchData = await getRichMatchInfo({
       _id,
+      team1_id,
+      team2_id,
+      innings,
+      toss,
       match_no,
       total_overs,
       venue,
       status,
       result,
-      toss: tossData,
-      innings,
-      team1_id,
-      team2_id,
-      battingTeam,
-      bowlingTeam,
-    };
+    });
 
     res.status(StatusCodes.OK).json(matchData);
   } catch (error) {

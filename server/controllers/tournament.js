@@ -10,6 +10,7 @@ const {
   setBattingAndBowlingTeamData,
 } = require("../helpers/setBattingAndBowlingTeamData");
 const { generateCleanString } = require("../helpers/generateCleanString");
+const { getRichMatchInfo } = require("../helpers/getRichMatchInfo");
 
 const MAX_ELEMENTS_PER_ARRAY = 10;
 
@@ -106,7 +107,7 @@ const getLiveMatchDetails = async (req, res) => {
     for (const id of fixtures) {
       const fixture = await Fixture.findById(id);
       const { match_id } = fixture.toObject();
-      const match = await Match.findOne(match_id);
+      const match = await Match.findById(match_id);
 
       if (match.status === "ongoing") {
         ongoingMatchId = match_id;
@@ -131,34 +132,21 @@ const getLiveMatchDetails = async (req, res) => {
       team2_id,
     } = liveMatch;
 
-    const team1 = await Team.findById(team1_id);
-    const team2 = await Team.findById(team2_id);
-
-    const { battingTeam, bowlingTeam } = setBattingAndBowlingTeamData({
-      innings,
-      team1,
-      team2,
-      toss,
-    });
-
-    const responseData = {
+    const liveMatchData = await getRichMatchInfo({
       _id,
+      team1_id,
+      team2_id,
+      innings,
       match_no,
       total_overs,
       venue,
       status,
       result,
       toss,
-      innings,
-      team1_id,
-      team2_id,
-      battingTeam,
-      bowlingTeam,
-    };
-
+    });
     res
       .status(StatusCodes.OK)
-      .json({ isEmpty: false, liveMatch: responseData });
+      .json({ isEmpty: false, liveMatch: liveMatchData });
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
