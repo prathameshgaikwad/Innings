@@ -8,7 +8,6 @@ import NextMatchSkeleton from "../skeletons/NextMatchSkeleton";
 import VersusIcon from "../icons/VersusIcon";
 
 const NextMatchCard = ({ isLoading, nextMatch }) => {
-  console.log(nextMatch);
   return (
     <>
       {isLoading ? (
