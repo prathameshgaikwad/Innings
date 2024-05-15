@@ -205,6 +205,15 @@ const myTheme = extendTheme({
       },
     },
   },
+  components: {
+    JoyButton: {
+      styleOverrides: {
+        root: {
+          transition: "all 0.25s ease-in-out",
+        },
+      },
+    },
+  },
 });
 
 export default myTheme;
