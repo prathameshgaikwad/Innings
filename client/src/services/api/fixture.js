@@ -25,12 +25,12 @@ export const getFixtureInfo =
         }
 
         const { fixture } = await response.json();
-        const { match_no, overs, date, time, team1, team2 } = fixture;
+        const { match_no, total_overs, date, time, team1, team2 } = fixture;
 
         setMatchNo(match_no);
         setDate(date);
         setTime(time);
-        setOvers(overs);
+        setOvers(total_overs);
         setTeam1(team1);
         setTeam2(team2);
         setIsLoading(false);
