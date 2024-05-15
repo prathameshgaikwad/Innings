@@ -64,6 +64,7 @@ const UpcomingMatches = ({ tournamentId }) => {
               }}
               modules={[Pagination, Mousewheel]}
               className="mySwiper">
+              <SliderMask height={276} align={"left"} />
               <SliderMask height={276} align={"right"} />
               {upcomingMatches ? (
                 upcomingMatches.map((id) => (
