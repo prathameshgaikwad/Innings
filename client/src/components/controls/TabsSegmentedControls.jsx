@@ -29,7 +29,6 @@ const TabsSegmentedControls = ({
           [`& .${tabClasses.root}[aria-selected="true"]`]: {
             color: theme.palette.neutral.plainColor,
             bgcolor: theme.palette.primary.plainActiveBg,
-            transition: "all 0.2s ease-in-out",
             "&:hover": {
               bgcolor: theme.palette.primary.plainHoverBg,
             },
