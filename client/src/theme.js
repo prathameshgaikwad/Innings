@@ -220,6 +220,17 @@ const myTheme = extendTheme({
         },
       },
     },
+    JoyInput: {
+      styleOverrides: {
+        root: {
+          transition: "all 0.25s ease-in-out",
+          outline: "1px solid transparent",
+          "&:hover": {
+            outline: "1px solid var(--joy-palette-primary-outlinedBorder)",
+          },
+        },
+      },
+    },
   },
 });
 
