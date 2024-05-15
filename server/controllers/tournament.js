@@ -169,19 +169,19 @@ const getLiveMatchDetails = async (req, res) => {
 const getUpcomingMatches = async (req, res) => {
   try {
     const { tournamentId } = req.params;
-    const tournament = await Tournament.findOne(tournamentId);
+    const tournament = await Tournament.findById(tournamentId);
 
     if (!tournament)
       return res
         .status(StatusCodes.NOT_FOUND)
         .json({ error: "No such tournament" });
 
-    const { fixtures } = tournament;
+    const { fixtures } = tournament.toObject();
 
     const upcomingMatches = [];
 
     for (const id of fixtures) {
-      const fixture = await Fixture.findOne(id);
+      const fixture = await Fixture.findById(id);
 
       if (fixture.toObject().status === "pending") {
         upcomingMatches.push(id);
