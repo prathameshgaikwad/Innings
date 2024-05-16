@@ -1,15 +1,26 @@
 const Player = require("../../models/player");
+const {
+  handleBattingPerformance,
+  getMatchPerformanceObject,
+} = require("../../helpers/player");
 
 const updatePlayerMatchPerformance = ({ player_id, runs_scored, match_id }) => {
   try {
-    const updateBattingPerformance = async () => {
+    const updatePerformance = async () => {
       const player = await Player.findById(player_id);
-      const { matchPerformance } = player.toObject();
 
-      //TODO: SAVE MATCH PERFORMANCE LOGIC
+      // HANDLE MATCH PERFORMANCE OBJECT INSTANCE
+      const matchPerformanceObj = await getMatchPerformanceObject({
+        match_id,
+        player,
+      });
+
+      handleBattingPerformance({ matchPerformanceObj, runs_scored });
+      // HANDLE BOWLING PERFORMANCE
+
       await player.save();
     };
-    updateBattingPerformance();
+    updatePerformance();
   } catch (error) {
     console.log(error);
   }

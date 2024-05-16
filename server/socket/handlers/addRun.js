@@ -4,6 +4,9 @@ const { addPlayerRuns } = require("./addPlayerRuns");
 const { inningsSchema } = require("../../models/schemas/inningsSchema");
 const { ballLogSchema } = require("../../models/schemas/ballLogSchema");
 const { broadcastInningsData } = require("../broadcasts/broadcastInningsData");
+const {
+  updatePlayerMatchPerformance,
+} = require("./updatePlayerMatchPerformance");
 
 const addRun = ({ io, runLogData }) => {
   const {
@@ -74,6 +77,11 @@ const addRun = ({ io, runLogData }) => {
       await match.save();
 
       addPlayerRuns({ player_id: onStrikeBatsman._id, runs_scored });
+      updatePlayerMatchPerformance({
+        player_id: onStrikeBatsman._id,
+        runs_scored,
+        match_id: matchId,
+      });
       broadcastInningsData(io, matchId);
     };
     updateMatchRunLog();
