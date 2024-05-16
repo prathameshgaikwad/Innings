@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 import { BiSolidCricketBall } from "react-icons/bi";
 import TournamentCardSkeleton from "../skeletons/TournamentCardSkeleton";
-import formatDate from "../../utilities/helpers/formatDate";
+import formatLongDate from "../../utilities/helpers/formatLongDate";
 import { tournamentPageApi } from "../../services/api";
 import useHover from "../../hooks/useHover";
 import { useSelector } from "react-redux";
@@ -51,7 +51,7 @@ const TournamentCard = ({ id }) => {
       setTournamentDetails({
         name,
         venue,
-        startDate: formatDate(start_date || Date.now()),
+        startDate: formatLongDate(start_date || Date.now()),
         totalOvers: total_overs,
         bannerURLS: banner_urls,
       });
