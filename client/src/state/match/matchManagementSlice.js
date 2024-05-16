@@ -137,6 +137,12 @@ const matchManagementSlice = createSlice({
     setMatchManagementInningsData: (state, action) => {
       state.innings[state.current_innings_no - 1].data = action.payload;
     },
+    setOptimisticInningsRuns: (state, action) => {
+      const { runs_scored } = action.payload;
+      state.innings[state.current_innings_no - 1].data.total_runs +=
+        runs_scored;
+      state.innings[state.current_innings_no - 1].data.balls_completed += 1;
+    },
     clearMatchManagementData: () => initialState,
   },
 });
@@ -150,6 +156,7 @@ export const {
   setBowler,
   setStrikeChange,
   setMatchManagementInningsData,
+  setOptimisticInningsRuns,
   clearMatchManagementData,
 } = matchManagementSlice.actions;
 export const matchManagementReducer = matchManagementSlice.reducer;

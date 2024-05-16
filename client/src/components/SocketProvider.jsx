@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 import CustomToast from "./notifications/toasts/CustomToast";
 import { setMatchInningsData } from "../state/match/matchSlice";
-import { setMatchManagementInningsData } from "../state/match/matchManagementSlice";
 
 const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
         socket.emit("subscribeToMatch", matchId);
 
         socket.on("richInningsData", (richInningsData) => {
-          dispatch(setMatchManagementInningsData(richInningsData));
+          console.log("Got server confirmation");
           dispatch(setMatchInningsData(richInningsData));
         });
       });
