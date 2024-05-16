@@ -29,6 +29,7 @@ const TabsSegmentedControls = ({
           [`& .${tabClasses.root}[aria-selected="true"]`]: {
             color: theme.palette.neutral.plainColor,
             bgcolor: theme.palette.primary.plainActiveBg,
+            transition: "all 0.25s ease-in-out",
             "&:hover": {
               bgcolor: theme.palette.primary.plainHoverBg,
             },
@@ -38,6 +39,7 @@ const TabsSegmentedControls = ({
           title={battingTeam.name}
           placement="top"
           variant="outlined"
+          enterDelay={1500}
           arrow>
           <Tab disableIndicator>{battingTeam.name_short} Innings</Tab>
         </Tooltip>
