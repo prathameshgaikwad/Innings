@@ -1,5 +1,5 @@
+const Player = require("../models/player");
 const Team = require("../models/team");
-const { generateRichTossData } = require("./generateRichTossData");
 const { setBattingAndBowlingTeamData } = require("./team");
 
 const generateRichTossData = async ({ toss, team1_id, team2_id }) => {
@@ -69,17 +69,20 @@ const getRichMatchInfo = async ({
 const generateRichBallLogData = async (ball_log) => {
   const richBallLogData = await Promise.all(
     ball_log.map(async (ball_log_item) => {
-      const { bowler_id, batsman_id } = ball_log_item;
+      const { bowler_id, on_strike_batsman_id, off_strike_batsman_id } =
+        ball_log_item;
 
       const bowler = await Player.findById(bowler_id);
-      const batsman = await Player.findById(batsman_id);
+      const onStrikeBatsman = await Player.findById(on_strike_batsman_id);
+      const offStrikeBatsman = await Player.findById(off_strike_batsman_id);
 
       //TODO: Supply latest match performance
 
       return {
         ...ball_log_item,
         bowler,
-        batsman,
+        onStrikeBatsman,
+        offStrikeBatsman,
       };
     })
   );
