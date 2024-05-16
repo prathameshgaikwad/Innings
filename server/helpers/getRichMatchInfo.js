@@ -1,8 +1,6 @@
 const Team = require("../models/team");
 const { generateRichTossData } = require("./generateRichTossData");
-const {
-  setBattingAndBowlingTeamData,
-} = require("./setBattingAndBowlingTeamData");
+const { setBattingAndBowlingTeamData } = require("./team");
 
 const getRichMatchInfo = async ({
   _id,

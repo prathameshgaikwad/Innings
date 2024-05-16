@@ -5,7 +5,7 @@ const Player = require("../models/player");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
 const { generateShortName } = require("../helpers/generateShortName");
 const { generateCleanString } = require("../helpers/generateCleanString");
-const { getRichTeamData } = require("../helpers/getRichTeamData");
+const { getRichTeamData } = require("../helpers/team");
 
 const getTeam = async (req, res) => {
   try {
