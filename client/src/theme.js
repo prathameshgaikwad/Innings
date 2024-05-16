@@ -231,6 +231,13 @@ const myTheme = extendTheme({
         },
       },
     },
+    JoyCard: {
+      styleOverrides: {
+        root: {
+          transition: "all 0.25s ease-in-out",
+        },
+      },
+    },
   },
 });
 
