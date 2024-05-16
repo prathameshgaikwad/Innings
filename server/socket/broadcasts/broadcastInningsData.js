@@ -1,6 +1,4 @@
-const {
-  generateRichBallLogData,
-} = require("../../helpers/generateRichBallLogData");
+const { generateRichBallLogData } = require("../../helpers/match");
 const Match = require("../../models/match");
 
 async function broadcastInningsData(io, matchId) {

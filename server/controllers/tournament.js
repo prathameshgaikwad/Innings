@@ -7,7 +7,7 @@ const Match = require("../models/match");
 const Player = require("../models/player");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
 const { generateCleanString } = require("../helpers/generateCleanString");
-const { getRichMatchInfo } = require("../helpers/getRichMatchInfo");
+const { getRichMatchInfo } = require("../helpers/match");
 
 const MAX_ELEMENTS_PER_ARRAY = 10;
 

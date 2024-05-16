@@ -2,8 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 const Match = require("../models/match");
 const Fixture = require("../models/fixture");
 const Tournament = require("../models/tournament");
-const { generateRichTossData } = require("../helpers/generateRichTossData");
-const { getRichMatchInfo } = require("../helpers/getRichMatchInfo");
+const { generateRichTossData, getRichMatchInfo } = require("../helpers/match");
 
 const getMatchDetails = async (req, res) => {
   try {
