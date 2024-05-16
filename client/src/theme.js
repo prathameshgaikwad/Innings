@@ -245,6 +245,12 @@ const myTheme = extendTheme({
         },
       },
     },
+    JoyTooltip: {
+      defaultProps: {
+        enterDelay: 1500,
+        enterNextDelay: 1500,
+      },
+    },
   },
 });
 
