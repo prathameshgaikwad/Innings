@@ -6,9 +6,6 @@ const Fixture = require("../models/fixture");
 const Match = require("../models/match");
 const Player = require("../models/player");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
-const {
-  setBattingAndBowlingTeamData,
-} = require("../helpers/setBattingAndBowlingTeamData");
 const { generateCleanString } = require("../helpers/generateCleanString");
 const { getRichMatchInfo } = require("../helpers/getRichMatchInfo");
 
