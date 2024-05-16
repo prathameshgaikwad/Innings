@@ -2,6 +2,7 @@
 
 import { Card, Divider, Skeleton, Typography, useTheme } from "@mui/joy";
 
+import { BiSolidCricketBall } from "react-icons/bi";
 import { RiCopperCoinLine } from "react-icons/ri";
 
 const TossDetails = ({ tossWinner, decision, isLoading }) => {
@@ -16,7 +17,6 @@ const TossDetails = ({ tossWinner, decision, isLoading }) => {
           ? theme.palette.primary[800]
           : theme.palette.primary[100],
         "--Divider-thickness": "3px",
-        mt: 6,
       }}>
       <Card
         size="sm"
@@ -32,8 +32,31 @@ const TossDetails = ({ tossWinner, decision, isLoading }) => {
             width={250}
           />
         ) : (
-          <Typography level="body-sm">
-            {tossWinner} won the toss and chose to {decision}
+          <Typography
+            display={"flex"}
+            level="body-sm"
+            alignItems={"center"}
+            textColor={"text.secondary"}
+            gap={0.5}>
+            <Typography fontWeight={"bold"} textColor={"text.primary"}>
+              {tossWinner}
+            </Typography>{" "}
+            won the toss and chose to{" "}
+            <Typography
+              fontWeight={"bold"}
+              textColor={"text.primary"}
+              endDecorator={
+                decision === "bat" ? (
+                  <img
+                    src="/public/assets/logo_light.svg"
+                    style={{ height: 20 }}
+                  />
+                ) : (
+                  <BiSolidCricketBall />
+                )
+              }>
+              {decision === "bat" ? "Bat" : "Bowl"}
+            </Typography>
           </Typography>
         )}
       </Card>
