@@ -10,7 +10,7 @@ const TopBar = ({ matchNo }) => {
   return (
     <>
       <CardContent>
-        <Typography level={isMobile ? "title-sm" : "title-md"}>
+        <Typography level={isMobile ? "title-xs" : "title-sm"}>
           Match {matchNo}
         </Typography>
       </CardContent>

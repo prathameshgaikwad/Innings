@@ -66,14 +66,16 @@ const FixtureCard = ({ id }) => {
               nameShort={team1.name_short}
               color={team1.team_color}
               logoURL={team1.logo_url}
-              widths={[45, 60]}
+              widths={[40, 55]}
+              isSmall={true}
             />
             <VersusIcon />
             <TeamBadgeVertical
               nameShort={team2.name_short}
               color={team2.team_color}
               logoURL={team2.logo_url}
-              widths={[45, 60]}
+              widths={[40, 55]}
+              isSmall={true}
             />
           </CardContent>
           <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>

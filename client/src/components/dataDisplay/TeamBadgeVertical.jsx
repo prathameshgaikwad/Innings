@@ -5,6 +5,7 @@ import { AspectRatio, Box, Tooltip, Typography, useTheme } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
 
 const TeamBadgeVertical = ({
+  isSmall = false,
   color,
   logoURL,
   nameShort,
@@ -27,14 +28,14 @@ const TeamBadgeVertical = ({
           sx={{
             width: isMobile ? widths[0] : widths[1],
             borderRadius: "50%",
-            outline: "4px solid",
+            outline: `${isSmall ? 3 : 4}px solid`,
             outlineColor: color,
           }}>
           <img src={logoURL} loading="lazy" alt={`${name} logo`} />
         </AspectRatio>
         <Typography
-          level={isMobile ? "title-md" : "title-lg"}
-          sx={{ mt: isMobile ? 1 : 2 }}>
+          level={isSmall ? "title-md" : "h4"}
+          sx={{ mt: isSmall ? 1 : 2 }}>
           {nameShort}
         </Typography>
       </Box>
