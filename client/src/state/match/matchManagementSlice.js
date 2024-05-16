@@ -108,19 +108,20 @@ const matchManagementSlice = createSlice({
       state.status = action.payload;
     },
     setOnStrikeBatsman: (state, action) => {
-      const { _id, name } = action.payload;
+      const { _id, first_name, last_name, total_runs, balls_faced } =
+        action.payload;
       state.batsmen.onStrikeBatsman._id = _id;
-      state.batsmen.onStrikeBatsman.name = name;
+      state.batsmen.onStrikeBatsman.name = `${first_name} ${last_name}`;
+      state.batsmen.onStrikeBatsman.runs = total_runs;
+      state.batsmen.onStrikeBatsman.ballsPlayed = balls_faced;
     },
     setOffStrikeBatsman: (state, action) => {
-      const { _id, name } = action.payload;
+      const { _id, first_name, last_name, total_runs, balls_faced } =
+        action.payload;
       state.batsmen.offStrikeBatsman._id = _id;
-      state.batsmen.offStrikeBatsman.name = name;
-    },
-    setOnStrikeBatsmanRuns: (state, action) => {
-      const { runs, balls_played } = action.payload;
-      state.onStrikeBatsman.runs = runs;
-      state.onStrikeBatsman.ballsPlayed = balls_played;
+      state.batsmen.offStrikeBatsman.name = `${first_name} ${last_name}`;
+      state.batsmen.offStrikeBatsman.runs = total_runs;
+      state.batsmen.offStrikeBatsman.ballsPlayed = balls_faced;
     },
     setStrikeChange: (state) => {
       [state.offStrikeBatsman, state.onStrikeBatsman] = [
@@ -128,48 +129,10 @@ const matchManagementSlice = createSlice({
         state.offStrikeBatsman,
       ];
     },
-    setRuns: (state) => {
-      let totalRuns = 0;
-      if (state.ball_log)
-        state.ball_log.forEach((log) => (totalRuns += log.runs_scored));
-      state.runs = totalRuns;
-    },
-    addRuns: (state, action) => {
-      const { score } = action.payload;
-      state.runs += score;
-    },
     setBowler: (state, action) => {
-      const { _id, name } = action.payload;
+      const { _id, first_name, last_name } = action.payload;
       state.bowler._id = _id;
-      state.bowler.name = name;
-    },
-    setBallLog: (state, action) => {
-      const { runs_scored, isWicket } = action.payload;
-      const newBall = {
-        bowler: state.bowler,
-        runs_scored,
-        isWicket,
-      };
-      state.ball_log = [...state.ball_log, newBall];
-    },
-    setWicketLog: (state, action) => {
-      const { runs_completed, batsman, overNumber } = action.payload;
-      const newWicket = {
-        bowler: state.bowler,
-        runs_completed,
-        batsman,
-        overNumber,
-      };
-      state.wicket_log = [...state.wicket_log, newWicket];
-    },
-    setExtrasLog: (state, action) => {
-      const { runs_completed, extraType } = action.payload;
-      const newExtra = {
-        bowler: state.bowler,
-        runs_completed,
-        extraType,
-      };
-      state.extras_log = [...state.extras_log, newExtra];
+      state.bowler.name = `${first_name} ${last_name}`;
     },
     setMatchManagementInningsData: (state, action) => {
       state.innings[state.current_innings_no - 1].data = action.payload;
@@ -179,19 +142,13 @@ const matchManagementSlice = createSlice({
 });
 
 export const {
-  addRuns,
   setMatch,
   setTossResult,
   setStatus,
   setOnStrikeBatsman,
-  setOnStrikeBatsmanRuns,
   setOffStrikeBatsman,
-  setBallLog,
-  setRuns,
   setBowler,
-  setExtrasLog,
   setStrikeChange,
-  setWicketLog,
   setMatchManagementInningsData,
   clearMatchManagementData,
 } = matchManagementSlice.actions;
