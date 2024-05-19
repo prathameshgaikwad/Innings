@@ -75,6 +75,7 @@ const TournamentHeader = ({ id, isAdmin, isSetupComplete }) => {
         isLoading={isLoading}
       />
       <TournamentInfo
+        id={id}
         createdBy={adminName}
         teamsLength={teamsLength}
         venue={venue}
