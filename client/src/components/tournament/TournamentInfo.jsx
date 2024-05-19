@@ -30,12 +30,57 @@ const LoadingSkeleton = () => {
       sx={{
         display: "inline-flex",
         width: "100%",
-        gap: isMobile ? 1.3 : 2,
+        gap: isMobile ? 1.3 : 4,
         py: 1.5,
-        px: isMobile ? 0 : "15%",
         justifyContent: "center",
       }}>
-      <Skeleton animation="wave" variant="text" level="body-xs" />
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        height={25}
+        width={100}
+        level="body-xs"
+      />
+      <Divider orientation="vertical" />
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        height={25}
+        width={100}
+        level="body-xs"
+      />
+      <Divider orientation="vertical" />
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        height={25}
+        width={250}
+        level="body-xs"
+      />
+      <Divider orientation="vertical" />
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        height={25}
+        width={100}
+        level="body-xs"
+      />
+      <Divider orientation="vertical" />
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        height={25}
+        width={100}
+        level="body-xs"
+      />
+      <Divider orientation="vertical" />
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        height={25}
+        width={100}
+        level="body-xs"
+      />
     </Box>
   );
 };
@@ -51,6 +96,45 @@ const InfoItem = ({ tooltipTitle, content, startDecorator }) => {
         {content}
       </Typography>
     </Tooltip>
+  );
+};
+
+const CopyButton = ({ isCopied, setIsCopied, id }) => {
+  const theme = useTheme();
+  return (
+    <InfoItem
+      tooltipTitle={"Copy tournament id"}
+      content={
+        <IconButton
+          disabled={isCopied}
+          size="sm"
+          onClick={() => handleShareButtonClick({ id, setIsCopied })}>
+          {isCopied ? (
+            <Typography
+              level="body-xs"
+              startDecorator={
+                <LuClipboardCheck
+                  size={18}
+                  style={{ color: theme.palette.success.plainColor }}
+                />
+              }>
+              Copied!
+            </Typography>
+          ) : (
+            <Typography
+              level="body-xs"
+              startDecorator={
+                <LuClipboard
+                  size={18}
+                  style={{ color: theme.palette.primary.plainColor }}
+                />
+              }>
+              Copy ID
+            </Typography>
+          )}
+        </IconButton>
+      }
+    />
   );
 };
 
@@ -129,39 +213,7 @@ const TournamentInfo = ({
               startDecorator={<ShapeLineIcon color="primary" />}
             />
             <Divider orientation="vertical" />
-            <InfoItem
-              tooltipTitle={"Copy tournament id"}
-              content={
-                <IconButton
-                  disabled={isCopied}
-                  size="sm"
-                  onClick={() => handleShareButtonClick({ id, setIsCopied })}>
-                  {isCopied ? (
-                    <Typography
-                      level="body-xs"
-                      startDecorator={
-                        <LuClipboardCheck
-                          size={18}
-                          style={{ color: theme.palette.success.plainColor }}
-                        />
-                      }>
-                      Copied!
-                    </Typography>
-                  ) : (
-                    <Typography
-                      level="body-xs"
-                      startDecorator={
-                        <LuClipboard
-                          size={18}
-                          style={{ color: theme.palette.primary.plainColor }}
-                        />
-                      }>
-                      Copy ID
-                    </Typography>
-                  )}
-                </IconButton>
-              }
-            />
+            <CopyButton isCopied={isCopied} setIsCopied={setIsCopied} id={id} />
           </CardContent>
         </Card>
       )}
