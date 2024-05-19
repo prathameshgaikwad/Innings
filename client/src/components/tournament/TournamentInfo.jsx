@@ -17,7 +17,6 @@ import { FaRegCalendar } from "react-icons/fa6";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { LuClipboard } from "react-icons/lu";
 import { LuClipboardCheck } from "react-icons/lu";
-import { MdOutlineHorizontalRule } from "react-icons/md";
 import PlaceIcon from "@mui/icons-material/Place";
 import ShapeLineIcon from "@mui/icons-material/ShapeLine";
 import { useMediaQuery } from "@mui/material";
@@ -38,6 +37,20 @@ const LoadingSkeleton = () => {
       }}>
       <Skeleton animation="wave" variant="text" level="body-xs" />
     </Box>
+  );
+};
+
+const InfoItem = ({ tooltipTitle, content, startDecorator }) => {
+  return (
+    <Tooltip title={tooltipTitle} variant="outlined">
+      <Typography
+        level="body-xs"
+        fontWeight="md"
+        textColor="text.tertiary"
+        startDecorator={startDecorator}>
+        {content}
+      </Typography>
+    </Tooltip>
   );
 };
 
@@ -75,99 +88,80 @@ const TournamentInfo = ({
               display: "inline-flex",
               flexDirection: "row",
               width: "100%",
-              gap: isMobile ? 1.3 : 2,
-              px: isMobile ? 0 : "15%",
+              gap: isMobile ? 1.3 : 4,
               justifyContent: "center",
               alignItems: "center",
             }}>
-            <Tooltip title="Venue" variant="outlined">
-              <Typography
-                level="body-xs"
-                fontWeight="md"
-                textColor="text.tertiary"
-                startDecorator={<PlaceIcon color="primary" />}>
-                {venue}
-              </Typography>
-            </Tooltip>
+            <InfoItem
+              tooltipTitle={"Venue"}
+              content={venue}
+              startDecorator={<PlaceIcon color="primary" />}
+            />
             <Divider orientation="vertical" />
-            <Tooltip title="Number of Teams" variant="outlined">
-              <Typography
-                level="body-xs"
-                fontWeight="md"
-                textColor="text.tertiary"
-                startDecorator={<GroupsIcon color="primary" />}>
-                {teamsLength} {isMobile ? "" : "Teams"}
-              </Typography>
-            </Tooltip>
+            <InfoItem
+              tooltipTitle={"Number of Teams"}
+              content={`${teamsLength} ${isMobile ? "" : "Teams"}`}
+              startDecorator={<GroupsIcon color="primary" />}
+            />
             <Divider orientation="vertical" />
-            <Tooltip title="Date Range" variant="outlined">
-              <Typography
-                level="body-xs"
-                fontWeight="md"
-                textColor="text.tertiary"
-                startDecorator={
-                  <FaRegCalendar size={16} color={theme.palette.primary[400]} />
-                }>
-                {startDate}{" "}
-                <MdOutlineHorizontalRule style={{ margin: "0 6px" }} />{" "}
-                {endDate}
-              </Typography>
-            </Tooltip>
-            <Tooltip title="Overs" variant="outlined">
-              <Typography
-                level="body-xs"
-                fontWeight="md"
-                textColor="text.tertiary"
-                startDecorator={
-                  <>
-                    {isMobile && (
-                      <Divider orientation="vertical" sx={{ mr: 1.3 }} />
-                    )}
-                    <BiSolidCricketBall
-                      size={16}
-                      color={theme.palette.primary[400]}
-                    />
-                  </>
-                }
-                sx={{ ml: isMobile ? 0 : "auto" }}>
-                {total_overs} Overs
-              </Typography>
-            </Tooltip>
+            <InfoItem
+              tooltipTitle={"Overs"}
+              content={`${startDate} - ${endDate}`}
+              startDecorator={
+                <FaRegCalendar size={16} color={theme.palette.primary[400]} />
+              }
+            />
             <Divider orientation="vertical" />
-            <Tooltip title="Created by" variant="outlined">
-              <Typography
-                level="body-xs"
-                fontWeight="md"
-                textColor="text.tertiary"
-                startDecorator={<ShapeLineIcon color="warning" />}>
-                {createdBy}
-              </Typography>
-            </Tooltip>
+            <InfoItem
+              tooltipTitle={"Overs"}
+              content={`${total_overs} Overs`}
+              startDecorator={
+                <BiSolidCricketBall
+                  size={16}
+                  color={theme.palette.primary[400]}
+                />
+              }
+            />
             <Divider orientation="vertical" />
-            <Tooltip title="Copy tournament id" variant="outlined">
-              <IconButton
-                disabled={isCopied}
-                size="sm"
-                onClick={() => handleShareButtonClick({ id, setIsCopied })}>
-                {isCopied ? (
-                  <Typography
-                    level="body-xs"
-                    startDecorator={
-                      <LuClipboardCheck
-                        size={16}
-                        style={{ color: theme.palette.success.plainColor }}
-                      />
-                    }>
-                    Copied!
-                  </Typography>
-                ) : (
-                  <LuClipboard
-                    size={16}
-                    style={{ color: theme.palette.primary.plainColor }}
-                  />
-                )}
-              </IconButton>
-            </Tooltip>
+            <InfoItem
+              tooltipTitle={"Created by"}
+              content={createdBy}
+              startDecorator={<ShapeLineIcon color="primary" />}
+            />
+            <Divider orientation="vertical" />
+            <InfoItem
+              tooltipTitle={"Copy tournament id"}
+              content={
+                <IconButton
+                  disabled={isCopied}
+                  size="sm"
+                  onClick={() => handleShareButtonClick({ id, setIsCopied })}>
+                  {isCopied ? (
+                    <Typography
+                      level="body-xs"
+                      startDecorator={
+                        <LuClipboardCheck
+                          size={18}
+                          style={{ color: theme.palette.success.plainColor }}
+                        />
+                      }>
+                      Copied!
+                    </Typography>
+                  ) : (
+                    <Typography
+                      level="body-xs"
+                      startDecorator={
+                        <LuClipboard
+                          size={18}
+                          style={{ color: theme.palette.primary.plainColor }}
+                        />
+                      }>
+                      Copy ID
+                    </Typography>
+                  )}
+                </IconButton>
+              }
+            />
           </CardContent>
         </Card>
       )}
