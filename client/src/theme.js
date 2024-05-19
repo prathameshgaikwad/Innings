@@ -249,6 +249,8 @@ const myTheme = extendTheme({
       defaultProps: {
         enterDelay: 1500,
         enterNextDelay: 1500,
+        arrow: true,
+        size: "sm",
       },
     },
   },
