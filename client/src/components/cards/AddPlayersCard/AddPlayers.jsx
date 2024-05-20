@@ -7,22 +7,14 @@ import { useState } from "react";
 const AddPlayers = () => {
   const [openToast, setOpenToast] = useState(false);
 
-  const teamName = useSelector(
-    (state) => state.tournamentSetup.tempTeam.teamName
-  );
-  const teamColor = useSelector(
-    (state) => state.tournamentSetup.tempTeam.teamColor
-  );
+  const { tempTeam } = useSelector((state) => state.tournamentSetup.tempTeam);
 
-  const buttonDisabled = useSelector(
-    (state) => state.tournamentSetup.tempTeam.isProcessing
-  );
-
-  const players = useSelector(
-    (state) => state.tournamentSetup.tempTeam.players
-  );
-
-  const tempTeam = useSelector((state) => state.tournamentSetup.tempTeam);
+  const {
+    teamName,
+    teamColor,
+    isProcessing: buttonDisabled,
+    players,
+  } = tempTeam;
 
   return (
     <Card
