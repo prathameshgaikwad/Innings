@@ -13,8 +13,9 @@ import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 import { useSelector } from "react-redux";
 
 const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
-  const { onStrikeBatsman, offStrikeBatsman } = data;
+  const theme = useTheme();
   const { battingTeam } = useSelector((state) => state.matchManagement);
+  const { onStrikeBatsman, offStrikeBatsman } = data;
 
   const noOnStrikeBatsman =
     !onStrikeBatsman.name || onStrikeBatsman.name.length === 0;
@@ -22,7 +23,6 @@ const OnFieldBatsmenStats = ({ isSmall, data, isLoading, isAdmin = false }) => {
   const noOffStrikeBatsman =
     !offStrikeBatsman.name || offStrikeBatsman.name.length === 0;
 
-  const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
 
   return (

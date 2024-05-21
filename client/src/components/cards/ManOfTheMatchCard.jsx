@@ -13,9 +13,9 @@ const playerName = "Devon Conway";
 const teamName = "Chennai Super Kings";
 
 const ManOfTheMatchCard = () => {
-  const isDataAvailable = playerName.length > 0;
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isDataAvailable = playerName.length > 0;
   return (
     <Card
       size="lg"

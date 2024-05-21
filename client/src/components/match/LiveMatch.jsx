@@ -18,6 +18,9 @@ const LiveMatch = ({ tournamentId }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isTab = useMediaQuery(theme.breakpoints.down(650));
   const token = useSelector((state) => state.user.token);
+  const tournamentName = useSelector(
+    (state) => state.tournaments.latestTournament.name
+  );
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,9 +30,6 @@ const LiveMatch = ({ tournamentId }) => {
 
   const liveMatch = useSelector((state) => state.user.liveMatch);
   const noLiveMatch = liveMatch.isEmpty;
-  const tournamentName = useSelector(
-    (state) => state.tournaments.latestTournament.name
-  );
 
   return (
     <>

@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const FinishSetup = () => {
   const [open, setOpen] = useState(false);
-
   const fixtures = useSelector((state) => state.tournamentSetup.fixtures);
   const disabledButton = fixtures.length === 0;
 

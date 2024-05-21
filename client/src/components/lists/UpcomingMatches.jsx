@@ -24,10 +24,9 @@ const UpcomingMatches = ({ tournamentId }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const token = useSelector((state) => state.user.token);
+  const [isLoading, setIsLoading] = useState(true);
 
   const tournamentURL = `/tournaments/${tournamentId}`;
-
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(userApi.getUpcomingMatches({ tournamentId, token, setIsLoading }));

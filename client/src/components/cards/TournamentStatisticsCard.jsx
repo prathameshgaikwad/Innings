@@ -7,13 +7,12 @@ import Typography from "@mui/joy/Typography";
 import { useState } from "react";
 
 const TournamentStatisticsCard = ({ data }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const playerTeamName = "Gujarat Titans";
   const teamColor = "yellow";
   const title = data[0];
   const value = data[1];
   const playerName = data[2];
-
-  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <>

@@ -22,13 +22,8 @@ import { useSelector } from "react-redux";
 const TournamentCard = ({ id }) => {
   const token = useSelector((state) => state.user.token);
   const theme = useTheme();
-  const isDarkTheme = theme.palette.mode === "dark";
-  const tournamentId = id;
-  const tournamentURL = `/tournaments/${tournamentId}`;
-
   const [isLoading, setIsLoading] = useState(true);
   const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
-
   const [tournamentDetails, setTournamentDetails] = useState({
     name: "",
     venue: "",
@@ -37,6 +32,9 @@ const TournamentCard = ({ id }) => {
     bannerURLS: { large: "", small: "" },
   });
 
+  const isDarkTheme = theme.palette.mode === "dark";
+  const tournamentId = id;
+  const tournamentURL = `/tournaments/${tournamentId}`;
   const { name, venue, startDate, totalOvers, bannerURLS } = tournamentDetails;
 
   useEffect(() => {

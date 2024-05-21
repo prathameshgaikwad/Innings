@@ -21,10 +21,8 @@ const CreateFixturesForm = () => {
   const dispatch = useDispatch();
   const fixtures = useSelector((state) => state.tournamentSetup.fixtures);
   const teams = useSelector((state) => state.tournamentSetup.teams);
-  const disabledButton = fixtures.length === 0;
-
   const [isOpen, setIsOpen] = useState(false);
-
+  const disabledButton = fixtures.length === 0;
   const existingMatchNumbers = fixtures.map((fixture) => fixture.match_no);
 
   const initialValues = {

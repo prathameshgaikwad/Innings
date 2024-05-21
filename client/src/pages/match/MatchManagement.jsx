@@ -22,8 +22,8 @@ const MatchManagement = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { token } = useSelector((state) => state.user);
   const { matchId } = useParams();
-
   const [isLoading, setIsLoading] = useState(true);
+  const socket = useSocket();
 
   useEffect(() => {
     const fetchMatchDetails = async () => {
@@ -39,8 +39,6 @@ const MatchManagement = () => {
 
   const { innings, current_innings_no, battingTeam, bowlingTeam, match_no } =
     useSelector((state) => state.matchManagement) || {};
-
-  const socket = useSocket();
 
   return (
     <>

@@ -8,12 +8,12 @@ import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import { useColorScheme } from "@mui/joy/styles";
 
 export default function ColorSchemeToggle(props) {
-  const { onClick, ...other } = props;
-  const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = useState(false);
+  const { mode, setMode } = useColorScheme();
   useEffect(() => {
     setMounted(true);
   }, []);
+  const { onClick, ...other } = props;
 
   if (!mounted) {
     return <IconButton size="sm" variant="outlined" color="neutral" disabled />;

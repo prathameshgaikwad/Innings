@@ -27,10 +27,11 @@ const Match = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const token = useSelector((state) => state.user.token);
   const { tournamentId, matchId } = useParams();
-
   const socket = useSocket();
-
   const [isLoading, setIsLoading] = useState(true);
+  const createdTournaments = useSelector(
+    (state) => state.tournaments.createdTournaments
+  );
 
   useEffect(() => {
     const fetchMatchDetails = async () => {
@@ -44,9 +45,6 @@ const Match = () => {
     fetchMatchDetails();
   }, [setIsLoading, matchId, token]);
 
-  const createdTournaments = useSelector(
-    (state) => state.tournaments.createdTournaments
-  );
   const isAdmin = createdTournaments.includes(tournamentId);
 
   const match = useSelector((state) => state.match);

@@ -12,6 +12,8 @@ import Typography from "@mui/joy/Typography";
 import { useState } from "react";
 
 const PlayerStatisticsCard = ({ data, isUser }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   //pName, teamName,  runs, avg, sr, high,  w, econ, imgURL, teamColor, [matches, debut, 50s, 100s, 4s, 6s,]
   const playerName = data[0];
   const playerTeamName = data[1];
@@ -23,8 +25,6 @@ const PlayerStatisticsCard = ({ data, isUser }) => {
   const economy = data[7];
   const playerImage = data[8];
   const teamColor = data[9];
-
-  const [isLoading, setIsLoading] = useState(true);
 
   let chipData = [];
 

@@ -18,12 +18,11 @@ import { useParams } from "react-router-dom";
 
 const TeamCard = ({ team, isLoading }) => {
   const theme = useTheme();
+  const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
+  const { tournamentId } = useParams();
   const { team_color, logo_url, name, captain_name, players, _id } = team;
   const size = players.length;
-  const { tournamentId } = useParams();
   const teamURL = `/tournaments/${tournamentId}/teams/${_id}`;
-
-  const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
 
   return (
     <>

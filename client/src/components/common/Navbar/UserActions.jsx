@@ -28,11 +28,11 @@ const UserActions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isDarkTheme = theme.palette.mode === "dark";
-
   const { first_name, profile_image_url } = useSelector(
     (state) => state.user.user
   );
+
+  const isDarkTheme = theme.palette.mode === "dark";
 
   const handleUserLogout = () => {
     dispatch(setLogout());

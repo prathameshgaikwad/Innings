@@ -21,10 +21,8 @@ const TeamPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const { tournamentId, teamId } = useParams();
-
-  const token = useSelector((state) => state.user.token);
-
   const [isLoading, setIsLoading] = useState(true);
+  const token = useSelector((state) => state.user.token);
 
   useEffect(() => {
     dispatch(teamApi.getTeamInfo({ teamId, token, setIsLoading }));
