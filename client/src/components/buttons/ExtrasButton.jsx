@@ -10,7 +10,6 @@ import { useState } from "react";
 
 const ExtrasButton = ({ type, socket }) => {
   const [open, setOpen] = useState(false);
-  const longPressEvent = useLongPress(handleLongPress);
 
   const { matchId } = useParams();
   const { batsmen, bowler, bowlingTeam, battingTeam, current_innings_no } =
@@ -38,6 +37,8 @@ const ExtrasButton = ({ type, socket }) => {
   const handleLongPress = () => {
     setOpen(true);
   };
+
+  const longPressEvent = useLongPress(handleLongPress);
 
   return (
     <Button
