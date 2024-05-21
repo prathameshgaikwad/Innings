@@ -7,7 +7,7 @@ const TableRow = ({ data, dataKeys }) => {
     <tr>
       {dataKeys.map((key) => (
         <td key={key}>
-          <Typography variant="body2">{data[key]}</Typography>
+          <Typography textColor="text.secondary">{data[key]}</Typography>
         </td>
       ))}
     </tr>
