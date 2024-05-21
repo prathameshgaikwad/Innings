@@ -8,7 +8,7 @@ const TableHeader = ({ headers }) => {
       <tr>
         {headers.map((header_text, index) => (
           <th key={index}>
-            <Typography variant="title2">{header_text}</Typography>
+            <Typography textColor={"text.primary"}>{header_text}</Typography>
           </th>
         ))}
       </tr>
