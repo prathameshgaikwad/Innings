@@ -108,20 +108,14 @@ const matchManagementSlice = createSlice({
       state.status = action.payload;
     },
     setOnStrikeBatsman: (state, action) => {
-      const { _id, first_name, last_name, total_runs, balls_faced } =
-        action.payload;
+      const { _id, name } = action.payload;
       state.batsmen.onStrikeBatsman._id = _id;
-      state.batsmen.onStrikeBatsman.name = `${first_name} ${last_name}`;
-      state.batsmen.onStrikeBatsman.runs = total_runs;
-      state.batsmen.onStrikeBatsman.ballsPlayed = balls_faced;
+      state.batsmen.onStrikeBatsman.name = name;
     },
     setOffStrikeBatsman: (state, action) => {
-      const { _id, first_name, last_name, total_runs, balls_faced } =
-        action.payload;
+      const { _id, name } = action.payload;
       state.batsmen.offStrikeBatsman._id = _id;
-      state.batsmen.offStrikeBatsman.name = `${first_name} ${last_name}`;
-      state.batsmen.offStrikeBatsman.runs = total_runs;
-      state.batsmen.offStrikeBatsman.ballsPlayed = balls_faced;
+      state.batsmen.offStrikeBatsman.name = name;
     },
     setStrikeChange: (state) => {
       [state.offStrikeBatsman, state.onStrikeBatsman] = [
@@ -130,9 +124,9 @@ const matchManagementSlice = createSlice({
       ];
     },
     setBowler: (state, action) => {
-      const { _id, first_name, last_name } = action.payload;
+      const { _id, name } = action.payload;
       state.bowler._id = _id;
-      state.bowler.name = `${first_name} ${last_name}`;
+      state.bowler.name = name;
     },
     setMatchManagementInningsData: (state, action) => {
       state.innings[state.current_innings_no - 1].data = action.payload;
