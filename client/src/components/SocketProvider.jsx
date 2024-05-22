@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import CustomToast from "./notifications/toasts/CustomToast";
+import { confirmOptimisticUpdate } from "../state/match/matchManagementSlice";
 import { setMatchInningsData } from "../state/match/matchSlice";
 
 const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
@@ -21,7 +22,7 @@ const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
         socket.emit("subscribeToMatch", matchId);
 
         socket.on("richInningsData", (richInningsData) => {
-          console.log("Got server confirmation");
+          dispatch(confirmOptimisticUpdate(richInningsData));
           dispatch(setMatchInningsData(richInningsData));
         });
       });

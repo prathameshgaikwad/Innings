@@ -132,10 +132,39 @@ const matchManagementSlice = createSlice({
       state.innings[state.current_innings_no - 1].data = action.payload;
     },
     setOptimisticInningsRuns: (state, action) => {
-      const { runs_scored } = action.payload;
-      state.innings[state.current_innings_no - 1].data.total_runs +=
-        runs_scored;
-      state.innings[state.current_innings_no - 1].data.balls_completed += 1;
+      const { runs_scored, onStrikeBatsman, offStrikeBatsman, bowler } =
+        action.payload;
+      const currentInningsData =
+        state.innings[state.current_innings_no - 1].data;
+      currentInningsData.total_runs += runs_scored;
+      currentInningsData.balls_completed += 1;
+
+      const newBallLog = {
+        _id: "temp",
+        runs_scored,
+        wicket: {
+          is_wicket: false,
+          runs_this_ball: 0,
+        },
+        extra: {
+          is_extra: false,
+          runs_this_ball: 0,
+        },
+        bowler_id: bowler._id,
+        on_strike_batsman_id: onStrikeBatsman._id,
+        off_strike_batsman_id: offStrikeBatsman._id,
+      };
+      currentInningsData.ball_log.push(newBallLog);
+    },
+    confirmOptimisticUpdate: (state, action) => {
+      const { ball_log } = action.payload;
+      const lastBallIndexFromServer = ball_log.length - 1;
+      const { _id } = ball_log[lastBallIndexFromServer];
+
+      const currentInningsData =
+        state.innings[state.current_innings_no - 1].data;
+      const lastBallIndex = currentInningsData.ball_log.length - 1;
+      currentInningsData.ball_log[lastBallIndex]._id = _id;
     },
     clearMatchManagementData: () => initialState,
   },
@@ -151,6 +180,7 @@ export const {
   setStrikeChange,
   setMatchManagementInningsData,
   setOptimisticInningsRuns,
+  confirmOptimisticUpdate,
   clearMatchManagementData,
 } = matchManagementSlice.actions;
 export const matchManagementReducer = matchManagementSlice.reducer;

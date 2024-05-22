@@ -17,10 +17,6 @@ const ScoreButton = ({ score, type, socket }) => {
   const handleClick = () => {
     const runs_scored = type === "dot" ? 0 : parseInt(score);
 
-    // DISPATCH AN OPTIMISTIC UPDATE FOR THE ADMIN USER
-    dispatch(setOptimisticInningsRuns({ runs_scored }));
-
-    // EMIT SOCKET EVENT TO UPDATE DATABASE
     const runLogData = {
       matchId,
       battingTeamId: battingTeam._id,
@@ -31,6 +27,10 @@ const ScoreButton = ({ score, type, socket }) => {
       runs_scored,
       innings_no: current_innings_no,
     };
+    // DISPATCH AN OPTIMISTIC UPDATE FOR THE ADMIN USER
+    dispatch(setOptimisticInningsRuns(runLogData));
+
+    // EMIT SOCKET EVENT TO UPDATE DATABASE
     socket.emit("addRun", runLogData);
   };
 
