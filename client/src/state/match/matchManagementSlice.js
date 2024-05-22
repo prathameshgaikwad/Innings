@@ -139,6 +139,9 @@ const matchManagementSlice = createSlice({
       currentInningsData.total_runs += runs_scored;
       currentInningsData.balls_completed += 1;
 
+      state.batsmen.onStrikeBatsman.runs += runs_scored;
+      state.batsmen.onStrikeBatsman.ballsPlayed += 1;
+
       const newBallLog = {
         _id: "temp",
         runs_scored,
