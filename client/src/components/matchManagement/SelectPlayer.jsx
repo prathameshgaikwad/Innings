@@ -19,7 +19,11 @@ const SelectPlayer = ({
   const rawPlayersData =
     players &&
     players.map((player) =>
-      createPlayerOption(`${player.first_name} ${player.last_name}`, player._id)
+      createPlayerOption({
+        first_name: player.first_name,
+        last_name: player.last_name,
+        _id: player._id,
+      })
     );
 
   const sortedPlayersData = rawPlayersData
@@ -36,10 +40,10 @@ const SelectPlayer = ({
   };
 
   const onSubmit = (values, { resetForm }) => {
-    const name = sortedPlayersData.find((player) => {
+    const selectedPlayerOption = sortedPlayersData.find((player) => {
       if (player.value === values.player._id) return player;
     });
-    values.player.name = name.label;
+    values.player.name = selectedPlayerOption.label;
 
     dispatch(dispatchTarget(values.player));
     resetForm();
