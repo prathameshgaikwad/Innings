@@ -1,3 +1,3 @@
-export const createPlayerOption = (name, _id) => {
-  return { label: name, value: _id };
+export const createPlayerOption = ({ first_name, last_name, _id }) => {
+  return { label: `${first_name} ${last_name}`.trim(), value: _id };
 };
