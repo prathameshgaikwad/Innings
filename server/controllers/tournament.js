@@ -393,6 +393,13 @@ const getAllFixtures = async (req, res) => {
         overs: match.total_overs,
       });
     }
+
+    redisClient.setEx(
+      `fixtures:${tournamentId}`,
+      60 * 60,
+      JSON.stringify(responseData)
+    );
+
     res.status(StatusCodes.OK).json(responseData);
   } catch (error) {
     res
