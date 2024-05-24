@@ -6,6 +6,7 @@ const fetchRandomImage = require("../helpers/fetchRandomImage");
 const { generateShortName } = require("../helpers/generateShortName");
 const { generateCleanString } = require("../helpers/generateCleanString");
 const { getRichTeamData } = require("../helpers/team");
+const redisClient = require("../db/redisClient");
 
 const getTeam = async (req, res) => {
   try {
@@ -13,6 +14,8 @@ const getTeam = async (req, res) => {
     const team = await Team.findById(teamId);
 
     const richTeamData = await getRichTeamData({ team_id: teamId });
+
+    redisClient.setEx(`team:${teamId}`, 3600, JSON.stringify(richTeamData));
 
     res.status(StatusCodes.OK).json(richTeamData);
   } catch (error) {
