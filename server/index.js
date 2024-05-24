@@ -33,6 +33,7 @@ const io = new Server(server, {
   },
 });
 
+// HANDLE SOCKET EVENTS
 socketEvents(io);
 
 // ROUTES
