@@ -11,11 +11,16 @@ const {
   getAllTeams,
   getAllFixtures,
 } = require("../controllers/tournament");
+const cache = require("../middleware/cache");
 
 const router = express.Router();
 
 router.get("/featured", getFeaturedTournaments);
-router.get("/:tournamentId", getTournamentDetails);
+router.get(
+  "/:tournamentId",
+  cache((req) => `tournament:${req.params.tournamentId}`),
+  getTournamentDetails
+);
 router.get("/:tournamentId/live", getLiveMatchDetails);
 router.get("/:tournamentId/upcoming-matches", getUpcomingMatches);
 router.get("/:tournamentId/completed-matches", getCompletedMatches);

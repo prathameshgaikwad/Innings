@@ -8,6 +8,7 @@ const Player = require("../models/player");
 const fetchRandomImage = require("../helpers/fetchRandomImage");
 const { generateCleanString } = require("../helpers/generateCleanString");
 const { getRichMatchInfo } = require("../helpers/match");
+const redisClient = require("../db/redisClient");
 
 const MAX_ELEMENTS_PER_ARRAY = 10;
 
@@ -78,6 +79,12 @@ const getTournamentDetails = async (req, res) => {
       ...tournament.toObject(),
       adminName,
     };
+
+    redisClient.setEx(
+      `tournament:${tournamentId}`,
+      3600,
+      JSON.stringify(tournamentData)
+    );
 
     res.status(StatusCodes.OK).json(tournamentData);
   } catch (error) {
