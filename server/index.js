@@ -17,6 +17,7 @@ const playerRoutes = require("./routes/players");
 const { socketEvents } = require("./socket/events/index");
 
 const { verifyToken } = require("./middleware/auth");
+const redisClient = require("./db/redisClient");
 
 dotenv.config();
 
