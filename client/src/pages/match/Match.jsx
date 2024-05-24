@@ -11,7 +11,7 @@ import Navbar from "../../components/common/Navbar/Navbar";
 import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
-import SocketProvider from "../../components/SocketProvider";
+import SocketHandler from "../../components/SocketHandler";
 import TossDetails from "../../components/match/TossDetails";
 import TossProvider from "../../components/TossProvider";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
@@ -65,7 +65,7 @@ const Match = () => {
       <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ gap: 2, mb: 8 }}>
-        <SocketProvider matchId={matchId} socket={socket} isAdmin={false}>
+        <SocketHandler matchId={matchId} socket={socket} isAdmin={false}>
           <TossProvider
             isLoading={isLoading}
             matchId={matchId}
@@ -121,7 +121,7 @@ const Match = () => {
               />
             </>
           </TossProvider>
-        </SocketProvider>
+        </SocketHandler>
       </PageContainer>
       <Footer />
     </>

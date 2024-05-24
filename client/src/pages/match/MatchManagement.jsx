@@ -8,7 +8,7 @@ import MainContent from "../../components/matchManagement/MainContent/MainConten
 import Navbar from "../../components/common/Navbar/Navbar";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
-import SocketProvider from "../../components/SocketProvider";
+import SocketHandler from "../../components/SocketHandler";
 import TossProvider from "../../components/TossProvider";
 import { matchApi } from "../../services/api";
 import { setMatch } from "../../state/match/matchManagementSlice";
@@ -45,7 +45,7 @@ const MatchManagement = () => {
       <Navbar />
       <PageContainer
         customStyles={{ gap: 2, maxWidth: isMobile ? "85vw" : "80vw" }}>
-        <SocketProvider matchId={matchId} socket={socket} isAdmin={true}>
+        <SocketHandler matchId={matchId} socket={socket} isAdmin={true}>
           <Header
             isLoading={isLoading}
             team1={battingTeam}
@@ -70,7 +70,7 @@ const MatchManagement = () => {
               </Box>
             </>
           </TossProvider>
-        </SocketProvider>
+        </SocketHandler>
       </PageContainer>
       <Footer />
     </>

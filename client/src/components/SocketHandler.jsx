@@ -7,7 +7,7 @@ import CustomToast from "./notifications/toasts/CustomToast";
 import { confirmOptimisticUpdate } from "../state/match/matchManagementSlice";
 import { setMatchInningsData } from "../state/match/matchSlice";
 
-const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
+const SocketHandler = ({ matchId, socket, isAdmin, children }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const username = `${user.first_name}`;
@@ -66,4 +66,4 @@ const SocketProvider = ({ matchId, socket, isAdmin, children }) => {
   );
 };
 
-export default SocketProvider;
+export default SocketHandler;
