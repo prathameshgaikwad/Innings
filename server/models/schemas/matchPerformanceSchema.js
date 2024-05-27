@@ -6,6 +6,11 @@ const matchPerformanceSchema = new mongoose.Schema({
     ref: "matches",
   },
   batting_performance: {
+    stage: {
+      type: String,
+      enum: ["did_not_bat", "did_bat"],
+      default: "did_not_bat",
+    },
     runs_scored: { type: Number, default: 0 },
     balls_faced: { type: Number, default: 0 },
     dismissal: {
@@ -14,12 +19,33 @@ const matchPerformanceSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "players",
       },
+      dissmissal_type: {
+        type: String,
+        enum: [
+          "caught",
+          "bowled",
+          "lbw",
+          "run_out",
+          "stumped",
+          "hit-wicket",
+          "retired_hurt",
+          "retired_out",
+          "timed_out",
+          "not_out",
+        ],
+        default: "not_out",
+      },
     },
     fours: { type: Number, default: 0 },
     sixes: { type: Number, default: 0 },
     strike_rate: { type: mongoose.Types.Decimal128, default: 0.0 },
   },
   bowling_performance: {
+    stage: {
+      type: String,
+      enum: ["did_not_bowl", "did_bowl"],
+      default: "did_not_bowl",
+    },
     balls_bowled: { type: Number, default: 0 },
     runs_conceded: { type: Number, default: 0 },
     economy: { type: mongoose.Types.Decimal128, default: 0.0 },
