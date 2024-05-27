@@ -7,7 +7,7 @@ import TeamBadgeCircular from "../dataDisplay/TeamBadgeCircular";
 import { useFormikContext } from "formik";
 import { useSelector } from "react-redux";
 
-function createOption(name, _id, team_color) {
+function createTeamOption(name, _id, team_color) {
   return {
     label: name,
     value: _id,
@@ -22,10 +22,10 @@ const ChooseTeam = ({ id, name }) => {
     useSelector((state) => state.tournamentSetup.teams) || [];
 
   let allTeamsList = rawTeamsData.map((team) =>
-    createOption(team.name, team._id, team.team_color)
+    createTeamOption(team.name, team._id, team.team_color)
   );
 
-  const defaultOption = createOption("Select one", "default", "#90a4ae");
+  const defaultOption = createTeamOption("Select one", "default", "#90a4ae");
   allTeamsList = allTeamsList.sort((a, b) => (a.label > b.label ? 1 : -1));
   allTeamsList = [defaultOption, ...allTeamsList];
 
