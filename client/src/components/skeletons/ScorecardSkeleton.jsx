@@ -1,23 +1,12 @@
-import {
-  Box,
-  Card,
-  Divider,
-  Sheet,
-  Skeleton,
-  Typography,
-  useTheme,
-} from "@mui/joy";
+import { Box, Card, Divider, Sheet, Skeleton, Typography } from "@mui/joy";
 
 import { BiSolidCricketBall } from "react-icons/bi";
 import { MdSportsCricket } from "react-icons/md";
 import RectangularSkeleton from "./RectangularSkeleton";
+import SectionHeader from "../layouts/sections/SectionHeader";
 import TeamBadgeHorizontalSkeleton from "./TeamBadgeHorizontalSkeleton";
-import { useMediaQuery } from "@mui/material";
 
 const ScorecardSkeleton = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
     <Box
       sx={{
@@ -27,16 +16,7 @@ const ScorecardSkeleton = () => {
         alignItems: "center",
         width: "80vw",
       }}>
-      <Box sx={{ width: "100%", mb: isMobile ? 3 : 6 }}>
-        <Divider>
-          <Typography
-            level={isMobile ? "h4" : "h3"}
-            sx={{ mx: 2 }}
-            color="success">
-            Scorecard
-          </Typography>
-        </Divider>
-      </Box>
+      <SectionHeader title={"Scorecard"} />
       <Skeleton
         animation="pulse"
         variant="rectangular"
