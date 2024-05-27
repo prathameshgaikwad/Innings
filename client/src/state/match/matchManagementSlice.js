@@ -199,6 +199,10 @@ const matchManagementSlice = createSlice({
       const lastBallIndex = currentInningsData.ball_log.length - 1;
       currentInningsData.ball_log[lastBallIndex]._id = _id;
     },
+    setDidNotBatPlayers: (state, action) => {
+      const didNotBatPlayers = action.payload;
+      state.battingTeam = { ...state.battingTeam, didNotBatPlayers };
+    },
     clearMatchManagementData: () => initialState,
   },
 });
@@ -215,6 +219,7 @@ export const {
   setOptimisticInningsRuns,
   setOptimisticExtraRuns,
   confirmOptimisticUpdate,
+  setDidNotBatPlayers,
   clearMatchManagementData,
 } = matchManagementSlice.actions;
 export const matchManagementReducer = matchManagementSlice.reducer;

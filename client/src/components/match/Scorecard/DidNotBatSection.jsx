@@ -5,23 +5,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import { matchApi } from "../../../services/api";
+import { setDidNotBatPlayers } from "../../../state/match/matchManagementSlice";
 
 const DidNotBatSection = ({ matchId }) => {
-  const [didNotBatPlayers, setDidNotBatPlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
+  const { didNotBatPlayers } =
+    useSelector((state) => state.matchManagement.battingTeam) ?? [];
 
   useEffect(() => {
     const fetchDidNotBatPlayers = async () => {
       setIsLoading(true);
-      const data = await dispatch(
-        matchApi.getDidNotBatPlayers({ matchId, token })
-      );
-      setDidNotBatPlayers(data);
+      const data = await matchApi.getDidNotBatPlayers({ matchId, token })();
+      dispatch(setDidNotBatPlayers(data));
       setIsLoading(false);
     };
-
     fetchDidNotBatPlayers();
   }, [dispatch, matchId, token]);
 
