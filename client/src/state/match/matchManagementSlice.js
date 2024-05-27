@@ -159,6 +159,36 @@ const matchManagementSlice = createSlice({
       };
       currentInningsData.ball_log.push(newBallLog);
     },
+    setOptimisticExtraRuns: (state, action) => {
+      const {
+        runs_scored,
+        onStrikeBatsman,
+        offStrikeBatsman,
+        bowler,
+        extraType,
+      } = action.payload;
+      const currentInningsData =
+        state.innings[state.current_innings_no - 1].data;
+      currentInningsData.total_runs += 1;
+
+      const newExtraBallLog = {
+        _id: "temp",
+        runs_scored,
+        wicket: {
+          is_wicket: false,
+          runs_this_ball: 0,
+        },
+        extra: {
+          is_extra: true,
+          runs_this_ball: 0,
+          extra_type: extraType,
+        },
+        bowler_id: bowler._id,
+        on_strike_batsman_id: onStrikeBatsman._id,
+        off_strike_batsman_id: offStrikeBatsman._id,
+      };
+      currentInningsData.ball_log.push(newExtraBallLog);
+    },
     confirmOptimisticUpdate: (state, action) => {
       const { ball_log } = action.payload;
       const lastBallIndexFromServer = ball_log.length - 1;
@@ -183,6 +213,7 @@ export const {
   setStrikeChange,
   setMatchManagementInningsData,
   setOptimisticInningsRuns,
+  setOptimisticExtraRuns,
   confirmOptimisticUpdate,
   clearMatchManagementData,
 } = matchManagementSlice.actions;

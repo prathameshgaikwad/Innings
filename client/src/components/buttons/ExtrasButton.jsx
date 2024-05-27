@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
 
 import { Button, Typography } from "@mui/joy";
+import { useDispatch, useSelector } from "react-redux";
 
 import CustomRunsModal from "../notifications/modals/CustomRunsModal";
+import { setOptimisticExtraRuns } from "../../state/match/matchManagementSlice";
 import useLongPress from "../../hooks/useLongPress";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const ExtrasButton = ({ type, socket }) => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const { matchId } = useParams();
   const { batsmen, bowler, bowlingTeam, battingTeam, current_innings_no } =
@@ -27,6 +29,7 @@ const ExtrasButton = ({ type, socket }) => {
         extraType: type,
         innings_no: current_innings_no,
       };
+      dispatch(setOptimisticExtraRuns(extraLogItem));
       socket.emit("addExtra", extraLogItem);
     }
 
