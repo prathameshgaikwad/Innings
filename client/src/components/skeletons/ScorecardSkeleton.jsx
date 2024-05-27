@@ -25,7 +25,7 @@ const ScorecardSkeleton = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        width: "100%",
+        width: "80vw",
       }}>
       <Box sx={{ width: "100%", mb: isMobile ? 3 : 6 }}>
         <Divider>
@@ -44,19 +44,21 @@ const ScorecardSkeleton = () => {
       />
       <Card
         variant="outlined"
+        size="lg"
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           mt: 4,
-          py: 3,
           px: 6,
+          borderWidth: 3,
           width: "100%",
         }}>
         <Typography
           level="h3"
-          color="warning"
+          color="primary"
+          sx={{ my: 2 }}
           startDecorator={<MdSportsCricket />}>
           Batting
         </Typography>
@@ -119,7 +121,7 @@ const ScorecardSkeleton = () => {
         <Divider sx={{ mt: 2 }}>
           <Typography
             level="h3"
-            color="warning"
+            color="primary"
             startDecorator={<BiSolidCricketBall />}
             sx={{ my: "auto", mx: 1 }}>
             Bowling
