@@ -9,11 +9,11 @@ import ExtrasSection from "./ExtrasSection";
 import FallOfWicketsList from "./FallOfWicketsList";
 
 const ScorecardContent = ({
+  matchId,
   team,
   total,
   battingData,
   extras,
-  nonBattingData,
   bowlingData,
   fallOfWicketsData,
 }) => {
@@ -37,7 +37,7 @@ const ScorecardContent = ({
         sx={{ width: "100%", alignItems: "center", justifyContent: "center" }}>
         <ExtrasSection extras={extras} />
         <Divider />
-        <DidNotBatSection nonBattingData={nonBattingData} />
+        <DidNotBatSection matchId={matchId} />
       </Card>
       <BowlingSection bowlingData={bowlingData} />
       <FallOfWicketsList data={fallOfWicketsData} />

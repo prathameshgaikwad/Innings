@@ -21,21 +21,16 @@ const battingData1 = SAMPLE_SCORECARD_BATTING_DATA_1;
 const battingData2 = SAMPLE_SCORECARD_BATTING_DATA_2;
 const bowlingData1 = SAMPLE_SCORECARD_BOWLING_DATA_1;
 const bowlingData2 = SAMPLE_SCORECARD_BOWLING_DATA_2;
-const nonBattingData1 = [
-  "Matheesha Pathirana",
-  "Maheesh Theekshana",
-  "Tushar Deshpande",
-  "Akash Singh",
-];
-const nonBattingData2 = [
-  "Harshal Patel",
-  "Vyshak Vijaykumar",
-  "Mohammed Siraj",
-];
 const fallOfWicketsData1 = SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_1;
 const fallOfWicketsData2 = SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_2;
 
-const Scorecard = ({ isAdmin, isLoading, innings, current_innings_no }) => {
+const Scorecard = ({
+  matchId,
+  isAdmin,
+  isLoading,
+  innings,
+  current_innings_no,
+}) => {
   const [index, setIndex] = useState(0);
 
   const battingTeam = useSelector((state) =>
@@ -54,7 +49,6 @@ const Scorecard = ({ isAdmin, isLoading, innings, current_innings_no }) => {
   const team = index === 0 ? battingTeam : bowlingTeam;
 
   const battingData = index === 0 ? battingData1 : battingData2;
-  const nonBattingData = index === 0 ? nonBattingData1 : nonBattingData2;
   const bowlingData = index === 0 ? bowlingData1 : bowlingData2;
   const fallOfWicketsData =
     index === 0 ? fallOfWicketsData1 : fallOfWicketsData2;
@@ -74,11 +68,11 @@ const Scorecard = ({ isAdmin, isLoading, innings, current_innings_no }) => {
             current_innings_no={current_innings_no}
           />
           <ScorecardContent
+            matchId={matchId}
             team={team}
             total={total}
             battingData={battingData}
             bowlingData={bowlingData}
-            nonBattingData={nonBattingData}
             extras={extras}
             fallOfWicketsData={fallOfWicketsData}
           />

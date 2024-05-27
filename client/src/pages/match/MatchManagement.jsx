@@ -62,6 +62,7 @@ const MatchManagement = () => {
               <MainContent isLoading={isLoading} socket={socket} />
               <Box mb={8}>
                 <Scorecard
+                  matchId={matchId}
                   isAdmin={true}
                   isLoading={isLoading}
                   innings={innings}

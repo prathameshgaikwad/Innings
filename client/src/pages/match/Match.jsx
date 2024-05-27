@@ -114,6 +114,7 @@ const Match = () => {
                 </Stack>
               )}
               <Scorecard
+                matchId={matchId}
                 isAdmin={false}
                 isLoading={isLoading}
                 innings={innings}
