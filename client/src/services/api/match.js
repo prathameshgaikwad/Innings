@@ -22,3 +22,28 @@ export const getMatchInfo =
       setIsLoading(false);
     }
   };
+
+export const getDidNotBatPlayers =
+  ({ matchId, token }) =>
+  async () => {
+    try {
+      const response = await fetch(
+        `${MATCHES_API}/${matchId}/battingTeam/didNotBat`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Fetching error");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log("error:", error);
+      return null;
+    }
+  };
