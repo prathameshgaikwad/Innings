@@ -1,17 +1,16 @@
 /* eslint-disable react/prop-types */
 
-import { Button, ButtonGroup, Card, Typography, useTheme } from "@mui/joy";
+import { Button, ButtonGroup, Card, Typography } from "@mui/joy";
 import { useEffect, useState } from "react";
 
 import CustomRunsModal from "../notifications/modals/CustomRunsModal";
 import ExtrasButton from "../buttons/ExtrasButton";
-import { GrUndo } from "react-icons/gr";
 import ScoreButton from "../buttons/ScoreButton";
+import UndoButton from "../buttons/UndoButton";
 import WicketModal from "../notifications/modals/WicketModal";
 import { useSelector } from "react-redux";
 
 const ScoringButtonsPanel = ({ disabled, socket }) => {
-  const theme = useTheme();
   const [isValid, setIsValid] = useState(false);
   const [isCustomRuns, setIsCustomRuns] = useState(false);
   const [isWicket, setIsWicket] = useState(false);
@@ -64,18 +63,7 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
         <ExtrasButton socket={socket} type={"B"} />
         <ExtrasButton socket={socket} type={"LB"} />
         <ExtrasButton socket={socket} type={"P"} />
-        <Button
-          variant="solid"
-          sx={{
-            height: 50,
-            flexGrow: 1,
-            bgcolor: theme.palette.secondary.solidBg,
-            "&:hover": {
-              bgcolor: theme.palette.secondary.solidHoverBg,
-            },
-          }}>
-          <GrUndo size={26} />
-        </Button>
+        <UndoButton />
       </ButtonGroup>
       <ButtonGroup disabled={!isValid || disabled}>
         <Button
