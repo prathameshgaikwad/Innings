@@ -49,6 +49,7 @@ const WicketModal = ({ open, setOpen }) => {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <ModalDialog
+        color="danger"
         aria-labelledby="nested-modal-title"
         aria-describedby="nested-modal-description"
         sx={(theme) => ({
