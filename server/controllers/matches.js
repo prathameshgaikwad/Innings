@@ -3,6 +3,9 @@ const Match = require("../models/match");
 const Fixture = require("../models/fixture");
 const Tournament = require("../models/tournament");
 const { generateRichTossData, getRichMatchInfo } = require("../helpers/match");
+const Team = require("../models/team");
+const { setBattingAndBowlingTeamData } = require("../helpers/team");
+const Player = require("../models/player");
 
 const getMatchDetails = async (req, res) => {
   try {
@@ -105,8 +108,55 @@ const getTossResult = async (req, res) => {
   }
 };
 
+const getDidNotBatPlayers = async (req, res) => {
+  try {
+    const { matchId } = req.params;
+    const match = await Match.findById(matchId);
+
+    if (!match)
+      return res.status(StatusCodes.NOT_FOUND).json({ error: "No such match" });
+
+    const { team1_id, team2_id, toss, innings } = match;
+
+    const team1 = await Team.findById(team1_id);
+    const team2 = await Team.findById(team2_id);
+
+    const { battingTeam } = await setBattingAndBowlingTeamData({
+      innings,
+      team1,
+      team2,
+      toss,
+    });
+
+    const { players } = battingTeam;
+    const playersWhoDidNotBat = [];
+
+    for (const player of players) {
+      const playerData = await Player.findById(player._id);
+      const { match_performances, first_name, last_name } =
+        playerData.toObject();
+
+      const thisMatchPerformance = match_performances.find((matchPerformance) =>
+        matchPerformance.match_id.equals(match._id)
+      );
+
+      if (thisMatchPerformance) {
+        if (thisMatchPerformance.batting_performance.stage === "did_not_bat") {
+          playersWhoDidNotBat.push(`${first_name} ${last_name}`.trim());
+        }
+      }
+    }
+    res.status(StatusCodes.OK).json(playersWhoDidNotBat);
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+  }
+};
+
 module.exports = {
   setTossResult,
   getMatchDetails,
   getTossResult,
+  getDidNotBatPlayers,
 };
