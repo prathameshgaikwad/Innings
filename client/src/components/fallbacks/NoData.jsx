@@ -13,7 +13,7 @@ const NoData = ({ height, isSmall, customStyles }) => {
     justifyContent: "center",
     height: height || 300,
     width: "100%",
-    opacity: 0.6,
+    opacity: 0.4,
   };
 
   return (
