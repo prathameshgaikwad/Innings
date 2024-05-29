@@ -5,8 +5,6 @@ import {
   SAMPLE_SCORECARD_BATTING_DATA_2,
   SAMPLE_SCORECARD_BOWLING_DATA_1,
   SAMPLE_SCORECARD_BOWLING_DATA_2,
-  SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_1,
-  SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_2,
 } from "../../../utilities/constants";
 
 import CenteredBox from "../../layouts/pages/CenteredBox";
@@ -21,8 +19,6 @@ const battingData1 = SAMPLE_SCORECARD_BATTING_DATA_1;
 const battingData2 = SAMPLE_SCORECARD_BATTING_DATA_2;
 const bowlingData1 = SAMPLE_SCORECARD_BOWLING_DATA_1;
 const bowlingData2 = SAMPLE_SCORECARD_BOWLING_DATA_2;
-const fallOfWicketsData1 = SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_1;
-const fallOfWicketsData2 = SAMPLE_SCORECARD_FALL_OF_WICKETS_DATA_2;
 
 const Scorecard = ({
   matchId,
@@ -30,9 +26,9 @@ const Scorecard = ({
   isLoading,
   innings,
   current_innings_no,
+  fallOfWicketsData,
 }) => {
   const [index, setIndex] = useState(0);
-
   const battingTeam = useSelector((state) =>
     isAdmin ? state.matchManagement.battingTeam : state.match.battingTeam
   );
@@ -50,8 +46,6 @@ const Scorecard = ({
 
   const battingData = index === 0 ? battingData1 : battingData2;
   const bowlingData = index === 0 ? bowlingData1 : bowlingData2;
-  const fallOfWicketsData =
-    index === 0 ? fallOfWicketsData1 : fallOfWicketsData2;
 
   return (
     <>

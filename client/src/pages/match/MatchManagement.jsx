@@ -46,6 +46,8 @@ const MatchManagement = () => {
 
   const { innings, current_innings_no, battingTeam, bowlingTeam, match_no } =
     useSelector((state) => state.matchManagement) || {};
+  const fallOfWicketsData =
+    innings[current_innings_no - 1]?.data?.fall_of_wickets ?? [];
 
   return (
     <>
@@ -74,6 +76,7 @@ const MatchManagement = () => {
                   isLoading={isLoading}
                   innings={innings}
                   current_innings_no={current_innings_no}
+                  fallOfWicketsData={fallOfWicketsData}
                 />
               </Box>
             </>
