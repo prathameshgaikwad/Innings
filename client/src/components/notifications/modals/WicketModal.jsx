@@ -24,14 +24,23 @@ function createPlayerOption(player) {
 }
 
 const WicketModal = ({ open, setOpen }) => {
-  const { batsmen, bowler } = useSelector((state) => state.matchManagement);
-
+  const { batsmen, bowler, innings, current_innings_no } = useSelector(
+    (state) => state.matchManagement
+  );
   const { onStrikeBatsman, offStrikeBatsman } = batsmen;
+  const currentInningsData = innings[current_innings_no - 1]?.data;
+  const { total_runs, total_wickets, balls_completed } =
+    currentInningsData || {};
 
   const initialValues = {
     player_id: "",
     wicket_comment: "",
     bowler_id: bowler._id,
+    wicket_stamp: {
+      total_runs,
+      balls_completed,
+      total_wickets,
+    },
   };
 
   const playerOptions = [
