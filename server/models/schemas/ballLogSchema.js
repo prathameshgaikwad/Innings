@@ -19,7 +19,9 @@ const ballLogSchema = new mongoose.Schema({
     wicket_number: { type: Number },
     runs_this_ball: { type: Number, default: 0 },
     dismissal_comment: { type: String },
-    fall_of_wicket_stamp: { type: String },
+    over: { type: Number },
+    ball: { type: Number },
+    total_runs: { type: Number },
   },
   extra: {
     is_extra: { type: Boolean, default: false },
