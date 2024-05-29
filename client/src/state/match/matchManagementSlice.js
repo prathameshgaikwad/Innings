@@ -203,6 +203,12 @@ const matchManagementSlice = createSlice({
       const didNotBatPlayers = action.payload;
       state.battingTeam = { ...state.battingTeam, didNotBatPlayers };
     },
+    updateInningsFallOfWicketLog: (state, action) => {
+      const newFallOfWicketItem = action.payload;
+      const currentInningsData =
+        state.innings[state.current_innings_no - 1].data;
+      currentInningsData.fall_of_wickets_log.push(newFallOfWicketItem);
+    },
     clearMatchManagementData: () => initialState,
   },
 });
@@ -220,6 +226,7 @@ export const {
   setOptimisticExtraRuns,
   confirmOptimisticUpdate,
   setDidNotBatPlayers,
+  updateInningsFallOfWicketLog,
   clearMatchManagementData,
 } = matchManagementSlice.actions;
 export const matchManagementReducer = matchManagementSlice.reducer;
