@@ -20,7 +20,7 @@ const NoData = ({ height, isSmall, customStyles }) => {
     <Card sx={{ ...defaultStyles, ...customStyles }}>
       <RiEmotionSadLine
         fontSize={isSmall ? 64 : 92}
-        style={{ color: theme.palette.neutral.softDisabledBg }}
+        style={{ color: theme.palette.neutral.softActiveBg }}
       />
       <Typography
         color="neutral"
