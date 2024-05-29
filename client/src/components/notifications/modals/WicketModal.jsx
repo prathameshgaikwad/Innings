@@ -10,10 +10,15 @@ import {
   Typography,
 } from "@mui/joy";
 import { Form, Formik } from "formik";
+import {
+  getCompletedBallsInOver,
+  getOversFromBallsCompleted,
+} from "../../../utilities/helpers/matchMetrics";
+import { useDispatch, useSelector } from "react-redux";
 
 import CustomInput from "../../formComponents/CustomInput";
 import CustomSelect from "../../formComponents/CustomSelect";
-import { useSelector } from "react-redux";
+import { updateInningsFallOfWicketLog } from "../../../state/match/matchManagementSlice";
 import { wicketSchema } from "../../../schema/match/wicket";
 
 function createPlayerOption(player) {
@@ -24,6 +29,7 @@ function createPlayerOption(player) {
 }
 
 const WicketModal = ({ open, setOpen }) => {
+  const dispatch = useDispatch();
   const { batsmen, bowler, innings, current_innings_no } = useSelector(
     (state) => state.matchManagement
   );
@@ -33,14 +39,13 @@ const WicketModal = ({ open, setOpen }) => {
     currentInningsData || {};
 
   const initialValues = {
-    player_id: "",
-    wicket_comment: "",
+    on_strike_batsman_id: "",
+    dismissal_comment: "",
     bowler_id: bowler._id,
-    wicket_stamp: {
-      total_runs,
-      balls_completed,
-      total_wickets,
-    },
+    over: getOversFromBallsCompleted(balls_completed),
+    ball: getCompletedBallsInOver(balls_completed),
+    total_runs,
+    wicket_number: total_wickets + 1,
   };
 
   const playerOptions = [
@@ -51,6 +56,7 @@ const WicketModal = ({ open, setOpen }) => {
 
   const handleWicket = (values, { resetForm }) => {
     alert(JSON.stringify(values));
+    dispatch(updateInningsFallOfWicketLog(values));
     resetForm();
     setOpen(false);
   };
@@ -84,9 +90,12 @@ const WicketModal = ({ open, setOpen }) => {
           {({ isSubmitting, isValid, touched }) => (
             <Form>
               <Stack direction={"column"} spacing={2} mb={6}>
-                <CustomSelect name="player_id" options={playerOptions} />
+                <CustomSelect
+                  name="on_strike_batsman_id"
+                  options={playerOptions}
+                />
                 <CustomInput
-                  name="wicket_comment"
+                  name="dismissal_comment"
                   placeholder="c R.Jadeja b R.Ashwin"
                   sx={{ fontSize: "sm", my: 2 }}
                 />
