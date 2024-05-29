@@ -50,8 +50,6 @@ const getRichMatchInfo = async ({
     });
   }
 
-  const richInningsData = await generateRichInningsData(innings);
-
   return (matchData = {
     _id,
     match_no,
@@ -60,51 +58,12 @@ const getRichMatchInfo = async ({
     status,
     result,
     toss: tossData,
-    innings: richInningsData,
+    innings,
     team1_id,
     team2_id,
     battingTeam,
     bowlingTeam,
   });
-};
-
-const generateFallOfWicketsLog = async (inningData) => {
-  let fallOfWicketsLog = await Promise.all(
-    inningData.ball_log.map(async (ball_log_item) => {
-      if (ball_log_item.wicket.is_wicket) {
-        const { bowler_id, on_strike_batsman_id, wicket } = ball_log_item;
-        const { over, ball, wicket_number, total_runs, dismissal_comment } =
-          wicket;
-
-        const bowler = await Player.findById(bowler_id);
-        const onStrikeBatsman = await Player.findById(on_strike_batsman_id);
-
-        const fallOfWicketItem = {
-          bowler: {
-            _id: bowler_id,
-            first_name: bowler.first_name,
-            last_name: bowler.last_name,
-          },
-          onStrikeBatsman: {
-            _id: on_strike_batsman_id,
-            first_name: onStrikeBatsman.first_name,
-            last_name: onStrikeBatsman.last_name,
-          },
-          wicket_number,
-          over,
-          ball,
-          total_runs,
-          dismissal_comment,
-        };
-
-        return fallOfWicketItem;
-      } else {
-        return null;
-      }
-    })
-  );
-  fallOfWicketsLog = fallOfWicketsLog.filter((item) => item !== null);
-  return fallOfWicketsLog;
 };
 
 const generateRichBallLogData = async (ball_log) => {
@@ -131,23 +90,8 @@ const generateRichBallLogData = async (ball_log) => {
   return richBallLogData;
 };
 
-const generateRichInningsData = async (innings) => {
-  const richInningsData = await Promise.all(
-    innings.map(async (inning) => {
-      const fallOfWicketsLog = await generateFallOfWicketsLog(inning.data);
-      return {
-        ...inning.data,
-        fall_of_wickets_log: fallOfWicketsLog,
-      };
-    })
-  );
-  return richInningsData;
-};
-
 module.exports = {
   getRichMatchInfo,
   generateRichTossData,
   generateRichBallLogData,
-  generateFallOfWicketsLog,
-  generateRichInningsData,
 };

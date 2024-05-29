@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { ballLogSchema } = require("./ballLogSchema");
+const { fallOfWicketSchema } = require("./fallOfWicketSchema");
 
 const inningsSchema = new mongoose.Schema(
   {
@@ -33,6 +34,7 @@ const inningsSchema = new mongoose.Schema(
         penalties: { type: Number, default: 0 },
       },
       ball_log: [ballLogSchema],
+      fall_of_wickets_log: [fallOfWicketSchema],
     },
   },
   { timestamps: true }
