@@ -2,7 +2,7 @@ import { mixed, object, string } from "yup";
 
 export const wicketSchema = () =>
   object({
-    player_id: mixed().required("Required"),
+    on_strike_batsman_id: mixed().required("Required"),
     bowler_id: mixed().required("Required"),
-    wicket_comment: string().required("Required"),
+    dismissal_comment: string().required("Required"),
   });
