@@ -47,7 +47,7 @@ const MatchManagement = () => {
   const { innings, current_innings_no, battingTeam, bowlingTeam, match_no } =
     useSelector((state) => state.matchManagement) || {};
   const fallOfWicketsData =
-    innings[current_innings_no - 1]?.data?.fall_of_wickets ?? [];
+    innings[current_innings_no - 1]?.data?.fall_of_wickets_log ?? [];
 
   return (
     <>
