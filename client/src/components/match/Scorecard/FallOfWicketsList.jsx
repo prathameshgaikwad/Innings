@@ -9,6 +9,7 @@ import { Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import FallOfWicketCard from "../../cards/FallOfWicketCard";
+import NoData from "../../fallbacks/NoData";
 import SliderMask from "../../layouts/swiper/SliderMask";
 
 const FallOfWicketsList = ({ data }) => {
@@ -36,41 +37,49 @@ const FallOfWicketsList = ({ data }) => {
           width: "56vw",
           display: "inline-flex",
         }}>
-        <Swiper
-          slidesPerView={"auto"}
-          spaceBetween={-90}
-          direction={"horizontal"}
-          mousewheel={true}
-          pagination={{
-            dynamicBullets: true,
-          }}
-          modules={[Pagination, Mousewheel]}
-          className="mySwiper">
-          {data.map((item, i) => {
-            const data = {
-              name: item.name,
-              scoreStamp: item.scoreStamp,
-              overStamp: item.overStamp,
-            };
-            return (
-              <SwiperSlide key={i}>
-                <FallOfWicketCard data={data} />
-              </SwiperSlide>
-            );
-          })}
-          <SliderMask
-            height={162.6}
-            bg={"var(--joy-palette-background-surface)"}
-            align={"left"}
-            radius={"8px"}
+        {data ? (
+          <Swiper
+            slidesPerView={"auto"}
+            spaceBetween={-90}
+            direction={"horizontal"}
+            mousewheel={true}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination, Mousewheel]}
+            className="mySwiper">
+            {data.map((item, i) => {
+              const data = {
+                name: item.name,
+                scoreStamp: item.scoreStamp,
+                overStamp: item.overStamp,
+              };
+              return (
+                <SwiperSlide key={i}>
+                  <FallOfWicketCard data={data} />
+                </SwiperSlide>
+              );
+            })}
+            <SliderMask
+              height={162.6}
+              bg={"var(--joy-palette-background-surface)"}
+              align={"left"}
+              radius={"8px"}
+            />
+            <SliderMask
+              height={162.6}
+              bg={"var(--joy-palette-background-surface)"}
+              align={"right"}
+              radius={"8px"}
+            />
+          </Swiper>
+        ) : (
+          <NoData
+            height={"100%"}
+            isSmall={true}
+            customStyles={{ borderWidth: 0 }}
           />
-          <SliderMask
-            height={162.6}
-            bg={"var(--joy-palette-background-surface)"}
-            align={"right"}
-            radius={"8px"}
-          />
-        </Swiper>
+        )}
       </Box>
     </Card>
   );
