@@ -25,14 +25,14 @@ export const FallOfWicketCard = ({ data }) => {
           height: 35,
           fontWeight: "bold",
         }}>
-        <Typography level="body-sm">{data.scoreStamp}</Typography>
+        <Typography level="body-sm">{`${data.total_runs} - ${data.wicket_number}`}</Typography>
       </CardOverflow>
       <Divider />
       <Typography level="body-xs" sx={{ mt: 1, color: "text.secondary" }}>
-        {data.name}
+        {`${data.on_strike_batsman.first_name} ${data.on_strike_batsman.last_name}`}
       </Typography>
       <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
-        Overs {data.overStamp}
+        {`Overs ${data.over}.${data.ball}`}
       </Typography>
     </Card>
   );
