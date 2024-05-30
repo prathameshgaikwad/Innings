@@ -49,14 +49,9 @@ const FallOfWicketsList = ({ data }) => {
             modules={[Pagination, Mousewheel]}
             className="mySwiper">
             {data.map((item, i) => {
-              const data = {
-                name: item.name,
-                scoreStamp: item.scoreStamp,
-                overStamp: item.overStamp,
-              };
               return (
                 <SwiperSlide key={i}>
-                  <FallOfWicketCard data={data} />
+                  <FallOfWicketCard data={item} />
                 </SwiperSlide>
               );
             })}
