@@ -60,18 +60,8 @@ const FallOfWicketsList = ({ data }) => {
                 </SwiperSlide>
               );
             })}
-            <SliderMask
-              height={162.6}
-              bg={"var(--joy-palette-background-surface)"}
-              align={"left"}
-              radius={"8px"}
-            />
-            <SliderMask
-              height={162.6}
-              bg={"var(--joy-palette-background-surface)"}
-              align={"right"}
-              radius={"8px"}
-            />
+            <SliderMask height={162.6} align={"left"} radius={"8px"} />
+            <SliderMask height={162.6} align={"right"} radius={"8px"} />
           </Swiper>
         ) : (
           <NoData
