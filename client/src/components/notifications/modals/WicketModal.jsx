@@ -30,7 +30,7 @@ function createPlayerOption(player) {
 
 const WicketModal = ({ open, setOpen, socket }) => {
   const dispatch = useDispatch();
-  const { batsmen, bowler, innings, current_innings_no } = useSelector(
+  const { batsmen, bowler, innings, current_innings_no, _id } = useSelector(
     (state) => state.matchManagement
   );
   const { onStrikeBatsman, offStrikeBatsman } = batsmen;
@@ -39,6 +39,7 @@ const WicketModal = ({ open, setOpen, socket }) => {
     currentInningsData || {};
 
   const initialValues = {
+    match_id: _id,
     on_strike_batsman_id: "",
     dismissal_comment: "",
     bowler_id: bowler._id,
