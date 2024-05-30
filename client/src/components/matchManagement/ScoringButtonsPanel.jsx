@@ -65,7 +65,7 @@ const ScoringButtonsPanel = ({ disabled, socket }) => {
         <UndoButton />
       </ButtonGroup>
       <ButtonGroup disabled={!isValid || disabled}>
-        <WicketButton />
+        <WicketButton socket={socket} />
       </ButtonGroup>
     </Card>
   );

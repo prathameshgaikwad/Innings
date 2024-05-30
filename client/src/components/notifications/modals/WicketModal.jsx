@@ -28,7 +28,7 @@ function createPlayerOption(player) {
   };
 }
 
-const WicketModal = ({ open, setOpen }) => {
+const WicketModal = ({ open, setOpen, socket }) => {
   const dispatch = useDispatch();
   const { batsmen, bowler, innings, current_innings_no } = useSelector(
     (state) => state.matchManagement
@@ -55,7 +55,11 @@ const WicketModal = ({ open, setOpen }) => {
   ];
 
   const handleWicket = (values, { resetForm }) => {
+    // UPDATE UI OPTIMISTICALLY
     dispatch(updateInningsFallOfWicketLog(values));
+
+    // EMIT SOCKET EVENT TO ADD WICKET
+    socket.emit("addWicket", values);
     resetForm();
     setOpen(false);
   };

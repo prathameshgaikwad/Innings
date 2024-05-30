@@ -5,7 +5,7 @@ import { Button, Typography } from "@mui/joy";
 import WicketModal from "../notifications/modals/WicketModal";
 import { useState } from "react";
 
-const WicketButton = () => {
+const WicketButton = ({ socket }) => {
   const [isWicket, setIsWicket] = useState(false);
   return (
     <>
@@ -19,7 +19,7 @@ const WicketButton = () => {
           WICKET
         </Typography>
       </Button>
-      <WicketModal open={isWicket} setOpen={setIsWicket} />
+      <WicketModal open={isWicket} setOpen={setIsWicket} socket={socket} />
     </>
   );
 };
