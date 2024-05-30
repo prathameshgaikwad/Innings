@@ -4,7 +4,14 @@ const {
   getMatchPerformanceObject,
 } = require("../../helpers/player");
 
-const updatePlayerMatchPerformance = ({ player_id, runs_scored, match_id }) => {
+const updatePlayerMatchPerformance = ({
+  player_id,
+  runs_scored,
+  match_id,
+  runs_conceded,
+  isBattingPerformance,
+  isbowlingPerformance,
+}) => {
   try {
     const updatePerformance = async () => {
       const player = await Player.findById(player_id);
@@ -15,8 +22,13 @@ const updatePlayerMatchPerformance = ({ player_id, runs_scored, match_id }) => {
         player,
       });
 
-      handleBattingPerformance({ matchPerformanceObj, runs_scored });
-      // HANDLE BOWLING PERFORMANCE
+      if (isBattingPerformance) {
+        handleBattingPerformance({ matchPerformanceObj, runs_scored });
+      }
+
+      if (isbowlingPerformance) {
+        // HANDLE BOWLING PERFORMANCE
+      }
 
       await player.save();
     };
