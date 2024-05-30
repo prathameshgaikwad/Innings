@@ -2,7 +2,18 @@
 
 import { Card, CardOverflow, Divider, Typography } from "@mui/joy";
 
-export const FallOfWicketCard = ({ data }) => {
+import { useSelector } from "react-redux";
+
+export const FallOfWicketCard = ({ data, isAdmin = false }) => {
+  const { battingTeam } = useSelector((state) =>
+    isAdmin ? state.matchManagement : state.match
+  );
+  const { players: battingTeamPlayers } = battingTeam;
+
+  const batsman = battingTeamPlayers.find(
+    (player) => player._id === data.on_strike_batsman_id
+  );
+
   return (
     <Card
       size="xs"
@@ -29,7 +40,7 @@ export const FallOfWicketCard = ({ data }) => {
       </CardOverflow>
       <Divider />
       <Typography level="body-xs" sx={{ mt: 1, color: "text.secondary" }}>
-        {`${data.on_strike_batsman.first_name} ${data.on_strike_batsman.last_name}`}
+        {`${batsman.first_name} ${batsman.last_name}`}
       </Typography>
       <Typography level="body-xs" sx={{ color: "text.tertiary" }}>
         {`Overs ${data.over}.${data.ball}`}

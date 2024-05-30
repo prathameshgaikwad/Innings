@@ -51,7 +51,7 @@ const FallOfWicketsList = ({ data }) => {
             {data.map((item, i) => {
               return (
                 <SwiperSlide key={i}>
-                  <FallOfWicketCard data={item} />
+                  <FallOfWicketCard isAdmin={true} data={item} />
                 </SwiperSlide>
               );
             })}
