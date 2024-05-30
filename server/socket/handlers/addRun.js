@@ -81,6 +81,8 @@ const addRun = ({ io, runLogData }) => {
         player_id: onStrikeBatsman._id,
         runs_scored,
         match_id: matchId,
+        isBattingPerformance: true,
+        isbowlingPerformance: false,
       });
       broadcastInningsData(io, matchId);
     };
