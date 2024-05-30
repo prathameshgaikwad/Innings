@@ -7,6 +7,7 @@ const { broadcastInningsData } = require("../broadcasts/broadcastInningsData");
 const {
   updatePlayerMatchPerformance,
 } = require("./updatePlayerMatchPerformance");
+const { updateInningMetrics } = require("../../helpers/match");
 
 const addRun = ({ io, runLogData }) => {
   const {
@@ -90,30 +91,6 @@ const addRun = ({ io, runLogData }) => {
   } catch (error) {
     console.log(error);
   }
-};
-
-const updateInningMetrics = ({
-  innings,
-  innings_no,
-  newBallLogItem,
-  runs_scored,
-  isExtra,
-  extraType,
-  runs_this_ball,
-}) => {
-  const newRunsScored = (runs_scored ?? 0) + (runs_this_ball ?? 0);
-
-  innings[innings_no - 1].data.ball_log.push(newBallLogItem);
-  innings[innings_no - 1].data.total_runs += newRunsScored;
-  innings[innings_no - 1].data.balls_completed += isExtra ? 0 : 1;
-  innings[innings_no - 1].data.total_fours += runs_scored === 4 ? 1 : 0;
-  innings[innings_no - 1].data.total_sixes += runs_scored === 6 ? 1 : 0;
-  innings[innings_no - 1].data.extras.total += isExtra ? 1 : 0;
-  innings[innings_no - 1].data.extras.wides += extraType === "WD" ? 1 : 0;
-  innings[innings_no - 1].data.extras.byes += extraType === "B" ? 1 : 0;
-  innings[innings_no - 1].data.extras.leg_byes += extraType === "LB" ? 1 : 0;
-  innings[innings_no - 1].data.extras.no_balls += extraType === "NB" ? 1 : 0;
-  innings[innings_no - 1].data.extras.penalties += extraType === "P" ? 1 : 0;
 };
 
 module.exports = { addRun };
