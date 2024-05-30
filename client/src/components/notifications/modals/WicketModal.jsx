@@ -55,7 +55,6 @@ const WicketModal = ({ open, setOpen }) => {
   ];
 
   const handleWicket = (values, { resetForm }) => {
-    alert(JSON.stringify(values));
     dispatch(updateInningsFallOfWicketLog(values));
     resetForm();
     setOpen(false);
