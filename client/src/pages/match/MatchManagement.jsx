@@ -1,8 +1,4 @@
 import { Box, useTheme } from "@mui/joy";
-import {
-  clearMatchManagementData,
-  setMatch,
-} from "../../state/match/matchManagementSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -15,6 +11,7 @@ import Scorecard from "../../components/match/Scorecard/Scorecard";
 import SocketHandler from "../../components/SocketHandler";
 import TossProvider from "../../components/TossProvider";
 import { matchApi } from "../../services/api";
+import { setMatch } from "../../state/match/matchManagementSlice";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
@@ -38,10 +35,6 @@ const MatchManagement = () => {
       dispatch(setMatch(matchDetails));
     };
     fetchMatchDetails();
-
-    return () => {
-      dispatch(clearMatchManagementData());
-    };
   }, [setIsLoading, matchId, token]);
 
   const { innings, current_innings_no, battingTeam, bowlingTeam, match_no } =
