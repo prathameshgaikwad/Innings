@@ -78,16 +78,6 @@ const addRun = ({ io, runLogData }) => {
         extra_type: extraType,
       });
 
-      // updateInningMetrics({
-      //   innings,
-      //   innings_no,
-      //   newBallLogItem,
-      //   runs_scored,
-      //   isExtra,
-      //   extraType,
-      //   runs_this_ball,
-      // });
-
       await match.save();
 
       addPlayerRuns({ player_id: onStrikeBatsman._id, runs_scored });
