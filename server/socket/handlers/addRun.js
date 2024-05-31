@@ -8,7 +8,10 @@ const {
   updatePlayerMatchPerformance,
 } = require("./updatePlayerMatchPerformance");
 const { updateInningMetrics } = require("../../helpers/match");
-const { ensureInningsStructure } = require("../../services/matchService");
+const {
+  ensureInningsStructure,
+  updateBallLog,
+} = require("../../services/matchService");
 
 const addRun = ({ io, runLogData }) => {
   const {
@@ -58,6 +61,12 @@ const addRun = ({ io, runLogData }) => {
           is_wicket: false,
         },
         extra: isExtra ? detailedExtraObject : simpleExtraObject,
+      });
+
+      await updateBallLog({
+        match_id: matchId,
+        innings_id: innings[innings.length - 1]._id,
+        ball_log_entry: newBallLogItem,
       });
 
       updateInningMetrics({

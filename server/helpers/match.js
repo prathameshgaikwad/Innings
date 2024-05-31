@@ -101,7 +101,6 @@ const updateInningMetrics = ({
 }) => {
   const newRunsScored = (runs_scored ?? 0) + (runs_this_ball ?? 0);
 
-  innings[innings_no - 1].data.ball_log.push(newBallLogItem);
   innings[innings_no - 1].data.total_runs += newRunsScored;
   innings[innings_no - 1].data.balls_completed += isExtra ? 0 : 1;
   innings[innings_no - 1].data.total_fours += runs_scored === 4 ? 1 : 0;
