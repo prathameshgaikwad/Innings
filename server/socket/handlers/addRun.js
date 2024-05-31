@@ -31,7 +31,7 @@ const addRun = ({ io, runLogData }) => {
 
       //CREATE A NEW INNINGS IF INNINGS ARRAY IS EMPTY OR INNINGS ARRAY LENGTH IS NOT EQUAL TO INNINGS_NO
       if (innings.length === 0 || innings.length !== innings_no) {
-        const newInnings = new mongoose.model("Innings", inningsSchema)({
+        const newInnings = new mongoose.model("innings", inningsSchema)({
           match_id: matchId,
           innings_no: 1,
           data: {
