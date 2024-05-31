@@ -8,6 +8,7 @@ const {
   updatePlayerMatchPerformance,
 } = require("./updatePlayerMatchPerformance");
 const { updateInningMetrics } = require("../../helpers/match");
+const { ensureInningsStructure } = require("../../services/matchService");
 
 const addRun = ({ io, runLogData }) => {
   const {
@@ -26,22 +27,14 @@ const addRun = ({ io, runLogData }) => {
 
   try {
     const updateMatchRunLog = async () => {
-      const match = await Match.findById(matchId);
-      const { innings, total_overs } = match;
+      let match = await Match.findById(matchId);
 
-      //CREATE A NEW INNINGS IF INNINGS ARRAY IS EMPTY OR INNINGS ARRAY LENGTH IS NOT EQUAL TO INNINGS_NO
-      if (innings.length === 0 || innings.length !== innings_no) {
-        const newInnings = new mongoose.model("innings", inningsSchema)({
-          match_id: matchId,
-          innings_no: 1,
-          data: {
-            batting_team_id: battingTeamId,
-            bowling_team_id: bowlingTeamId,
-            total_overs,
-          },
-        });
-        innings.push(newInnings);
-      }
+      match = await ensureInningsStructure({
+        match,
+        innings_no,
+        battingTeamId,
+        bowlingTeamId,
+      });
 
       const detailedExtraObject = {
         is_extra: true,

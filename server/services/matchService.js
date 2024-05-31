@@ -1,4 +1,30 @@
 const Match = require("../models/match");
+const { inningsSchema } = require("../models/schemas/inningsSchema");
+const mongoose = require("mongoose");
+
+async function ensureInningsStructure({
+  match,
+  innings_no,
+  battingTeamId,
+  bowlingTeamId,
+}) {
+  const { innings, _id, total_overs } = match;
+
+  //CREATE A NEW INNINGS IF INNINGS ARRAY IS EMPTY OR INNINGS ARRAY LENGTH IS NOT EQUAL TO INNINGS_NO
+  if (innings.length === 0 || innings.length !== innings_no) {
+    const newInnings = new mongoose.model("innings", inningsSchema)({
+      match_id: _id,
+      innings_no: 1,
+      data: {
+        batting_team_id: battingTeamId,
+        bowling_team_id: bowlingTeamId,
+        total_overs,
+      },
+    });
+    innings.push(newInnings);
+  }
+  return match;
+}
 
 async function updateWicketCount({ match_id, innings_id, increment }) {
   await Match.updateOne(
@@ -45,6 +71,7 @@ async function updateFallOfWicketsLog({
 }
 
 module.exports = {
+  ensureInningsStructure,
   updateWicketCount,
   updateBallLog,
   updateInningsMetrics,
