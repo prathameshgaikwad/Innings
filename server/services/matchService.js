@@ -14,4 +14,23 @@ async function updateBallLog({ match_id, innings_id, ball_log_entry }) {
   );
 }
 
-module.exports = { updateWicketCount, updateBallLog };
+async function updateInningsMetrics({
+  match_id,
+  innings_id,
+  runs_scored,
+  valid_ball,
+}) {
+  await Match.updateOne(
+    { _id: match_id, "innings._id": innings_id },
+    {
+      $inc: {
+        "innings.$.data.total_runs": runs_scored,
+        "innings.$.data.balls_completed": valid_ball ? 1 : 0,
+        "innings.$.data.total_fours": runs_scored === 4 ? 1 : 0,
+        "innings.$.data.total_sixes": runs_scored === 6 ? 1 : 0,
+      },
+    }
+  );
+}
+
+module.exports = { updateWicketCount, updateBallLog, updateInningsMetrics };
