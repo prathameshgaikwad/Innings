@@ -33,4 +33,20 @@ async function updateInningsMetrics({
   );
 }
 
-module.exports = { updateWicketCount, updateBallLog, updateInningsMetrics };
+async function updateFallOfWicketsLog({
+  match_id,
+  innings_id,
+  fall_of_wicket_entry,
+}) {
+  await Match.updateOne(
+    { _id: match_id, "innings._id": innings_id },
+    { $push: { "innings.$.data.fall_of_wickets_log": fall_of_wicket_entry } }
+  );
+}
+
+module.exports = {
+  updateWicketCount,
+  updateBallLog,
+  updateInningsMetrics,
+  updateFallOfWicketsLog,
+};
