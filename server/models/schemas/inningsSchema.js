@@ -8,6 +8,11 @@ const inningsSchema = new mongoose.Schema(
       type: Number,
       required: [true, "innings number is required"],
     },
+    status: {
+      type: String,
+      enum: ["not-started", "started", "completed"],
+      default: "not-started",
+    },
     data: {
       batting_team_id: {
         type: mongoose.Types.ObjectId,
