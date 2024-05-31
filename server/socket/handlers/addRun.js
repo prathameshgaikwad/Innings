@@ -36,6 +36,8 @@ const addRun = ({ io, runLogData }) => {
         bowlingTeamId,
       });
 
+      const { innings } = match;
+
       const detailedExtraObject = {
         is_extra: true,
         extra_type: extraType,
