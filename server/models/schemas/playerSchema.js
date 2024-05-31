@@ -47,6 +47,13 @@ const playerSchema = new mongoose.Schema({
     runs_conceded: { type: Number, default: 0 },
     balls_bowled: { type: Number, default: 0 },
     wickets_taken: { type: Number, default: 0 },
+    extras: {
+      wides: { type: Number, default: 0 },
+      no_balls: { type: Number, default: 0 },
+      byes: { type: Number, default: 0 },
+      leg_byes: { type: Number, default: 0 },
+      penalty_runs: { type: Number, default: 0 },
+    },
     maidens: { type: Number, default: 0 },
     economy: { type: mongoose.Types.Decimal128, default: 0.0 },
   },
