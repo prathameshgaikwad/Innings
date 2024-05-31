@@ -5,6 +5,10 @@ const matchPerformanceSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "matches",
   },
+  tournament_id: {
+    type: mongoose.Types.ObjectId,
+    ref: "tournaments",
+  },
   batting_performance: {
     stage: {
       type: String,
