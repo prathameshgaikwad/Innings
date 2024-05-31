@@ -93,7 +93,6 @@ const generateRichBallLogData = async (ball_log) => {
 const updateInningMetrics = ({
   innings,
   innings_no,
-  newBallLogItem,
   runs_scored,
   isExtra,
   extraType,
