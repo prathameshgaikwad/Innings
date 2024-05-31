@@ -1,7 +1,7 @@
 const Match = require("../models/match");
 const { inningsSchema } = require("../models/schemas/inningsSchema");
 const mongoose = require("mongoose");
-
+const _ = require("lodash");
 async function ensureInningsStructure({
   match,
   innings_no,
@@ -44,21 +44,27 @@ async function updateInningsMetrics({
   match_id,
   innings_id,
   runs_scored,
-  valid_ball,
+  is_extra,
+  extra_type,
 }) {
   await Match.updateOne(
     { _id: match_id, "innings._id": innings_id },
     {
       $inc: {
         "innings.$.data.total_runs": runs_scored,
-        "innings.$.data.balls_completed": valid_ball ? 1 : 0,
+        "innings.$.data.balls_completed": is_extra ? 0 : 1,
         "innings.$.data.total_fours": runs_scored === 4 ? 1 : 0,
         "innings.$.data.total_sixes": runs_scored === 6 ? 1 : 0,
+        "innings.$.data.extras.total": is_extra ? 1 : 0,
+        "innings.$.data.extras.wides": extra_type === "WD" ? 1 : 0,
+        "innings.$.data.extras.no_balls": extra_type === "NB" ? 1 : 0,
+        "innings.$.data.extras.byes": extra_type === "B" ? 1 : 0,
+        "innings.$.data.extras.leg_byes": extra_type === "LB" ? 1 : 0,
+        "innings.$.data.extras.penalties": extra_type === "P" ? 1 : 0,
       },
     }
   );
 }
-
 async function updateFallOfWicketsLog({
   match_id,
   innings_id,

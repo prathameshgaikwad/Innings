@@ -11,6 +11,7 @@ const { updateInningMetrics } = require("../../helpers/match");
 const {
   ensureInningsStructure,
   updateBallLog,
+  updateInningsMetrics,
 } = require("../../services/matchService");
 
 const addRun = ({ io, runLogData }) => {
@@ -69,15 +70,23 @@ const addRun = ({ io, runLogData }) => {
         ball_log_entry: newBallLogItem,
       });
 
-      updateInningMetrics({
-        innings,
-        innings_no,
-        newBallLogItem,
+      await updateInningsMetrics({
+        match_id: matchId,
+        innings_id: innings[innings.length - 1]._id,
         runs_scored,
-        isExtra,
-        extraType,
-        runs_this_ball,
+        is_extra: isExtra,
+        extra_type: extraType,
       });
+
+      // updateInningMetrics({
+      //   innings,
+      //   innings_no,
+      //   newBallLogItem,
+      //   runs_scored,
+      //   isExtra,
+      //   extraType,
+      //   runs_this_ball,
+      // });
 
       await match.save();
 
