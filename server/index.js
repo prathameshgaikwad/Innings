@@ -38,6 +38,9 @@ const io = new Server(server, {
 socketEvents(io);
 
 // ROUTES
+app.get("/", (req, res) => {
+  res.json("Hello World!")
+})
 app.use("/auth", authRoutes);
 app.use("/user", verifyToken, userRoutes);
 app.use("/tournaments", verifyToken, tournamentRoutes);
