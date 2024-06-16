@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "type-check": "tsc"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
