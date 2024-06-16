@@ -17,7 +17,6 @@ const playerRoutes = require("./routes/players");
 const { socketEvents } = require("./socket/events/index");
 
 const { verifyToken } = require("./middleware/auth");
-const redisClient = require("./db/redisClient");
 
 dotenv.config();
 
@@ -39,8 +38,8 @@ socketEvents(io);
 
 // ROUTES
 app.get("/", (req, res) => {
-  res.json("Hello World!")
-})
+  res.json("Hello World!");
+});
 app.use("/auth", authRoutes);
 app.use("/user", verifyToken, userRoutes);
 app.use("/tournaments", verifyToken, tournamentRoutes);
