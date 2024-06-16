@@ -6,6 +6,7 @@ Welcome to Innings (client)!
 
 - **React**: Frontend library for building user interfaces
 - **Redux**: State management library for managing application state
+- **TypeScript**: For type safety
 - **React Router**: Library for declarative routing in React applications
 - **Material-UI**: React components library for implementing Material Design
 - **Formik & Yup**: Libraries for form management and validation
@@ -34,7 +35,10 @@ To get started with Innings Client, follow these steps:
    yarn install
    ```
 
-4. Start the development server.
+4. Make sure to create & populate your own <code>.env</code> file. A sample <code>.env.example</code> file has been attached for reference.
+   <br>
+
+5. Start the development server.
 
    ```bash
    npm start
@@ -42,4 +46,4 @@ To get started with Innings Client, follow these steps:
    yarn start
    ```
 
-5. Open your browser and navigate to `http://localhost:3000` to view the application.
+6. Open your browser and navigate to `http://localhost:3000` to view the application.
