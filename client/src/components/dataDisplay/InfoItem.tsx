@@ -2,7 +2,17 @@
 
 import { Tooltip, Typography } from "@mui/joy";
 
-const InfoItem = ({ tooltipTitle, content, startDecorator }) => {
+interface InfoItemProps {
+  tooltipTitle: string;
+  content: React.ReactNode;
+  startDecorator?: React.ReactNode;
+}
+
+const InfoItem: React.FC<InfoItemProps> = ({
+  tooltipTitle,
+  content,
+  startDecorator,
+}) => {
   return (
     <Tooltip title={tooltipTitle} variant="outlined">
       <Typography

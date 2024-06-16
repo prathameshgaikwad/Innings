@@ -1,19 +1,33 @@
-/* eslint-disable react/prop-types */
-
 import { IconButton, Typography, useTheme } from "@mui/joy";
 
 import InfoItem from "../dataDisplay/InfoItem";
 import { LuClipboard } from "react-icons/lu";
 import { LuClipboardCheck } from "react-icons/lu";
 
-const handleShareButtonClick = ({ id, setIsCopied }) => {
+interface CopiedButtonProps {
+  id: string;
+  isCopied: boolean;
+  setIsCopied: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const handleShareButtonClick = ({
+  id,
+  setIsCopied,
+}: {
+  id: string;
+  setIsCopied: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   navigator.clipboard.writeText(id);
   setIsCopied(true);
   setTimeout(() => {
     setIsCopied(false);
   }, 4000);
 };
-const CopyButton = ({ isCopied, setIsCopied, id }) => {
+const CopyButton: React.FC<CopiedButtonProps> = ({
+  isCopied,
+  setIsCopied,
+  id,
+}) => {
   const theme = useTheme();
   return (
     <InfoItem
