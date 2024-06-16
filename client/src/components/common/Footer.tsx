@@ -2,7 +2,7 @@ import { Box, Divider, Link, Typography, useTheme } from "@mui/joy";
 
 import CopyrightIcon from "@mui/icons-material/Copyright";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const theme = useTheme();
   return (
     <>
