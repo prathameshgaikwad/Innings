@@ -8,7 +8,7 @@ import {
   Stack,
 } from "@mui/joy";
 
-const ScoreInfoSkeleton = () => {
+const ScoreInfoSkeleton: React.FC = () => {
   return (
     <Box>
       <Card sx={{ width: 320 }} variant="outlined">

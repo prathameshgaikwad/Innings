@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import { Box, Skeleton } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
 
-const TeamBadgeHorizontalSkeleton = ({ isSmall }) => {
+const TeamBadgeHorizontalSkeleton: React.FC<{ isSmall: boolean }> = ({
+  isSmall,
+}) => {
   return (
     <Box
       sx={{

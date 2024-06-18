@@ -7,7 +7,7 @@ import {
   Skeleton,
 } from "@mui/joy";
 
-const TournamentCardSkeleton = () => {
+const TournamentCardSkeleton: React.FC = () => {
   return (
     <Card
       variant="soft"

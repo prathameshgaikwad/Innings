@@ -1,6 +1,6 @@
 import { Card, Grid, Skeleton, useTheme } from "@mui/joy";
 
-const TournamentStatisticsCardSkeleton = () => {
+const TournamentStatisticsCardSkeleton: React.FC = () => {
   const theme = useTheme();
   return (
     <Card

@@ -2,7 +2,7 @@ import { Card, Skeleton } from "@mui/joy";
 
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
-const NextMatchSkeleton = () => {
+const NextMatchSkeleton: React.FC = () => {
   return (
     <Card
       variant="soft"

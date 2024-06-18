@@ -1,6 +1,8 @@
 import { Skeleton, Stack, Typography } from "@mui/joy";
 
-const UpcomingMatchesSkeleton = () => {
+import React from "react";
+
+const UpcomingMatchesSkeleton: React.FC = () => {
   return (
     <>
       <Stack

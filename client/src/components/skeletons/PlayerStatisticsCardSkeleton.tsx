@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import {
   AspectRatio,
   Card,
@@ -9,7 +7,9 @@ import {
   useTheme,
 } from "@mui/joy";
 
-const PlayerStatisticsCardSkeleton = ({ isUser }) => {
+const PlayerStatisticsCardSkeleton: React.FC<{ isUser: boolean }> = ({
+  isUser,
+}) => {
   const theme = useTheme();
   return (
     <Card

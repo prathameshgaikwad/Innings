@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import { Box, Skeleton } from "@mui/joy";
 
 import RectangularSkeleton from "./RectangularSkeleton";
 
-const TournamentStatisticsListSkeleton = ({ isMobile }) => {
+const TournamentStatisticsListSkeleton: React.FC<{ isMobile: boolean }> = ({
+  isMobile,
+}) => {
   return (
     <Box mt={4} width={"100%"}>
       <Skeleton

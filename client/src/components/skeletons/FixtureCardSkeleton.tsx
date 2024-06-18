@@ -12,7 +12,7 @@ import {
 import VersusIcon from "../icons/VersusIcon";
 import { useMediaQuery } from "@mui/material";
 
-const FixtureCardSkeleton = () => {
+const FixtureCardSkeleton: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 

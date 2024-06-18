@@ -8,7 +8,7 @@ import {
   Skeleton,
 } from "@mui/joy";
 
-const TeamCardSkeleton = () => {
+const TeamCardSkeleton: React.FC = () => {
   return (
     <Card
       sx={{

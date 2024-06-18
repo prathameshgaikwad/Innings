@@ -2,11 +2,12 @@ import { Box, Card, Divider, Sheet, Skeleton, Typography } from "@mui/joy";
 
 import { BiSolidCricketBall } from "react-icons/bi";
 import { MdSportsCricket } from "react-icons/md";
+import React from "react";
 import RectangularSkeleton from "./RectangularSkeleton";
 import SectionHeader from "../layouts/sections/SectionHeader";
 import TeamBadgeHorizontalSkeleton from "./TeamBadgeHorizontalSkeleton";
 
-const ScorecardSkeleton = () => {
+const ScorecardSkeleton: React.FC = () => {
   return (
     <Box
       sx={{

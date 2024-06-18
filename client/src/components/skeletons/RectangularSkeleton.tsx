@@ -1,8 +1,12 @@
-/* eslint-disable react/prop-types */
-
 import { Skeleton } from "@mui/joy";
 
-const RectangularSkeleton = ({
+type RectangularSkeletonProps = {
+  height?: number | string;
+  width?: number | string;
+  borderRadius?: number | string;
+};
+
+const RectangularSkeleton: React.FC<RectangularSkeletonProps> = ({
   height = 320,
   width = "100%",
   borderRadius,

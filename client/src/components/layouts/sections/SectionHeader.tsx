@@ -1,10 +1,16 @@
-/* eslint-disable react/prop-types */
+import { Box, Divider, Typography, TypographyProps, useTheme } from "@mui/joy";
 
-import { Box, Divider, Typography, useTheme } from "@mui/joy";
-
+import { ColorPaletteProp } from "@mui/joy/styles";
 import { useMediaQuery } from "@mui/material";
 
-const SectionHeader = ({
+type SectionHeaderProps = {
+  title: string;
+  color?: ColorPaletteProp;
+  level?: TypographyProps["level"];
+  startDecorator?: React.ComponentType;
+};
+
+const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
   color = "primary",
   level = "h3",

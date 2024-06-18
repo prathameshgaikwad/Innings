@@ -2,7 +2,7 @@ import { Box, Divider, Skeleton, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const TournamentInfoSkeleton = () => {
+const TournamentInfoSkeleton: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (

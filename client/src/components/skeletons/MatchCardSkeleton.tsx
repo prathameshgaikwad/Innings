@@ -12,7 +12,7 @@ import {
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { useMediaQuery } from "@mui/material";
 
-const MatchCardSkeleton = () => {
+const MatchCardSkeleton: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isTab = useMediaQuery(theme.breakpoints.down(650));
