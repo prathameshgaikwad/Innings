@@ -2,11 +2,11 @@
 
 import { Tooltip, Typography } from "@mui/joy";
 
-interface InfoItemProps {
+type InfoItemProps = {
   tooltipTitle: string;
   content: React.ReactNode;
   startDecorator?: React.ReactNode;
-}
+};
 
 const InfoItem: React.FC<InfoItemProps> = ({
   tooltipTitle,
