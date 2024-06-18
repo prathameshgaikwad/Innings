@@ -9,8 +9,8 @@ import {
 type ActionButtonProps = {
   title: string;
   size: ButtonProps["size"];
-  handleOnClick: () => void;
-  color: ColorPaletteProp;
+  handleOnClick: () => void | Promise<void>;
+  color?: ColorPaletteProp;
 };
 const ActionButton: React.FC<ActionButtonProps> = ({
   title,

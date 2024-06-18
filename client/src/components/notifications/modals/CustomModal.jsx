@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { Box, Button, Divider, Modal, ModalDialog, Typography } from "@mui/joy";
+import { useDispatch, useSelector } from "react-redux";
 
 import ActionButton from "../../buttons/ActionButton";
 import { FiCheckCircle } from "react-icons/fi";
@@ -8,7 +9,8 @@ import { IoWarningOutline } from "react-icons/io5";
 import LinkedConfirmButton from "../../buttons/LinkedConfirmButton";
 import { TbSwitch3 } from "react-icons/tb";
 import { clearTempTeam } from "../../../state/tournament/tournamentSetupSlice";
-import { useDispatch } from "react-redux";
+import { tournamentSetupApi } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const CustomModal = ({
   color,
@@ -19,8 +21,12 @@ const CustomModal = ({
   teamName,
   redirectLink,
   title,
+  tournamentId,
+  fixtures,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { token } = useSelector((state) => state.user);
 
   const deleteTeam = useCase === "deleteTeam";
   const finishSetup = useCase === "finishSetup";
@@ -39,15 +45,15 @@ const CustomModal = ({
   };
 
   const handleFinishSetup = async () => {
-    // dispatch(
-    //   tournamentSetupApi.saveFixturesBatchToDb({
-    //     tournamentId,
-    //     token,
-    //     fixtures,
-    //     navigate,
-    //     setOpen,
-    //   })
-    // );
+    dispatch(
+      tournamentSetupApi.saveFixturesBatchToDb({
+        tournamentId,
+        token,
+        fixtures,
+        navigate,
+        setOpen,
+      })
+    );
     //TODO: ATOMIZE above API call, and move it to its own component
   };
 
