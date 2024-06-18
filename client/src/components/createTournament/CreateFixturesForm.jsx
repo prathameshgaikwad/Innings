@@ -46,9 +46,9 @@ const CreateFixturesForm = () => {
   return (
     <Card
       variant="outlined"
+      size="lg"
       sx={{
         width: "80%",
-        p: 4,
       }}>
       {isOpen && (
         <CustomToast
@@ -61,7 +61,7 @@ const CreateFixturesForm = () => {
         initialValues={initialValues}
         validationSchema={fixtureSchema(teams, existingMatchNumbers)}
         onSubmit={onSubmit}>
-        {({ isSubmitting, isValid }) => (
+        {({ isSubmitting, dirty, isValid }) => (
           <Form
             style={{
               display: "flex",
@@ -72,7 +72,7 @@ const CreateFixturesForm = () => {
               level="h3"
               mx="auto"
               my={4}
-              color="warning"
+              color="primary"
               startDecorator={<HiMiniAdjustmentsVertical />}>
               Create Fixtures
             </Typography>
@@ -162,7 +162,7 @@ const CreateFixturesForm = () => {
                   size="lg"
                   color="success"
                   type="submit"
-                  disabled={isSubmitting || !isValid}
+                  disabled={isSubmitting || !dirty || !isValid}
                   fullWidth
                   startDecorator={<HiOutlineSaveAs fontSize={21} />}>
                   Save Fixture
