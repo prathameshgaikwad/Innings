@@ -1,6 +1,6 @@
 import { Typography, useTheme } from "@mui/joy";
 
-const NoLiveMatchPlaceholder = () => {
+const NoLiveMatchPlaceholder: React.FC = () => {
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
   return (

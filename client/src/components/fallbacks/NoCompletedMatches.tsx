@@ -1,6 +1,6 @@
 import { Card, Typography } from "@mui/joy";
 
-const NoCompletedMatches = () => {
+const NoCompletedMatches: React.FC = () => {
   return (
     <Card
       variant="outlined"

@@ -1,6 +1,6 @@
 import { Card, Typography } from "@mui/joy";
 
-const NoPendingMatches = () => {
+const NoPendingMatches: React.FC = () => {
   return (
     <Card variant="outlined" sx={{ borderWidth: 2, borderStyle: "solid" }}>
       <Typography sx={{ m: "auto", p: 2 }}>

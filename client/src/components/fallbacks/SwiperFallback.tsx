@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import { Box, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const SwiperFallback = ({ children }) => {
+const SwiperFallback: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
