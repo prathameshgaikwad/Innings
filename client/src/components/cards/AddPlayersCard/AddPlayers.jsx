@@ -14,7 +14,7 @@ const AddPlayers = () => {
     teamColor,
     isProcessing: buttonDisabled,
     players,
-  } = tempTeam;
+  } = tempTeam ?? {};
 
   return (
     <Card
