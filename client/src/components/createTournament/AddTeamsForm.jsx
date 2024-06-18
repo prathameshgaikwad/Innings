@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ColorPicker from "../formComponents/ColorPicker";
 import CustomColorInput from "../formComponents/CustomColorInput";
 import CustomInput from "../formComponents/CustomInput";
-import WorkspacesIcon from "@mui/icons-material/Workspaces";
+import GroupsIcon from "@mui/icons-material/Groups";
 import { createTeam } from "../../state/tournament/tournamentSetupSlice";
 import randomColor from "randomcolor";
 import { teamSchema } from "../../schema/tournament/team";
@@ -39,9 +39,12 @@ const AddTeamsForm = () => {
   return (
     <Card
       variant="outlined"
+      color="primary"
+      size="lg"
       sx={{
         height: "100%",
         alignItems: "center",
+        borderWidth: buttonDisabled ? 1 : 3,
       }}>
       <Formik
         initialValues={initialValues}
@@ -59,8 +62,8 @@ const AddTeamsForm = () => {
               level="h3"
               mx="auto"
               mt={2}
-              color="warning"
-              startDecorator={<WorkspacesIcon />}
+              color="primary"
+              startDecorator={<GroupsIcon />}
               sx={{ opacity: buttonDisabled && 0.5 }}>
               Add Team
             </Typography>
@@ -95,7 +98,7 @@ const AddTeamsForm = () => {
               color="success"
               type="submit"
               disabled={buttonDisabled}
-              endDecorator={<WorkspacesIcon />}
+              endDecorator={<GroupsIcon />}
               sx={{ mt: "auto", mb: 2 }}>
               Create Team
             </Button>
