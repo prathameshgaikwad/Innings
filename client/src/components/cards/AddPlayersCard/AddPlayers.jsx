@@ -7,21 +7,19 @@ import { useState } from "react";
 const AddPlayers = () => {
   const [openToast, setOpenToast] = useState(false);
 
-  const { tempTeam } = useSelector((state) => state.tournamentSetup.tempTeam);
+  const { tempTeam } = useSelector((state) => state.tournamentSetup);
 
-  const {
-    teamName,
-    teamColor,
-    isProcessing: buttonDisabled,
-    players,
-  } = tempTeam ?? {};
+  const { teamName, teamColor, isProcessing, players } = tempTeam;
 
   return (
     <Card
       variant="outlined"
+      size="lg"
+      color={isProcessing ? "primary" : "neutral"}
       sx={{
         width: "auto",
         alignItems: "center",
+        borderWidth: isProcessing ? 3 : 1,
       }}>
       {tempTeam && openToast && (
         <CustomToast
@@ -34,7 +32,7 @@ const AddPlayers = () => {
         teamColor={teamColor}
         teamData={tempTeam}
         teamName={teamName}
-        buttonDisabled={buttonDisabled}
+        buttonDisabled={isProcessing}
         players={players}
         setOpenToast={setOpenToast}
       />

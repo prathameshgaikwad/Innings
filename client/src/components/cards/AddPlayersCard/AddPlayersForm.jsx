@@ -66,7 +66,7 @@ const AddPlayersForm = ({
             level="h3"
             mx="auto"
             my={2}
-            color="warning"
+            color="primary"
             startDecorator={<GroupsIcon />}
             sx={{ opacity: !buttonDisabled && 0.5 }}>
             Add Players to {!teamName && "..."}

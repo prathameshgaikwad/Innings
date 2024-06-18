@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  tempTeam: [],
+  tempTeam: {
+    teamName: "Your Team",
+    teamColor: "#3F454B",
+    isProcessing: false,
+    players: [],
+  },
   teams: [],
   fixtures: [],
 };
