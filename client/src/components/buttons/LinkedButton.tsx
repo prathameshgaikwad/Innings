@@ -1,8 +1,24 @@
-/* eslint-disable react/prop-types */
+import {
+  Button,
+  ButtonProps,
+  ColorPaletteProp,
+  Link,
+  Typography,
+  useTheme,
+} from "@mui/joy";
 
-import { Button, Link, Typography, useTheme } from "@mui/joy";
+type LinkedButtonProps = {
+  title: string;
+  link: string;
+  size: ButtonProps["size"];
+  variant?: ButtonProps["variant"];
+  color?: ColorPaletteProp;
+  startDecorator?: React.ComponentType;
+  endDecorator?: React.ComponentType;
+  customStyles?: object;
+};
 
-const LinkedButton = ({
+const LinkedButton: React.FC<LinkedButtonProps> = ({
   title,
   link,
   size,
@@ -29,9 +45,9 @@ const LinkedButton = ({
         <Typography
           level={`title-${size === "sm" ? "sm" : "md"}`}
           noWrap
-          color={theme.palette.common.white}
           startDecorator={StartDecorator && <StartDecorator />}
-          endDecorator={EndDecorator && <EndDecorator />}>
+          endDecorator={EndDecorator && <EndDecorator />}
+          sx={{ color: theme.palette.common.white }}>
           {title}
         </Typography>
       </Link>
