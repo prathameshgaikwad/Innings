@@ -39,7 +39,7 @@ const AddTeamsForm = () => {
   return (
     <Card
       variant="outlined"
-      color="primary"
+      color={buttonDisabled ? "neutral" : "primary"}
       size="lg"
       sx={{
         height: "100%",
