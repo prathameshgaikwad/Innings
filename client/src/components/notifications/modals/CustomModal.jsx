@@ -111,7 +111,7 @@ const CustomModal = ({
             <ActionButton
               handleOnClick={handleFinishSetup}
               color="success"
-              title={`Yes, I&apos;m Sure`}
+              title={"Yes, I'm Sure"}
             />
           )}
           {deleteTeam && (
