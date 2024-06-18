@@ -5,6 +5,7 @@ import { Suspense, lazy, useEffect } from "react";
 
 import CssBaseline from "@mui/joy/CssBaseline";
 import { CssVarsProvider } from "@mui/joy";
+import PageLoader from "./components/fallbacks/PageLoader";
 import myTheme from "./theme";
 import { useSelector } from "react-redux";
 
@@ -43,7 +44,7 @@ const App = () => {
         disableTransitionOnChange
         theme={myTheme}>
         <CssBaseline />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* PUBLIC PATHS */}
             <Route path="/accounts/sign-in" element={<SignIn />} />
