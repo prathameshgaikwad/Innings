@@ -60,12 +60,12 @@ const TournamentBanner = ({
           <CardCover
             sx={{
               "&:hover": {
-                backgroundColor: "rgba(0,0,0,0.55)",
+                backgroundColor: "rgba(0,0,0,0.6)",
                 backdropFilter: "none",
               },
               transition: "all 0.45s ease-in-out",
               backdropFilter: "blur(4px)",
-              backgroundColor: "rgba(0,0,0,0.44)",
+              backgroundColor: "rgba(0,0,0,0.5)",
             }}>
             <Link
               href={isSetupComplete ? `/tournaments/${id}` : undefined}
@@ -96,7 +96,7 @@ const TournamentBanner = ({
                     <Typography
                       startDecorator={<MdOutlineBuildCircle fontSize={44} />}
                       sx={{
-                        color: theme.palette.warning[300],
+                        color: theme.palette.primary[300],
                         fontWeight: 600,
                       }}
                       mr={2}>
