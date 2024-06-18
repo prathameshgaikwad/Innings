@@ -4,31 +4,26 @@ import InfoItem from "../dataDisplay/InfoItem";
 import { LuClipboard } from "react-icons/lu";
 import { LuClipboardCheck } from "react-icons/lu";
 
-interface CopiedButtonProps {
+type CopyButtonProps = {
   id: string;
   isCopied: boolean;
   setIsCopied: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const handleShareButtonClick = ({
-  id,
-  setIsCopied,
-}: {
-  id: string;
-  setIsCopied: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-  navigator.clipboard.writeText(id);
-  setIsCopied(true);
-  setTimeout(() => {
-    setIsCopied(false);
-  }, 4000);
 };
-const CopyButton: React.FC<CopiedButtonProps> = ({
+
+const CopyButton: React.FC<CopyButtonProps> = ({
   isCopied,
   setIsCopied,
   id,
 }) => {
   const theme = useTheme();
+  const handleCopyButtonClick = () => {
+    navigator.clipboard.writeText(id);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 4000);
+  };
+
   return (
     <InfoItem
       tooltipTitle={"Copy tournament id"}
@@ -36,7 +31,7 @@ const CopyButton: React.FC<CopiedButtonProps> = ({
         <IconButton
           disabled={isCopied}
           size="sm"
-          onClick={() => handleShareButtonClick({ id, setIsCopied })}>
+          onClick={() => handleCopyButtonClick()}>
           {isCopied ? (
             <Typography
               level="body-xs"
