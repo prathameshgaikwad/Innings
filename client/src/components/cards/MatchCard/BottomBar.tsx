@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import {
   CardContent,
   Divider,
@@ -8,7 +6,13 @@ import {
   Typography,
 } from "@mui/joy";
 
-const BottomBar = ({ overs, venue, progress }) => {
+type BottomBarProps = {
+  overs: number;
+  venue: string;
+  progress: number;
+};
+
+const BottomBar: React.FC<BottomBarProps> = ({ overs, venue, progress }) => {
   return (
     <>
       <Divider inset="context" />

@@ -1,11 +1,19 @@
-/* eslint-disable react/prop-types */
-
 import { CardContent, Divider, Typography, useTheme } from "@mui/joy";
 
 import VersusIcon from "../../icons/VersusIcon";
 import { useMediaQuery } from "@mui/material";
 
-const TopBar = ({ match_no, battingTeamName, bowlingTeamName }) => {
+type TopBarProps = {
+  match_no: number;
+  battingTeamName: string;
+  bowlingTeamName: string;
+};
+
+const TopBar: React.FC<TopBarProps> = ({
+  match_no,
+  battingTeamName,
+  bowlingTeamName,
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (

@@ -1,12 +1,22 @@
-/* eslint-disable react/prop-types */
-
 import { Box, Divider, Stack, Typography, useTheme } from "@mui/joy";
 
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import { Innings } from "../../../types";
+import React from "react";
 import { VscGitCommit } from "react-icons/vsc";
 import { useMediaQuery } from "@mui/material";
 
-const ScorePane = ({
+type ScorePaneProps = {
+  totalRuns: number;
+  totalWickets: number;
+  oversCompleted: number;
+  overs: number;
+  currentRunRate: number;
+  current_innings_no: number;
+  inningsData: Innings[];
+};
+
+const ScorePane: React.FC<ScorePaneProps> = ({
   totalRuns,
   totalWickets,
   oversCompleted,
@@ -55,7 +65,7 @@ const ScorePane = ({
           <>
             <VscGitCommit
               style={{
-                mx: isMobile ? 0.5 : 1,
+                margin: isMobile ? 0.5 : 1,
                 color: "InactiveBorder",
               }}
             />

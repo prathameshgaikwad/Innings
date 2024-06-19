@@ -1,10 +1,24 @@
-/* eslint-disable react/prop-types */
-
-import { AspectRatio, Box, Tooltip, Typography, useTheme } from "@mui/joy";
+import {
+  AspectRatio,
+  Box,
+  ColorPaletteProp,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const TeamBadgeVertical = ({
+type TeamBadgeProps = {
+  isSmall?: boolean;
+  color: ColorPaletteProp;
+  logoURL: string;
+  nameShort: string;
+  name: string;
+  widths?: number[];
+};
+
+const TeamBadgeVertical: React.FC<TeamBadgeProps> = ({
   isSmall = false,
   color,
   logoURL,
