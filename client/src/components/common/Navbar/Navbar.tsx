@@ -1,10 +1,13 @@
 import Box from "@mui/joy/Box";
 import FullMenu from "./FullMenu";
 import MobileMenu from "./MobileMenu";
+import { Theme } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
 
 const Navbar = () => {
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("md")
+  );
 
   return (
     <Box

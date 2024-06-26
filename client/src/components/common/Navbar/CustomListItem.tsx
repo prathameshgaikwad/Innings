@@ -1,17 +1,24 @@
-/* eslint-disable react/prop-types */
-
-import { ListItem, Typography, useTheme } from "@mui/joy";
+import { ListItem, Theme, Typography, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const CustomListItem = ({
+type CustomListItemProps = {
+  isSamePage: boolean;
+  title: string;
+  link: string;
+  startDecorator?: React.ComponentType;
+};
+
+const CustomListItem: React.FC<CustomListItemProps> = ({
   isSamePage,
   title,
   link,
   startDecorator: StartDecorator,
 }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("md")
+  );
   return (
     <ListItem
       component="a"
