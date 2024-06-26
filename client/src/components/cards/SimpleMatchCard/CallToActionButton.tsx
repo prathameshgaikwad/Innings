@@ -6,7 +6,7 @@ type CallToActionButtonProps = {
   isMatchComplete: boolean;
   matchURL: string;
   title: string;
-  setOpen: (isOpen: boolean) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CallToActionButton: React.FC<CallToActionButtonProps> = ({
