@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { Divider, useTheme } from "@mui/joy";
 
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -11,12 +9,18 @@ import LinkedButton from "../buttons/LinkedButton";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { TbHexagonLetterC } from "react-icons/tb";
 import { TbSteam } from "react-icons/tb";
+import { Team } from "../../types";
 import TeamCardSkeleton from "../skeletons/TeamCardSkeleton";
 import Typography from "@mui/joy/Typography";
 import useHover from "../../hooks/useHover";
 import { useParams } from "react-router-dom";
 
-const TeamCard = ({ team, isLoading }) => {
+type TeamCardProps = {
+  team: Team;
+  isLoading: boolean;
+};
+
+const TeamCard: React.FC<TeamCardProps> = ({ team, isLoading }) => {
   const theme = useTheme();
   const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
   const { tournamentId } = useParams();

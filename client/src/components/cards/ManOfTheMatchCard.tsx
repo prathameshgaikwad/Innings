@@ -12,7 +12,7 @@ import { useMediaQuery } from "@mui/material";
 const playerName = "Devon Conway";
 const teamName = "Chennai Super Kings";
 
-const ManOfTheMatchCard = () => {
+const ManOfTheMatchCard: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isDataAvailable = playerName.length > 0;

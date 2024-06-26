@@ -1,12 +1,16 @@
-/* eslint-disable react/prop-types */
-
 import Card from "@mui/joy/Card";
 import { Grid } from "@mui/joy";
 import TournamentStatisticsCardSkeleton from "../skeletons/TournamentStatisticsCardSkeleton";
 import Typography from "@mui/joy/Typography";
 import { useState } from "react";
 
-const TournamentStatisticsCard = ({ data }) => {
+type TournamentStatisticsCardProps = {
+  data: string[];
+};
+
+const TournamentStatisticsCard: React.FC<TournamentStatisticsCardProps> = ({
+  data,
+}) => {
   const [isLoading, setIsLoading] = useState(true);
   const playerTeamName = "Gujarat Titans";
   const teamColor = "yellow";

@@ -19,7 +19,7 @@ const CreateTournamentCard = () => {
         borderStyle: "dashed",
         borderWidth: 2,
       }}>
-      <DrawIcon color="success" fontSize="xl3" />
+      <DrawIcon color="success" sx={{ fontSize: 24 }} />
       <div>
         <Typography fontSize="xl" fontWeight="lg" sx={{ mb: 1 }}>
           Create a new tournament
@@ -37,7 +37,7 @@ const CreateTournamentCard = () => {
           }}>
           <Button
             size="lg"
-            endDecorator={<ArrowForwardIcon fontSize="xl" />}
+            endDecorator={<ArrowForwardIcon />}
             color="success"
             onClick={() => setOpen(true)}>
             Create a tournament

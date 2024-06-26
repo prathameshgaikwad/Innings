@@ -1,10 +1,20 @@
-/* eslint-disable react/prop-types */
-
 import ActionButton from "../../buttons/ActionButton";
 import LinkedButton from "../../buttons/LinkedButton";
 import { useNavigate } from "react-router-dom";
 
-const CallToActionButton = ({ isMatchComplete, matchURL, title, setOpen }) => {
+type CallToActionButtonProps = {
+  isMatchComplete: boolean;
+  matchURL: string;
+  title: string;
+  setOpen: (isOpen: boolean) => void;
+};
+
+const CallToActionButton: React.FC<CallToActionButtonProps> = ({
+  isMatchComplete,
+  matchURL,
+  title,
+  setOpen,
+}) => {
   const navigate = useNavigate();
 
   const handleCallToAction = () => {
