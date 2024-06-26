@@ -56,7 +56,7 @@ export type Innings = {
   };
 };
 
-export type Match = {
+export interface Match {
   innings: Innings[];
   _id: string;
   match_no: number;
@@ -76,4 +76,24 @@ export type Match = {
       };
     };
   };
-};
+}
+
+export interface Team {
+  _id: string;
+  name: string;
+  name_short: string;
+  team_color: string;
+  players: Player[];
+  captain_name: string;
+  logo_url: string;
+  performance: {
+    matches: number;
+    win: number;
+    loss: number;
+    draw: number;
+    points: number;
+    nrr: number;
+  };
+}
+
+export interface Player {}
