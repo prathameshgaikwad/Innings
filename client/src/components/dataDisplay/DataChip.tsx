@@ -1,8 +1,11 @@
-/* eslint-disable react/prop-types */
-
 import { Box, Card, Divider, Grid, Typography, useTheme } from "@mui/joy";
 
-const DataChip = ({ title, value }) => {
+type DataChipProps = {
+  title: string;
+  value: number;
+};
+
+const DataChip: React.FC<DataChipProps> = ({ title, value }) => {
   const theme = useTheme();
   return (
     <Grid xs={4}>

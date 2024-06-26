@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { Stack, useTheme } from "@mui/joy";
 
 import { RxBorderDashed } from "react-icons/rx";
