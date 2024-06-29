@@ -1,10 +1,15 @@
-/* eslint-disable react/prop-types */
-
 import { Card, Typography, useTheme } from "@mui/joy";
 
 import { RiEmotionSadLine } from "react-icons/ri";
+import { SxProps } from "@mui/joy/styles/types";
 
-const NoData = ({ height, isSmall, customStyles }) => {
+type NoDataProps = {
+  height: number;
+  isSmall?: boolean;
+  customStyles?: SxProps;
+};
+
+const NoData: React.FC<NoDataProps> = ({ height, isSmall, customStyles }) => {
   const theme = useTheme();
 
   const defaultStyles = {

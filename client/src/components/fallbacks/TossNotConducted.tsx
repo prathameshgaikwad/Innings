@@ -1,12 +1,22 @@
-/* eslint-disable react/prop-types */
-
 import { Box, Card, Typography, useTheme } from "@mui/joy";
 
+import React from "react";
 import { RiCopperCoinLine } from "react-icons/ri";
+import { Team } from "../../types";
 import TeamCard from "../cards/TeamCard";
 import VersusIcon from "../icons/VersusIcon";
 
-const TossNotConducted = ({ isLoading, battingTeam, bowlingTeam }) => {
+type TossNotConductedProps = {
+  isLoading: boolean;
+  battingTeam: Team;
+  bowlingTeam: Team;
+};
+
+const TossNotConducted: React.FC<TossNotConductedProps> = ({
+  isLoading,
+  battingTeam,
+  bowlingTeam,
+}) => {
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
 

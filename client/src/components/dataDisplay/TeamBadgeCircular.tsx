@@ -1,8 +1,14 @@
-/* eslint-disable react/prop-types */
-
 import { Card, Typography } from "@mui/joy";
 
-const TeamBadgeCircular = ({ teamName, teamColor }) => {
+type TeamBadgeCircularProps = {
+  teamName: string;
+  teamColor: string;
+};
+
+const TeamBadgeCircular: React.FC<TeamBadgeCircularProps> = ({
+  teamName,
+  teamColor,
+}) => {
   return (
     <Card
       variant="solid"
