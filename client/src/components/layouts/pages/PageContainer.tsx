@@ -1,14 +1,20 @@
-/* eslint-disable react/prop-types */
-
-import { Box, useTheme } from "@mui/joy";
+import { Box, BoxProps, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const PageContainer = ({ children, customStyles }) => {
+type PageContainerProps = {
+  children: React.ReactNode;
+  customStyles: BoxProps["sx"];
+};
+
+const PageContainer: React.FC<PageContainerProps> = ({
+  children,
+  customStyles,
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const defaultStyles = {
+  const defaultStyles: BoxProps["sx"] = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

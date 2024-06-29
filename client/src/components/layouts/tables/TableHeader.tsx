@@ -1,8 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import { Typography } from "@mui/joy";
 
-const TableHeader = ({ headers }) => {
+type TableHeaderProps = {
+  headers: string[];
+};
+
+const TableHeader: React.FC<TableHeaderProps> = ({ headers }) => {
   return (
     <thead>
       <tr>

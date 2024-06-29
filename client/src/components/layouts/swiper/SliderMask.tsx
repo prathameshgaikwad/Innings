@@ -1,5 +1,16 @@
-/* eslint-disable react/prop-types */
-const SliderMask = ({ height = "100%", bg, radius, align }) => {
+type SliderMaskProps = {
+  height?: string | number;
+  bg?: string;
+  radius?: number;
+  align: "right" | "left";
+};
+
+const SliderMask: React.FC<SliderMaskProps> = ({
+  height = "100%",
+  bg,
+  radius,
+  align,
+}) => {
   return (
     <div
       style={{
