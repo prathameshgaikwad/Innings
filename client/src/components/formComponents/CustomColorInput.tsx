@@ -1,18 +1,29 @@
-/* eslint-disable react/prop-types */
-
 import {
   FormControl,
   FormHelperText,
   FormLabel,
   Input,
+  InputProps,
   Typography,
 } from "@mui/joy";
+import React, { useEffect } from "react";
 
-import { useEffect } from "react";
 import { useField } from "formik";
 
-const CustomColorInput = ({ label, setFieldValue, color, ...props }) => {
-  const [field, meta] = useField(props);
+interface CustomColorInputProps extends Omit<InputProps, "color"> {
+  label: string;
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
+  color: string;
+  name: string;
+}
+
+const CustomColorInput: React.FC<CustomColorInputProps> = ({
+  label,
+  setFieldValue,
+  color,
+  ...props
+}) => {
+  const [field, meta] = useField(props.name);
 
   useEffect(() => {
     setFieldValue(field.name, color);

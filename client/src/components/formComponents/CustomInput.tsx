@@ -1,17 +1,21 @@
-/* eslint-disable react/prop-types */
-
 import {
   FormControl,
   FormHelperText,
   FormLabel,
   Input,
+  InputProps,
   Typography,
 } from "@mui/joy";
 
 import { useField } from "formik";
 
-const CustomInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
+interface CustomInputProps extends Omit<InputProps, "name"> {
+  label: string;
+  name: string;
+}
+
+const CustomInput: React.FC<CustomInputProps> = ({ label, ...props }) => {
+  const [field, meta] = useField(props.name);
 
   return (
     <FormControl>

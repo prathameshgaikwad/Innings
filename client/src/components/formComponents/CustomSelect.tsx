@@ -1,10 +1,26 @@
-/* eslint-disable react/prop-types */
-
 import { Field, useField } from "formik";
 import { FormControl, FormHelperText, FormLabel, Typography } from "@mui/joy";
 
-const CustomSelect = ({ label, options, ...props }) => {
-  const [field, meta] = useField(props);
+import React from "react";
+
+type Option = {
+  value: string;
+  label: string;
+};
+
+interface CustomSelectProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  label: string;
+  options: Option[];
+  name: string;
+}
+
+const CustomSelect: React.FC<CustomSelectProps> = ({
+  label,
+  options,
+  ...props
+}) => {
+  const [field, meta] = useField(props.name);
 
   return (
     <FormControl>
