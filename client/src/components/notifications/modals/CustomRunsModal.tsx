@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import {
   Box,
   Button,
@@ -10,7 +8,14 @@ import {
   Typography,
 } from "@mui/joy";
 
-const CustomRunsModal = ({ open, setOpen }) => {
+import { SetStateAction } from "react";
+
+type CustomRunsModalProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const CustomRunsModal: React.FC<CustomRunsModalProps> = ({ open, setOpen }) => {
   const handleCustomRuns = () => {
     setOpen(false);
   };

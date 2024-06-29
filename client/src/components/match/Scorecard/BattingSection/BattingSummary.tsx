@@ -1,11 +1,17 @@
-/* eslint-disable react/prop-types */
-
 import { Card, Typography } from "@mui/joy";
 
 import { MdSportsCricket } from "react-icons/md";
+import { Team } from "../../../../types";
 import TeamBadgeHorizontal from "../../../dataDisplay/TeamBadgeHorizontal";
 
-const BattingSummary = ({ total, team }) => {
+type BattingSummaryProps = {
+  total: number;
+  team: Team;
+};
+
+const BattingSummary: React.FC<BattingSummaryProps> = ({ total, team }) => {
+  const ISLOADING = false;
+
   return (
     <>
       <Typography
@@ -26,7 +32,7 @@ const BattingSummary = ({ total, team }) => {
           alignItems: "center",
           mt: 2,
         }}>
-        <TeamBadgeHorizontal team={team} isSmall={true} />
+        <TeamBadgeHorizontal team={team} isSmall={true} isLoading={ISLOADING} />
         <Typography level="h4" color="primary">
           {total}
         </Typography>

@@ -1,15 +1,17 @@
-/* eslint-disable react/prop-types */
-
 import { Button, Link, Typography, useTheme } from "@mui/joy";
 
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-const ManageEventAlert = ({ eventType }) => {
+type ManageEventAlertProps = {
+  eventType: "match" | "tournament";
+};
+
+const ManageEventAlert: React.FC<ManageEventAlertProps> = ({ eventType }) => {
   const theme = useTheme();
-  const { tournamentId } = useParams();
-  const { matchId } = useParams();
+  const { tournamentId } = useParams<{ tournamentId: string }>();
+  const { matchId } = useParams<{ matchId: string }>();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const pageLink =
     eventType === "match"

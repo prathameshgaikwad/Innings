@@ -1,10 +1,8 @@
-/* eslint-disable react/prop-types */
-
 import { Sheet, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const TableWrapper = ({ children }) => {
+const TableWrapper: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 

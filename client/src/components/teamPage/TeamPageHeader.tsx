@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import {
   AspectRatio,
   Box,
@@ -12,7 +10,15 @@ import {
 import { TbHexagonLetterC } from "react-icons/tb";
 import { useMediaQuery } from "@mui/material";
 
-const TeamPageHeader = ({
+type TeamPageHeaderProps = {
+  name: string;
+  isLoading: boolean;
+  logo_url: string;
+  team_color: string;
+  captain_name: string;
+};
+
+const TeamPageHeader: React.FC<TeamPageHeaderProps> = ({
   name,
   isLoading,
   logo_url,

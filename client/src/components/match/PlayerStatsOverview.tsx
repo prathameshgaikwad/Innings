@@ -1,9 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import BattingStats from "../matchManagement/BattingStats/BattingStats";
 import BowlingStats from "../matchManagement/BowlingStats/BowlingStats";
+import React from "react";
 
-const PlayerStatsOverview = ({ isLoading }) => {
+const PlayerStatsOverview: React.FC<{ isLoading: boolean }> = ({
+  isLoading,
+}) => {
   return (
     <>
       <BattingStats isLoading={isLoading} />

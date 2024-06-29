@@ -1,8 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import { Card, CardContent, Stack, Typography, useTheme } from "@mui/joy";
 
-const ChaseStatsCard = ({ isAdmin }) => {
+type ChaseStatsCardProps = {
+  isAdmin: boolean;
+};
+
+const ChaseStatsCard: React.FC<ChaseStatsCardProps> = ({ isAdmin }) => {
   const theme = useTheme();
   const chasingTeam = "RCB";
   const runsNeeded = "216";

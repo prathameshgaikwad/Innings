@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { Card, CardContent, Divider, useTheme } from "@mui/joy";
 
 import { BiSolidCricketBall } from "react-icons/bi";
@@ -13,7 +11,18 @@ import TournamentInfoSkeleton from "../skeletons/TournamentInfoSkeleton";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
-const TournamentInfo = ({
+type TournamentInfoProps = {
+  id: string;
+  createdBy: string;
+  teamsLength: number;
+  venue: string;
+  startDate: string;
+  endDate: string;
+  total_overs: number;
+  isLoading: boolean;
+};
+
+const TournamentInfo: React.FC<TournamentInfoProps> = ({
   id,
   createdBy,
   teamsLength,

@@ -1,10 +1,8 @@
-/* eslint-disable react/prop-types */
-
 import { Card, useTheme } from "@mui/joy";
 
 import { useMediaQuery } from "@mui/material";
 
-const Container = ({ children }) => {
+const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (

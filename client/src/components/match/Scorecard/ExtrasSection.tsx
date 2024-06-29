@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-
 import { Box, Stack, Typography } from "@mui/joy";
 
 import DataChip from "../../dataDisplay/DataChip";
+import { Extras } from "../../../types";
 
-const ExtrasSection = ({ extras }) => {
+const ExtrasSection: React.FC<{ extras: Extras }> = ({ extras }) => {
   const { wides, no_balls, byes, leg_byes, penalties, total } = extras ?? {};
   return (
     <Box

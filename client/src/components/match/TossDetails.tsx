@@ -1,11 +1,20 @@
-/* eslint-disable react/prop-types */
-
 import { Card, Divider, Skeleton, Typography, useTheme } from "@mui/joy";
 
 import { BiSolidCricketBall } from "react-icons/bi";
+import React from "react";
 import { RiCopperCoinLine } from "react-icons/ri";
 
-const TossDetails = ({ tossWinner, decision, isLoading }) => {
+type TossDetailsProps = {
+  tossWinner: string;
+  decision: "bat" | "field";
+  isLoading: boolean;
+};
+
+const TossDetails: React.FC<TossDetailsProps> = ({
+  tossWinner,
+  decision,
+  isLoading,
+}) => {
   const theme = useTheme();
   const isDarkTheme = theme.palette.mode === "dark";
   return (

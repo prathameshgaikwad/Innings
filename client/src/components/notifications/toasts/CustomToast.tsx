@@ -1,6 +1,11 @@
-/* eslint-disable react/prop-types */
-
-import { Alert, Box, LinearProgress, Typography, useTheme } from "@mui/joy";
+import {
+  Alert,
+  AlertProps,
+  Box,
+  LinearProgress,
+  Typography,
+  useTheme,
+} from "@mui/joy";
 
 import { IoIosWarning } from "react-icons/io";
 import { IoMdDoneAll } from "react-icons/io";
@@ -10,7 +15,17 @@ import { TOAST_BOX_SHADOW } from "../../../utilities/constants";
 import { useMediaQuery } from "@mui/material";
 import useToastAnimation from "../../../hooks/useToastAnimation";
 
-const CustomToast = ({ content, color, duration }) => {
+type CustomToastProps = {
+  content: string;
+  color: AlertProps["color"];
+  duration: number;
+};
+
+const CustomToast: React.FC<CustomToastProps> = ({
+  content,
+  color,
+  duration,
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
