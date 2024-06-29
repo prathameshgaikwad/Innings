@@ -4,7 +4,7 @@ import React from "react";
 
 type CenteredBoxProps = {
   children: React.ReactNode;
-  customStyles: BoxProps["sx"];
+  customStyles?: BoxProps["sx"];
 };
 
 const CenteredBox: React.FC<CenteredBoxProps> = ({

@@ -4,7 +4,7 @@ import { useMediaQuery } from "@mui/material";
 
 type PageContainerProps = {
   children: React.ReactNode;
-  customStyles: BoxProps["sx"];
+  customStyles?: BoxProps["sx"];
 };
 
 const PageContainer: React.FC<PageContainerProps> = ({
