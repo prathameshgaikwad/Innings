@@ -1,15 +1,23 @@
-/* eslint-disable react/prop-types */
-
 import { Box, Button, Card, IconButton } from "@mui/joy";
 
 import { ClickAwayListener } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { FaShuffle } from "react-icons/fa6";
 import { HexColorPicker } from "react-colorful";
-import { randomColor } from "randomcolor";
+import randomColor from "randomcolor";
 import { useState } from "react";
 
-export const ColorPicker = ({ color, onChange, disabled }) => {
+type ColorPickerProps = {
+  color: string;
+  onChange: (color: string) => void;
+  disabled?: boolean;
+};
+
+export const ColorPicker: React.FC<ColorPickerProps> = ({
+  color,
+  onChange,
+  disabled,
+}) => {
   const [open, setOpen] = useState(false);
 
   const generateRandomColor = () => {
@@ -21,7 +29,7 @@ export const ColorPicker = ({ color, onChange, disabled }) => {
     <>
       <IconButton disabled={disabled} sx={{ opacity: disabled ? 0.5 : 1 }}>
         <Box
-          style={{
+          sx={{
             backgroundColor: color,
             cursor: "pointer",
             width: 40,
@@ -51,7 +59,7 @@ export const ColorPicker = ({ color, onChange, disabled }) => {
             <Button
               variant="solid"
               startDecorator={<FaShuffle />}
-              onClick={() => generateRandomColor()}>
+              onClick={generateRandomColor}>
               Randomize
             </Button>
           </Card>
