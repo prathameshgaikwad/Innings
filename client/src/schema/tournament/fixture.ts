@@ -1,6 +1,8 @@
 import { mixed, number, object, ref, string } from "yup";
 
-export const fixtureSchema = (teams, existingMatchNumbers) =>
+import { Team } from "../../types";
+
+export const fixtureSchema = (teams: Team[], existingMatchNumbers: number[]) =>
   object({
     matchNumber: number()
       .required("Required")
