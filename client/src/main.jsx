@@ -1,7 +1,7 @@
 import { persistor, store } from "./store.js";
 
 import App from "./App.jsx";
-import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.tsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
