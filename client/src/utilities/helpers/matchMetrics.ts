@@ -6,6 +6,8 @@ type MatchProgressProps = {
 
 type RunRateProps = { total_runs: number; total_overs_completed: number };
 
+const MAX_INNINGS_COUNT = 2;
+
 export const getCompletedOvers = (balls_completed: number): number => {
   const overs = Math.floor(balls_completed / 6);
   const balls = balls_completed % 6;
@@ -40,10 +42,13 @@ export const getMatchProgress = ({
   total_overs,
   current_innings_no = 1,
 }: MatchProgressProps): number => {
-  const oversCompleted = getCompletedOvers(balls_completed);
-  const progress = (oversCompleted / total_overs) * 100;
-  if (current_innings_no === 1) {
-    return parseInt((progress / 2).toFixed(2));
-  }
+  const oversCompletedFromBalls = getCompletedOvers(balls_completed);
+  const total_overs_in_match = MAX_INNINGS_COUNT * total_overs;
+  const total_overs_completed =
+    current_innings_no === 2
+      ? total_overs + oversCompletedFromBalls
+      : oversCompletedFromBalls;
+  const progress = (total_overs_completed / total_overs_in_match) * 100;
+
   return parseInt(progress.toString());
 };
