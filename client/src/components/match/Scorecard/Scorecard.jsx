@@ -2,9 +2,7 @@
 
 import {
   SAMPLE_SCORECARD_BATTING_DATA_1,
-  SAMPLE_SCORECARD_BATTING_DATA_2,
   SAMPLE_SCORECARD_BOWLING_DATA_1,
-  SAMPLE_SCORECARD_BOWLING_DATA_2,
 } from "../../../utilities/constants";
 
 import CenteredBox from "../../layouts/pages/CenteredBox";
@@ -14,11 +12,6 @@ import SectionHeader from "../../layouts/sections/SectionHeader";
 import TabsSegmentedControls from "../../controls/TabsSegmentedControls";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-
-const battingData1 = SAMPLE_SCORECARD_BATTING_DATA_1;
-const battingData2 = SAMPLE_SCORECARD_BATTING_DATA_2;
-const bowlingData1 = SAMPLE_SCORECARD_BOWLING_DATA_1;
-const bowlingData2 = SAMPLE_SCORECARD_BOWLING_DATA_2;
 
 const Scorecard = ({
   matchId,
@@ -44,8 +37,8 @@ const Scorecard = ({
   const extras = inningsData?.extras;
   const team = index === 0 ? battingTeam : bowlingTeam;
 
-  const battingData = index === 0 ? battingData1 : battingData2;
-  const bowlingData = index === 0 ? bowlingData1 : bowlingData2;
+  const battingData = SAMPLE_SCORECARD_BATTING_DATA_1;
+  const bowlingData = SAMPLE_SCORECARD_BOWLING_DATA_1;
 
   return (
     <>

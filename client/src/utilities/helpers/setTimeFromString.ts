@@ -1,4 +1,4 @@
-const setTimeFromString = (timeString) => {
+const setTimeFromString = (timeString: string): Date => {
   const [hours, minutes] = timeString.split(":");
   const date = new Date();
   date.setHours(parseInt(hours, 10));

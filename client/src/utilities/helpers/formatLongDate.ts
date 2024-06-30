@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-const formatLongDate = (date) => {
+const formatLongDate = (date: string | Date): string => {
   return format(date, "eee, do MMMM yyyy");
 };
 
