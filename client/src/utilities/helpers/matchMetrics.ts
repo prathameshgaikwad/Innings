@@ -24,8 +24,15 @@ export const getCompletedBallsInOver = (balls_completed: number): number => {
 export const getCurrentRunRate = ({
   total_runs,
   total_overs_completed,
-}: RunRateProps): number => {
-  return Math.round((total_runs / total_overs_completed) * 100) / 100;
+}: RunRateProps): string => {
+  const overs_completed = Math.floor(total_overs_completed);
+  const remaining_balls = Math.round(
+    (total_overs_completed - overs_completed) * 10
+  );
+  const actual_overs_completed = overs_completed + remaining_balls / 6;
+  const run_rate = total_runs / actual_overs_completed;
+
+  return run_rate.toFixed(2);
 };
 
 export const getMatchProgress = ({
