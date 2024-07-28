@@ -48,13 +48,15 @@ const FeaturedTournaments = () => {
           {featuredTournaments.length === 0 ? (
             <NoData />
           ) : (
-            <CustomSwiper spaceBetween={80}>
-              {featuredTournaments.map((tournamentId) => (
-                <SwiperSlide key={tournamentId}>
-                  <TournamentCard id={tournamentId} />
-                </SwiperSlide>
-              ))}
-            </CustomSwiper>
+            <SwiperWrapper>
+              <CustomSwiper spaceBetween={80}>
+                {featuredTournaments.map((tournamentId) => (
+                  <SwiperSlide key={tournamentId}>
+                    <TournamentCard id={tournamentId} />
+                  </SwiperSlide>
+                ))}
+              </CustomSwiper>
+            </SwiperWrapper>
           )}
         </>
       )}
