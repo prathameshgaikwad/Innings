@@ -6,6 +6,7 @@ import { Mousewheel, Pagination } from "swiper/modules";
 
 import SliderMask from "./SliderMask";
 import { Swiper } from "swiper/react";
+import SwiperWrapper from "./SwiperWrapper";
 
 type CustomSwiperProps = {
   children: React.ReactNode;
@@ -32,21 +33,23 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({
   if (className) classes.concat(" " + className);
 
   return (
-    <Swiper
-      slidesPerView={"auto"}
-      spaceBetween={spaceBetween}
-      direction={"horizontal"}
-      mousewheel={true}
-      pagination={{
-        dynamicBullets: true,
-      }}
-      modules={modules}
-      className={classes}
-      {...restProps}>
-      {enableSliderMasks && <SliderMask align="left" />}
-      {enableSliderMasks && <SliderMask align="right" />}
-      {children}
-    </Swiper>
+    <SwiperWrapper>
+      <Swiper
+        slidesPerView={"auto"}
+        spaceBetween={spaceBetween}
+        direction={"horizontal"}
+        mousewheel={true}
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={modules}
+        className={classes}
+        {...restProps}>
+        {enableSliderMasks && <SliderMask align="left" />}
+        {enableSliderMasks && <SliderMask align="right" />}
+        {children}
+      </Swiper>
+    </SwiperWrapper>
   );
 };
 
