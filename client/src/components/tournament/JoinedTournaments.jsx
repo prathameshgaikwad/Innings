@@ -43,13 +43,15 @@ const JoinedTournaments = ({ userId }) => {
           {isLoading ? (
             <RectangularSkeleton />
           ) : (
-            <CustomSwiper>
-              {joinedTournaments.map((tournamentId) => (
-                <SwiperSlide key={tournamentId}>
-                  <TournamentCard id={tournamentId} />
-                </SwiperSlide>
-              ))}
-            </CustomSwiper>
+            <SwiperWrapper>
+              <CustomSwiper>
+                {joinedTournaments.map((tournamentId) => (
+                  <SwiperSlide key={tournamentId}>
+                    <TournamentCard id={tournamentId} />
+                  </SwiperSlide>
+                ))}
+              </CustomSwiper>
+            </SwiperWrapper>
           )}
         </>
       ) : (
