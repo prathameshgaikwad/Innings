@@ -9,7 +9,6 @@ import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../layouts/sections/SectionHeader";
 import SectionWrapper from "../layouts/sections/SectionWrapper";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
-import SliderMask from "../layouts/swiper/SliderMask";
 import SwiperFallback from "../fallbacks/SwiperFallback";
 import { SwiperSlide } from "swiper/react";
 import SwiperWrapper from "../layouts/swiper/SwiperWrapper";
@@ -46,8 +45,6 @@ const JoinedTournaments = ({ userId }) => {
           ) : (
             <SwiperWrapper>
               <CustomSwiper>
-                <SliderMask height={319} align={"right"} />
-                <SliderMask height={319} align={"left"} />
                 {joinedTournaments.map((tournamentId) => (
                   <SwiperSlide key={tournamentId}>
                     <TournamentCard id={tournamentId} />

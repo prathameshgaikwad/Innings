@@ -7,7 +7,6 @@ import NoData from "../fallbacks/NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../layouts/sections/SectionHeader";
 import SectionWrapper from "../layouts/sections/SectionWrapper";
-import SliderMask from "../layouts/swiper/SliderMask";
 import { SwiperSlide } from "swiper/react";
 import SwiperWrapper from "../layouts/swiper/SwiperWrapper";
 import TournamentCard from "../../components/cards/TournamentCard";
@@ -51,8 +50,6 @@ const FeaturedTournaments = () => {
           ) : (
             <SwiperWrapper>
               <CustomSwiper spaceBetween={80}>
-                <SliderMask height={319} align={"right"} />
-                <SliderMask height={319} align={"left"} />
                 {featuredTournaments.map((tournamentId) => (
                   <SwiperSlide key={tournamentId}>
                     <TournamentCard id={tournamentId} />
