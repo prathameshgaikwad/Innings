@@ -1,16 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles.css";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-
 import BallLogSeparator from "../dataDisplay/BallLogSeparator";
+import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import LogItem from "../dataDisplay/LogItem";
-import { Mousewheel } from "swiper/modules";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 import SliderMask from "../layouts/swiper/SliderMask";
+import { SwiperSlide } from "swiper/react";
 
 const BallLogList = ({ ballLog }) => {
   return (
@@ -21,14 +16,11 @@ const BallLogList = ({ ballLog }) => {
         />
       ) : (
         ballLog && (
-          <Swiper
-            slidesPerView={"auto"}
+          <CustomSwiper
             spaceBetween={-230}
-            direction={"horizontal"}
-            mousewheel={true}
-            modules={[Mousewheel]}
             initialSlide={ballLog.length - 1}
-            className={"smallSwiper"}>
+            isPaginationVisible={false}
+            isSmall={true}>
             {ballLog.map((item, i) => {
               let type = "";
               let content = "";
@@ -62,7 +54,7 @@ const BallLogList = ({ ballLog }) => {
               );
             })}
             <SliderMask height={162.6} align={"left"} radius={"8px"} />
-          </Swiper>
+          </CustomSwiper>
         )
       )}
     </>

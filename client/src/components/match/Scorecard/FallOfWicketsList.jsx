@@ -1,16 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../../styles.css";
-
 import { Box, Card, Typography } from "@mui/joy";
-import { Mousewheel, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
+import CustomSwiper from "../../layouts/swiper/CustomSwiper";
 import FallOfWicketCard from "../../cards/FallOfWicketCard";
 import NoData from "../../fallbacks/NoData";
 import SliderMask from "../../layouts/swiper/SliderMask";
+import { SwiperSlide } from "swiper/react";
 
 const FallOfWicketsList = ({ data }) => {
   return (
@@ -38,16 +34,7 @@ const FallOfWicketsList = ({ data }) => {
           display: "inline-flex",
         }}>
         {data ? (
-          <Swiper
-            slidesPerView={"auto"}
-            spaceBetween={-90}
-            direction={"horizontal"}
-            mousewheel={true}
-            pagination={{
-              dynamicBullets: true,
-            }}
-            modules={[Pagination, Mousewheel]}
-            className="mySwiper">
+          <CustomSwiper spaceBetween={-90}>
             {data.map((item, i) => {
               return (
                 <SwiperSlide key={i}>
@@ -57,7 +44,7 @@ const FallOfWicketsList = ({ data }) => {
             })}
             <SliderMask height={162.6} align={"left"} radius={"8px"} />
             <SliderMask height={162.6} align={"right"} radius={"8px"} />
-          </Swiper>
+          </CustomSwiper>
         ) : (
           <NoData
             height={"100%"}

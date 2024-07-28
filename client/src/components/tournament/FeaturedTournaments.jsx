@@ -1,18 +1,14 @@
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles.css";
-
-import { Mousewheel, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import NoData from "../fallbacks/NoData";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../layouts/sections/SectionHeader";
 import SectionWrapper from "../layouts/sections/SectionWrapper";
 import SliderMask from "../layouts/swiper/SliderMask";
+import { SwiperSlide } from "swiper/react";
 import SwiperWrapper from "../layouts/swiper/SwiperWrapper";
 import TournamentCard from "../../components/cards/TournamentCard";
 import { clearFeaturedTournaments } from "../../state/tournament/tournamentSlice";
@@ -54,16 +50,7 @@ const FeaturedTournaments = () => {
             <NoData />
           ) : (
             <SwiperWrapper>
-              <Swiper
-                slidesPerView={"auto"}
-                spaceBetween={80}
-                direction={"horizontal"}
-                mousewheel={true}
-                pagination={{
-                  dynamicBullets: true,
-                }}
-                modules={[Pagination, Mousewheel]}
-                className="mySwiper">
+              <CustomSwiper spaceBetween={80}>
                 <SliderMask height={319} align={"right"} />
                 <SliderMask height={319} align={"left"} />
                 {featuredTournaments.map((tournamentId) => (
@@ -71,7 +58,7 @@ const FeaturedTournaments = () => {
                     <TournamentCard id={tournamentId} />
                   </SwiperSlide>
                 ))}
-              </Swiper>
+              </CustomSwiper>
             </SwiperWrapper>
           )}
         </>

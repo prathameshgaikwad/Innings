@@ -1,9 +1,5 @@
 /* eslint-disable react/prop-types */
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles.css";
-
 import { Box, Card, Divider } from "@mui/joy";
 
 import BallLogList from "../lists/BallLogList";
