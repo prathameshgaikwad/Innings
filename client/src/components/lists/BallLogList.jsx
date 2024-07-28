@@ -4,7 +4,6 @@ import BallLogSeparator from "../dataDisplay/BallLogSeparator";
 import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import LogItem from "../dataDisplay/LogItem";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
-import SliderMask from "../layouts/swiper/SliderMask";
 import { SwiperSlide } from "swiper/react";
 
 const BallLogList = ({ ballLog }) => {
@@ -53,7 +52,6 @@ const BallLogList = ({ ballLog }) => {
                 </SwiperSlide>
               );
             })}
-            <SliderMask height={162.6} align={"left"} radius={"8px"} />
           </CustomSwiper>
         )
       )}

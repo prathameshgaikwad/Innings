@@ -10,7 +10,6 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import NoData from "../fallbacks/NoData";
 import SectionHeader from "../layouts/sections/SectionHeader";
 import SectionWrapper from "../layouts/sections/SectionWrapper";
-import SliderMask from "../layouts/swiper/SliderMask";
 import { SwiperSlide } from "swiper/react";
 import TeamCard from "../cards/TeamCard";
 import { useMediaQuery } from "@mui/material";
@@ -68,8 +67,6 @@ const TeamsList = ({ isSetupPage }) => {
                 </SwiperSlide>
               );
             })}
-            <SliderMask align={"right"} />
-            <SliderMask align={"left"} />
           </CustomSwiper>
         )}
       </Box>

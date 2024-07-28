@@ -4,6 +4,7 @@ import "../../../styles.css";
 
 import { Mousewheel, Pagination } from "swiper/modules";
 
+import SliderMask from "./SliderMask";
 import { Swiper } from "swiper/react";
 
 type CustomSwiperProps = {
@@ -12,6 +13,7 @@ type CustomSwiperProps = {
   isSmall?: boolean;
   isPaginationVisible?: boolean;
   className?: string;
+  enableSliderMasks?: boolean;
 };
 
 const CustomSwiper: React.FC<CustomSwiperProps> = ({
@@ -20,6 +22,7 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({
   isSmall = false,
   isPaginationVisible = true,
   className,
+  enableSliderMasks = true,
   ...restProps
 }) => {
   const modules = [Mousewheel];
@@ -40,6 +43,8 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({
       modules={modules}
       className={classes}
       {...restProps}>
+      {enableSliderMasks && <SliderMask align="left" />}
+      {enableSliderMasks && <SliderMask align="right" />}
       {children}
     </Swiper>
   );

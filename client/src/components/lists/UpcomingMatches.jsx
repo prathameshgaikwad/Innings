@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import FixtureCard from "../cards/FixtureCard/FixtureCard";
-import SliderMask from "../layouts/swiper/SliderMask";
 import { SwiperSlide } from "swiper/react";
 import UpcomingMatchesSkeleton from "../skeletons/UpcomingMatchesSkeleton";
 import { useMediaQuery } from "@mui/material";
@@ -50,8 +49,6 @@ const UpcomingMatches = ({ tournamentId }) => {
               borderColor: theme.palette.divider,
             }}>
             <CustomSwiper spaceBetween={50}>
-              <SliderMask height={276} align={"left"} />
-              <SliderMask height={276} align={"right"} />
               {upcomingMatches ? (
                 upcomingMatches.map((id) => (
                   <SwiperSlide key={id}>
