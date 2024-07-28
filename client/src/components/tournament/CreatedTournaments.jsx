@@ -1,15 +1,10 @@
 /* eslint-disable react/prop-types */
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles.css";
-
-import { Mousewheel, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import CreateTournamentCard from "../cards/CreateTournamentCard";
+import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import DrawIcon from "@mui/icons-material/Draw";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
 import SectionHeader from "../layouts/sections/SectionHeader";
@@ -17,6 +12,7 @@ import SectionWrapper from "../layouts/sections/SectionWrapper";
 import SimpleTextFallback from "../fallbacks/SimpleTextFallback";
 import SliderMask from "../layouts/swiper/SliderMask";
 import SwiperFallback from "../fallbacks/SwiperFallback";
+import { SwiperSlide } from "swiper/react";
 import SwiperWrapper from "../layouts/swiper/SwiperWrapper";
 import TournamentCard from "../cards/TournamentCard";
 import { tournamentsApi } from "../../services/api";
@@ -45,16 +41,7 @@ const CreatedTournaments = ({ userId }) => {
             <RectangularSkeleton />
           ) : (
             <SwiperWrapper>
-              <Swiper
-                slidesPerView={"auto"}
-                spaceBetween={80}
-                direction={"horizontal"}
-                mousewheel={true}
-                pagination={{
-                  dynamicBullets: true,
-                }}
-                modules={[Pagination, Mousewheel]}
-                className="mySwiper">
+              <CustomSwiper>
                 <SliderMask height={319} align={"right"} />
                 <SliderMask height={319} align={"left"} />
                 {createdTournaments.map((tournamentId) => (
@@ -62,7 +49,7 @@ const CreatedTournaments = ({ userId }) => {
                     <TournamentCard id={tournamentId} />
                   </SwiperSlide>
                 ))}
-              </Swiper>
+              </CustomSwiper>
             </SwiperWrapper>
           )}
         </>

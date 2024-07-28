@@ -1,17 +1,13 @@
 /* eslint-disable react/prop-types */
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles.css";
-
 import { Box, Link, Typography, useTheme } from "@mui/joy";
-import { Mousewheel, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import FixtureCard from "../cards/FixtureCard/FixtureCard";
 import SliderMask from "../layouts/swiper/SliderMask";
+import { SwiperSlide } from "swiper/react";
 import UpcomingMatchesSkeleton from "../skeletons/UpcomingMatchesSkeleton";
 import { useMediaQuery } from "@mui/material";
 import { userApi } from "../../services/api";
@@ -53,16 +49,7 @@ const UpcomingMatches = ({ tournamentId }) => {
               borderBottom: "1px solid",
               borderColor: theme.palette.divider,
             }}>
-            <Swiper
-              slidesPerView={"auto"}
-              spaceBetween={50}
-              direction={"horizontal"}
-              mousewheel={true}
-              pagination={{
-                dynamicBullets: true,
-              }}
-              modules={[Pagination, Mousewheel]}
-              className="mySwiper">
+            <CustomSwiper spaceBetween={50}>
               <SliderMask height={276} align={"left"} />
               <SliderMask height={276} align={"right"} />
               {upcomingMatches ? (
@@ -74,7 +61,7 @@ const UpcomingMatches = ({ tournamentId }) => {
               ) : (
                 <Typography>No Upcoming Matches</Typography>
               )}
-            </Swiper>
+            </CustomSwiper>
           </Box>
         </>
       )}

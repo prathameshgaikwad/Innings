@@ -1,21 +1,17 @@
 /* eslint-disable react/prop-types */
 
-import "../../styles.css";
-import "swiper/css";
-import "swiper/css/pagination";
-
 import { Box, useTheme } from "@mui/joy";
-import { Mousewheel, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { tournamentPageApi, tournamentSetupApi } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import GroupsIcon from "@mui/icons-material/Groups";
 import NoData from "../fallbacks/NoData";
 import SectionHeader from "../layouts/sections/SectionHeader";
 import SectionWrapper from "../layouts/sections/SectionWrapper";
 import SliderMask from "../layouts/swiper/SliderMask";
+import { SwiperSlide } from "swiper/react";
 import TeamCard from "../cards/TeamCard";
 import { useMediaQuery } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -64,16 +60,7 @@ const TeamsList = ({ isSetupPage }) => {
         {teams.length === 0 ? (
           <NoData />
         ) : (
-          <Swiper
-            slidesPerView={"auto"}
-            spaceBetween={50}
-            direction={"horizontal"}
-            mousewheel={true}
-            pagination={{
-              dynamicBullets: true,
-            }}
-            modules={[Pagination, Mousewheel]}
-            className="mySwiper">
+          <CustomSwiper spaceBetween={50}>
             {teams.map((team, i) => {
               return (
                 <SwiperSlide key={i}>
@@ -83,7 +70,7 @@ const TeamsList = ({ isSetupPage }) => {
             })}
             <SliderMask align={"right"} />
             <SliderMask align={"left"} />
-          </Swiper>
+          </CustomSwiper>
         )}
       </Box>
     </SectionWrapper>

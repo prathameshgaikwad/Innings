@@ -1,13 +1,9 @@
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles.css";
-
 import { Box, Link, Skeleton, Typography, useTheme } from "@mui/joy";
-import { Mousewheel, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
+import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import PlayerStatisticsCard from "../cards/PlayerStatisticsCard";
 import RectangularSkeleton from "../skeletons/RectangularSkeleton";
+import { SwiperSlide } from "swiper/react";
 import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
@@ -193,16 +189,7 @@ const PlayerStatisticsList = () => {
             borderBottom: "1px solid",
             borderColor: theme.palette.divider,
           }}>
-          <Swiper
-            slidesPerView={"auto"}
-            spaceBetween={5}
-            direction={"horizontal"}
-            mousewheel={true}
-            pagination={{
-              dynamicBullets: true,
-            }}
-            modules={[Pagination, Mousewheel]}
-            className="mySwiper">
+          <CustomSwiper spaceBetween={5}>
             {data.map((item, i) => {
               return (
                 <SwiperSlide key={i}>
@@ -210,7 +197,7 @@ const PlayerStatisticsList = () => {
                 </SwiperSlide>
               );
             })}
-          </Swiper>
+          </CustomSwiper>
         </Box>
       )}
     </>

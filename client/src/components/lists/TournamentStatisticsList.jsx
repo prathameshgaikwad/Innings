@@ -1,13 +1,9 @@
 /* eslint-disable react/prop-types */
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles.css";
-
 import { Box, Link, Typography, useTheme } from "@mui/joy";
-import { Mousewheel, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
+import CustomSwiper from "../layouts/swiper/CustomSwiper";
+import { SwiperSlide } from "swiper/react";
 import TournamentStatisticsCard from "../cards/TournamentStatisticsCard";
 import TournamentStatisticsListSkeleton from "../skeletons/TournamentStatisticsListSkeleton";
 import { useMediaQuery } from "@mui/material";
@@ -52,16 +48,7 @@ const TournamentStatisticsList = ({ tournamentName }) => {
               borderBottom: "1px solid",
               borderColor: theme.palette.divider,
             }}>
-            <Swiper
-              slidesPerView={"auto"}
-              spaceBetween={80}
-              direction={"horizontal"}
-              mousewheel={true}
-              pagination={{
-                dynamicBullets: true,
-              }}
-              modules={[Pagination, Mousewheel]}
-              className="mySwiper tournamentStatisticsList">
+            <CustomSwiper className="tournamentStatisticsList">
               {data.map((item, i) => {
                 return (
                   <SwiperSlide key={i}>
@@ -69,7 +56,7 @@ const TournamentStatisticsList = ({ tournamentName }) => {
                   </SwiperSlide>
                 );
               })}
-            </Swiper>
+            </CustomSwiper>
           </Box>
         </>
       )}
