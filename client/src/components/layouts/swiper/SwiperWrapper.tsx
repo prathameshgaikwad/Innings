@@ -16,6 +16,9 @@ const SwiperWrapper: React.FC<SwiperWrapperProps> = ({ children }) => {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "AppWorkspace",
+        borderTop: "1px solid",
+        borderBottom: "1px solid",
+        borderColor: theme.palette.divider,
       }}>
       {children}
     </Box>
