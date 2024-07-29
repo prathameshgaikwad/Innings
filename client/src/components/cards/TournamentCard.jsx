@@ -19,6 +19,8 @@ import { tournamentPageApi } from "../../services/api";
 import useHover from "../../hooks/useHover";
 import { useSelector } from "react-redux";
 
+const TRANSITION = "all 0.45s ease-in-out";
+
 const TournamentCard = ({ id }) => {
   const token = useSelector((state) => state.user.token);
   const theme = useTheme();
@@ -92,12 +94,15 @@ const TournamentCard = ({ id }) => {
               <Typography
                 level="title-lg"
                 sx={{
-                  color: isHovered && theme.palette.primary[400],
-                  transition: "all 0.25s",
+                  color: isHovered && theme.palette.primary.plainColor,
+                  transition: TRANSITION,
                 }}>
                 {name}
               </Typography>
-              <Typography level="body-sm" textColor="text.tertiary">
+              <Typography
+                level="body-sm"
+                sx={{ transition: TRANSITION }}
+                textColor={isHovered ? "text.primary" : "text.tertiary"}>
                 {venue}
               </Typography>
             </CardContent>
@@ -108,19 +113,25 @@ const TournamentCard = ({ id }) => {
                   ? isDarkTheme
                     ? theme.palette.primary[700]
                     : theme.palette.primary[200]
-                  : "background.level1",
-                transition: "all 0.25s",
+                  : "background.level",
+                transition: TRANSITION,
               }}>
               <Divider inset="context" />
               <CardContent orientation="horizontal">
                 <Typography
                   level="body-xs"
                   fontWeight="md"
-                  textColor="text.secondary"
+                  textColor={isHovered ? "text.primary" : "text.secondary"}
+                  sx={{ transition: TRANSITION }}
                   startDecorator={
                     <BiSolidCricketBall
                       fontSize={13}
-                      style={{ color: theme.palette.text.secondary }}
+                      style={{
+                        color: isHovered
+                          ? theme.palette.text.primary
+                          : theme.palette.text.secondary,
+                        transition: TRANSITION,
+                      }}
                     />
                   }>
                   {totalOvers} Overs
@@ -129,7 +140,8 @@ const TournamentCard = ({ id }) => {
                 <Typography
                   level="body-xs"
                   fontWeight="md"
-                  textColor="text.secondary">
+                  sx={{ transition: TRANSITION }}
+                  textColor={isHovered ? "text.primary" : "text.secondary"}>
                   {startDate}
                 </Typography>
               </CardContent>
