@@ -75,9 +75,9 @@ const TeamCard: React.FC<TeamCardProps> = ({ team, isLoading }) => {
           <Typography
             level="title-lg"
             maxWidth={200}
-            color={isHovered ? "primary" : "neutral"}
+            textColor={isHovered ? "text.primary" : "text.secondary"}
             sx={{
-              mt: "calc(var(--icon-size) / 2)",
+              mt: "calc(8px + var(--icon-size) / 2)",
               transition: "color 0.3s ease-in-out",
             }}
             noWrap>
@@ -87,14 +87,18 @@ const TeamCard: React.FC<TeamCardProps> = ({ team, isLoading }) => {
             <Typography
               level="body-xs"
               mx={2}
-              startDecorator={<TbHexagonLetterC size={16} />}>
+              startDecorator={<TbHexagonLetterC size={16} />}
+              textColor={isHovered ? "text.secondary" : "text.tertiary"}
+              sx={{ transition: "color 0.3s ease-in-out" }}>
               {captain_name}
             </Typography>
             <Divider orientation="horizontal" />
             <Typography
               level="body-xs"
               mx={2}
-              startDecorator={<PeopleAltIcon />}>
+              startDecorator={<PeopleAltIcon />}
+              textColor={isHovered ? "text.secondary" : "text.tertiary"}
+              sx={{ transition: "color 0.3s ease-in-out" }}>
               {size} Players
             </Typography>
           </CenteredBox>
