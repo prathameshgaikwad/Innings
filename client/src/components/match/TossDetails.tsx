@@ -45,15 +45,12 @@ const TossDetails: React.FC<TossDetailsProps> = ({
             display={"flex"}
             level="body-sm"
             alignItems={"center"}
-            textColor={"text.secondary"}
+            textColor={"text.primary"}
             gap={0.5}>
-            <Typography fontWeight={"bold"} textColor={"text.primary"}>
-              {tossWinner}
-            </Typography>{" "}
-            won the toss and chose to{" "}
+            <Typography fontWeight={"bold"}>{tossWinner}</Typography> won the
+            toss and chose to{" "}
             <Typography
               fontWeight={"bold"}
-              textColor={"text.primary"}
               endDecorator={
                 decision === "bat" ? (
                   <img
