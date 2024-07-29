@@ -17,15 +17,24 @@ const BottomBar: React.FC<BottomBarProps> = ({ overs, date, time }) => {
       <CardContent
         orientation="horizontal"
         sx={{ justifyContent: "space-evenly" }}>
-        <Typography level="body-xs" textColor="text.tertiary">
+        <Typography
+          level="body-xs"
+          textColor="text.tertiary"
+          sx={{ transform: "scale(0.9)" }}>
           {overs} Overs
         </Typography>
         <Divider orientation="vertical" />
-        <Typography level="body-xs" textColor="text.tertiary">
+        <Typography
+          level="body-xs"
+          textColor="text.tertiary"
+          sx={{ transform: "scale(0.9)" }}>
           {formatDate(date)}
         </Typography>
         <Divider orientation="vertical" />
-        <Typography level="body-xs" textColor="text.tertiary">
+        <Typography
+          level="body-xs"
+          textColor="text.tertiary"
+          sx={{ transform: "scale(0.9)" }}>
           {formatTime(setTimeFromString(time))}
         </Typography>
       </CardContent>
