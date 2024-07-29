@@ -35,6 +35,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
           {isCopied ? (
             <Typography
               level="body-xs"
+              textColor={"text.secondary"}
               startDecorator={
                 <LuClipboardCheck
                   size={18}
@@ -46,6 +47,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
           ) : (
             <Typography
               level="body-xs"
+              textColor={"text.secondary"}
               startDecorator={
                 <LuClipboard
                   size={18}
