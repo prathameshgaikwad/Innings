@@ -26,6 +26,7 @@ const ScorecardContent = ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        width: "100%",
         mt: 4,
         px: 6,
         borderWidth: 3,
