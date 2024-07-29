@@ -10,6 +10,17 @@ type BottomBarProps = {
   time: string;
 };
 
+const SmallText: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <Typography
+      level="body-xs"
+      textColor="text.tertiary"
+      sx={{ transform: "scale(0.9)" }}>
+      {children}
+    </Typography>
+  );
+};
+
 const BottomBar: React.FC<BottomBarProps> = ({ overs, date, time }) => {
   return (
     <>
@@ -17,26 +28,11 @@ const BottomBar: React.FC<BottomBarProps> = ({ overs, date, time }) => {
       <CardContent
         orientation="horizontal"
         sx={{ justifyContent: "space-evenly" }}>
-        <Typography
-          level="body-xs"
-          textColor="text.tertiary"
-          sx={{ transform: "scale(0.9)" }}>
-          {overs} Overs
-        </Typography>
+        <SmallText>{overs} Overs</SmallText>
         <Divider orientation="vertical" />
-        <Typography
-          level="body-xs"
-          textColor="text.tertiary"
-          sx={{ transform: "scale(0.9)" }}>
-          {formatDate(date)}
-        </Typography>
+        <SmallText>{formatDate(date)}</SmallText>
         <Divider orientation="vertical" />
-        <Typography
-          level="body-xs"
-          textColor="text.tertiary"
-          sx={{ transform: "scale(0.9)" }}>
-          {formatTime(setTimeFromString(time))}
-        </Typography>
+        <SmallText>{formatTime(setTimeFromString(time))}</SmallText>
       </CardContent>
     </>
   );
