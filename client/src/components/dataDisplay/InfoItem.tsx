@@ -18,7 +18,7 @@ const InfoItem: React.FC<InfoItemProps> = ({
       <Typography
         level="body-xs"
         fontWeight="md"
-        textColor="text.tertiary"
+        textColor="text.secondary"
         startDecorator={startDecorator}>
         {content}
       </Typography>
