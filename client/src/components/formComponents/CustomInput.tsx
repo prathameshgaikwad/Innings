@@ -14,9 +14,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 interface CustomInputProps extends Omit<InputProps, "name"> {
   label: string;
   name: string;
+  type?: string; 
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ label,type, ...props }) => {
+const CustomInput: React.FC<CustomInputProps> = ({ label,type="text", ...props }) => {
   const [field, meta] = useField(props.name);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -37,7 +38,7 @@ const CustomInput: React.FC<CustomInputProps> = ({ label,type, ...props }) => {
           type === "password" ? (
             <IconButton
               onClick={togglePasswordVisibility}
-              // sx={{ position: "absolute", right: "8px", backgroundColor:"gray", width:"10px", height:"5px"}}
+             
             >{showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           ) : null
