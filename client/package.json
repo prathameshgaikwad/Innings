@@ -16,7 +16,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource/inter": "^5.0.16",
-    "@mui/icons-material": "^5.15.5",
+    "@mui/icons-material": "^5.16.6",
     "@mui/joy": "^5.0.0-beta.23",
     "@mui/material": "^5.15.5",
     "@react-oauth/google": "^0.12.1",
