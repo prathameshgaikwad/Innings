@@ -80,7 +80,7 @@ const JoinATournament = () => {
                     my: 2,
                     flexWrap: "wrap",
                     "& > *": { flex: "auto" },
-                    alignItems: "center",
+                    alignItems: "end",
                   }}>
                   <CustomInput
                     name="tournament_id"
