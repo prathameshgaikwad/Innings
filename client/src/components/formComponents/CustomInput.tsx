@@ -2,22 +2,28 @@ import {
   FormControl,
   FormHelperText,
   FormLabel,
-  Input,
   IconButton,
+  Input,
   InputProps,
   Typography,
 } from "@mui/joy";
 import React, { useState } from "react";
-import { useField } from "formik";
+
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useField } from "formik";
+
 interface CustomInputProps extends Omit<InputProps, "name"> {
   label: string;
   name: string;
-  type?: string; 
+  type?: string;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ label,type="text", ...props }) => {
+const CustomInput: React.FC<CustomInputProps> = ({
+  label,
+  type = "text",
+  ...props
+}) => {
   const [field, meta] = useField(props.name);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -36,10 +42,8 @@ const CustomInput: React.FC<CustomInputProps> = ({ label,type="text", ...props }
         value={field.value || ""}
         endDecorator={
           type === "password" ? (
-            <IconButton
-              onClick={togglePasswordVisibility}
-             
-            >{showPassword ? <VisibilityOff /> : <Visibility />}
+            <IconButton onClick={togglePasswordVisibility}>
+              {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           ) : null
         }
