@@ -1,8 +1,8 @@
 const abbreviate = require("abbreviate");
 
-const generateShortName = (name) => {
-  const words = name.split(" ");
-  let shortName = "";
+const generateShortName = (name: string): string => {
+  const words: string[] = name.split(" ");
+  let shortName: string = "";
 
   if (words.length === 2 || words.length === 3) {
     words.map((word) => {

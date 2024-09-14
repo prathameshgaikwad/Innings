@@ -1,4 +1,20 @@
-const fetchRandomImage = async (query, isBanner) => {
+interface UnsplashResponse {
+  urls: {
+    full: string;
+    small: string;
+    thumb: string;
+  };
+}
+
+interface BannerUrls {
+  large: string;
+  small: string;
+}
+
+const fetchRandomImage = async (
+  query: string,
+  isBanner: boolean
+): Promise<BannerUrls | string | null> => {
   try {
     const queryParams = new URLSearchParams({
       query: query,
@@ -8,14 +24,14 @@ const fetchRandomImage = async (query, isBanner) => {
     const searchString = `https://api.unsplash.com/photos/random?${queryParams}`;
     const response = await fetch(searchString, {
       headers: {
-        Authorization: "Client-ID RBEtfSZkt3Pf8ce_eqmwuntl5TfzDoxG9ysnv6H4wbU",
+        Authorization: "Client-ID RBEtfSZkt3Pf8ce_eqmwuntl5TfzDoxG9ysnv6H4wbU", // UNSPLASH API AUTHORIZATION
       },
     });
 
     if (!response.ok)
       throw new Error(`Error fetching random image ${response.status}`);
 
-    const data = await response.json();
+    const data: UnsplashResponse = await response.json();
     const large = `${data.urls.full}&w=2000&fit=max`;
     const small = data.urls.small;
     const thumb = data.urls.thumb;
