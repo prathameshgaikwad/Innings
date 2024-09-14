@@ -1,3 +1,26 @@
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface LiveMatch {
+  isEmpty: boolean;
+  data: Match | null;
+}
+
+export interface UserState {
+  user: User | null;
+  token: string | null;
+  liveMatch: LiveMatch;
+  upcomingMatches: Match[] | null;
+}
+
+export interface LoginPayload {
+  token: string;
+  user: User;
+}
+
 export type Extras = {
   total: number;
   wides: number;

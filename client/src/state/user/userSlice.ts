@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { LoginPayload, Match, UserState } from "../../types";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: UserState = {
   user: null,
   token: null,
   liveMatch: { isEmpty: true, data: null },
@@ -11,7 +12,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setLogin: (state, action) => {
+    setLogin: (state, action: PayloadAction<LoginPayload>) => {
       const { token, user } = action.payload;
       state.user = token ? user : null;
       state.token = token || null;
@@ -28,7 +29,7 @@ const userSlice = createSlice({
     setNoLiveMatch: (state) => {
       state.liveMatch = { isEmpty: true, data: null };
     },
-    setUpcomingMatches: (state, action) => {
+    setUpcomingMatches: (state, action: PayloadAction<Match[]>) => {
       state.upcomingMatches = action.payload;
     },
     setLogout: () => {
