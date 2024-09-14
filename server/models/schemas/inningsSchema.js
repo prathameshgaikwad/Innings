@@ -10,8 +10,8 @@ const inningsSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["not-started", "started", "completed"],
-      default: "not-started",
+      enum: ["pending", "ongoing", "completed"],
+      default: "pending",
     },
     data: {
       batting_team_id: {
