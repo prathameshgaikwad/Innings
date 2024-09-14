@@ -26,6 +26,11 @@ const tournamentSchema = new mongoose.Schema(
       large: { type: String },
       small: { type: String },
     },
+    status: {
+      type: String,
+      enum: ["pending", "ongoing", "completed"],
+      default: "pending",
+    },
   },
   { timestamps: true }
 );
