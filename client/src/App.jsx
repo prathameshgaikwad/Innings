@@ -108,7 +108,7 @@ const App = () => {
               }
             />
             <Route
-              path="/tournaments/:tournamentId/teams/:teamId"
+              path="/teams/:teamId"
               element={
                 <PrivateRoute>
                   <TeamPage />
