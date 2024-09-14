@@ -10,7 +10,7 @@ const matchPerformanceSchema = new mongoose.Schema({
     ref: "tournaments",
   },
   batting_performance: {
-    stage: {
+    status: {
       type: String,
       enum: ["did_not_bat", "did_bat"],
       default: "did_not_bat",
@@ -45,7 +45,7 @@ const matchPerformanceSchema = new mongoose.Schema({
     strike_rate: { type: mongoose.Types.Decimal128, default: 0.0 },
   },
   bowling_performance: {
-    stage: {
+    status: {
       type: String,
       enum: ["did_not_bowl", "did_bowl"],
       default: "did_not_bowl",
