@@ -45,11 +45,8 @@ const tournamentPageSlice = createSlice({
       };
       state.details = details;
     },
-    clearTournamentPage: (state) => {
-      state.fixtures = [];
-      state.teams = [];
-      state.pointsTable = [];
-      state.details = null;
+    clearTournamentPage: () => {
+      return initialState;
     },
   },
 });

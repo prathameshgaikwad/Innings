@@ -23,13 +23,8 @@ const teamSlice = createSlice({
       state.logo_url = logo_url;
       state.performance = performance;
     },
-    clearTeamData: (state) => {
-      state.name = "";
-      state.team_color = "";
-      state.players = [];
-      state.captain_name = "";
-      state.logo_url = "";
-      state.performance = null;
+    clearTeamData: () => {
+      return initialState;
     },
   },
 });

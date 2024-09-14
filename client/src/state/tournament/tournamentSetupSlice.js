@@ -67,15 +67,8 @@ const tournamentSetupSlice = createSlice({
     clearFixtures: () => {
       return { ...initialState, fixtures: [] };
     },
-    clearTournamentSetup: (state) => {
-      (state.tempTeam = {
-        teamName: "Your Team",
-        teamColor: "#3F454B",
-        isProcessing: false,
-        players: [],
-      }),
-        (state.teams = []),
-        (state.fixtures = []);
+    clearTournamentSetup: () => {
+      return initialState;
     },
   },
 });
