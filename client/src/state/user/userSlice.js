@@ -32,8 +32,11 @@ const userSlice = createSlice({
     setUpcomingMatches: (state, action) => {
       state.upcomingMatches = action.payload;
     },
-    setLogout: () => {
-      return initialState;
+    setLogout: (state) => {
+      (state.user = null),
+        (state.token = null),
+        (state.liveMatch = { isEmpty: true, data: null }),
+        (state.upcomingMatches = null);
     },
   },
 });

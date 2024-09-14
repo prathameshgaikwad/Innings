@@ -33,7 +33,12 @@ const tournamentSlice = createSlice({
     clearFeaturedTournaments: (state) => {
       state.featuredTournaments = [];
     },
-    clearTournamentsData: () => initialState,
+    clearTournamentsData: (state) => {
+      (state.createdTournaments = []),
+        (state.joinedTournaments = []),
+        (state.featuredTournaments = []),
+        (state.latestTournament = null);
+    },
   },
 });
 
