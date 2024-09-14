@@ -16,7 +16,9 @@ const tournamentSlice = createSlice({
     },
     addJoinedTournament: (state, action) => {
       const { tournament_id } = action.payload;
-      state.joinedTournaments = [...state.joinedTournaments, tournament_id];
+      if (!state.joinedTournaments.includes(tournament_id)) {
+        state.joinedTournaments.push(tournament_id);
+      }
     },
     setCreatedTournaments: (state, action) => {
       state.createdTournaments = action.payload;
@@ -33,11 +35,8 @@ const tournamentSlice = createSlice({
     clearFeaturedTournaments: (state) => {
       state.featuredTournaments = [];
     },
-    clearTournamentsData: (state) => {
-      (state.createdTournaments = []),
-        (state.joinedTournaments = []),
-        (state.featuredTournaments = []),
-        (state.latestTournament = null);
+    clearTournamentsData: () => {
+      return initialState;
     },
   },
 });
