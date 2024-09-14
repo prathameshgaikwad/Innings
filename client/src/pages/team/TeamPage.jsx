@@ -10,7 +10,6 @@ import PageContainer from "../../components/layouts/pages/PageContainer";
 import RectangularSkeleton from "../../components/skeletons/RectangularSkeleton";
 import TeamPageHeader from "../../components/teamPage/TeamPageHeader";
 import TeamPlayersSheet from "../../components/tables/TeamPlayersSheet";
-import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { clearTeamData } from "../../state/team/teamSlice";
 import { teamApi } from "../../services/api";
 import { useMediaQuery } from "@mui/material";
@@ -39,7 +38,6 @@ const TeamPage = () => {
   return (
     <>
       <Navbar />
-      <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ mb: 8 }}>
         <TeamPageHeader
           name={name}

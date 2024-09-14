@@ -13,7 +13,6 @@ import { Team } from "../../types";
 import TeamCardSkeleton from "../skeletons/TeamCardSkeleton";
 import Typography from "@mui/joy/Typography";
 import useHover from "../../hooks/useHover";
-import { useParams } from "react-router-dom";
 
 type TeamCardProps = {
   team: Team;
@@ -23,10 +22,9 @@ type TeamCardProps = {
 const TeamCard: React.FC<TeamCardProps> = ({ team, isLoading }) => {
   const theme = useTheme();
   const { isHovered, handleMouseEnter, handleMouseLeave } = useHover();
-  const { tournamentId } = useParams();
   const { team_color, logo_url, name, captain_name, players, _id } = team;
   const size = players.length;
-  const teamURL = `/tournaments/${tournamentId}/teams/${_id}`;
+  const teamURL = `/teams/${_id}`;
 
   return (
     <>

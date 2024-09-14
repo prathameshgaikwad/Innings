@@ -13,7 +13,7 @@ const TeamBadgeHorizontal = ({ team, isSmall, isLoading }) => {
   const { team_color, logo_url, name, _id, performance } = team;
   const { tournamentId } = useParams();
 
-  const teamPageLink = `/tournaments/${tournamentId}/teams/${_id}`;
+  const teamPageLink = `/teams/${_id}`;
 
   return (
     <>
