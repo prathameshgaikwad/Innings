@@ -13,30 +13,26 @@ const userSlice = createSlice({
   reducers: {
     setLogin: (state, action) => {
       const { token, user } = action.payload;
-      if (token) {
-        state.user = user;
-        state.token = token;
-      } else {
-        state.user = null;
-        state.token = null;
-      }
+      state.user = token ? user : null;
+      state.token = token || null;
     },
     setLiveMatch: (state, action) => {
-      state.liveMatch.isEmpty = false;
-      state.liveMatch.data = action.payload;
-      state.liveMatch.data.current_innings_no = action.payload.innings.length;
+      state.liveMatch = {
+        isEmpty: false,
+        data: {
+          ...action.payload,
+          current_innings_no: action.payload.innings.length,
+        },
+      };
     },
     setNoLiveMatch: (state) => {
-      state.liveMatch.isEmpty = true;
+      state.liveMatch = { isEmpty: true, data: null };
     },
     setUpcomingMatches: (state, action) => {
       state.upcomingMatches = action.payload;
     },
-    setLogout: (state) => {
-      (state.user = null),
-        (state.token = null),
-        (state.liveMatch = { isEmpty: true, data: null }),
-        (state.upcomingMatches = null);
+    setLogout: () => {
+      return initialState;
     },
   },
 });
