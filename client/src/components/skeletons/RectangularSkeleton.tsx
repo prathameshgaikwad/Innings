@@ -16,7 +16,7 @@ const RectangularSkeleton: React.FC<RectangularSkeletonProps> = ({
       variant="rectangular"
       height={height}
       width={width}
-      animation="pulse"
+      animation="wave"
       sx={{ borderRadius: borderRadius }}
     />
   );

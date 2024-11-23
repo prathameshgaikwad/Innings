@@ -21,7 +21,7 @@ const UpcomingMatchesSkeleton: React.FC = () => {
         variant="rectangular"
         height={280}
         width={"100%"}
-        animation="pulse"
+        animation="wave"
       />
     </>
   );

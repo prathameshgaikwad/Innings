@@ -19,7 +19,7 @@ const ScorecardSkeleton: React.FC = () => {
       }}>
       <SectionHeader title={"Scorecard"} />
       <Skeleton
-        animation="pulse"
+        animation="wave"
         variant="rectangular"
         sx={{ width: 261, height: 44, borderRadius: 20 }}
       />
