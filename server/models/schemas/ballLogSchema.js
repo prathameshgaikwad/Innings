@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { EXTRA_TYPE } = require("../../utils/constants");
 
 const ballLogSchema = new mongoose.Schema({
   bowler_id: {
@@ -25,7 +26,16 @@ const ballLogSchema = new mongoose.Schema({
   },
   extra: {
     is_extra: { type: Boolean, default: false },
-    extra_type: { type: String, enum: ["WD", "NB", "B", "LB", "P"] },
+    extra_type: {
+      type: String,
+      enum: [
+        EXTRA_TYPE.WIDE,
+        EXTRA_TYPE.NO_BALL,
+        EXTRA_TYPE.BYE,
+        EXTRA_TYPE.LEG_BYE,
+        EXTRA_TYPE.PENALTY,
+      ],
+    },
     runs_this_ball: { type: Number, default: 0 },
   },
 });

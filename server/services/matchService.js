@@ -2,6 +2,7 @@ const Match = require("../models/match");
 const { inningsSchema } = require("../models/schemas/inningsSchema");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+const { EXTRA_TYPE } = require("../utils/constants");
 async function ensureInningsStructure({
   match,
   innings_no,
@@ -56,11 +57,14 @@ async function updateInningsMetrics({
         "innings.$.data.total_fours": runs_scored === 4 ? 1 : 0,
         "innings.$.data.total_sixes": runs_scored === 6 ? 1 : 0,
         "innings.$.data.extras.total": is_extra ? 1 : 0,
-        "innings.$.data.extras.wides": extra_type === "WD" ? 1 : 0,
-        "innings.$.data.extras.no_balls": extra_type === "NB" ? 1 : 0,
-        "innings.$.data.extras.byes": extra_type === "B" ? 1 : 0,
-        "innings.$.data.extras.leg_byes": extra_type === "LB" ? 1 : 0,
-        "innings.$.data.extras.penalties": extra_type === "P" ? 1 : 0,
+        "innings.$.data.extras.wides": extra_type === EXTRA_TYPE.WIDE ? 1 : 0,
+        "innings.$.data.extras.no_balls":
+          extra_type === EXTRA_TYPE.NO_BALL ? 1 : 0,
+        "innings.$.data.extras.byes": extra_type === EXTRA_TYPE.BYE ? 1 : 0,
+        "innings.$.data.extras.leg_byes":
+          extra_type === EXTRA_TYPE.LEG_BYE ? 1 : 0,
+        "innings.$.data.extras.penalties":
+          extra_type === EXTRA_TYPE.PENALTY ? 1 : 0,
       },
     }
   );
