@@ -1,28 +1,4 @@
-type BattingData = {
-  sr_no: number;
-  name: string;
-  wicket: string;
-  runs: number;
-  balls: number;
-  fours: number;
-  sixes: number;
-  strikeRate: number;
-};
-
-type BowlingData = {
-  name: string;
-  overs: number;
-  runs: number;
-  wickets: number;
-  economy: number;
-  dots: number;
-};
-
-type FallOfWicketsData = {
-  name: string;
-  scoreStamp: number;
-  overStamp: number;
-};
+import { BattingData, BowlingData, FallOfWicketsData } from "../../types";
 
 export function createBattingData({
   sr_no,

@@ -120,3 +120,29 @@ export interface Team {
 }
 
 export interface Player {}
+
+export type BattingData = {
+  sr_no: number;
+  name: string;
+  wicket: string;
+  runs: number;
+  balls: number;
+  fours: number;
+  sixes: number;
+  strikeRate: number;
+};
+
+export type BowlingData = {
+  name: string;
+  overs: number;
+  runs: number;
+  wickets: number;
+  economy: number;
+  dots: number;
+};
+
+export type FallOfWicketsData = {
+  name: string;
+  scoreStamp: number;
+  overStamp: number;
+};

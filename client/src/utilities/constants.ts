@@ -1,21 +1,22 @@
+import { BattingData, BowlingData } from "../types";
 import { createBattingData, createBowlingData } from "./helpers/scorecardUtils";
 
-export const BACKGROUND_ART_LIGHT_URL =
+export const BACKGROUND_ART_LIGHT_URL: string =
   "https://images.unsplash.com/photo-1629285483773-6b5cde2171d7?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-export const BACKGROUND_ART_DARK_URL =
+export const BACKGROUND_ART_DARK_URL: string =
   "https://images.unsplash.com/photo-1587385789097-0197a7fbd179?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-export const CARD_BOX_SHADOW_GLOW_EFFECT =
+export const CARD_BOX_SHADOW_GLOW_EFFECT: string =
   "rgba(180,166,91,0.2)  0px 6px 24px 0px, rgba(180,166,91,0.2) 0px 0px 0px 1px";
 
-export const CARD_BOX_SHADOW_SMALL =
+export const CARD_BOX_SHADOW_SMALL: string =
   "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px";
 
-export const TOAST_BOX_SHADOW =
+export const TOAST_BOX_SHADOW: string =
   "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px";
 
-export const SAMPLE_SCORECARD_BATTING_DATA_1 = [
+export const SAMPLE_SCORECARD_BATTING_DATA_1: BattingData[] = [
   createBattingData({
     sr_no: 1,
     name: "Virat Kohli",
@@ -108,7 +109,7 @@ export const SAMPLE_SCORECARD_BATTING_DATA_1 = [
   }),
 ];
 
-export const SAMPLE_SCORECARD_BOWLING_DATA_1 = [
+export const SAMPLE_SCORECARD_BOWLING_DATA_1: BowlingData[] = [
   createBowlingData({
     name: "Mohammad Siraj",
     overs: 4,
