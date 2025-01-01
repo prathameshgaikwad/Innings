@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export interface User {
   id: string;
   name: string;
@@ -109,17 +111,96 @@ export interface Team {
   players: Player[];
   captain_name: string;
   logo_url: string;
-  performance: {
-    matches: number;
-    win: number;
-    loss: number;
-    draw: number;
-    points: number;
-    nrr: number;
-  };
+  performance: TeamPerformance;
 }
 
-export interface Player {}
+export interface Player {
+  _id: Types.ObjectId;
+  team_id?: Types.ObjectId;
+  tournament_id?: Types.ObjectId;
+  first_name: string;
+  last_name?: string;
+  debut: Date;
+  picture_url?: string;
+  statistics: PlayerStatistics;
+  match_performances: Array<MatchPerformance>;
+}
+
+export interface PlayerStatistics {
+  matches: number;
+  total_runs: number;
+  strike_rate: number;
+  average: number;
+  highest_score: {
+    runs: number;
+    dismissed: boolean;
+  };
+  fifties: number;
+  hundreds: number;
+  fours: number;
+  sixes: number;
+  total_dismissals: number;
+  balls_faced: number;
+  runs_conceded: number;
+  balls_bowled: number;
+  wickets_taken: number;
+  extras: {
+    wides: number;
+    no_balls: number;
+    byes: number;
+    leg_byes: number;
+    penalty_runs: number;
+  };
+  maidens: number;
+  economy: number;
+}
+
+export interface MatchPerformance {
+  match_id: Types.ObjectId;
+  tournament_id: Types.ObjectId;
+  batting_performance: BattingPerformance;
+  bowling_performance: BowlingPerformance;
+}
+
+export interface Dismissal {
+  is_dismissed: boolean;
+  bowler_id?: Types.ObjectId;
+  dissmissal_type:
+    | "caught"
+    | "bowled"
+    | "lbw"
+    | "run_out"
+    | "stumped"
+    | "hit-wicket"
+    | "retired_hurt"
+    | "retired_out"
+    | "timed_out"
+    | "not_out";
+}
+
+export interface BattingPerformance {
+  status: "did_not_bat" | "did_bat";
+  runs_scored: number;
+  balls_faced: number;
+  dismissal: Dismissal;
+  fours: number;
+  sixes: number;
+  strike_rate: number;
+}
+
+export interface Wickets {
+  wickets_taken: number;
+  wicket_log: Types.ObjectId[];
+}
+
+export interface BowlingPerformance {
+  status: "did_not_bowl" | "did_bowl";
+  balls_bowled: number;
+  runs_conceded: number;
+  economy: number;
+  wickets: Wickets;
+  extras: Extras;
+}
 
 export type BattingData = {
   sr_no: number;
@@ -146,3 +227,12 @@ export type FallOfWicketsData = {
   scoreStamp: number;
   overStamp: number;
 };
+
+export interface TeamPerformance {
+  matches: number;
+  win: number;
+  loss: number;
+  draw: number;
+  points: number;
+  nrr: number;
+}

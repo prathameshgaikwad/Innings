@@ -1,6 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Player, TeamPerformance } from "../../types";
 
-const initialState = {
+interface TeamState {
+  name: string;
+  team_color: string;
+  players: Player[];
+  captain_name: string;
+  logo_url: string;
+  performance: TeamPerformance | null;
+}
+
+const initialState: TeamState = {
   name: "",
   team_color: "",
   players: [],
@@ -13,7 +23,7 @@ const teamSlice = createSlice({
   name: "team",
   initialState,
   reducers: {
-    setTeam: (state, action) => {
+    setTeam: (state, action: PayloadAction<TeamState>) => {
       const { name, team_color, players, logo_url, captain_name, performance } =
         action.payload;
       state.name = name;
