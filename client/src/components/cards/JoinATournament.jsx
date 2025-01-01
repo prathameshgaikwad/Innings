@@ -34,7 +34,7 @@ const JoinATournament = () => {
           tournament_id: values.tournament_id,
         })
       );
-      dispatch(addJoinedTournament({ tournament_id: values.tournament_id }));
+      dispatch(addJoinedTournament(values.tournament_id));
       resetForm();
       setIsOpen(true);
       setTimeout(() => {

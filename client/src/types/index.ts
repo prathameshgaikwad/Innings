@@ -236,3 +236,35 @@ export interface TeamPerformance {
   points: number;
   nrr: number;
 }
+
+export interface Fixture {
+  _id: Types.ObjectId;
+  team1_id: Types.ObjectId;
+  team2_id: Types.ObjectId;
+  match_id?: Types.ObjectId;
+  match_no: number;
+  date: Date;
+  time: string;
+  status: "pending" | "ongoing" | "completed";
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface Tournament {
+  _id: Types.ObjectId;
+  admin_id: Types.ObjectId;
+  name: string;
+  start_date: Date;
+  end_date: Date;
+  venue?: string;
+  total_overs: number;
+  teams: Types.ObjectId[];
+  fixtures: Types.ObjectId[];
+  banner_urls: {
+    large?: string;
+    small?: string;
+  };
+  status: "pending" | "ongoing" | "completed";
+  createdAt?: Date;
+  updatedAt?: Date;
+}

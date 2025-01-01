@@ -18,7 +18,7 @@ const handleJoinTournament = async ({
     dispatch(
       tournamentPageApi.joinTournament({ user_id, token, tournament_id })
     );
-    dispatch(addJoinedTournament({ tournament_id }));
+    dispatch(addJoinedTournament(tournament_id));
     setIsOpen(true);
 
     setTimeout(() => {
