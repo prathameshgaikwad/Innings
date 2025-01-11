@@ -4,7 +4,7 @@
   "description": "cricket tournament management app",
   "main": "client/index.html",
   "scripts": {
-    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\" "
+    "dev": "concurrently \"docker run -d -p 6379:6379 redis/redis-stack:latest\" \"cd server && npm run dev\" \"cd client && npm start\" "
   },
   "author": "prathamesh gaikwad",
   "license": "ISC",

@@ -104,7 +104,7 @@ export interface Match {
 }
 
 export interface Team {
-  _id: string;
+  _id: Types.ObjectId;
   name: string;
   name_short: string;
   team_color: string;
@@ -245,10 +245,12 @@ export interface Fixture {
   match_no: number;
   date: Date;
   time: string;
-  status: "pending" | "ongoing" | "completed";
+  status: FixtureStatus;
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export type FixtureStatus = "pending" | "ongoing" | "completed";
 
 export interface Tournament {
   _id: Types.ObjectId;

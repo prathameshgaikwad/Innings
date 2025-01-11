@@ -1,7 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Fixture, Team } from "../../types";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
 import formatLongDate from "../../utilities/helpers/formatLongDate";
 
-const initialState = {
+export interface bannerUrls {
+  large: string;
+  small: string;
+}
+
+export interface TournamentDetails {
+  name: string;
+  venue: string;
+  admin_id: string;
+  start_date: string;
+  end_date: string;
+  total_overs: number;
+  banner_urls: bannerUrls;
+  adminName: string;
+}
+
+export interface TournamentPageInitState {
+  fixtures: Fixture[];
+  teams: Team[];
+  pointsTable: Team[];
+  details: TournamentDetails | null;
+}
+
+const initialState: TournamentPageInitState = {
   fixtures: [],
   teams: [],
   pointsTable: [],
@@ -12,16 +37,16 @@ const tournamentPageSlice = createSlice({
   name: "tournament",
   initialState,
   reducers: {
-    setFixturesData: (state, action) => {
+    setFixturesData: (state, action: PayloadAction<Fixture[]>) => {
       state.fixtures = action.payload;
     },
-    setTeams: (state, action) => {
+    setTeams: (state, action: PayloadAction<Team[]>) => {
       state.teams = action.payload;
     },
-    setPointsTable: (state, action) => {
+    setPointsTable: (state, action: PayloadAction<any>) => {
       state.pointsTable = action.payload;
     },
-    setTournamentDetails: (state, action) => {
+    setTournamentDetails: (state, action: PayloadAction<TournamentDetails>) => {
       const {
         name,
         venue,
