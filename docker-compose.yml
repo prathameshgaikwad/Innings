@@ -1,0 +1,75 @@
+version: "3.3"
+
+services:
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_SERVER_URL=http://localhost:3000
+      - VITE_SERVER_REGISTER_URL=http://localhost:3000/auth/register
+      - VITE_SERVER_LOGIN_URL=http://localhost:3000/auth/login
+      - VITE_SERVER_TOURNAMENTS_API=http://localhost:3000/tournaments
+      - VITE_SERVER_USER_API=http://localhost:3000/user
+      - VITE_SERVER_TEAMS_API=http://localhost:3000/teams
+      - VITE_SERVER_FIXTURES_API=http://localhost:3000/fixtures
+      - VITE_SERVER_MATCHES_API=http://localhost:3000/matches
+      - VITE_SERVER_GOOGLE_OAUTH_CLIENT_ID=${VITE_SERVER_GOOGLE_OAUTH_CLIENT_ID}
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - innings-network
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=${MONGO_URI}
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET}
+      - CLIENT_URL=http://localhost:5173
+      - REDIS_PORT=6379
+      - REDIS_HOST=redis
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - innings-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - innings-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - innings-network
+
+volumes:
+  mongodb_data:
+  redis_data:
+
+networks:
+  innings-network:
+    driver: bridge
