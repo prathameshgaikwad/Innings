@@ -4,6 +4,7 @@ import { Box, Link, Typography, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import CenteredBox from "../layouts/pages/CenteredBox";
 import CustomSwiper from "../layouts/swiper/CustomSwiper";
 import FixtureCard from "../cards/FixtureCard/FixtureCard";
 import { SwiperSlide } from "swiper/react";
@@ -34,7 +35,7 @@ const UpcomingMatches = ({ tournamentId }) => {
       {isLoading ? (
         <UpcomingMatchesSkeleton />
       ) : (
-        <>
+        <CenteredBox>
           <Typography level="h3" sx={{ mt: 8, mb: 4, mx: "auto" }}>
             Up next in <Link href={tournamentURL}>{tournamentName}</Link>
           </Typography>
@@ -60,7 +61,7 @@ const UpcomingMatches = ({ tournamentId }) => {
               )}
             </CustomSwiper>
           </Box>
-        </>
+        </CenteredBox>
       )}
     </>
   );

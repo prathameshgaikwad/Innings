@@ -1,3 +1,5 @@
+import * as motion from "motion/react-client";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -46,29 +48,40 @@ const HomePage = () => {
           <Skeleton width={"100%"} height={"100%"} />
         ) : (
           <>
-            {latestTournament && tournamentId.length >= 0 ? (
-              <Box sx={{ mb: 8, textAlign: "center" }}>
-                <LiveMatch tournamentId={tournamentId} />
-                <UpcomingMatches tournamentId={tournamentId} />
-              </Box>
-            ) : (
-              <>
-                <NoTournamentsJoined />
-                {joinedTournaments && joinedTournaments.length === 0 ? (
-                  <CustomToast
-                    color={"warning"}
-                    content={"Please join a tournament to see latest content!"}
-                    duration={5000}
-                  />
-                ) : (
-                  <CustomToast
-                    color={"neutral"}
-                    content={`All tournaments you've joined are currently inactive.`}
-                    duration={5000}
-                  />
-                )}
-              </>
-            )}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0, 0.71, 0.2, 1.01],
+              }}>
+              {latestTournament && tournamentId.length >= 0 ? (
+                <Box sx={{ mb: 8, textAlign: "center" }}>
+                  <LiveMatch tournamentId={tournamentId} />
+                  <UpcomingMatches tournamentId={tournamentId} />
+                </Box>
+              ) : (
+                <>
+                  <NoTournamentsJoined />
+                  {joinedTournaments && joinedTournaments.length === 0 ? (
+                    <CustomToast
+                      color={"warning"}
+                      content={
+                        "Please join a tournament to see latest content!"
+                      }
+                      duration={5000}
+                    />
+                  ) : (
+                    <CustomToast
+                      color={"neutral"}
+                      content={`All tournaments you've joined are currently inactive.`}
+                      duration={5000}
+                    />
+                  )}
+                </>
+              )}
+            </motion.div>
           </>
         )}
       </PageContainer>
