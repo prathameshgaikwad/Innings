@@ -2,8 +2,6 @@ import * as motion from "motion/react-client";
 
 import { Box, BoxProps, useTheme } from "@mui/joy";
 
-import Footer from "../../common/Footer";
-import Navbar from "../../common/Navbar/Navbar";
 import { useMediaQuery } from "@mui/material";
 
 type PageContainerProps = {
@@ -30,7 +28,6 @@ const PageContainer: React.FC<PageContainerProps> = ({
   };
   return (
     <>
-      <Navbar />
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -42,7 +39,6 @@ const PageContainer: React.FC<PageContainerProps> = ({
         {" "}
         <Box sx={{ ...defaultStyles, ...customStyles }}>{children}</Box>
       </motion.div>
-      <Footer />
     </>
   );
 };

@@ -8,6 +8,7 @@ const Navbar = () => {
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("md")
   );
+  console.log("Rendering Navbar");
 
   return (
     <Box

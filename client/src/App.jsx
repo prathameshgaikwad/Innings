@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
 
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
 
 import CssBaseline from "@mui/joy/CssBaseline";
@@ -26,17 +33,22 @@ const TournamentSetupPage = lazy(() =>
 );
 const Tournaments = lazy(() => import("./pages/tournaments/Tournaments"));
 
+const ProtectedRoute = () => {
+  const isAuth = Boolean(useSelector((store) => store.user.token));
+  return isAuth ? <Outlet /> : <Navigate to="/accounts/sign-in" />;
+};
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => {
-  const PrivateRoute = ({ children }) => {
-    useEffect(() => {
-      window.scrollTo(0, 0); // Scroll to top when component mounts
-    }, []);
-
-    const isAuth = Boolean(useSelector((store) => store.user.token));
-
-    return isAuth ? children : <Navigate to="/accounts/sign-in" />;
-  };
-
   return (
     <BrowserRouter basename="/">
       <CssVarsProvider
@@ -44,6 +56,7 @@ const App = () => {
         disableTransitionOnChange
         theme={myTheme}>
         <CssBaseline />
+        <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* PUBLIC PATHS */}
@@ -51,86 +64,33 @@ const App = () => {
             <Route path="/accounts/create" element={<CreateAccount />} />
 
             {/* PRIVATE PATHS */}
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/tournaments"
-              element={
-                <PrivateRoute>
-                  <Tournaments />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/tournaments/:tournamentId"
-              element={
-                <PrivateRoute>
-                  <TournamentPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/tournaments/:tournamentId/setup"
-              element={
-                <PrivateRoute>
-                  <TournamentSetupPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/tournaments/:tournamentId/manage"
-              element={
-                <PrivateRoute>
-                  <TournamentManagement />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/tournaments/:tournamentId/match/:matchId"
-              element={
-                <PrivateRoute>
-                  <Match />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/tournaments/:tournamentId/match/:matchId/manage"
-              element={
-                <PrivateRoute>
-                  <MatchManagement />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/teams/:teamId"
-              element={
-                <PrivateRoute>
-                  <TeamPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/statistics"
-              element={
-                <PrivateRoute>
-                  <Statistics />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/user/statistics"
-              element={
-                <PrivateRoute>
-                  <MyStatistics />
-                </PrivateRoute>
-              }
-            />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/tournaments" element={<Tournaments />} />
+              <Route
+                path="/tournaments/:tournamentId"
+                element={<TournamentPage />}
+              />
+              <Route
+                path="/tournaments/:tournamentId/setup"
+                element={<TournamentSetupPage />}
+              />
+              <Route
+                path="/tournaments/:tournamentId/manage"
+                element={<TournamentManagement />}
+              />
+              <Route
+                path="/tournaments/:tournamentId/match/:matchId"
+                element={<Match />}
+              />
+              <Route
+                path="/tournaments/:tournamentId/match/:matchId/manage"
+                element={<MatchManagement />}
+              />
+              <Route path="/teams/:teamId" element={<TeamPage />} />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route path="/user/statistics" element={<MyStatistics />} />
+            </Route>
           </Routes>
         </Suspense>
       </CssVarsProvider>

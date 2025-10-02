@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PageContainer from "../../components/layouts/pages/PageContainer";
+import PageOutlet from "../../components/layouts/pages/PageOutlet";
 import RectangularSkeleton from "../../components/skeletons/RectangularSkeleton";
 import TeamPageHeader from "../../components/teamPage/TeamPageHeader";
 import TeamPlayersSheet from "../../components/tables/TeamPlayersSheet";
@@ -34,7 +35,7 @@ const TeamPage = () => {
   };
 
   return (
-    <>
+    <PageOutlet>
       <PageContainer customStyles={{ mb: 8 }}>
         <TeamPageHeader
           name={name}
@@ -73,7 +74,7 @@ const TeamPage = () => {
           </Button>
         </Card>
       </PageContainer>
-    </>
+    </PageOutlet>
   );
 };
 export default TeamPage;

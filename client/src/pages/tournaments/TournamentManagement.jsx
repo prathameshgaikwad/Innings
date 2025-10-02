@@ -2,6 +2,7 @@ import CompletedMatches from "../../components/lists/CompletedMatches";
 import NoCompletedMatches from "../../components/fallbacks/NoCompletedMatches";
 import NoPendingMatches from "../../components/fallbacks/NoPendingMatches";
 import PageContainer from "../../components/layouts/pages/PageContainer";
+import PageOutlet from "../../components/layouts/pages/PageOutlet";
 import PendingMatches from "../../components/lists/PendingMatches";
 import PointsTable from "../../components/tables/PointsTable/PointsTable";
 import { Stack } from "@mui/joy";
@@ -28,7 +29,7 @@ const TournamentManagement = () => {
   );
 
   return (
-    <>
+    <PageOutlet>
       <TournamentHeader
         isAdmin={isAdmin}
         id={tournamentId}
@@ -54,7 +55,7 @@ const TournamentManagement = () => {
         <PointsTable />
         <TeamsList />
       </PageContainer>
-    </>
+    </PageOutlet>
   );
 };
 

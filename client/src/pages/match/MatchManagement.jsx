@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/matchManagement/Header";
 import MainContent from "../../components/matchManagement/MainContent/MainContent";
 import PageContainer from "../../components/layouts/pages/PageContainer";
+import PageOutlet from "../../components/layouts/pages/PageOutlet";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import SocketHandler from "../../components/SocketHandler";
 import TossProvider from "../../components/TossProvider";
@@ -41,7 +42,7 @@ const MatchManagement = () => {
     innings[current_innings_no - 1]?.data?.fall_of_wickets_log ?? [];
 
   return (
-    <>
+    <PageOutlet>
       <PageContainer
         customStyles={{ gap: 2, maxWidth: isMobile ? "85vw" : "80vw" }}>
         <SocketHandler matchId={matchId} socket={socket} isAdmin={true}>
@@ -73,7 +74,7 @@ const MatchManagement = () => {
           </TossProvider>
         </SocketHandler>
       </PageContainer>
-    </>
+    </PageOutlet>
   );
 };
 

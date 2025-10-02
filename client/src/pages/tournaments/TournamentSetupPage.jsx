@@ -6,6 +6,7 @@ import AddTeamsForm from "../../components/createTournament/AddTeamsForm";
 import CreateFixturesForm from "../../components/createTournament/CreateFixturesForm";
 import FinishSetup from "../../components/createTournament/FinishSetup";
 import PageContainer from "../../components/layouts/pages/PageContainer";
+import PageOutlet from "../../components/layouts/pages/PageOutlet";
 import TeamsList from "../../components/lists/TeamsList";
 import TournamentHeader from "../../components/tournament/TournamentHeader";
 import { useMediaQuery } from "@mui/material";
@@ -25,7 +26,7 @@ const TournamentSetupPage = () => {
   }
 
   return (
-    <>
+    <PageOutlet>
       <TournamentHeader
         isAdmin={true}
         id={tournamentId}
@@ -50,7 +51,7 @@ const TournamentSetupPage = () => {
         <CreateFixturesForm />
         <FinishSetup />
       </PageContainer>
-    </>
+    </PageOutlet>
   );
 };
 export default TournamentSetupPage;
