@@ -5,9 +5,7 @@ import { useEffect, useState } from "react";
 
 import Box from "@mui/joy/Box";
 import CustomToast from "../../components/notifications/toasts/CustomToast";
-import Footer from "../../components/common/Footer";
 import LiveMatch from "../../components/match/LiveMatch";
-import Navbar from "../../components/common/Navbar/Navbar";
 import NoTournamentsJoined from "../../components/fallbacks/NoTournamentsJoined";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import { Skeleton } from "@mui/joy";
@@ -42,7 +40,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Navbar />
       <PageContainer>
         {isLoading ? (
           <Skeleton width={"100%"} height={"100%"} />
@@ -85,7 +82,6 @@ const HomePage = () => {
           </>
         )}
       </PageContainer>
-      <Footer />
     </>
   );
 };

@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Footer from "../../components/common/Footer";
-import Navbar from "../../components/common/Navbar/Navbar";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import RectangularSkeleton from "../../components/skeletons/RectangularSkeleton";
 import TeamPageHeader from "../../components/teamPage/TeamPageHeader";
@@ -37,7 +35,6 @@ const TeamPage = () => {
 
   return (
     <>
-      <Navbar />
       <PageContainer customStyles={{ mb: 8 }}>
         <TeamPageHeader
           name={name}
@@ -76,7 +73,6 @@ const TeamPage = () => {
           </Button>
         </Card>
       </PageContainer>
-      <Footer />
     </>
   );
 };

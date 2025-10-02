@@ -1,6 +1,4 @@
 import Box from "@mui/joy/Box";
-import Footer from "../../components/common/Footer";
-import Navbar from "../../components/common/Navbar/Navbar";
 import NoTournamentsJoined from "../../components/fallbacks/NoTournamentsJoined";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import PlayerStatisticsList from "../../components/lists/PlayerStatisticsList";
@@ -23,7 +21,6 @@ const Statistics = () => {
 
   return (
     <>
-      <Navbar />
       <PageContainer customStyles={{ gap: 2, mb: 8 }}>
         {tournamentId.length > 0 ? (
           <>
@@ -37,7 +34,6 @@ const Statistics = () => {
           </Box>
         )}
       </PageContainer>
-      <Footer />
     </>
   );
 };

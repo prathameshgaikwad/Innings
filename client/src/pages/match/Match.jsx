@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import ChaseStatsCard from "../../components/matchManagement/ChaseStatsCard";
-import Footer from "../../components/common/Footer";
 import ManOfTheMatchCard from "../../components/cards/ManOfTheMatchCard";
 import ManageEventAlert from "../../components/notifications/alerts/ManageEventAlert";
 import MatchCard from "../../components/cards/MatchCard/MatchCard";
-import Navbar from "../../components/common/Navbar/Navbar";
 import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
@@ -62,7 +60,6 @@ const Match = () => {
 
   return (
     <>
-      <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ gap: 2, mb: 8 }}>
         <SocketHandler matchId={matchId} socket={socket} isAdmin={false}>
@@ -124,7 +121,6 @@ const Match = () => {
           </TossProvider>
         </SocketHandler>
       </PageContainer>
-      <Footer />
     </>
   );
 };

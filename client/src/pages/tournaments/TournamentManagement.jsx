@@ -1,6 +1,4 @@
 import CompletedMatches from "../../components/lists/CompletedMatches";
-import Footer from "../../components/common/Footer";
-import Navbar from "../../components/common/Navbar/Navbar";
 import NoCompletedMatches from "../../components/fallbacks/NoCompletedMatches";
 import NoPendingMatches from "../../components/fallbacks/NoPendingMatches";
 import PageContainer from "../../components/layouts/pages/PageContainer";
@@ -31,7 +29,6 @@ const TournamentManagement = () => {
 
   return (
     <>
-      <Navbar />
       <TournamentHeader
         isAdmin={isAdmin}
         id={tournamentId}
@@ -57,7 +54,6 @@ const TournamentManagement = () => {
         <PointsTable />
         <TeamsList />
       </PageContainer>
-      <Footer />
     </>
   );
 };

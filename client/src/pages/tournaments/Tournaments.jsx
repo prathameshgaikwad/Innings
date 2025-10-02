@@ -2,10 +2,8 @@ import Box from "@mui/joy/Box";
 import CreateTournamentCard from "../../components/cards/CreateTournamentCard";
 import CreatedTournaments from "../../components/tournament/CreatedTournaments";
 import FeaturedTournaments from "../../components/tournament/FeaturedTournaments";
-import Footer from "../../components/common/Footer";
 import JoinATournament from "../../components/cards/JoinATournament";
 import JoinedTournaments from "../../components/tournament/JoinedTournaments";
-import Navbar from "../../components/common/Navbar/Navbar";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -25,7 +23,6 @@ const Tournaments = () => {
 
   return (
     <>
-      <Navbar />
       <PageContainer customStyles={{ gap: 2, mb: 4 }}>
         <JoinedTournaments userId={_id} />
         <FeaturedTournaments />
@@ -42,7 +39,6 @@ const Tournaments = () => {
           {createdTournaments.length !== 0 && <CreateTournamentCard />}
         </Box>
       </PageContainer>
-      <Footer />
     </>
   );
 };

@@ -2,6 +2,8 @@ import * as motion from "motion/react-client";
 
 import { Box, BoxProps, useTheme } from "@mui/joy";
 
+import Footer from "../../common/Footer";
+import Navbar from "../../common/Navbar/Navbar";
 import { useMediaQuery } from "@mui/material";
 
 type PageContainerProps = {
@@ -27,17 +29,21 @@ const PageContainer: React.FC<PageContainerProps> = ({
     mx: "auto",
   };
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.8,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01],
-      }}>
-      {" "}
-      <Box sx={{ ...defaultStyles, ...customStyles }}>{children}</Box>
-    </motion.div>
+    <>
+      <Navbar />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.5,
+          ease: [0, 0.71, 0.2, 1.01],
+        }}>
+        {" "}
+        <Box sx={{ ...defaultStyles, ...customStyles }}>{children}</Box>
+      </motion.div>
+      <Footer />
+    </>
   );
 };
 

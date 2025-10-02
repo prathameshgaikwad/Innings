@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import Footer from "../../components/common/Footer";
 import ManageEventAlert from "../../components/notifications/alerts/ManageEventAlert";
-import Navbar from "../../components/common/Navbar/Navbar";
 import NextMatchCard from "../../components/cards/NextMatchCard";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import PointsTable from "../../components/tables/PointsTable/PointsTable";
@@ -53,7 +51,6 @@ const TournamentPage = () => {
 
   return (
     <>
-      <Navbar />
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ maxWidth: isMobile ? "95vw" : "82vw" }}>
         {fixturesData.length !== 0 && (
@@ -71,7 +68,6 @@ const TournamentPage = () => {
         <TeamsList isSetupPage={false} />
         {isAdmin && <ManageEventAlert eventType={"tournament"} />}
       </PageContainer>
-      <Footer />
     </>
   );
 };

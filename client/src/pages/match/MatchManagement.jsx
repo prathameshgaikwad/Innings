@@ -2,10 +2,8 @@ import { Box, useTheme } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import Footer from "../../components/common/Footer";
 import Header from "../../components/matchManagement/Header";
 import MainContent from "../../components/matchManagement/MainContent/MainContent";
-import Navbar from "../../components/common/Navbar/Navbar";
 import PageContainer from "../../components/layouts/pages/PageContainer";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import SocketHandler from "../../components/SocketHandler";
@@ -44,7 +42,6 @@ const MatchManagement = () => {
 
   return (
     <>
-      <Navbar />
       <PageContainer
         customStyles={{ gap: 2, maxWidth: isMobile ? "85vw" : "80vw" }}>
         <SocketHandler matchId={matchId} socket={socket} isAdmin={true}>
@@ -76,7 +73,6 @@ const MatchManagement = () => {
           </TossProvider>
         </SocketHandler>
       </PageContainer>
-      <Footer />
     </>
   );
 };
