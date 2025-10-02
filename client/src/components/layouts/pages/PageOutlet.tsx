@@ -1,15 +1,12 @@
+import { Outlet } from "react-router-dom";
 import Footer from "../../common/Footer";
 import Navbar from "../../common/Navbar/Navbar";
 
-type PageOutletProps = {
-  children: React.ReactNode;
-};
-
-const PageOutlet: React.FC<PageOutletProps> = ({ children }) => {
+const PageOutlet = () => {
   return (
     <>
       <Navbar />
-      {children}
+      <Outlet />
       <Footer />
     </>
   );

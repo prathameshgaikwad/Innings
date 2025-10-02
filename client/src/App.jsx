@@ -13,6 +13,7 @@ import { Suspense, lazy, useEffect } from "react";
 import CssBaseline from "@mui/joy/CssBaseline";
 import { CssVarsProvider } from "@mui/joy";
 import PageLoader from "./components/fallbacks/PageLoader";
+import PageOutlet from "./components/layouts/pages/PageOutlet";
 import myTheme from "./theme";
 import { useSelector } from "react-redux";
 
@@ -65,31 +66,33 @@ const App = () => {
 
             {/* PRIVATE PATHS */}
             <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/tournaments" element={<Tournaments />} />
-              <Route
-                path="/tournaments/:tournamentId"
-                element={<TournamentPage />}
-              />
-              <Route
-                path="/tournaments/:tournamentId/setup"
-                element={<TournamentSetupPage />}
-              />
-              <Route
-                path="/tournaments/:tournamentId/manage"
-                element={<TournamentManagement />}
-              />
-              <Route
-                path="/tournaments/:tournamentId/match/:matchId"
-                element={<Match />}
-              />
-              <Route
-                path="/tournaments/:tournamentId/match/:matchId/manage"
-                element={<MatchManagement />}
-              />
-              <Route path="/teams/:teamId" element={<TeamPage />} />
-              <Route path="/statistics" element={<Statistics />} />
-              <Route path="/user/statistics" element={<MyStatistics />} />
+              <Route element={<PageOutlet />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/tournaments" element={<Tournaments />} />
+                <Route
+                  path="/tournaments/:tournamentId"
+                  element={<TournamentPage />}
+                />
+                <Route
+                  path="/tournaments/:tournamentId/setup"
+                  element={<TournamentSetupPage />}
+                />
+                <Route
+                  path="/tournaments/:tournamentId/manage"
+                  element={<TournamentManagement />}
+                />
+                <Route
+                  path="/tournaments/:tournamentId/match/:matchId"
+                  element={<Match />}
+                />
+                <Route
+                  path="/tournaments/:tournamentId/match/:matchId/manage"
+                  element={<MatchManagement />}
+                />
+                <Route path="/teams/:teamId" element={<TeamPage />} />
+                <Route path="/statistics" element={<Statistics />} />
+                <Route path="/user/statistics" element={<MyStatistics />} />
+              </Route>
             </Route>
           </Routes>
         </Suspense>

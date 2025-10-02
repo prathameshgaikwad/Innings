@@ -8,7 +8,7 @@ import CustomToast from "../../components/notifications/toasts/CustomToast";
 import LiveMatch from "../../components/match/LiveMatch";
 import NoTournamentsJoined from "../../components/fallbacks/NoTournamentsJoined";
 import PageContainer from "../../components/layouts/pages/PageContainer";
-import PageOutlet from "../../components/layouts/pages/PageOutlet";
+
 import { Skeleton } from "@mui/joy";
 import UpcomingMatches from "../../components/lists/UpcomingMatches";
 import { tournamentsApi } from "../../services/api";
@@ -40,8 +40,7 @@ const HomePage = () => {
   }
 
   return (
-    <PageOutlet>
-      <PageContainer>
+    <PageContainer>
         {isLoading ? (
           <Skeleton width={"100%"} height={"100%"} />
         ) : (
@@ -83,7 +82,6 @@ const HomePage = () => {
           </>
         )}
       </PageContainer>
-    </PageOutlet>
   );
 };
 

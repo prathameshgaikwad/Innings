@@ -5,7 +5,7 @@ import FeaturedTournaments from "../../components/tournament/FeaturedTournaments
 import JoinATournament from "../../components/cards/JoinATournament";
 import JoinedTournaments from "../../components/tournament/JoinedTournaments";
 import PageContainer from "../../components/layouts/pages/PageContainer";
-import PageOutlet from "../../components/layouts/pages/PageOutlet";
+
 import { useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/joy/styles";
@@ -23,8 +23,7 @@ const Tournaments = () => {
   );
 
   return (
-    <PageOutlet>
-      <PageContainer customStyles={{ gap: 2, mb: 4 }}>
+    <PageContainer customStyles={{ gap: 2, mb: 4 }}>
         <JoinedTournaments userId={_id} />
         <FeaturedTournaments />
         <CreatedTournaments userId={_id} />
@@ -40,7 +39,6 @@ const Tournaments = () => {
           {createdTournaments.length !== 0 && <CreateTournamentCard />}
         </Box>
       </PageContainer>
-    </PageOutlet>
   );
 };
 

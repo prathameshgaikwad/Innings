@@ -8,7 +8,6 @@ import ManageEventAlert from "../../components/notifications/alerts/ManageEventA
 import MatchCard from "../../components/cards/MatchCard/MatchCard";
 import OnFieldStats from "../../components/match/OnFieldStats";
 import PageContainer from "../../components/layouts/pages/PageContainer";
-import PageOutlet from "../../components/layouts/pages/PageOutlet";
 import Scorecard from "../../components/match/Scorecard/Scorecard";
 import SocketHandler from "../../components/SocketHandler";
 import TossDetails from "../../components/match/TossDetails";
@@ -60,7 +59,7 @@ const Match = () => {
   const bowlerData = bowler;
 
   return (
-    <PageOutlet>
+    <>
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ gap: 2, mb: 8 }}>
         <SocketHandler matchId={matchId} socket={socket} isAdmin={false}>
@@ -122,7 +121,7 @@ const Match = () => {
           </TossProvider>
         </SocketHandler>
       </PageContainer>
-    </PageOutlet>
+    </>
   );
 };
 

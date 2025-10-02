@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import ManageEventAlert from "../../components/notifications/alerts/ManageEventAlert";
 import NextMatchCard from "../../components/cards/NextMatchCard";
 import PageContainer from "../../components/layouts/pages/PageContainer";
-import PageOutlet from "../../components/layouts/pages/PageOutlet";
 import PointsTable from "../../components/tables/PointsTable/PointsTable";
 import ScheduleOfMatches from "../../components/tables/ScheduleOfMatches/ScheduleOfMatches";
 import SimpleMatchCard from "../../components/cards/SimpleMatchCard/SimpleMatchCard";
@@ -51,7 +50,7 @@ const TournamentPage = () => {
       : {};
 
   return (
-    <PageOutlet>
+    <>
       <TournamentHeader id={tournamentId} isSetupComplete={true} />
       <PageContainer customStyles={{ maxWidth: isMobile ? "95vw" : "82vw" }}>
         {fixturesData.length !== 0 && (
@@ -69,7 +68,7 @@ const TournamentPage = () => {
         <TeamsList isSetupPage={false} />
         {isAdmin && <ManageEventAlert eventType={"tournament"} />}
       </PageContainer>
-    </PageOutlet>
+    </>
   );
 };
 export default TournamentPage;
